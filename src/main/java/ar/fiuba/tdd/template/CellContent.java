@@ -9,6 +9,7 @@ abstract class CellContent<T> {
     }
 
     abstract T getValue();
+
     abstract void setValue(T value);
 
 }

@@ -1,19 +1,19 @@
 package ar.fiuba.tdd.template;
 
-class Board {
+class Board<T> {
 
-    private int[][] board;
+    private Cell<T>[][] board;
     private int width;  // number of columns
     private int height; // number of rows
 
     Board(int height, int width) {
-        board = new int[height][width];
+        board = new Cell[height][width];
         this.height = height;
         this.width = width;
 
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                board[row][col] = 0;
+                board[row][col] = new Cell<>();
             }
         }
     }
@@ -26,7 +26,15 @@ class Board {
         return height;
     }
 
-    int getValue(int row, int column) {
+    private Cell<T> getCell(int row, int column) {
         return board[row][column];
+    }
+
+    T getValue(int row, int column) {
+        return getCell(row, column).getValue();
+    }
+
+    void setValue(int row, int column, T value) {
+        getCell(row, column).setValue(value);
     }
 }

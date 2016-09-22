@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.template;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 class Board<T> {
@@ -18,10 +19,8 @@ class Board<T> {
             for (int row = 0; row < height; row++) {
                 inner.add(new Cell<>());
             }
-            //System.out.print(inner.size());
             board.add(inner);
         }
-        //System.out.print(board.size());
     }
 
     int getWidth() {
@@ -36,11 +35,11 @@ class Board<T> {
         return board.get(column).get(row);
     }
 
-    T getValue(int row, int column) {
-        return getCell(row, column).getValue();
+    ArrayList<CellContent<?>> getValues(int row, int column) {
+        return getCell(row, column).getContents();
     }
 
-    void setValue(int row, int column, T value) {
-        getCell(row, column).setValue(value);
+    void setValue(int row, int column, CellContent content) {
+        getCell(row, column).setContent(content);
     }
 }

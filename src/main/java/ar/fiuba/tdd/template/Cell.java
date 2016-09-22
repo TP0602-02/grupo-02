@@ -11,12 +11,12 @@ class Cell<T> {
         contents.add(new BlankCell()); // a new BlankCell should be created here
     }
 
-    T getValue() {
-        return (T)contents.get(0).getValue(); // change this once the specific CellContents are created
+    ArrayList<CellContent<?>> getContents() {
+        return contents;
     }
 
-    void setValue(T value) {
+    void setContent(CellContent content) {
         contents.remove(0);
-        contents.add(new ValueCell<>(value)); // change this once the specific CellContents are created
+        contents.add(content);
     }
 }

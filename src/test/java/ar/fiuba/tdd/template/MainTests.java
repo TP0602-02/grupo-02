@@ -2,6 +2,7 @@ package ar.fiuba.tdd.template;
 
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -18,7 +19,8 @@ public class MainTests {
         int col = 3;
 
         try {
-            System.out.println("Value row " + row + " col " + col + " is " + board.getValue(row, col));
+            ArrayList<CellContent<?>> valuesRecovered = board.getValues(row, col);
+            //System.out.println("Value row " + row + " col " + col + " is " + );
             assert false;
         } catch (AssertionError e) {
             System.out.println("Value row " + row + " col " + col + " is empty");
@@ -35,13 +37,14 @@ public class MainTests {
 
         int row = 1;
         int column = 1;
-        int newValue = 2;
+        ValueCell newValue = new ValueCell<>(2);
 
         board.setValue(row, column, newValue);
         try {
-            int valueRecovered = board.getValue(row, column);
-            System.out.println("\nValue row " + row + " col " + column + " is " + valueRecovered + "\n");
-            assertEquals(valueRecovered, newValue);
+            ArrayList<CellContent<?>> valuesRecovered = board.getValues(row, column);
+            int index = valuesRecovered.indexOf(newValue);
+            System.out.println("\nValue row " + row + " col " + column + " is " + valuesRecovered.get(index).getValue() + "\n");
+            assertEquals(valuesRecovered.get(valuesRecovered.indexOf(newValue)), newValue);
         } catch (AssertionError e) {
             System.out.println("\nValue row " + row + " col " + column + " is empty\n");
             assert false;

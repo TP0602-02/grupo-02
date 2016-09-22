@@ -1,21 +1,27 @@
 package ar.fiuba.tdd.template;
 
+import java.util.ArrayList;
+
 class Board<T> {
 
-    private Cell<T>[][] board;
+    private ArrayList<ArrayList<Cell<T>>> board;
     private int width;  // number of columns
     private int height; // number of rows
 
     Board(int height, int width) {
-        board = new Cell[height][width];
+        board = new ArrayList<>();
         this.height = height;
         this.width = width;
 
-        for (int row = 0; row < height; row++) {
-            for (int col = 0; col < width; col++) {
-                board[row][col] = new Cell<>();
+        for (int col = 0; col < width; col++) {
+            ArrayList<Cell<T>> inner = new ArrayList<>();
+            for (int row = 0; row < height; row++) {
+                inner.add(new Cell<>());
             }
+            //System.out.print(inner.size());
+            board.add(inner);
         }
+        //System.out.print(board.size());
     }
 
     int getWidth() {
@@ -27,7 +33,7 @@ class Board<T> {
     }
 
     private Cell<T> getCell(int row, int column) {
-        return board[row][column];
+        return board.get(column).get(row);
     }
 
     T getValue(int row, int column) {

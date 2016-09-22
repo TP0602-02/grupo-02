@@ -12,7 +12,7 @@ public class MainTests {
     public void createEmptyBoard() {
         int height = 3;
         int width = 5;
-        Board<Integer> board = new Board<>(height, width); // should we only accept n x n boards?
+        Board<Integer> board = new Board<>(height, width); // TODO: should we only accept n x n boards?
 
         boolean catchesException = false;
 
@@ -32,6 +32,7 @@ public class MainTests {
         } else {
             assert false;
         }
+
     }
 
     @Test

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 class Cell<T> {
 
-    private ArrayList<CellContent> contents;
+    private ArrayList<CellContent<?>> contents;
 
     Cell() {
         contents = new ArrayList<>();

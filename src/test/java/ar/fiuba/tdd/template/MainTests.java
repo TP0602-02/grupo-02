@@ -14,25 +14,17 @@ public class MainTests {
         int width = 5;
         Board<Integer> board = new Board<>(height, width); // TODO: should we only accept n x n boards?
 
-        boolean catchesException = false;
+        int row = 2;
+        int col = 3;
 
-        for (int i =  0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                try {
-                    System.out.println("Value row " + i + " col " + j + " is " + board.getValue(i, j));
-                } catch (AssertionError e) {
-                    System.out.println("Value row " + i + " col " + j + " is empty");
-                    catchesException = true;
-                }
-            }
-        }
-
-        if (catchesException) {
-            assert true;
-        } else {
+        try {
+            System.out.println("Value row " + row + " col " + col + " is " + board.getValue(row, col));
             assert false;
+        } catch (AssertionError e) {
+            System.out.println("Value row " + row + " col " + col + " is empty");
+            assert true;
         }
-
+        
     }
 
     @Test
@@ -69,9 +61,9 @@ public class MainTests {
         numbers.add(3);
         numbers.add(4);
 
-        BlackCell<Integer> NonEmptyBlackCell = new BlackCell<>(numbers);
+        BlackCell<Integer> nonEmptyBlackCell = new BlackCell<>(numbers);
 
-        assertEquals(NonEmptyBlackCell.getClues(),numbers);
+        assertEquals(nonEmptyBlackCell.getClues(),numbers);
 
     }
 

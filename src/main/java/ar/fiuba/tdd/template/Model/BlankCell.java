@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.template;
+package ar.fiuba.tdd.template.Model;
 
 class BlankCell<T> extends CellContent<T> {
 

@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.template;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 class Board<T> {

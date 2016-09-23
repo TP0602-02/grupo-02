@@ -14,4 +14,8 @@ class ValueCell<T> extends CellContent<T> {
         this.value = value;
     }
 
+    @Override
+    void setChangeable(Cell cell) {
+        cell.setChangeable(true);
+    }
 }

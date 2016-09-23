@@ -2,7 +2,6 @@ package ar.fiuba.tdd.template;
 
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -19,8 +18,7 @@ public class MainTests {
         int col = 3;
 
         try {
-            ArrayList<CellContent<?>> valuesRecovered = board.getValues(row, col);
-            //System.out.println("Value row " + row + " col " + col + " is " + );
+            board.getValues(row, col);
             assert false;
         } catch (AssertionError e) {
             System.out.println("Value row " + row + " col " + col + " is empty");
@@ -68,6 +66,33 @@ public class MainTests {
 
         assertEquals(nonEmptyBlackCell.getClues(),numbers);
 
+    }
+
+    @Test
+    public void setValueAfterBlackOnBoard() {
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        BlackCell<Integer> nonEmptyBlackCell = new BlackCell<>(numbers);
+
+        int row = 0;
+        int column = 0;
+        int height = 3;
+        int width = 5;
+        Board<Integer> board = new Board<>(height, width);
+        board.setValue(row, column, nonEmptyBlackCell);
+
+        ValueCell newValue = new ValueCell<>(2);
+
+        try {
+            board.setValue(row, column, newValue);
+            assert false;
+        } catch (AssertionError e) {
+            System.out.print("Value cannot be set here: there's a black already!");
+            assert true;
+        }
     }
 
 }

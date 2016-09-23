@@ -13,4 +13,8 @@ class BlankCell<T> extends CellContent<T> {
         throw new AssertionError("Cannot set value");
     }
 
+    @Override
+    void setChangeable(Cell cell) {
+        cell.setChangeable(true);
+    }
 }

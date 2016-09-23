@@ -17,4 +17,8 @@ class ClueCell<T> extends CellContent<T> {
         this.value = value;
     }
 
+    @Override
+    void setChangeable(Cell cell) {
+        cell.setChangeable(false);
+    }
 }

@@ -26,7 +26,7 @@ class BlackCell<T> extends CellContent<T> {
 
     }
 
-    public ArrayList<T> getClues() {
+    ArrayList<T> getClues() {
 
         ArrayList<T> values = new ArrayList<>();
 
@@ -47,4 +47,8 @@ class BlackCell<T> extends CellContent<T> {
         throw new AssertionError("Cannot set value");
     }
 
+    @Override
+    void setChangeable(Cell cell) {
+        cell.setChangeable(false);
+    }
 }

@@ -6,14 +6,26 @@ class Cell<T> {
 
     private ArrayList<CellContent<?>> contents;
     private boolean isChangeable = true;
+    private int row;
+    private int column;
 
-    Cell() {
+    Cell(int row,int column) {
+        this.row = row;
+        this.column = column;
         contents = new ArrayList<>();
         contents.add(new BlankCell());
     }
 
     ArrayList<CellContent<?>> getContents() {
         return contents;
+    }
+
+    public int getRow() {
+        return this.row;
+    }
+
+    public int getColumn() {
+        return  this.column;
     }
 
     void setContent(CellContent content) throws AssertionError {

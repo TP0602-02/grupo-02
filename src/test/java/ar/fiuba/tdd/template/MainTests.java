@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
@@ -93,6 +94,56 @@ public class MainTests {
             System.out.print("Value cannot be set here: there's a black already!");
             assert true;
         }
+    }
+
+    @Test
+    public void getRows() {
+        int height = 5;
+        int width = 5;
+
+        Board<Integer> numberBoard = new Board<>(height, width);
+
+        // Creates a list of numbers
+        for (int row = 0; row < height; row++) {
+            for (int column = 0; column < width; column++) {
+                numberBoard.setValue(row, column, new ValueCell<>(row));
+            }
+        }
+
+        ArrayList<Cell<Integer>> rowCells = numberBoard.getRow(new Cell<>(1,0));
+        ArrayList<Integer> numbers = new ArrayList<>();
+        for (Cell<Integer> cell : rowCells) {
+            ArrayList<CellContent<?>> cellC = numberBoard.getValues(cell.getRow(), cell.getColumn());
+            numbers.add((Integer)cellC.get(0).getValue());
+            System.out.print(cellC.get(0).getValue() + " ");
+        }
+
+        assertEquals(numbers,new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1)));
+    }
+
+    @Test
+    public void getColumns() {
+        int height = 5;
+        int width = 5;
+
+        Board<Integer> numberBoard = new Board<>(height, width);
+
+        // Creates a list of numbers
+        for (int row = 0; row < height; row++) {
+            for (int column = 0; column < width; column++) {
+                numberBoard.setValue(row, column, new ValueCell<>(column));
+            }
+        }
+
+        ArrayList<Cell<Integer>> rowColumns = numberBoard.getColumn(new Cell<>(1,0));
+        ArrayList<Integer> numbers = new ArrayList<>();
+        for (Cell<Integer> cell : rowColumns) {
+            ArrayList<CellContent<?>> cellC = numberBoard.getValues(cell.getRow(), cell.getColumn());
+            numbers.add((Integer)cellC.get(0).getValue());
+            System.out.print(cellC.get(0).getValue() + " ");
+        }
+
+        assertEquals(numbers,new ArrayList<Integer>(Arrays.asList(1, 1, 1, 1, 1)));
     }
 
 }

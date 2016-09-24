@@ -1,20 +1,20 @@
-package ar.fiuba.tdd.template;
+package ar.fiuba.tdd.template.Model;
 
 import java.util.ArrayList;
 
-class Cell<T> {
+public class Cell<T> {
 
     private ArrayList<CellContent<?>> contents;
     private int row;
     private int column;
 
-    Cell(int row,int column) {
+    public Cell(int row,int column) {
         this.row = row;
         this.column = column;
         contents = new ArrayList<>();
     }
 
-    ArrayList<CellContent<?>> getContents() {
+    public ArrayList<CellContent<?>> getContents() {
         return contents;
     }
 

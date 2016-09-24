@@ -1,15 +1,15 @@
-package ar.fiuba.tdd.template;
+package ar.fiuba.tdd.template.Model;
 
 class BlackContent<T> extends CellContent<T> {
 
-    BlackContent() {
+    public BlackContent() {
     }
 
-    T getValue() throws AssertionError {
+    public T getValue() throws AssertionError {
         throw new AssertionError("Cannot get value");
     }
 
-    void setValue(T value) throws AssertionError {
+    public void setValue(T value) throws AssertionError {
         throw new AssertionError("Cannot set value");
     }
 

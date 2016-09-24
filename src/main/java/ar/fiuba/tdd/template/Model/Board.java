@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.template;
+package ar.fiuba.tdd.template.Model;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class Board<T> {
     private int width;  // number of columns
     private int height; // number of rows
 
-    Board(int height, int width) {
+    public Board(int height, int width) {
         board = new ArrayList<>();
         this.height = height;
         this.width = width;
@@ -22,11 +22,11 @@ public class Board<T> {
         }
     }
 
-    int getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    int getHeight() {
+    public int getHeight() {
         return height;
     }
 

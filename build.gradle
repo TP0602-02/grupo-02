@@ -28,6 +28,7 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile files('libs/json-simple-1.1.jar')
 }
 
 configurations.all {

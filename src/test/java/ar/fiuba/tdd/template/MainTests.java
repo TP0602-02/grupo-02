@@ -143,7 +143,28 @@ public class MainTests {
             System.out.print(cellC.get(0).getValue() + " ");
         }
 
-        assertEquals(numbers,new ArrayList<Integer>(Arrays.asList(1, 1, 1, 1, 1)));
+        assertEquals(numbers,new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1)));
+    }
+
+    @Test
+    public void decodeJson() {
+
+        ArrayList<Object> boardElements = Parser.decodeJson();
+        Integer width = (int)(long)boardElements.get(0);
+        Integer height = (int)(long)boardElements.get(1);
+        Board<Integer> board = new Board<>(height, width ); // TODO: should we only accept n x n boards?
+
+        int row = 2;
+        int col = 3;
+
+        try {
+            board.getValues(row, col);
+            assert false;
+        } catch (AssertionError e) {
+            System.out.println("Value row " + row + " col " + col + " is empty");
+            assert true;
+        }
+
     }
 
 }

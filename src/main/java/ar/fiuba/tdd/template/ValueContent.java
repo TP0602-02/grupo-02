@@ -1,8 +1,8 @@
 package ar.fiuba.tdd.template;
 
-class ValueCell<T> extends CellContent<T> {
+class ValueContent<T> extends CellContent<T> {
 
-    ValueCell(T value) {
+    ValueContent(T value) {
         this.value = value;
     }
 
@@ -14,8 +14,4 @@ class ValueCell<T> extends CellContent<T> {
         this.value = value;
     }
 
-    @Override
-    void setChangeable(Cell cell) {
-        cell.setChangeable(true);
-    }
 }

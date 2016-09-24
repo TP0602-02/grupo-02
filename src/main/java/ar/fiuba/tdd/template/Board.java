@@ -30,15 +30,15 @@ public class Board<T> {
         return height;
     }
 
-    private Cell<T> getCell(int row, int column) {
+    public Cell<T> getCell(int row, int column) {
         return board.get(column).get(row);
     }
 
-    ArrayList<CellContent<?>> getValues(int row, int column) {
+    public ArrayList<CellContent<?>> getContents(int row, int column) {
         return getCell(row, column).getContents();
     }
 
-    void setValue(int row, int column, CellContent content) {
+    public void setValue(int row, int column, CellContent content) {
         getCell(row, column).setContent(content);
     }
 

@@ -1,8 +1,8 @@
 package ar.fiuba.tdd.template;
 
-class BlankCell<T> extends CellContent<T> {
+class BlackContent<T> extends CellContent<T> {
 
-    BlankCell() {
+    BlackContent() {
     }
 
     T getValue() throws AssertionError {
@@ -13,8 +13,4 @@ class BlankCell<T> extends CellContent<T> {
         throw new AssertionError("Cannot set value");
     }
 
-    @Override
-    void setChangeable(Cell cell) {
-        cell.setChangeable(true);
-    }
 }

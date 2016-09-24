@@ -1,11 +1,11 @@
 package ar.fiuba.tdd.template;
 
 
-class ClueCell<T> extends CellContent<T> {
+class ClueContent<T> extends CellContent<T> {
 
     private T value;
 
-    ClueCell(T value) {
+    ClueContent(T value) {
         this.value = value;
     }
 
@@ -17,8 +17,4 @@ class ClueCell<T> extends CellContent<T> {
         this.value = value;
     }
 
-    @Override
-    void setChangeable(Cell cell) {
-        cell.setChangeable(false);
-    }
 }

@@ -12,6 +12,4 @@ abstract class CellContent<T> {
 
     abstract void setValue(T value);
 
-    abstract void setChangeable(Cell cell);
-
 }

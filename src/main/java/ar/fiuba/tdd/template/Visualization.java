@@ -31,11 +31,7 @@ public class Visualization extends JFrame {
         int boardSize = Facade.getBoardSize();
         textFields = new JTextField[boardSize][boardSize];
         labelFields = new JLabel[boardSize][boardSize];
-        JLabel titleLabel = new JLabel(game);
-        titleLabel.setBounds(boardInitialPositionX, boardInitialPositionY - 200, 300, 100);
-        titleLabel.setFont(new Font("Serif", Font.PLAIN, 70));
-        titleLabel.setHorizontalAlignment(JLabel.CENTER);
-        this.add(titleLabel);
+        this.addTitle(game);
         for (int counterX = 0; counterX < boardSize; counterX++) {
             for (int counterY = 0; counterY < boardSize; counterY++) {
                 int xPosition = counterX * textAndLabelSize + boardInitialPositionX;
@@ -53,11 +49,18 @@ public class Visualization extends JFrame {
                         addField(new BlankCell(), xPosition, yPosition, counterX, counterY);
                     }
                 }
-
             }
         }
         JLabel label = new JLabel("", JLabel.CENTER);
         this.getContentPane().add(label);
+    }
+
+    private void addTitle(String game) {
+        JLabel titleLabel = new JLabel(game);
+        titleLabel.setBounds(boardInitialPositionX, boardInitialPositionY - 200, 300, 100);
+        titleLabel.setFont(new Font("Serif", Font.PLAIN, 70));
+        titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        this.add(titleLabel);
     }
 
     private void addField(BlankCell cell, int xPosition, int yPosition, int counterX, int counterY) {

@@ -16,18 +16,18 @@ public class TextBoxListener implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent event) {
 
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        if (!(e.getKeyChar() == 27 || e.getKeyChar() == 65535))//Cuando se cambie un valor va a saltar
+    public void keyPressed(KeyEvent event) {
+        if (!(event.getKeyChar() == 27 || event.getKeyChar() == 65535))//Cuando se cambie un valor va a saltar
         {
             System.out.println("Controller Esta comprobando el movimiento si es valido");
             try {
                 Facade.getInstance().comprobarJugada();
-            } catch (Exception a) {
+            } catch (Exception exception) {
                 JOptionPane.showMessageDialog(null, "Movimiento no valido");
                 cajaTexto.setText("");
             }
@@ -35,7 +35,7 @@ public class TextBoxListener implements KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent event) {
 
     }
 }

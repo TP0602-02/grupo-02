@@ -31,14 +31,14 @@ public class Facade {
 
     public static CellContent getCellContent(int counterX, int counterY) {
         Random rand = new Random();
-        int x = rand.nextInt(2);
-        if (x == 0) {
+        int random = rand.nextInt(2);
+        if (random == 0) {
             return new BlankCell();
         } else {
-            if (x == 1) {
+            if (random == 1) {
                 return new BlackCell();
             } else {
-                return new ClueCell(x = rand.nextInt(9));
+                return new ClueCell(rand.nextInt(9));
             }
         }
     }
@@ -46,8 +46,8 @@ public class Facade {
     public void comprobarJugada() throws Exception {
         //controller.comprobarJugada();
         Random rand = new Random();
-        int x = rand.nextInt(2);
-        if (x == 0) {
+        int random = rand.nextInt(2);
+        if (random == 0) {
             throw new Exception();
         }
     }
@@ -62,5 +62,6 @@ public class Facade {
 
     public void setGame(String game) {
         //controller.setGame(game);
+        System.out.printf(controller.toString());
     }
 }

@@ -1,9 +1,10 @@
 package ar.fiuba.tdd.template;
 
-import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 import java.util.LinkedList;
 
 /**
@@ -42,8 +43,8 @@ public class VisuMenu extends Container {
         this.add(new JLabel());
     }
 
-    private JButton createButton(String s, int xPosition, int yPosition, TheHandler handler) {
-        JButton button = new JButton(s);
+    private JButton createButton(String gameName, int xPosition, int yPosition, TheHandler handler) {
+        JButton button = new JButton(gameName);
         button.setBounds(xPosition, yPosition, buttonLenght, buttonHeight);
         button.addActionListener(handler);
         //button.setHorizontalAlignment(JButton.CENTER);

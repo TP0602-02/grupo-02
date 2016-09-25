@@ -20,7 +20,7 @@ class BlackCell<T> extends CellContent<T> {
 
         // Add clue values to Black cell
 
-        for ( T value : values) {
+        for (T value : values) {
             clues.add(new ClueCell<>(value));
         }
 
@@ -30,8 +30,8 @@ class BlackCell<T> extends CellContent<T> {
 
         ArrayList<T> values = new ArrayList<>();
 
-        for ( ClueCell<?> clue : clues) {
-            T value = (T)clue.getValue();
+        for (ClueCell<?> clue : clues) {
+            T value = (T) clue.getValue();
             values.add(value);
         }
 

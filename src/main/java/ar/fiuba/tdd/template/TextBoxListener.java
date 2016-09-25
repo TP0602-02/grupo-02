@@ -12,7 +12,7 @@ public class TextBoxListener implements KeyListener {
     private final TextBox cajaTexto;
 
     public TextBoxListener(TextBox cajaTexto) {
-        this.cajaTexto=cajaTexto;
+        this.cajaTexto = cajaTexto;
     }
 
     @Override
@@ -22,12 +22,12 @@ public class TextBoxListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(!(e.getKeyChar()==27||e.getKeyChar()==65535))//Cuando se cambie un valor va a saltar
+        if (!(e.getKeyChar() == 27 || e.getKeyChar() == 65535))//Cuando se cambie un valor va a saltar
         {
             System.out.println("Controller Esta comprobando el movimiento si es valido");
-            try{
+            try {
                 Facade.getInstance().comprobarJugada();
-            }catch(Exception a){
+            } catch (Exception a) {
                 JOptionPane.showMessageDialog(null, "Movimiento no valido");
                 cajaTexto.setText("");
             }

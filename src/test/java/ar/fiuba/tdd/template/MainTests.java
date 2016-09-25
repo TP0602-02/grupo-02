@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.template;
 
-import ar.fiuba.tdd.template.Model.*;
+import ar.fiuba.tdd.template.model.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -135,7 +135,7 @@ public class MainTests {
             System.out.print(cellC.get(0).getValue() + " ");
         }
 
-        assertEquals(numbers,new ArrayList<Integer>(Arrays.asList(1, 1, 1, 1, 1)));
+        assertEquals(numbers,new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1)));
     }
 
 }

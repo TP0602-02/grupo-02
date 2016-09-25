@@ -1,8 +1,11 @@
-package ar.fiuba.tdd.template.Model;
+package ar.fiuba.tdd.template.model;
 
-public class ValueContent<T> extends CellContent<T> {
 
-    public ValueContent(T value) {
+public class ClueContent<T> extends CellContent<T> {
+
+    private T value;
+
+    public ClueContent(T value) {
         this.value = value;
     }
 

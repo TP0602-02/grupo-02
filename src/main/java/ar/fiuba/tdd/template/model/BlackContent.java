@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.template.Model;
+package ar.fiuba.tdd.template.model;
 
 class BlackContent<T> extends CellContent<T> {
 

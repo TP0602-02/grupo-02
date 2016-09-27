@@ -2,9 +2,9 @@ package ar.fiuba.tdd.template.board.cell;
 
 import java.util.ArrayList;
 
-public class Cell<T> {
+public class Cell {
 
-    private ArrayList<CellContent<?>> contents;
+    private ArrayList<CellContent> contents;
     private int row;
     private int column;
 
@@ -14,7 +14,7 @@ public class Cell<T> {
         contents = new ArrayList<>();
     }
 
-    public ArrayList<CellContent<?>> getContents() {
+    public ArrayList<CellContent> getContents() {
         return contents;
     }
 

@@ -6,9 +6,9 @@ import ar.fiuba.tdd.template.board.cell.CellContent;
 
 import java.util.ArrayList;
 
-public class Board<T> {
+public class Board {
 
-    private ArrayList<ArrayList<Cell<T>>> board;
+    private ArrayList<ArrayList<Cell>> board;
     private int width;  // number of columns
     private int height; // number of rows
 
@@ -18,9 +18,9 @@ public class Board<T> {
         this.width = width;
 
         for (int col = 0; col < width; col++) {
-            ArrayList<Cell<T>> inner = new ArrayList<>();
+            ArrayList<Cell> inner = new ArrayList<>();
             for (int row = 0; row < height; row++) {
-                inner.add(new Cell<>(row,col));
+                inner.add(new Cell(row,col));
             }
             board.add(inner);
         }
@@ -34,11 +34,11 @@ public class Board<T> {
         return height;
     }
 
-    public Cell<T> getCell(int row, int column) {
+    public Cell getCell(int row, int column) {
         return board.get(column).get(row);
     }
 
-    public ArrayList<CellContent<?>> getContents(int row, int column) {
+    public ArrayList<CellContent> getContents(int row, int column) {
         return getCell(row, column).getContents();
     }
 
@@ -46,11 +46,11 @@ public class Board<T> {
         getCell(row, column).setContent(content);
     }
 
-    public ArrayList<Cell<T>> getRow(Cell<T> cell) {
+    public ArrayList<Cell> getRow(Cell cell) {
 
         // This methods returns the entire row of cells
 
-        ArrayList<Cell<T>> cellsInRow = new ArrayList<>();
+        ArrayList<Cell> cellsInRow = new ArrayList<>();
         int row = cell.getRow();
         for (int column = 0; column < width; column++) {
             cellsInRow.add(getCell(row,column));
@@ -59,11 +59,11 @@ public class Board<T> {
         return cellsInRow;
     }
 
-    public ArrayList<Cell<T>> getColumn(Cell<T> cell) {
+    public ArrayList<Cell> getColumn(Cell cell) {
 
         // This methods returns the entire column of cells
 
-        ArrayList<Cell<T>> cellsInColumn = new ArrayList<>();
+        ArrayList<Cell> cellsInColumn = new ArrayList<>();
 
         int column = cell.getRow();
         for (int row = 0; row < width; row++) {
@@ -73,7 +73,7 @@ public class Board<T> {
         return cellsInColumn;
     }
 
-    public ArrayList<ArrayList<Cell<T>>> getRegion(Cell<T> cell) {
+    public ArrayList<ArrayList<Cell>> getRegion(Cell cell) {
 
         // This method returns the region surrounding
         // the cell as well as the cell itself
@@ -83,11 +83,11 @@ public class Board<T> {
 
         // Temporary region created to test out this method
 
-        ArrayList<ArrayList<Cell<T>>> region = new ArrayList<>();
+        ArrayList<ArrayList<Cell>> region = new ArrayList<>();
         for (int regionCol = column - 1; regionCol < width; regionCol++) {
-            ArrayList<Cell<T>> inner = new ArrayList<>();
+            ArrayList<Cell> inner = new ArrayList<>();
             for (int regionRow = row - 1; regionRow < height; regionRow++) {
-                inner.add(new Cell<>(regionRow,regionCol));
+                inner.add(new Cell(regionRow,regionCol));
             }
             region.add(inner);
         }

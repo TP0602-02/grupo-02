@@ -13,4 +13,6 @@ public class NullRule extends GenericRule {
     public boolean validate(Board board, Cell cell, int numberToAdd) {
         return true;
     }
+
+    public NullRule() {}
 }

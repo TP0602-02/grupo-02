@@ -1,4 +1,8 @@
-package ar.fiuba.tdd.template.model;
+package ar.fiuba.tdd.template.rules;
+
+import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.board.cell.Cell;
+import ar.fiuba.tdd.template.board.cell.CellContent;
 
 import java.util.ArrayList;
 
@@ -13,7 +17,7 @@ public abstract class NoRepeatValueValidationRule extends GenericRule {
         for (Cell actualCell: cells) {
             ArrayList<CellContent<Integer>> actualContents = actualCell.getContents();
             for (CellContent<Integer> actualContent: actualContents) {
-                if (actualContent.getValue() != numberToAdd) {
+                if (actualContent.getValue() == numberToAdd) {
                     return false;
                 }
             }

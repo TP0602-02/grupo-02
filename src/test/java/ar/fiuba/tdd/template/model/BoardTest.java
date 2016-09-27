@@ -1,6 +1,10 @@
-package ar.fiuba.tdd.template;
+package ar.fiuba.tdd.template.model;
 
-import ar.fiuba.tdd.template.model.*;
+import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.board.cell.Cell;
+import ar.fiuba.tdd.template.board.cell.CellContent;
+import ar.fiuba.tdd.template.board.cell.ClueContent;
+import ar.fiuba.tdd.template.board.cell.ValueContent;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -8,7 +12,7 @@ import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
-public class MainTests {
+public class BoardTest {
 
     @Test
     public void createEmptyBoard() {

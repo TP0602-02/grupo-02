@@ -1,6 +1,8 @@
-package ar.fiuba.tdd.template.model;
+package ar.fiuba.tdd.template.rules;
 
-import sun.net.www.content.text.Generic;
+
+import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.board.cell.Cell;
 
 /**
  * Created by alazraqui on 25/09/2016.

@@ -1,4 +1,8 @@
-package ar.fiuba.tdd.template.model;
+package ar.fiuba.tdd.template.board;
+
+
+import ar.fiuba.tdd.template.board.cell.Cell;
+import ar.fiuba.tdd.template.board.cell.CellContent;
 
 import java.util.ArrayList;
 

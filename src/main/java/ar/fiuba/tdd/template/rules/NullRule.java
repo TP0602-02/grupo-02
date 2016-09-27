@@ -1,4 +1,8 @@
-package ar.fiuba.tdd.template.model;
+package ar.fiuba.tdd.template.rules;
+
+
+import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.board.cell.Cell;
 
 /**
  * Created by alazraqui on 27/09/2016.

@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.template.model;
+package ar.fiuba.tdd.template.board.cell;
 
 import java.util.ArrayList;
 

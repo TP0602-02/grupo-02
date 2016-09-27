@@ -1,6 +1,6 @@
-package ar.fiuba.tdd.template.model;
+package ar.fiuba.tdd.template.board.cell;
 
-class BlackContent<T> extends CellContent<T> {
+public class BlackContent<T> extends CellContent<T> {
 
     public BlackContent() {
     }
@@ -13,4 +13,8 @@ class BlackContent<T> extends CellContent<T> {
         throw new AssertionError("Cannot set value");
     }
 
+    @Override
+    public boolean isSummable() {
+        return false;
+    }
 }

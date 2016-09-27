@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.template;
 
-import ar.fiuba.tdd.template.Model.*;
+import ar.fiuba.tdd.template.model.*;
 import org.junit.Test;
 
 import java.util.ArrayList;

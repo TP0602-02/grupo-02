@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.template.Model;
+package ar.fiuba.tdd.template.model;
 
 
 public class ClueContent<T> extends CellContent<T> {

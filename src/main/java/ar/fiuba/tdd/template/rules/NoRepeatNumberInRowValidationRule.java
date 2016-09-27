@@ -14,4 +14,8 @@ public class NoRepeatNumberInRowValidationRule  extends NoRepeatValueValidationR
     public ArrayList<Cell> getCellsToValidate(Board board, Cell cell) {
         return board.getRow(cell);
     }
+
+    public NoRepeatNumberInRowValidationRule() {
+        nextRule = new NullRule();
+    }
 }

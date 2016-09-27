@@ -11,10 +11,6 @@ public abstract class GenericRule {
 
     protected GenericRule nextRule;
 
-    public GenericRule() {
-        this.nextRule = new NullRule();
-    }
-
     public void setNextRule(GenericRule nextRule) {
         this.nextRule = nextRule;
     }

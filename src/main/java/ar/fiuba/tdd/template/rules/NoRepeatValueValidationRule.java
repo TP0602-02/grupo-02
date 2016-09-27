@@ -15,7 +15,7 @@ public abstract class NoRepeatValueValidationRule extends GenericRule {
     public boolean validate(Board board, Cell cell, int numberToAdd) {
         ArrayList<Cell> cells = getCellsToValidate(board, cell);
         for (Cell actualCell: cells) {
-            ArrayList<CellContent<Integer>> actualContents = actualCell.getContents();
+            ArrayList<CellContent> actualContents = actualCell.getContents();
             for (CellContent<Integer> actualContent: actualContents) {
                 if (actualContent.getValue() == numberToAdd) {
                     return false;

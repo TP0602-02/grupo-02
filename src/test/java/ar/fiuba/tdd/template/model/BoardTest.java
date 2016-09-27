@@ -18,7 +18,7 @@ public class BoardTest {
     public void createEmptyBoard() {
         int height = 3;
         int width = 5;
-        Board<Integer> board = new Board<>(height, width); // TODO: should we only accept n x n boards?
+        Board board = new Board(height, width);
 
         int row = 2;
         int col = 3;
@@ -35,14 +35,14 @@ public class BoardTest {
     public void setValueOnBoard() {
         int height = 3;
         int width = 5;
-        Board<Integer> board = new Board<>(height, width);
+        Board board = new Board(height, width);
 
         int row = 1;
         int column = 1;
         ValueContent firstValue = new ValueContent<>(2);
 
         board.setValue(row, column, firstValue);
-        ArrayList<CellContent<?>> valuesRecovered = board.getContents(row, column);
+        ArrayList<CellContent> valuesRecovered = board.getContents(row, column);
 
         if (valuesRecovered.contains(firstValue)) {
             assert true;
@@ -55,7 +55,7 @@ public class BoardTest {
     public void setMultipleContentsOnBoard() {
         int height = 3;
         int width = 5;
-        Board<Integer> board = new Board<>(height, width);
+        Board board = new Board(height, width);
 
         int row = 1;
         int column = 1;
@@ -63,7 +63,7 @@ public class BoardTest {
         ClueContent secondContent = new ClueContent<>(3);
         board.setValue(row, column, firstContent);
         board.setValue(row, column, secondContent);
-        ArrayList<CellContent<?>> valuesRecovered = board.getContents(row, column);
+        ArrayList<CellContent> valuesRecovered = board.getContents(row, column);
 
         if (valuesRecovered.contains(firstContent) && valuesRecovered.contains(secondContent)) {
             assert true;
@@ -97,7 +97,7 @@ public class BoardTest {
         int height = 5;
         int width = 5;
 
-        Board<Integer> numberBoard = new Board<>(height, width);
+        Board numberBoard = new Board(height, width);
 
         // Creates a list of numbers
         for (int row = 0; row < height; row++) {
@@ -106,10 +106,10 @@ public class BoardTest {
             }
         }
 
-        ArrayList<Cell<Integer>> rowCells = numberBoard.getRow(new Cell<>(1,0));
+        ArrayList<Cell> rowCells = numberBoard.getRow(new Cell(1,0));
         ArrayList<Integer> numbers = new ArrayList<>();
-        for (Cell<Integer> cell : rowCells) {
-            ArrayList<CellContent<?>> cellC = numberBoard.getContents(cell.getRow(), cell.getColumn());
+        for (Cell cell : rowCells) {
+            ArrayList<CellContent> cellC = numberBoard.getContents(cell.getRow(), cell.getColumn());
             numbers.add((Integer)cellC.get(0).getValue());
             System.out.print(cellC.get(0).getValue() + " ");
         }
@@ -122,7 +122,7 @@ public class BoardTest {
         int height = 5;
         int width = 5;
 
-        Board<Integer> numberBoard = new Board<>(height, width);
+        Board numberBoard = new Board(height, width);
 
         // Creates a list of numbers
         for (int row = 0; row < height; row++) {
@@ -131,10 +131,10 @@ public class BoardTest {
             }
         }
 
-        ArrayList<Cell<Integer>> rowColumns = numberBoard.getColumn(new Cell<>(1,0));
+        ArrayList<Cell> rowColumns = numberBoard.getColumn(new Cell(1,0));
         ArrayList<Integer> numbers = new ArrayList<>();
-        for (Cell<Integer> cell : rowColumns) {
-            ArrayList<CellContent<?>> cellC = numberBoard.getContents(cell.getRow(), cell.getColumn());
+        for (Cell cell : rowColumns) {
+            ArrayList<CellContent> cellC = numberBoard.getContents(cell.getRow(), cell.getColumn());
             numbers.add((Integer)cellC.get(0).getValue());
             System.out.print(cellC.get(0).getValue() + " ");
         }
@@ -142,4 +142,55 @@ public class BoardTest {
         assertEquals(numbers,new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1)));
     }
 
+    @Test
+    public void getLeftCell() {
+        int height = 2;
+        int width = 2;
+
+        Board numberBoard = new Board(height, width);
+
+        Cell cell = numberBoard.getCell(1,1);
+        Cell leftCell = numberBoard.getCell(1,0);
+
+        assertEquals(leftCell, numberBoard.getIterator().getLeftCell(cell));
+    }
+
+    @Test
+    public void getRightCell() {
+        int height = 2;
+        int width = 2;
+
+        Board numberBoard = new Board(height, width);
+
+        Cell cell = numberBoard.getCell(1,0);
+        Cell rightCell = numberBoard.getCell(1,1);
+
+        assertEquals(rightCell, numberBoard.getIterator().getRightCell(cell));
+    }
+
+    @Test
+    public void getAboveCell() {
+        int height = 2;
+        int width = 2;
+
+        Board numberBoard = new Board(height, width);
+
+        Cell cell = numberBoard.getCell(1,1);
+        Cell aboveCell = numberBoard.getCell(0,1);
+
+        assertEquals(aboveCell, numberBoard.getIterator().getAboveCell(cell));
+    }
+
+    @Test
+    public void getBelowCell() {
+        int height = 2;
+        int width = 2;
+
+        Board numberBoard = new Board(height, width);
+
+        Cell cell = numberBoard.getCell(0,1);
+        Cell belowCell = numberBoard.getCell(1,1);
+
+        assertEquals(belowCell, numberBoard.getIterator().getBelowCell(cell));
+    }
 }

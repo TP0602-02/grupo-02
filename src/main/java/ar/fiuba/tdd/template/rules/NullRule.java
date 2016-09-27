@@ -9,6 +9,8 @@ import ar.fiuba.tdd.template.board.cell.Cell;
  */
 public class NullRule extends GenericRule {
 
+    public NullRule() {}
+
     @Override
     public boolean validate(Board board, Cell cell, int numberToAdd) {
         return true;

@@ -16,7 +16,6 @@ public class Parser {
 
     public static ArrayList<Object> decodeJson() {
         // Getting board data from the json file
-        // TODO: generalize this method for any game
         ArrayList<Object> boardElements = new ArrayList<>();
         JSONParser parser = new JSONParser();
         try {
@@ -26,28 +25,60 @@ public class Parser {
             Object fileObject = parser.parse(inJsonFile);
             JSONObject jsonObject = (JSONObject) fileObject;
 
-            // Prints width
-            Long width = (Long) jsonObject.get("width");
-            boardElements.add(width);
-            System.out.println(Long.toString(width));
+            // Get Board Width
 
-            // Prints height
-            Long height = (Long) jsonObject.get("height");
-            boardElements.add(height);
-            System.out.println(Long.toString(height));
+            boardElements.add(getWidth(jsonObject));
 
-            JSONArray cellContents = (JSONArray) jsonObject.get("cellContents");
+            // Get Board Height
+
+            boardElements.add(getHeight(jsonObject));
+
+
+            // Get Clue Elements
+
+            JSONArray cellContents = (JSONArray) jsonObject.get("clues");
+            ArrayList<Object> clues = new ArrayList<>();
             Iterator<JSONObject> cellContentsIterator = cellContents.iterator();
 
+
             while (cellContentsIterator.hasNext()) {
-                Object cellType = cellContentsIterator.next();
-                System.out.println(cellType);
-                boardElements.add(cellType.toString());
+                JSONObject cellClue = cellContentsIterator.next();
+                Long positionX = (Long) cellClue.get("x");
+                Long positionY = (Long) cellClue.get("y");
+                clues.add(positionX);
+                clues.add(positionY);
+
+                JSONArray contentData = (JSONArray) cellClue.get("content");
+                Iterator<JSONObject> contentDataIterator = contentData.iterator();
+                ArrayList<Object> contents = new ArrayList<>();
+                while (contentDataIterator.hasNext()) {
+                    JSONObject contentsJson = contentDataIterator.next();
+                    ArrayList<Object> content = new ArrayList<>();
+                    String layout = (String) contentsJson.get("layout");
+                    Long value = (Long) contentsJson.get("value");
+                    content.add(layout);
+                    content.add(value);
+                    contents.add(content);
+                }
+                clues.add(contents);
             }
+            boardElements.add(clues);
             inJsonFile.close();
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
         return boardElements;
+    }
+
+    private static Long getWidth(JSONObject jsonObject) {
+        // Prints width
+        Long width = (Long) jsonObject.get("width");
+        return width;
+    }
+
+    private static Long getHeight(JSONObject jsonObject) {
+        // Prints width
+        Long height= (Long) jsonObject.get("height");
+        return height;
     }
 }

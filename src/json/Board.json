@@ -18,5 +18,18 @@
       "layout": "center",
       "value": 20
     }]
+  }],
+  "solution": [{
+    "x": 2,
+    "y": 2,
+    "content": [{
+      "value": 3
+    }]
+  }, {
+    "x": 4,
+    "y": 4,
+    "content": [{
+      "value": 5
+    }]
   }]
 }

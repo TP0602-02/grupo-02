@@ -1,13 +1,19 @@
 package ar.fiuba.tdd.template;
 
 
-import ar.fiuba.tdd.template.board.cell.*;
+import ar.fiuba.tdd.template.board.cell.model.BlackContent;
+import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.ClueContent;
+import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Parser {

@@ -1,9 +1,5 @@
 package ar.fiuba.tdd.template;
 
-import ar.fiuba.tdd.template.board.cell.Cell;
-
-import java.util.ArrayList;
-
 public class PuzzleGenerator {
 
     public void startGeneration() {

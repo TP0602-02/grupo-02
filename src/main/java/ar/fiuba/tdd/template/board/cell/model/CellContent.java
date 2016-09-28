@@ -1,6 +1,6 @@
-package ar.fiuba.tdd.template.board.cell;
+package ar.fiuba.tdd.template.board.cell.model;
 
-public abstract class CellContent<T> implements Summable{
+public abstract class CellContent<T> implements Summable,Editable{
 
     protected T value;
 

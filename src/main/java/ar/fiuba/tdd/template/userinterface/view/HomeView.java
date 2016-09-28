@@ -11,16 +11,16 @@ import javax.swing.*;
 /**
  * Created by Colo on 25/09/2016.
  */
-public class VisuMenu extends Container {
-   /* static final int buttonHeight = 50;
+public class HomeView extends Container {
+    static final int buttonHeight = 50;
     static final int buttonLenght = 200;
     static final int menuInitialPositionX = 400;
     static final int menuInitialPositionY = 100;
     static final int distaneButtons = 25;
-    private Visualization frame;
+    private PuzzleView frame;
     private JButton[] buttons;
 
-    public VisuMenu(int screenLenght, int screenHeight, Visualization frame) {
+    public HomeView(int screenLenght, int screenHeight, PuzzleView frame) {
         this.setPreferredSize(new Dimension(screenLenght, screenHeight));
         this.frame = frame;
     }
@@ -54,9 +54,9 @@ public class VisuMenu extends Container {
     }
 
     private class TheHandler implements ActionListener {
-        private final Visualization frame;
+        private final PuzzleView frame;
 
-        public TheHandler(Visualization frame) {
+        public TheHandler(PuzzleView frame) {
             this.frame = frame;
         }
 
@@ -70,7 +70,7 @@ public class VisuMenu extends Container {
                 }
             }
         }
-    }*/
+    }
 
 
 }

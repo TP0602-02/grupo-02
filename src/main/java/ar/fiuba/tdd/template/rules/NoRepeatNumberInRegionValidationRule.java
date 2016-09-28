@@ -12,6 +12,20 @@ public abstract class NoRepeatNumberInRegionValidationRule extends NoRepeatValue
 
     protected ArrayList<GenericIterator> iterators = new ArrayList<GenericIterator>();
 
+    protected ArrayList<Cell> getCellsToValidate(Board board, Cell cell) {
+        ArrayList<Cell> regionCells = this.getRegionCells(board, cell);
+        return regionCells;
+    }
+
+    protected ArrayList<Cell> getRegionCells(Board board, Cell cell) {
+        ArrayList<Cell> cells = new ArrayList<Cell>();
+        for (GenericIterator iterator: this.iterators) {
+            iterator.setBoard(board);
+            cells.addAll(this.getSummableCells(board, cell, iterator));
+        }
+        return cells;
+    }
+
     protected ArrayList<Cell> getSummableCells(Board board, Cell cell, GenericIterator iterator) {
         ArrayList<Cell> regionCells = new ArrayList<Cell>();
         while (iterator.hasNext(cell)) {
@@ -24,18 +38,5 @@ public abstract class NoRepeatNumberInRegionValidationRule extends NoRepeatValue
             }
         }
         return null;
-    }
-
-    protected ArrayList<Cell> getCellsToValidate(Board board, Cell cell) {
-        ArrayList<Cell> regionCells = this.getRegionCells(board, cell);
-        return regionCells;
-    }
-
-    protected ArrayList<Cell> getRegionCells(Board board, Cell cell) {
-        ArrayList<Cell> cells = new ArrayList<Cell>();
-        for (GenericIterator iterator: this.iterators) {
-            cells.addAll(this.getSummableCells(board, cell, iterator));
-        }
-        return cells;
     }
 }

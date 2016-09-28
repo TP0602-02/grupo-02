@@ -9,7 +9,6 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Parser {
 
@@ -74,20 +73,15 @@ public class Parser {
     private void readElements(JSONObject jsonObject, String id) {
 
         JSONArray cellContents = (JSONArray) jsonObject.get(id);
-        Iterator<JSONObject> cellContentsIterator = cellContents.iterator();
 
-        while (cellContentsIterator.hasNext()) { // for every cell
-            JSONObject cellClue = cellContentsIterator.next();
-            int positionX = ((Long)cellClue.get("x")).intValue();
-            int positionY = ((Long)cellClue.get("y")).intValue();
+        for (JSONObject cellClue : (Iterable<JSONObject>) cellContents) { // for every cell
+            int positionX = ((Long) cellClue.get("x")).intValue();
+            int positionY = ((Long) cellClue.get("y")).intValue();
             Cell newCell = new Cell(positionX, positionY); // create a single cell
 
             JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the clues
-            Iterator<JSONObject> contentDataIterator = contentData.iterator();
 
-            while (contentDataIterator.hasNext()) { // for every clue
-                JSONObject contentsJson = contentDataIterator.next();
-
+            for (JSONObject contentsJson : (Iterable<JSONObject>) contentData) { // for every clue
                 // the first value goes below, the second value above
                 Long value = (Long) contentsJson.get("value");
 

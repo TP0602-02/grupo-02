@@ -1,4 +1,8 @@
-package ar.fiuba.tdd.template;
+package ar.fiuba.tdd.template.board;
+
+
+import ar.fiuba.tdd.template.board.cell.Cell;
+import ar.fiuba.tdd.template.board.cell.CellContent;
 
 import java.util.ArrayList;
 
@@ -8,7 +12,7 @@ public class Board<T> {
     private int width;  // number of columns
     private int height; // number of rows
 
-    Board(int height, int width) {
+    public Board(int height, int width) {
         board = new ArrayList<>();
         this.height = height;
         this.width = width;
@@ -22,23 +26,23 @@ public class Board<T> {
         }
     }
 
-    int getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    int getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    private Cell<T> getCell(int row, int column) {
+    public Cell<T> getCell(int row, int column) {
         return board.get(column).get(row);
     }
 
-    ArrayList<CellContent<?>> getValues(int row, int column) {
+    public ArrayList<CellContent<?>> getContents(int row, int column) {
         return getCell(row, column).getContents();
     }
 
-    void setValue(int row, int column, CellContent content) {
+    public void setValue(int row, int column, CellContent content) {
         getCell(row, column).setContent(content);
     }
 

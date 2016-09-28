@@ -13,11 +13,6 @@ public abstract class NoRepeatNumberInRegionValidationRule extends NoRepeatValue
     protected ArrayList<GenericIterator> iterators = new ArrayList<GenericIterator>();
 
     protected ArrayList<Cell> getCellsToValidate(Board board, Cell cell) {
-        ArrayList<Cell> regionCells = this.getRegionCells(board, cell);
-        return regionCells;
-    }
-
-    protected ArrayList<Cell> getRegionCells(Board board, Cell cell) {
         ArrayList<Cell> cells = new ArrayList<Cell>();
         for (GenericIterator iterator: this.iterators) {
             iterator.setBoard(board);

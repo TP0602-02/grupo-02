@@ -1,6 +1,9 @@
 package ar.fiuba.tdd.template;
 
 
+import ar.fiuba.tdd.template.board.cell.BlackContent;
+import ar.fiuba.tdd.template.board.cell.Cell;
+import ar.fiuba.tdd.template.board.cell.ClueContent;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,11 +15,14 @@ import java.util.Iterator;
 
 public class Parser {
 
+    int height;
+    Integer width;
+    ArrayList<Cell> boardElements = new ArrayList<>();
+
     // Class designed to parse JSON data
 
-    public static ArrayList<Object> decodeJson() {
+    public void decodeJson() {
         // Getting board data from the json file
-        ArrayList<Object> boardElements = new ArrayList<>();
         JSONParser parser = new JSONParser();
         try {
             // Uses bufferedReader to avoid reliance on default encoding
@@ -25,60 +31,71 @@ public class Parser {
             Object fileObject = parser.parse(inJsonFile);
             JSONObject jsonObject = (JSONObject) fileObject;
 
-            // Get Board Width
+            // Read Board Width
+            this.width = readWidth(jsonObject).intValue();
 
-            boardElements.add(getWidth(jsonObject));
-
-            // Get Board Height
-
-            boardElements.add(getHeight(jsonObject));
-
+            // Read Board Height
+            this.height = readHeight(jsonObject).intValue();
 
             // Get Clue Elements
-
             JSONArray cellContents = (JSONArray) jsonObject.get("clues");
-            ArrayList<Object> clues = new ArrayList<>();
             Iterator<JSONObject> cellContentsIterator = cellContents.iterator();
 
 
-            while (cellContentsIterator.hasNext()) {
+            while (cellContentsIterator.hasNext()) { // for every cell
                 JSONObject cellClue = cellContentsIterator.next();
-                Long positionX = (Long) cellClue.get("x");
-                Long positionY = (Long) cellClue.get("y");
-                clues.add(positionX);
-                clues.add(positionY);
+                int positionX = ((Long)cellClue.get("x")).intValue();
+                int positionY = ((Long)cellClue.get("y")).intValue();
+                Cell newCell = new Cell(positionX, positionY); // create a single cell
 
-                JSONArray contentData = (JSONArray) cellClue.get("content");
+                JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the clues
                 Iterator<JSONObject> contentDataIterator = contentData.iterator();
-                ArrayList<Object> contents = new ArrayList<>();
-                while (contentDataIterator.hasNext()) {
+
+                while (contentDataIterator.hasNext()) { // for every clue
                     JSONObject contentsJson = contentDataIterator.next();
-                    ArrayList<Object> content = new ArrayList<>();
+
                     String layout = (String) contentsJson.get("layout");
                     Long value = (Long) contentsJson.get("value");
-                    content.add(layout);
-                    content.add(value);
-                    contents.add(content);
+
+                    if (value.intValue() != -1) {
+                        ClueContent clue = new ClueContent<>(value.intValue());
+                        newCell.setContent(clue);
+                    } else {
+                        // if it's -1 we consider it a BlackContent
+                        BlackContent black = new BlackContent();
+                        newCell.setContent(black);
+                    }
                 }
-                clues.add(contents);
+                //clues.add(contents);
+                boardElements.add(newCell);
             }
-            boardElements.add(clues);
+            //boardElements.add(newCell);
             inJsonFile.close();
+
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        return boardElements;
+
     }
 
-    private static Long getWidth(JSONObject jsonObject) {
-        // Prints width
-        Long width = (Long) jsonObject.get("width");
-        return width;
+    private static Long readWidth(JSONObject jsonObject) {
+        return (Long)jsonObject.get("width");
     }
 
-    private static Long getHeight(JSONObject jsonObject) {
-        // Prints width
-        Long height= (Long) jsonObject.get("height");
-        return height;
+    private static Long readHeight(JSONObject jsonObject) {
+        return (Long)jsonObject.get("height");
     }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public ArrayList<Cell> getBoardElements() {
+        return this.boardElements;
+    }
+
 }

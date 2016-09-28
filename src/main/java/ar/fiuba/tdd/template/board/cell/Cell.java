@@ -8,7 +8,7 @@ public class Cell<T> {
     private int row;
     private int column;
 
-    public Cell(int row,int column) {
+    public Cell(int row, int column) {
         this.row = row;
         this.column = column;
         contents = new ArrayList<>();

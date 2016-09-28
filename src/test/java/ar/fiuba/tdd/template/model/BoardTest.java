@@ -145,23 +145,19 @@ public class BoardTest {
 
     @Test
     public void decodeJson() {
+        Parser parser = new Parser();
+        parser.decodeJson();
+        int width = parser.getWidth();
+        int height = parser.getHeight();
+        Board<Integer> board = new Board<>(height, width);
 
-        ArrayList<Object> boardElements = Parser.decodeJson();
-        Integer width = (int)(long)boardElements.get(0);
-        Integer height = (int)(long)boardElements.get(1);
-        Board<Integer> board = new Board<>(height, width ); // TODO: should we only accept n x n boards?
+        assertEquals(board.getHeight(), height);
+        assertEquals(board.getWidth(), width);
 
-        int row = 2;
-        int col = 3;
+        ArrayList<Cell> clues = parser.getBoardElements();
+        System.out.print("The number of clues is : " + clues.size() + "\n");
 
-        try {
-            board.getContents(row, col);
-            assert false;
-        } catch (AssertionError e) {
-            System.out.println("Value row " + row + " col " + col + " is empty");
-            assert true;
-        }
-
+        
     }
 
 }

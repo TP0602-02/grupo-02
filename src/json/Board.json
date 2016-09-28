@@ -1,6 +1,11 @@
 {
   "width": 20,
   "height": 20,
+  "rules": [{
+    "rule": "Doesnt repeat number in row"
+  }, {
+    "rule": "Doesnt repeat number in column"
+  }],
   "clues": [{
     "x": 2,
     "y": 3,

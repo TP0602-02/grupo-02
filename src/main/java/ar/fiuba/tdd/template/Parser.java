@@ -16,6 +16,7 @@ public class Parser {
     private Integer width;
     private ArrayList<Cell> clues = new ArrayList<>();
     private ArrayList<Cell> solution = new ArrayList<>();
+    private ArrayList<String> rules = new ArrayList<>();
 
     // Class designed to parse JSON data
 
@@ -35,6 +36,7 @@ public class Parser {
             // Read Board Height
             this.height = readHeight(jsonObject).intValue();
 
+            readRules(jsonObject);
             readElements(jsonObject, "clues");
             readElements(jsonObject, "solution");
 
@@ -68,6 +70,18 @@ public class Parser {
 
     public ArrayList<Cell> getSolution() {
         return this.solution;
+    }
+
+    public ArrayList<String> getRules() {
+        return this.rules;
+    }
+
+    private void readRules(JSONObject jsonObject) {
+        JSONArray rulesContents = (JSONArray) jsonObject.get("rules");
+        for (JSONObject rule : (Iterable<JSONObject>) rulesContents) { // for every rule
+            //System.out.print(rule.get("rule").toString());
+            rules.add(rule.get("rule").toString());
+        }
     }
 
     private void readElements(JSONObject jsonObject, String id) {

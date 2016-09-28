@@ -134,6 +134,11 @@ public class BoardTest {
         assertEquals(board.getHeight(), height);
         assertEquals(board.getWidth(), width);
 
+        ArrayList<String> rules = parser.getRules();
+        for (int r = 0; r < rules.size(); r++) {
+            System.out.print(rules.get(r) + "\n");
+        }
+/*
         ArrayList<Cell> clues = parser.getClues();
         System.out.print("\tTemporary test. Only works with Board.json\n");
         System.out.print("The number of clues is : " + clues.size() + "\n");
@@ -152,9 +157,7 @@ public class BoardTest {
             System.out.print(" in solution " + solution.get(i).getRow() + " " + solution.get(i).getColumn()
                     + " is " + content.size() + " with value " + content.get(0).getValue() + "\n");
         }
-
-
-
+*/
     }
 
 }

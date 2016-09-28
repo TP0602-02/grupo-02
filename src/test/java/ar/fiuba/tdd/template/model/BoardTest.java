@@ -135,8 +135,8 @@ public class BoardTest {
         assertEquals(board.getWidth(), width);
 
         ArrayList<String> rules = parser.getRules();
-        for (int r = 0; r < rules.size(); r++) {
-            System.out.print(rules.get(r) + "\n");
+        for (String rule : rules) {
+            System.out.print(rule + "\n");
         }
 /*
         ArrayList<Cell> clues = parser.getClues();

@@ -5,17 +5,14 @@
     "x": 2,
     "y": 3,
     "content": [{
-      "layout": "below",
       "value": 20
     }, {
-      "layout": "above",
       "value": -1
     }]
   }, {
     "x": 4,
     "y": 6,
     "content": [{
-      "layout": "center",
       "value": 20
     }]
   }],

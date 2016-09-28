@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.template.board.cell;
+package ar.fiuba.tdd.template.board.cell.model;
 
 
 public class ValueContent<T> extends CellContent<T> {
@@ -17,6 +17,11 @@ public class ValueContent<T> extends CellContent<T> {
 
     @Override
     public boolean isSummable() {
+        return true;
+    }
+
+    @Override
+    public boolean isEditable() {
         return true;
     }
 }

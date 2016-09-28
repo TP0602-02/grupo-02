@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.template.board.cell;
+package ar.fiuba.tdd.template.board.cell.model;
 
 
 public class ClueContent<T> extends CellContent<T> {
@@ -19,6 +19,11 @@ public class ClueContent<T> extends CellContent<T> {
 
     @Override
     public boolean isSummable() {
+        return false;
+    }
+
+    @Override
+    public boolean isEditable() {
         return false;
     }
 }

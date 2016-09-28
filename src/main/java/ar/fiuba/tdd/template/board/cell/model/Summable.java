@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.template.board.cell;
+package ar.fiuba.tdd.template.board.cell.model;
 
 /**
  * Created by alazraqui on 26/09/2016.

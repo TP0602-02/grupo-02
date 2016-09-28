@@ -73,26 +73,6 @@ public class BoardTest {
         }
     }
 
-    /*
-    @Test
-    public void getBlackCellValues() {
-        BlackContent<String> emptyBlackContent = new BlackContent<>();
-
-        assertEquals(emptyBlackContent.getClues().get(0),"Empty Value");
-
-        // Creates a list of numbers
-        ArrayList<Integer> numbers = new ArrayList<>();
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(3);
-        numbers.add(4);
-
-        BlackContent<Integer> nonEmptyBlackContent = new BlackContent<>(numbers);
-
-        assertEquals(nonEmptyBlackContent.getClues(),numbers);
-
-    }
-*/
     @Test
     public void getRows() {
         int height = 5;
@@ -156,8 +136,13 @@ public class BoardTest {
 
         ArrayList<Cell> clues = parser.getBoardElements();
         System.out.print("The number of clues is : " + clues.size() + "\n");
+        System.out.print("The number of contents\n");
+        for (int i = 0; i < clues.size(); i++) {
+            ArrayList<CellContent> content = clues.get(i).getContents();
+            System.out.print(" in clue " + clues.get(i).getRow() + " " + clues.get(i).getColumn()
+                    + " is " + content.size() + "\n");
+        }
 
-        
     }
 
 }

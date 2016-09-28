@@ -26,7 +26,7 @@ public class Parser {
         JSONParser parser = new JSONParser();
         try {
             // Uses bufferedReader to avoid reliance on default encoding
-            String jsonFileName = "src/json/Board.json";
+            String jsonFileName = "src/json/Sudoku.json";
             BufferedReader inJsonFile = new BufferedReader(new InputStreamReader(new FileInputStream(jsonFileName), "UTF8"));
             Object fileObject = parser.parse(inJsonFile);
             JSONObject jsonObject = (JSONObject) fileObject;
@@ -54,7 +54,7 @@ public class Parser {
                 while (contentDataIterator.hasNext()) { // for every clue
                     JSONObject contentsJson = contentDataIterator.next();
 
-                    String layout = (String) contentsJson.get("layout");
+                    // the first value goes below, the second value above
                     Long value = (Long) contentsJson.get("value");
 
                     if (value.intValue() != -1) {
@@ -66,10 +66,8 @@ public class Parser {
                         newCell.setContent(black);
                     }
                 }
-                //clues.add(contents);
                 boardElements.add(newCell);
             }
-            //boardElements.add(newCell);
             inJsonFile.close();
 
         } catch (IOException | ParseException e) {

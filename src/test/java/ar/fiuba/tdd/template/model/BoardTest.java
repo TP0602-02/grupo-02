@@ -152,7 +152,7 @@ public class BoardTest {
         Cell cell = numberBoard.getCell(1,1);
         Cell leftCell = numberBoard.getCell(1,0);
 
-        assertEquals(leftCell, numberBoard.getIterator().getLeftCell(cell));
+        assertEquals(leftCell, numberBoard.getLeftCell(cell));
     }
 
     @Test
@@ -165,7 +165,7 @@ public class BoardTest {
         Cell cell = numberBoard.getCell(1,0);
         Cell rightCell = numberBoard.getCell(1,1);
 
-        assertEquals(rightCell, numberBoard.getIterator().getRightCell(cell));
+        assertEquals(rightCell, numberBoard.getRightCell(cell));
     }
 
     @Test
@@ -178,7 +178,7 @@ public class BoardTest {
         Cell cell = numberBoard.getCell(1,1);
         Cell aboveCell = numberBoard.getCell(0,1);
 
-        assertEquals(aboveCell, numberBoard.getIterator().getAboveCell(cell));
+        assertEquals(aboveCell, numberBoard.getAboveCell(cell));
     }
 
     @Test
@@ -191,6 +191,6 @@ public class BoardTest {
         Cell cell = numberBoard.getCell(0,1);
         Cell belowCell = numberBoard.getCell(1,1);
 
-        assertEquals(belowCell, numberBoard.getIterator().getBelowCell(cell));
+        assertEquals(belowCell, numberBoard.getBelowCell(cell));
     }
 }

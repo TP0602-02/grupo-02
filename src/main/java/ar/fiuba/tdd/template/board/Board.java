@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.template.board;
 
-
-import ar.fiuba.tdd.template.board.cell.BoardIterator;
 import ar.fiuba.tdd.template.board.cell.Cell;
 import ar.fiuba.tdd.template.board.cell.CellContent;
 
@@ -12,12 +10,8 @@ public class Board{
     private ArrayList<ArrayList<Cell>> board;
     private int width;  // number of columns
     private int height; // number of rows
-    private BoardIterator iterator;
-
-
 
     public Board(int height, int width) {
-        initBoardIterator();
         board = new ArrayList<>();
         this.height = height;
         this.width = width;
@@ -29,34 +23,6 @@ public class Board{
             }
             board.add(inner);
         }
-    }
-
-    private void initBoardIterator() {
-        iterator = new BoardIterator() {
-            @Override
-            public Cell getLeftCell(Cell cell) {
-                return board.get(cell.getColumn() - 1).get(cell.getRow());
-            }
-
-            @Override
-            public Cell getRightCell(Cell cell) {
-                return board.get(cell.getColumn() + 1).get(cell.getRow());
-            }
-
-            @Override
-            public Cell getAboveCell(Cell cell) {
-                return board.get(cell.getColumn()).get(cell.getRow() - 1);
-            }
-
-            @Override
-            public Cell getBelowCell(Cell cell) {
-                return board.get(cell.getColumn()).get(cell.getRow() + 1);
-            }
-        };
-    }
-
-    public BoardIterator getIterator() {
-        return iterator;
     }
 
     public int getWidth() {
@@ -128,8 +94,20 @@ public class Board{
         return region;
     }
 
-    public interface IterateInOneDirection{
-        public Cell iterate(Cell cell);
+    //Ver de lanzar excepción si estás en la celda límite
+    public Cell getLeftCell(Cell cell) {
+        return this.board.get(cell.getColumn() - 1).get(cell.getRow());
+    }
 
+    public Cell getRightCell(Cell cell) {
+        return this.board.get(cell.getColumn() + 1).get(cell.getRow());
+    }
+
+    public Cell getAboveCell(Cell cell) {
+        return this.board.get(cell.getColumn()).get(cell.getRow() - 1);
+    }
+
+    public Cell getBelowCell(Cell cell) {
+        return this.board.get(cell.getColumn()).get(cell.getRow() + 1);
     }
 }

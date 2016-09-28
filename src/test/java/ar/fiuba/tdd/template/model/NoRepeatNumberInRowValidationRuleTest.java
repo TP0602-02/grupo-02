@@ -38,7 +38,8 @@ public class NoRepeatNumberInRowValidationRuleTest {
     }
 
     @Test
-    public void testAddWithOneNumberInBoard_ReturnFalse() {this.board.getCell(0,1).setContent((new ValueContent<Integer>(1)));
+    public void testAddWithOneNumberInBoard_ReturnFalse() {
+        this.board.getCell(0,1).setContent((new ValueContent<Integer>(1)));
         assertTrue(!this.rule.validate(this.board,cell,1));
     }
 

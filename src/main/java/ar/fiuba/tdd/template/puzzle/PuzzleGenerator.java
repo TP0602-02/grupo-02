@@ -15,8 +15,7 @@ public class PuzzleGenerator {
 
         Parser parser = new Parser();
         parser.decodeJson();
-        int width = parser.getWidth();
-        int height = parser.getHeight();
+
         ArrayList<Cell> clues = parser.getClues();
 //        ArrayList<Cell> solution = parser.getSolution();
         ArrayList<String> rules = parser.getRules();
@@ -24,15 +23,11 @@ public class PuzzleGenerator {
         // Converts rules array of strings into GenericRule array
 
         ArrayList<GenericRule> parsedRules = new ArrayList<>();
-        for (int i = 0; i < rules.size(); i++) {
-            parsedRules.add(RulesFactory.getFactory().createRule(rules.get(i)));
+        for (String rule : rules) {
+            parsedRules.add(RulesFactory.getFactory().createRule(rule));
         }
 
-
-        //must merge with develop
-        Puzzle puzzle = new Puzzle(width, height, createChainOfRules(parsedRules), clues);
-
-        return puzzle;
+        return new Puzzle(parser.getHeight(), parser.getWidth(), createChainOfRules(parsedRules), clues);
     }
 
     public GenericRule createChainOfRules(ArrayList<GenericRule> parsedRules) {

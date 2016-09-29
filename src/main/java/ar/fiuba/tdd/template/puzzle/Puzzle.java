@@ -7,9 +7,6 @@ import ar.fiuba.tdd.template.rules.GenericRule;
 
 import java.util.ArrayList;
 
-/**
- * Created by matiaskamien on 27/09/16.
- */
 public class Puzzle {
 
     private Board board;
@@ -57,6 +54,9 @@ public class Puzzle {
         return this.firstRule.validate(this.board, cell, valueToAdd);
     }
 
+    public boolean firstRuleIsNull() {
+        return this.firstRule == null;
+    }
 
 }
 

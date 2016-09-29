@@ -28,7 +28,7 @@ public class Parser {
         JSONParser parser = new JSONParser();
         try {
             // Uses bufferedReader to avoid reliance on default encoding
-            String jsonFileName = "src/json/Board.json";
+            String jsonFileName = "src/json/Sudoku.json";
             BufferedReader inJsonFile = new BufferedReader(new InputStreamReader(new FileInputStream(jsonFileName), "UTF8"));
             Object fileObject = parser.parse(inJsonFile);
             JSONObject jsonObject = (JSONObject) fileObject;

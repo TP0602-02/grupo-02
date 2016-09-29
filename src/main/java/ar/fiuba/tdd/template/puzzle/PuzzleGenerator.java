@@ -17,7 +17,7 @@ public class PuzzleGenerator {
         parser.decodeJson();
 
         ArrayList<Cell> clues = parser.getClues();
-        ArrayList<Cell> solution = parser.getSolution();
+        //ArrayList<Cell> solution = parser.getSolution();
         ArrayList<String> rules = parser.getRules();
 
         // Converts rules array of strings into GenericRule array

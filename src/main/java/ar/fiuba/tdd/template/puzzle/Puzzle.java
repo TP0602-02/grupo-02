@@ -13,7 +13,7 @@ public class Puzzle {
     private GenericRule firstRule;
     private int boardHeight;
     private int boardWidth;
-    ArrayList<Cell> initialCells;
+    private ArrayList<Cell> initialCells;
 
     public Puzzle(int boardHeight, int boardWidth,
                   GenericRule firstRule, ArrayList<Cell> initialCells) {
@@ -25,7 +25,7 @@ public class Puzzle {
         this.firstRule = firstRule;
     }
 
-    public ArrayList<Cell>getInitialCells() {
+    public ArrayList<Cell> getInitialCells() {
         return this.initialCells;
     }
 
@@ -58,10 +58,6 @@ public class Puzzle {
 
     private boolean validateMove(Cell cell, int valueToAdd) {
         return this.firstRule.validate(this.board, cell, valueToAdd);
-    }
-
-    public boolean firstRuleIsNull() {
-        return this.firstRule == null;
     }
 
 }

@@ -80,7 +80,7 @@ public class Main {
         puzzleView.showVisu();
         PuzzleController puzzleController = new PuzzleController();
         puzzleController.attachElements(puzzleView,puzzle);
-        */
+*/
 
         PuzzleGenerator generator = new PuzzleGenerator();
         Puzzle puzzle = generator.startGeneration();

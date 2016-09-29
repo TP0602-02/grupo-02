@@ -19,7 +19,8 @@ public class PuzzleTest {
             System.out.print("FIRST RULE IS NULL");
         }
 
-        //Assert.assertTrue(puzzleTest.checkMovement(new Cell(2,3), 20));
-
+        Assert.assertFalse(puzzleTest.checkMovement(new Cell(2,2), 20)); // there's already a clue there
+        Assert.assertTrue(puzzleTest.checkMovement(new Cell(1,2), 4)); // there are no 4s in row or col
+        Assert.assertTrue(puzzleTest.checkMovement(new Cell(2,0), 3));
     }
 }

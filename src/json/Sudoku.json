@@ -1,6 +1,13 @@
 {
   "width": 9,
   "height": 9,
+  "rules": [{
+    "rule": "Doesnt repeat number in row"
+  }, {
+    "rule": "Doesnt repeat number in column"
+  }, {
+    "rule": "Doesnt repeat number in square region"
+  }],
   "clues": [{
     "x": 0,
     "y": 0,

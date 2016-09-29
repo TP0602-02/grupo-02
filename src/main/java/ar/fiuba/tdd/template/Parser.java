@@ -1,10 +1,7 @@
 package ar.fiuba.tdd.template;
 
 
-import ar.fiuba.tdd.template.board.cell.model.BlackContent;
-import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.board.cell.model.ClueContent;
-import ar.fiuba.tdd.template.board.cell.model.ValueContent;
+import ar.fiuba.tdd.template.board.cell.model.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -125,7 +122,12 @@ public class Parser {
                 newCell.setContent(clue);
             } else {
                 // if it's -1 we consider it a BlackContent
-                BlackContent black = new BlackContent();
+                BlackContent black = new BlackContent(new BlackContent.DefValue<String>() {
+                    @Override
+                    public String getDefValue() {
+                        return "black";
+                    }
+                });
                 newCell.setContent(black);
             }
         } else if (id.equals("solution")) {

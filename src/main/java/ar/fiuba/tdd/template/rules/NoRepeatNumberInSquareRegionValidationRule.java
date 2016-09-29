@@ -5,9 +5,6 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 
 import java.util.ArrayList;
 
-/**
- * Created by Nicolas on 29/9/2016.
- */
 public class NoRepeatNumberInSquareRegionValidationRule extends NoRepeatValueValidationRule {
 
     @Override

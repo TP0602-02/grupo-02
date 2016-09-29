@@ -6,9 +6,6 @@ import ar.fiuba.tdd.template.board.cell.model.CellContent;
 
 import java.util.ArrayList;
 
-/**
- * Created by alazraqui on 27/09/2016.
- */
 public abstract class NoRepeatValueValidationRule extends GenericRule {
 
     @Override
@@ -22,7 +19,7 @@ public abstract class NoRepeatValueValidationRule extends GenericRule {
                         return false;
                     }
                 } catch (ClassCastException e) {
-                    System.out.print(this.getClass().toString() + "Can´t cast to int: " + actualContent.getValue());
+                    System.out.print(this.getClass().toString() + " Can't cast to int: " + actualContent.getValue() + "\n");
                 }
             }
         }

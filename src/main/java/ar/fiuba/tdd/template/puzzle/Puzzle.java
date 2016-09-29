@@ -13,6 +13,7 @@ public class Puzzle {
     private GenericRule firstRule;
     private int boardHeight;
     private int boardWidth;
+    ArrayList<Cell> initialCells;
 
     public Puzzle(int boardHeight, int boardWidth,
                   GenericRule firstRule, ArrayList<Cell> initialCells) {
@@ -20,7 +21,12 @@ public class Puzzle {
         this.boardWidth = boardWidth;
         this.board = new Board(boardHeight, boardWidth);
         setInitialCells(initialCells);
+        this.initialCells = initialCells;
         this.firstRule = firstRule;
+    }
+
+    public ArrayList<Cell>getInitialCells() {
+        return this.initialCells;
     }
 
     public int getBoardHeight() {

@@ -17,11 +17,10 @@ public class PuzzleGenerator {
         parser.decodeJson();
 
         ArrayList<Cell> clues = parser.getClues();
-//        ArrayList<Cell> solution = parser.getSolution();
+        ArrayList<Cell> solution = parser.getSolution();
         ArrayList<String> rules = parser.getRules();
 
         // Converts rules array of strings into GenericRule array
-
         ArrayList<GenericRule> parsedRules = new ArrayList<>();
         for (String rule : rules) {
             parsedRules.add(RulesFactory.getFactory().createRule(rule));

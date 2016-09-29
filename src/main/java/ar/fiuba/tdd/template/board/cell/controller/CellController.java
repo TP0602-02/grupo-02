@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.board.cell.controller;
 import ar.fiuba.tdd.template.board.InputUserView;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
+import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.entity.BaseController;
 
@@ -13,6 +14,7 @@ import ar.fiuba.tdd.template.entity.BaseController;
 public class CellController extends BaseController<CellView, Cell> {
 
     private InputUserView inputUserView;
+    private UserInputListener userInputListener;
 
     public CellController() {
         inputUserView = new InputUserView();
@@ -46,9 +48,23 @@ public class CellController extends BaseController<CellView, Cell> {
     }
 
     private void textInputed(String text) {
-        //TODO PASAR AL PUZZLE PARA QUE HAGA VALIDACION CON LAS REGLAS Y SI PASA LA VALIDACION LLAMAR AL
-        view.setText(text);
-        // model.getContents().
+        if (userInputListener != null) {
+            boolean validInput = userInputListener.validateUserTextInputed(this.model, text);
+            if (validInput) {
+                view.setText(text);
+                //TODO habria que ver si la celda tiene muchos valores para saber que valor se cambio
+                model.setContent(new ValueContent(Integer.valueOf(text)));
+            }
+        }
+
+    }
+
+    public void setUserInputListener(UserInputListener userInputListener) {
+        this.userInputListener = userInputListener;
+    }
+
+    public interface UserInputListener {
+        public boolean validateUserTextInputed(Cell cell, String text);
     }
 
 }

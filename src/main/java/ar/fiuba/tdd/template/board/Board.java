@@ -20,7 +20,7 @@ public class Board<T> {
         for (int col = 0; col < width; col++) {
             ArrayList<Cell> inner = new ArrayList<>();
             for (int row = 0; row < height; row++) {
-                inner.add(new Cell(row,col));
+                inner.add(new Cell(row, col));
             }
             board.add(inner);
         }
@@ -46,6 +46,12 @@ public class Board<T> {
         getCell(row, column).setContent(content);
     }
 
+    public void setValues(int row, int column, ArrayList<CellContent> contents) {
+        for (CellContent cellContent : contents) {
+            getCell(row, column).setContent(cellContent);
+        }
+    }
+
     public ArrayList<Cell> getRow(Cell cell) {
 
         // This methods returns the entire row of cells
@@ -53,7 +59,7 @@ public class Board<T> {
         ArrayList<Cell> cellsInRow = new ArrayList<>();
         int row = cell.getRow();
         for (int column = 0; column < width; column++) {
-            cellsInRow.add(getCell(row,column));
+            cellsInRow.add(getCell(row, column));
         }
 
         return cellsInRow;
@@ -65,9 +71,9 @@ public class Board<T> {
 
         ArrayList<Cell> cellsInColumn = new ArrayList<>();
 
-        int column = cell.getRow();
-        for (int row = 0; row < width; row++) {
-            cellsInColumn.add(getCell(row,column));
+        int column = cell.getColumn();
+        for (int row = 0; row < height; row++) {
+            cellsInColumn.add(getCell(row, column));
         }
 
         return cellsInColumn;
@@ -87,12 +93,13 @@ public class Board<T> {
         for (int regionCol = column - 1; regionCol < width; regionCol++) {
             ArrayList<Cell> inner = new ArrayList<>();
             for (int regionRow = row - 1; regionRow < height; regionRow++) {
-                inner.add(new Cell(regionRow,regionCol));
+                inner.add(new Cell(regionRow, regionCol));
             }
             region.add(inner);
         }
 
         return region;
     }
+
 
 }

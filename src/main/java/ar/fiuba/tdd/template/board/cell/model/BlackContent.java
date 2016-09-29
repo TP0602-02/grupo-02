@@ -11,6 +11,10 @@ public class BlackContent<T> extends CellContent<T> {
     public BlackContent() {
     }
 
+    public BlackContent(DefValue defValue) {
+        this.def = defValue;
+    }
+
     public T getValue() throws AssertionError {
         // throw new AssertionError("Cannot get value");
         return def.getDefValue();

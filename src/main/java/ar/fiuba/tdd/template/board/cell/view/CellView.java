@@ -17,7 +17,7 @@ public class CellView extends JLabel {
         super("", SwingConstants.CENTER);
         setOpaque(true);
         setBackground(Color.white);
-        setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.RED, Color.black));
+        setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.black, Color.black));
     }
 
     public CellView(String text) {

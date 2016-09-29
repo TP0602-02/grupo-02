@@ -24,57 +24,56 @@ public class PuzzleView extends JFrame {
     private int height;
     private final HomeView menu;
     private ArrayList<ArrayList<CellView>> boardView;
-    private ArrayList<CellController> cellControllers;
+    private Container container;
+    private ArrayList<Cell> initialCells;
 
-    public PuzzleView(int width, int height) {
+    public PuzzleView(int height, int width, ArrayList<Cell> initialCells) {
         this.width = width;
         this.height = height;
+        this.initialCells = initialCells;
         setBackground(Color.gray);
-        this.cellControllers = new ArrayList<>();
         this.getContentPane().setPreferredSize(new Dimension(screenLenght, screenHeight));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.menu = new HomeView(screenLenght, screenHeight, this);
-        menu.createMenu();
-        this.add(menu);
-        this.pack();
-    }
+        container = new Container();
 
+        container.setPreferredSize(new Dimension(screenLenght, screenHeight));
+        this.add(container);
+
+        this.menu = new HomeView(screenLenght, screenHeight, this);
+        this.pack();
+        createBoardView("sudoku");
+       /*  menu.createMenu();
+        this.add(menu);
+        this.pack();*/
+    }
 
     private void createBoardView(String game) {
         //int boardSize = Facade.getBoardSize();
         initBoardDimensions();
+        setInitialsCells();
         this.addTitle(game);
         for (int column = 0; column < width; ++column) {
             for (int row = 0; row < height; ++row) {
                 int positionCellInitialPixelX = column * cellViewDimension + boardInitialPositionPixelX;
                 int positionCellInitialPixelY = row * cellViewDimension + boardInitialPositionPixelY;
-                addField(simulateCreationOfCellContent(), positionCellInitialPixelX, positionCellInitialPixelY, column, row);
             }
         }
         JLabel label = new JLabel("");
-        add(label);
+        container.add(label);
     }
 
-    private CellContent simulateCreationOfCellContent() {
-        Random rand = new Random();
-        int numberForSimulateCell = rand.nextInt(3);
-        switch (numberForSimulateCell) {
-            case 0:
-                return new ValueContent(rand.nextInt(9));
-            case 1:
-                BlackContent black = new BlackContent();
-                black.setDef(new BlackContent.DefValue<String>() {
-                    @Override
-                    public String getDefValue() {
-                        return "black";
-                    }
-                });
-                return black;
-            case 2:
-                return new ClueContent(rand.nextInt(20));
-            default:
+    private void setInitialsCells() {
+        for (Cell cell : this.initialCells) {
+            addInitialCellToBoardView(cell);
         }
-        return null;
+    }
+
+    private void addInitialCellToBoardView(Cell cell) {
+        int positionCellInitialPixelX = cell.getColumn() * cellViewDimension + boardInitialPositionPixelX;
+        int positionCellInitialPixelY = cell.getRow() * cellViewDimension + boardInitialPositionPixelY;
+        //TODO para juegos que permitan doble valor de celda como negra y clue hay que cambiarlo!
+        addField(cell.getContents().get(0), positionCellInitialPixelX,
+                positionCellInitialPixelY, cell.getColumn(), cell.getRow());
     }
 
     private void initBoardDimensions() {
@@ -84,28 +83,42 @@ public class PuzzleView extends JFrame {
             boardView.add(dimen, column);
             for (int row = 0; row < height; ++row) {
                 column.add(new CellView());
+                addDefaultCellView(dimen, row);
             }
         }
     }
+
+
+    private void addDefaultCellView(int column, int row) {
+        int positionCellInitialPixelX = column * cellViewDimension + boardInitialPositionPixelX;
+        int positionCellInitialPixelY = row * cellViewDimension + boardInitialPositionPixelY;
+        addField(new ValueContent(""), positionCellInitialPixelX, positionCellInitialPixelY, column, row);
+    }
+
 
     private void addTitle(String game) {
         JLabel titleLabel = new JLabel(game);
         titleLabel.setBounds(boardInitialPositionPixelX, boardInitialPositionPixelY - 200, 300, 100);
         titleLabel.setFont(new Font("Serif", Font.PLAIN, 70));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
-        this.add(titleLabel);
+        container.add(titleLabel);
     }
 
     private void addField(CellContent cellContent, int positionPixelX, int positionPixelY, int column, int row) {
-        Cell cell = new Cell(column, row);
-        cell.setContent(cellContent);
+        // Cell cell = new Cell(column, row);
+        //cell.setContent(cellContent);
         CellView cellVIew = new CellView(String.valueOf(cellContent.getValue()));
+        //TODO sacarlo haciendo un visitor
+        if (cellContent instanceof ClueContent) {
+            cellVIew.setBackground(Color.RED);
+        }
         cellVIew.setBounds(positionPixelX, positionPixelY, cellViewDimension, cellViewDimension);
-        getContentPane().add(cellVIew);
+        CellView previousCellView = boardView.get(column).get(row);
+        if (previousCellView != null) {
+            container.remove(boardView.get(column).remove(row));
+        }
         boardView.get(column).add(row, cellVIew);
-        CellController cellController = new CellController();
-        cellController.attachElements(cellVIew, cell);
-        cellControllers.add(cellController);
+        container.add(cellVIew, column * height + row);
     }
 
     public void showVisu() {
@@ -119,5 +132,9 @@ public class PuzzleView extends JFrame {
         Facade.getInstance().setGame(game);
         this.createBoardView(game);
         //this.pack();
+    }
+
+    public CellView getCellView(int row, int column) {
+        return this.boardView.get(column).get(row);
     }
 }

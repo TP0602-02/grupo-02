@@ -14,21 +14,39 @@ public class Puzzle {
 
     private Board board;
     private GenericRule firstRule;
-    private ArrayList<Cell> initialCells;
+    private int boardHeight;
+    private int boardWidth;
 
-    public Puzzle(int boardHeight, int boardWidth, GenericRule firstRule, ArrayList<Cell> initialCells) {
+    public Puzzle(int boardHeight, int boardWidth,
+                  GenericRule firstRule, ArrayList<Cell> initialCells) {
+        this.boardHeight = boardHeight;
+        this.boardWidth = boardWidth;
         this.board = new Board(boardHeight, boardWidth);
+        setInitialCells(initialCells);
         this.firstRule = firstRule;
-        this.initialCells = initialCells;
     }
 
-    public ArrayList<Cell> getInitialCells() {
-        return initialCells;
+    public int getBoardHeight() {
+        return boardHeight;
+    }
+
+    public int getBoardWidth() {
+        return boardWidth;
+    }
+
+    public Cell getCell(int row, int column) {
+        return this.board.getCell(row, column);
+    }
+
+    private void setInitialCells(ArrayList<Cell> initialCells) {
+        for (Cell cellToAdd : initialCells) {
+            this.board.setValues(cellToAdd.getRow(), cellToAdd.getColumn(), cellToAdd.getContents());
+        }
     }
 
     public boolean checkMovement(Cell cell, int valueToAdd) {
         if (this.validateMove(cell, valueToAdd)) {
-            this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent<Integer>(valueToAdd));
+            // this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent<Integer>(valueToAdd));
             return true;
         } else {
             return false;
@@ -39,4 +57,6 @@ public class Puzzle {
         return this.firstRule.validate(this.board, cell, valueToAdd);
     }
 
+
 }
+

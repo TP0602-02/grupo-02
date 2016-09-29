@@ -1,6 +1,9 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
+import ar.fiuba.tdd.template.board.cell.controller.CellController;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Cell implements Summable, Editable {
 
@@ -26,14 +29,29 @@ public class Cell implements Summable, Editable {
         return this.column;
     }
 
-    public void setContent(CellContent content) {
-        contents.add(content);
+    public void setContent(CellContent newContentCell) {
+        if (!refreshEditableContent(newContentCell)) {
+            contents.add(newContentCell);
+        }
+    }
+
+    private boolean refreshEditableContent(CellContent newContentCell) {
+        for (int index = 0; index < this.contents.size(); ++index) {
+            if (this.contents.get(index).isEditable()) {
+                //TODO caundo sea posible ingresar varios ValuesCell en una celda, hay que cambiarlo
+                this.contents.remove(index);
+                this.contents.add(index, newContentCell);
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean isEmpty() {
         return contents.size() == 0;
     }
 
+    //Deben ser todos los contents posibles de editar para que la celda lo sea
     @Override
     public boolean isEditable() {
         boolean isEditable = true;
@@ -43,11 +61,12 @@ public class Cell implements Summable, Editable {
         return isEditable;
     }
 
+    //Deben ser al menos uno de los contents posible de sumar para que la celda lo sea
     @Override
     public boolean isSummable() {
         boolean isSummable = false;
         for (CellContent cellContent : contents) {
-            isSummable &= cellContent.isSummable();
+            isSummable |= cellContent.isSummable();
         }
         return isSummable;
     }

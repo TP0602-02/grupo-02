@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class PuzzleGenerator {
 
+    public PuzzleGenerator() {}
+
     public Puzzle startGeneration() {
 
         Parser parser = new Parser();
@@ -23,7 +25,7 @@ public class PuzzleGenerator {
 
         ArrayList<GenericRule> parsedRules = new ArrayList<>();
         for (int i = 0; i < rules.size(); i++) {
-            parsedRules.add(RulesFactory.getFactory().createRule(rules.get(0)));
+            parsedRules.add(RulesFactory.getFactory().createRule(rules.get(i)));
         }
 
 

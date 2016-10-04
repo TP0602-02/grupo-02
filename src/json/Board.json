@@ -1,0 +1,37 @@
+{
+  "width": 20,
+  "height": 20,
+  "rules": [{
+    "rule": "Doesnt repeat number in row"
+  }, {
+    "rule": "Doesnt repeat number in column"
+  }],
+  "clues": [{
+    "x": 2,
+    "y": 3,
+    "content": [{
+      "value": 20
+    }, {
+      "value": -1
+    }]
+  }, {
+    "x": 4,
+    "y": 6,
+    "content": [{
+      "value": 20
+    }]
+  }],
+  "solution": [{
+    "x": 2,
+    "y": 2,
+    "content": [{
+      "value": 3
+    }]
+  }, {
+    "x": 4,
+    "y": 4,
+    "content": [{
+      "value": 5
+    }]
+  }]
+}

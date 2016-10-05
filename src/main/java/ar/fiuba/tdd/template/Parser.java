@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.template;
 
-
 import ar.fiuba.tdd.template.board.cell.model.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,40 +14,51 @@ import java.util.ArrayList;
 
 public class Parser {
 
+    private JSONParser parser;
+    private JSONObject boardFile;
+    private JSONObject playsFile;
+
     private int height;
-    private Integer width;
+    private int width;
     private ArrayList<Cell> clues = new ArrayList<>();
     private ArrayList<Cell> solution = new ArrayList<>();
     private ArrayList<String> rules = new ArrayList<>();
 
-    // Class designed to parse JSON data
+    private ArrayList<Cell> plays = new ArrayList<>();
 
-    public void decodeJson() {
-        // Getting board data from the json file
-        JSONParser parser = new JSONParser();
+    public Parser() {
+        parser = new JSONParser();
+    }
+
+    // Obtains both files as JSONObjects to work on
+    private void readFile(String boardFileName, String playsFileName) {
         try {
             // Uses bufferedReader to avoid reliance on default encoding
-            String jsonFileName = "src/json/Sudoku.json";
-            BufferedReader inJsonFile = new BufferedReader(new InputStreamReader(new FileInputStream(jsonFileName), "UTF8"));
-            Object fileObject = parser.parse(inJsonFile);
-            JSONObject jsonObject = (JSONObject) fileObject;
-
-            // Read Board Width
-            this.width = readWidth(jsonObject).intValue();
-
-            // Read Board Height
-            this.height = readHeight(jsonObject).intValue();
-
-            readRules(jsonObject);
-            readElements(jsonObject, "clues");
-            readElements(jsonObject, "solution");
-
-            inJsonFile.close();
-
+            BufferedReader boardJsonFile = new BufferedReader(new InputStreamReader(new FileInputStream(boardFileName), "UTF8"));
+            BufferedReader playsJsonFile = new BufferedReader(new InputStreamReader(new FileInputStream(playsFileName), "UTF8"));
+            Object boardFileObject = parser.parse(boardJsonFile);
+            Object playsFileObject = parser.parse(playsJsonFile);
+            this.boardFile = (JSONObject) boardFileObject;
+            this.playsFile = (JSONObject) playsFileObject;
+            boardJsonFile.close();
+            playsJsonFile.close();
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+    }
 
+    public void decodeJson() {
+        readFile("src/json/Sudoku.json", "src/json/Plays.json");
+
+        // Board configuration
+        this.width = readWidth(this.boardFile).intValue();
+        this.height = readHeight(this.boardFile).intValue();
+        readRules(this.boardFile);
+        readElements(this.boardFile, "clues");
+        readElements(this.boardFile, "solution");
+
+        // Automatic plays
+        readPlays();
     }
 
     private static Long readWidth(JSONObject jsonObject) {
@@ -136,6 +146,43 @@ public class Parser {
             newCell.setContent(valueContent);
         }
         return newCell;
+    }
+
+    private void readPlays() {
+        JSONArray playsContents = (JSONArray) this.playsFile.get("plays");
+
+        for (JSONObject play : (Iterable<JSONObject>) playsContents) { // for every play
+
+            //System.out.print(play.get("number"));
+            //System.out.print(play.get("position"));
+            //System.out.print(play.get("value"));
+
+            String delimiter = "[\\[\\], ]+";
+            String[] tokens = play.get("position").toString().split(delimiter);
+
+            // TODO El primer valor en el array es un string vacio ???
+            for (String token : tokens) {
+                if (token.contentEquals("")) {
+                    System.out.print("espacio");
+                } else {
+                    System.out.print(token);
+                }
+            }
+
+            System.out.print(" " + tokens.length + " is the length of the tokenarray ");
+
+            int positionX = Integer.parseInt(tokens[1]);
+            int positionY = Integer.parseInt(tokens[2]);
+
+            Cell newCell = new Cell(positionX, positionY); // create a single cell
+            System.out.print(" The row is " + newCell.getRow() + " " + newCell.getColumn() + "\n");
+
+            // Plays are considered ValueContent
+            ValueContent valueContent = new ValueContent<>(play.get("value"));
+            newCell.setContent(valueContent);
+            plays.add(newCell);
+        }
+
     }
 
 }

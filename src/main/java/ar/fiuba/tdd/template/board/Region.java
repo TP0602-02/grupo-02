@@ -25,7 +25,8 @@ public class Region {
     }
 
     public void addCell(Cell cell) {
-        if (!this.cells.contains(cell))
+        if (!this.cells.contains(cell)) {
             this.cells.add(cell);
+        }
     }
 }

@@ -13,10 +13,7 @@ public class RulesFactory {
 
     private static void initFactory() {
         factory = new Properties();
-        factory.put(DOESNT_REPEAT_NUMBER_IN_ROW,new NoRepeatNumberInRowValidationRule());
-        factory.put(DOESNT_REPEAT_NUMBER_IN_COLUMN,new NoRepeatNumberInColumnValidationRule());
-        factory.put(DOESNT_REPEAT_NUMBER_IN_SQUARE_REGION,new NoRepeatNumberInSquareRegionValidationRule());
-        factory.put(NUMBER_VALIDATION,new NumberValidationRule());
+        //factory.put(DOESNT_REPEAT_NUMBER_IN_ROW,new NoRepeatNumberInRowValidationRule())
     }
 
     public static RulesFactory getFactory() {

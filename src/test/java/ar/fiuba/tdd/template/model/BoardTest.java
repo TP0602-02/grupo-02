@@ -6,6 +6,7 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -68,13 +69,9 @@ public class BoardTest {
 
         board.setValues(row, column, values);
         ArrayList<CellContent> valuesRecovered = board.getContents(row, column);
-/*
-        if (valuesRecovered.contains(firstContent) && valuesRecovered.contains(secondContent)) {
-            assert true;
-        } else {
-            assert false;
-        }
-        */
+        //Remueve el primer valor, y agregar el segundo. Simulacion de agregar un valor a una celda y luego
+        //agregar otro a la misma celda.
+        Assert.assertTrue(!(valuesRecovered.contains(firstContent) && valuesRecovered.contains(secondContent)));
     }
 
     @Test

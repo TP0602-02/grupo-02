@@ -24,6 +24,9 @@ public class Parser {
     private ArrayList<Cell> solution = new ArrayList<>();
     private ArrayList<String> rules = new ArrayList<>();
 
+    private ArrayList<ArrayList<Cell>> regions = new ArrayList<>();
+    private ArrayList<ArrayList<Cell>> exceptions = new ArrayList<>();
+
     private ArrayList<Cell> plays = new ArrayList<>();
 
     public Parser() {
@@ -48,7 +51,7 @@ public class Parser {
     }
 
     public void decodeJson() {
-        readFile("src/json/Sudoku.json", "src/json/Plays.json");
+        readFile("src/json/Board.json", "src/json/Plays.json");
 
         // Board configuration
         this.width = readWidth(this.boardFile).intValue();
@@ -56,6 +59,7 @@ public class Parser {
         readRules(this.boardFile);
         readElements(this.boardFile, "clues");
         readElements(this.boardFile, "solution");
+        readRegions(this.boardFile);
 
         // Automatic plays
         readPlays();
@@ -85,6 +89,10 @@ public class Parser {
         return this.solution;
     }
 
+    public ArrayList<Cell> getPlays() {
+        return this.plays;
+    }
+
     public ArrayList<String> getRules() {
         return this.rules;
     }
@@ -111,9 +119,7 @@ public class Parser {
             for (JSONObject contentsJson : (Iterable<JSONObject>) contentData) { // for every clue
                 // the first value goes below, the second value above
                 Long value = (Long) contentsJson.get("value");
-
                 createContent(newCell, id, value.intValue());
-
             }
 
             if (id.equals("clues")) {
@@ -153,15 +159,11 @@ public class Parser {
 
         for (JSONObject play : (Iterable<JSONObject>) playsContents) { // for every play
 
-            //System.out.print(play.get("number"));
-            //System.out.print(play.get("position"));
-            //System.out.print(play.get("value"));
-
             String delimiter = "[\\[\\], ]+";
             String[] tokens = play.get("position").toString().split(delimiter);
 
             // TODO El primer valor en el array es un string vacio ???
-            for (String token : tokens) {
+            /*for (String token : tokens) {
                 if (token.contentEquals("")) {
                     System.out.print("espacio");
                 } else {
@@ -170,12 +172,12 @@ public class Parser {
             }
 
             System.out.print(" " + tokens.length + " is the length of the tokenarray ");
-
+            */
             int positionX = Integer.parseInt(tokens[1]);
             int positionY = Integer.parseInt(tokens[2]);
 
             Cell newCell = new Cell(positionX, positionY); // create a single cell
-            System.out.print(" The row is " + newCell.getRow() + " " + newCell.getColumn() + "\n");
+            //System.out.print(" The row is " + newCell.getRow() + " " + newCell.getColumn() + "\n");
 
             // Plays are considered ValueContent
             ValueContent valueContent = new ValueContent<>(play.get("value"));
@@ -184,5 +186,31 @@ public class Parser {
         }
 
     }
+
+    private void readRegions(JSONObject jsonObject) {
+        JSONArray regionContents = (JSONArray) jsonObject.get("regions");
+
+        for (JSONObject region : (Iterable<JSONObject>) regionContents) { // for every region
+            ArrayList<Cell> fromToRegion = new ArrayList<>();
+            ArrayList<Cell> exceptionsRegion = new ArrayList<>();
+
+            JSONArray coordinates = (JSONArray) region.get("coord"); // read coordinates
+            for (JSONObject coord : (Iterable<JSONObject>) coordinates) {
+                Cell newCell = new Cell(((Long) coord.get("x")).intValue(), ((Long) coord.get("y")).intValue());
+                fromToRegion.add(newCell);
+            }
+            regions.add(fromToRegion);
+
+            JSONArray exceptionsRead = (JSONArray) region.get("exceptions"); // read exceptions
+            for (JSONObject excep : (Iterable<JSONObject>) exceptionsRead) {
+                Cell newCell = new Cell(((Long) excep.get("x")).intValue(), ((Long) excep.get("y")).intValue());
+                exceptionsRegion.add(newCell);
+            }
+            exceptions.add(exceptionsRegion);
+        }
+
+        System.out.print(regions.size() + " " + exceptions.size());
+    }
+
 
 }

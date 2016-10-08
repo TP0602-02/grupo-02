@@ -137,6 +137,7 @@ public class BoardTest {
 
         assertEquals(board.getHeight(), height);
         assertEquals(board.getWidth(), width);
+
         /*
         ArrayList<String> rules = parser.getRules();
         for (String rule : rules) {

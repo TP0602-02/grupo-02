@@ -7,7 +7,7 @@ import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 
 import java.util.ArrayList;
 
-public class Board {
+public class Board<T> {
 
     private ArrayList<ArrayList<Cell>> board;
     private int width;  // number of columns

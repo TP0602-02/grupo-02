@@ -15,15 +15,15 @@ import java.util.ArrayList;
  */
 public class SumRuleTest {
 
-    @Test
+    /*@Test
     public void invalidMovementWhenSumIsHigherThanTotal() {
         /*ArrayList<Cell> initialCells = new ArrayList<Cell>();
         ArrayList<GenericRule> rules = new ArrayList<GenericRule>();
         rules.
-        Puzzle puzzle = new Puzzle(5,5, rules, initialCells);*/
+        Puzzle puzzle = new Puzzle(5,5, rules, initialCells);
         Board board = new Board(4, 4, "CELL_SINGLE");
         GenericRule sumRule = new SumRule();
         //sumRule.validate(board, cell, 4);
 
-    }
+    }*/
 }

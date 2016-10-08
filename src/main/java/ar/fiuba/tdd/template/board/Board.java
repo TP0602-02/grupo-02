@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.board;
 
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
+import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 
 import java.util.ArrayList;
 
@@ -11,16 +12,18 @@ public class Board<T> {
     private ArrayList<ArrayList<Cell>> board;
     private int width;  // number of columns
     private int height; // number of rows
+    private String cellType;
 
-    public Board(int height, int width) {
+    public Board(int height, int width,String cellType) {
         board = new ArrayList<>();
         this.height = height;
         this.width = width;
-
+        this.cellType = cellType;
+        CellFactory cellFactory = new CellFactory();
         for (int col = 0; col < width; col++) {
             ArrayList<Cell> inner = new ArrayList<>();
             for (int row = 0; row < height; row++) {
-                inner.add(new Cell(row, col));
+                inner.add(cellFactory.createCell(this.cellType,row, col));
             }
             board.add(inner);
         }
@@ -78,28 +81,4 @@ public class Board<T> {
 
         return cellsInColumn;
     }
-
-    public ArrayList<ArrayList<Cell>> getRegion(Cell cell) {
-
-        // This method returns the region surrounding
-        // the cell as well as the cell itself
-
-        int row = cell.getRow();
-        int column = cell.getColumn();
-
-        // Temporary region created to test out this method
-
-        ArrayList<ArrayList<Cell>> region = new ArrayList<>();
-        for (int regionCol = column - 1; regionCol < width; regionCol++) {
-            ArrayList<Cell> inner = new ArrayList<>();
-            for (int regionRow = row - 1; regionRow < height; regionRow++) {
-                inner.add(new Cell(regionRow, regionCol));
-            }
-            region.add(inner);
-        }
-
-        return region;
-    }
-
-
 }

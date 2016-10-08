@@ -89,12 +89,16 @@ public class Parser {
 
     private void readElements(JSONObject jsonObject, String id) {
 
+        CellFactory cellFactory = new CellFactory();
         JSONArray cellContents = (JSONArray) jsonObject.get(id);
 
         for (JSONObject cellClue : (Iterable<JSONObject>) cellContents) { // for every cell
             int positionX = ((Long) cellClue.get("x")).intValue();
             int positionY = ((Long) cellClue.get("y")).intValue();
-            Cell newCell = new Cell(positionX, positionY); // create a single cell
+            //TODO en el archivo debe decir si son CELL SINGLE VLAUES O MULTIPLES
+            String tipoDeCeldaLeidoDelArchivo = CellFactory.CELL_SINGLE_VALUE;
+            Cell newCell = cellFactory.createCell(tipoDeCeldaLeidoDelArchivo,positionX,positionY);
+            // create a single cell
 
             JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the clues
 

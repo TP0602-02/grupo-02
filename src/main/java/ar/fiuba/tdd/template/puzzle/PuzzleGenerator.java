@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.puzzle;
 import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.rules.GenericRule;
+import ar.fiuba.tdd.template.rules.NoRepeatValueValidationRule;
 import ar.fiuba.tdd.template.rules.RulesFactory;
 
 import java.util.ArrayList;
@@ -26,14 +27,7 @@ public class PuzzleGenerator {
             parsedRules.add(RulesFactory.getFactory().createRule(rule));
         }
 
-        return new Puzzle(parser.getHeight(), parser.getWidth(), createChainOfRules(parsedRules), clues);
+        return new Puzzle(parser.getHeight(), parser.getWidth(), new NoRepeatValueValidationRule(), clues);
     }
 
-    public GenericRule createChainOfRules(ArrayList<GenericRule> parsedRules) {
-        int indexOfFirstRule = 0;
-        for (int index = 0; index < parsedRules.size() - 1 ; ++index ) {
-            parsedRules.get(index).setNextRule(parsedRules.get(index + 1));
-        }
-        return parsedRules.get(indexOfFirstRule);
-    }
 }

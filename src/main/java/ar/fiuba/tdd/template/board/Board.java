@@ -13,6 +13,7 @@ public class Board<T> {
     private int width;  // number of columns
     private int height; // number of rows
     private String cellType;
+    private ArrayList<Region> regions;
 
     public Board(int height, int width,String cellType) {
         board = new ArrayList<>();
@@ -27,10 +28,25 @@ public class Board<T> {
             }
             board.add(inner);
         }
+        this.regions = new ArrayList<Region>();
     }
 
     public int getWidth() {
         return width;
+    }
+
+    public void addRegion(Region region) {
+        this.regions.add(region);
+    }
+
+    public ArrayList<Region> getCellRegions(Cell cell) {
+        ArrayList<Region> cellRegions = new ArrayList<Region>();
+        for (Region region : this.regions) {
+            if (region.getCells().contains(cell)) {
+                cellRegions.add(region);
+            }
+        }
+        return cellRegions;
     }
 
     public int getHeight() {

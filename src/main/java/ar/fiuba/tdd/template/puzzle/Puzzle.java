@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Puzzle {
 
     private Board board;
-    private GenericRule firstRule;
+    private ArrayList<GenericRule> rules;
     private int boardHeight;
     private int boardWidth;
     private ArrayList<Cell> initialCells;
@@ -25,7 +25,7 @@ public class Puzzle {
         this.board = new Board(boardHeight, boardWidth, CellFactory.CELL_SINGLE_VALUE);
         setInitialCells(initialCells);
         this.initialCells = initialCells;
-        this.firstRule = firstRule;
+        this.rules = new ArrayList<GenericRule>();
     }
 
     public ArrayList<Cell> getInitialCells() {
@@ -60,7 +60,7 @@ public class Puzzle {
     }
 
     private boolean validateMove(Cell cell, int valueToAdd) {
-        return this.firstRule.validate(this.board, cell, valueToAdd);
+        return this.rules.get(0).validate(this.board,cell,valueToAdd);
     }
 
 }

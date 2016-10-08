@@ -2,7 +2,9 @@ package ar.fiuba.tdd.template.rules;
 
 
 import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.CellContent;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,6 +20,15 @@ public abstract class GenericRule {
         this.nextRule = nextRule;
     }
 
-    public abstract boolean validate(Board board, Cell cell, int numberToAdd);
+    public boolean validate(Board board, Cell cell, int numberToAdd) {
+        ArrayList<Region> regionsToValidate = board.getRegions(cell);
+        for (Region region : regionsToValidate) {
+            if (!this.validateRegion(region,numberToAdd,cell)) { //CAMBIAR POR CLASE
+                return false;
+            }
+        }
+        return this.nextRule.validate(board, cell, numberToAdd);
+    }
 
+    public abstract boolean validateRegion(Region region, Cell cell, int numberToAdd);
 }

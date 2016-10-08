@@ -17,7 +17,7 @@ public class Puzzle {
     private ArrayList<Cell> initialCells;
 
     public Puzzle(int boardHeight, int boardWidth,
-                  GenericRule firstRule, ArrayList<Cell> initialCells) {
+                  ArrayList<GenericRule> rules, ArrayList<Cell> initialCells) {
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
         //TODO como ultimo parametro hay que pasarle lo que se levante del parser del archivo
@@ -26,6 +26,9 @@ public class Puzzle {
         setInitialCells(initialCells);
         this.initialCells = initialCells;
         this.rules = new ArrayList<GenericRule>();
+        for (GenericRule rule : rules) {
+            this.rules.add(rule);
+        }
     }
 
     public ArrayList<Cell> getInitialCells() {
@@ -60,7 +63,12 @@ public class Puzzle {
     }
 
     private boolean validateMove(Cell cell, int valueToAdd) {
-        return this.rules.get(0).validate(this.board,cell,valueToAdd);
+        for (GenericRule rule : this.rules) {
+            if (!rule.validate(this.board, cell, valueToAdd)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

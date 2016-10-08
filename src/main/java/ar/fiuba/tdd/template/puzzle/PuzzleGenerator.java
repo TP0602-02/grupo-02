@@ -27,7 +27,7 @@ public class PuzzleGenerator {
             parsedRules.add(RulesFactory.getFactory().createRule(rule));
         }
 
-        return new Puzzle(parser.getHeight(), parser.getWidth(), new NoRepeatValueValidationRule(), clues);
+        return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues);
     }
 
 }

@@ -19,4 +19,7 @@ public class NoRepeatValueValidationRule extends GenericRule {
         }
         return true;
     }
+
+    @Override
+    protected void initializeTotals(Region region) {}
 }

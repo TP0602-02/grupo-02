@@ -17,6 +17,7 @@ public abstract class GenericRule {
     public boolean validate(Board board, Cell cell, int numberToAdd) {
         ArrayList<Region> regionsToValidate = board.getCellRegions(cell);
         for (Region region : regionsToValidate) {
+            this.initializeTotals(region);
             if (!this.validateRegion(region,cell,numberToAdd)) { //CAMBIAR POR CLASE
                 return false;
             }
@@ -25,4 +26,6 @@ public abstract class GenericRule {
     }
 
     public abstract boolean validateRegion(Region region, Cell cell, int numberToAdd);
+
+    protected abstract void initializeTotals(Region region);
 }

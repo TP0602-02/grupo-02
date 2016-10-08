@@ -2,6 +2,7 @@ package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.CellSingleValue;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,14 +31,14 @@ public class RegionTest {
 
     @Test
     public void addCellToRegion() {
-        Cell cell = new Cell(5,5);
+        Cell cell = new CellSingleValue(5,5);
         this.region.addCell(cell);
         Assert.assertTrue(this.region.getCells().contains(cell));
     }
 
     @Test
     public void doesNotAddCellToRegionIfAlreadyHave() {
-        Cell cell = new Cell(5,5);
+        Cell cell = new CellSingleValue(5,5);
         this.region.addCell(cell);
         this.region.addCell(cell);
         Assert.assertTrue(region.getCells().size() == 1);

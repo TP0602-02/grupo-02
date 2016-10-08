@@ -2,10 +2,7 @@ package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.board.cell.model.CellContent;
-import ar.fiuba.tdd.template.board.cell.model.ClueContent;
-import ar.fiuba.tdd.template.board.cell.model.ValueContent;
+import ar.fiuba.tdd.template.board.cell.model.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -20,7 +17,7 @@ public class BoardTest {
     public void createEmptyBoard() {
         int height = 3;
         int width = 5;
-        Board<Integer> board = new Board<>(height, width); // TODO: should we only accept n x n boards?
+        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE); // TODO: should we only accept n x n boards?
 
         int row = 2;
         int col = 3;
@@ -37,7 +34,7 @@ public class BoardTest {
     public void setValueOnBoard() {
         int height = 3;
         int width = 5;
-        Board<Integer> board = new Board<>(height, width);
+        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE);
 
         int row = 1;
         int column = 1;
@@ -57,7 +54,7 @@ public class BoardTest {
     public void setMultipleContentsOnBoard() {
         int height = 3;
         int width = 5;
-        Board<Integer> board = new Board<>(height, width);
+        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE);
 
         int row = 1;
         int column = 1;
@@ -79,7 +76,7 @@ public class BoardTest {
         int height = 5;
         int width = 5;
 
-        Board<Integer> board = new Board<>(height, width);
+        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE);
 
         // Creates a list of numbers
         for (int row = 0; row < height; row++) {
@@ -88,15 +85,15 @@ public class BoardTest {
             }
         }
 
-        ArrayList<Cell> rowCells = board.getRow(board.getCell(1,0));
+        ArrayList<Cell> rowCells = board.getRow(board.getCell(1, 0));
         ArrayList<Integer> numbers = new ArrayList<>();
         for (Cell cell : rowCells) {
             ArrayList<CellContent> cellC = board.getContents(cell.getRow(), cell.getColumn());
-            numbers.add((Integer)cellC.get(0).getValue());
+            numbers.add((Integer) cellC.get(0).getValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // row of cell wanted is 1
-        assertEquals(numbers,new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1)));
+        assertEquals(numbers, new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1)));
     }
 
     @Test
@@ -104,7 +101,7 @@ public class BoardTest {
         int height = 5;
         int width = 5;
 
-        Board<Integer> board = new Board<>(height, width);
+        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE);
 
         // Creates a list of numbers
         for (int row = 0; row < height; row++) {
@@ -113,15 +110,15 @@ public class BoardTest {
             }
         }
 
-        ArrayList<Cell> firstColumn = board.getColumn(board.getCell(1,0));
+        ArrayList<Cell> firstColumn = board.getColumn(board.getCell(1, 0));
         ArrayList<Integer> numbers = new ArrayList<>();
         for (Cell cell : firstColumn) {
             ArrayList<CellContent> cellC = board.getContents(cell.getRow(), cell.getColumn());
-            numbers.add((Integer)cellC.get(0).getValue());
+            numbers.add((Integer) cellC.get(0).getValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // column of cell wanted is 0
-        assertEquals(numbers,new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0)));
+        assertEquals(numbers, new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0)));
     }
 
     @Test
@@ -130,7 +127,7 @@ public class BoardTest {
         parser.decodeJson();
         int width = parser.getWidth();
         int height = parser.getHeight();
-        Board<Integer> board = new Board<>(height, width);
+        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE);
 
         assertEquals(board.getHeight(), height);
         assertEquals(board.getWidth(), width);

@@ -8,12 +8,13 @@ import java.util.ArrayList;
 public class CellFactory {
 
     public static final String CELL_SINGLE_VALUE = "CELL_SINGLE";
+
     //public static final String CELL_MULTIPLEE_VALUE = "CELL_MULTIPLE";
-    public Cell createCell(String cellType, int x, int y) throws Exception {
+    public Cell createCell(String cellType, int x, int y) {
         //Por defecto si no se especifica bien el cellType retorna una CellMultipleValue
-        if(cellType.equals(CELL_SINGLE_VALUE)){
-            return new CellSingleValue(x,y);
+        if (cellType.equals(CELL_SINGLE_VALUE)) {
+            return new CellSingleValue(x, y);
         }
-        return new CellMultipleValue(x,y);
+        return new CellMultipleValue(x, y);
     }
 }

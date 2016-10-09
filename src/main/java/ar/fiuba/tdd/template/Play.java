@@ -8,9 +8,18 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 public class Play {
 
     private Cell selectedCell;
+    private boolean validPlay;
     
     public Play(Cell selectedCell) {
         this.selectedCell = selectedCell;
+    }
+
+    public void setValidPlay(boolean validPlay) {
+        this.validPlay = validPlay;
+    }
+
+    public boolean getValidPlay() {
+        return this.validPlay;
     }
 
     public Cell getSelectedCell() {

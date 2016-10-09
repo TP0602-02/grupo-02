@@ -6,10 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Parser {
@@ -216,5 +213,56 @@ public class Parser {
         System.out.print(regions.size() + " " + exceptions.size());
     }
 
+    public void writePlayResults(ArrayList<Play> playResult) {
+        JSONObject objPlay = new JSONObject();
+        JSONArray jsonPlays = new JSONArray();
+        JSONArray jsonValues = new JSONArray();
+        int numberOfPlay = 1;
 
+        boolean validBoard = true;
+        // Creates JSON
+        for ( Play play : playResult) {
+
+            jsonPlays.add(getPlayObject(play,numberOfPlay));
+            numberOfPlay++;
+
+            jsonValues.add(getValueObject(play));
+
+            validBoard = validBoard && play.getValidPlay();
+        }
+
+        objPlay.put("plays", jsonPlays);
+        JSONObject jsonBoard = new JSONObject();
+        jsonBoard.put("status", validBoard ? "valid" : "invalid");
+        jsonBoard.put("values", jsonValues);
+        objPlay.put("board", jsonBoard);
+
+        writeJSONFile(objPlay);
+    }
+
+    private void writeJSONFile(JSONObject objPlay) {
+        try {
+            File file = new File("src/json/PlayOutput.json");
+            Writer w = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
+            PrintWriter pw = new PrintWriter(w);
+            pw.println(objPlay.toJSONString());
+            pw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private JSONObject getPlayObject(Play play, int numberOfPlay) {
+        JSONObject jsonPlay = new JSONObject();
+        jsonPlay.put("number", numberOfPlay);
+        jsonPlay.put("boardStatus", play.getValidPlay());
+        return jsonPlay;
+    }
+
+    private JSONObject getValueObject(Play play) {
+        JSONObject jsonValue = new JSONObject();
+        jsonValue.put("position", "[" + play.getSelectedCell().getRow() + " ," + play.getSelectedCell().getColumn() + "]");
+        jsonValue.put("value", play.getSelectedCell().getContents().get(0).getValue());
+        return jsonValue;
+    }
 }

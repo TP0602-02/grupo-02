@@ -8,6 +8,8 @@ import ar.fiuba.tdd.template.puzzle.PuzzleGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class PuzzleTest {
 
     @Test
@@ -31,11 +33,16 @@ public class PuzzleTest {
         Puzzle puzzleTest = puzzleGenerator.startGeneration();
         Parser parser = new Parser();
         parser.decodeJson();
+        ArrayList<Play> playResults = new ArrayList<>();
         for ( Cell selectedCell : parser.getPlays()) {
             Play play = new Play(selectedCell);
             // Checks valid plays
+            boolean validPlay = puzzleTest.checkMovement(play);
+            play.setValidPlay(validPlay);
+            playResults.add(play);
             Assert.assertTrue(puzzleTest.checkMovement(play));
         }
+        parser.writePlayResults(playResults);
 
 
     }

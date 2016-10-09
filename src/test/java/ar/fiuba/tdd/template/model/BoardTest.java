@@ -67,7 +67,7 @@ public class BoardTest {
         values.add(secondContent);
 
         board.setValues(row, column, values);
-        ArrayList<CellContent> valuesRecovered = board.getContents(row, column);
+//        ArrayList<CellContent> valuesRecovered = board.getContents(row, column);
 /*
         if (valuesRecovered.contains(firstContent) && valuesRecovered.contains(secondContent)) {
             assert true;

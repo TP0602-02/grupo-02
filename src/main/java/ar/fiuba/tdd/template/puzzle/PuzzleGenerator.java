@@ -26,14 +26,7 @@ public class PuzzleGenerator {
             parsedRules.add(RulesFactory.getFactory().createRule(rule));
         }
 
-        return new Puzzle(parser.getHeight(), parser.getWidth(), createChainOfRules(parsedRules), clues);
+        return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues);
     }
 
-    public GenericRule createChainOfRules(ArrayList<GenericRule> parsedRules) {
-        int indexOfFirstRule = 0;
-        for (int index = 0; index < parsedRules.size() - 1 ; ++index ) {
-            parsedRules.get(index).setNextRule(parsedRules.get(index + 1));
-        }
-        return parsedRules.get(indexOfFirstRule);
-    }
 }

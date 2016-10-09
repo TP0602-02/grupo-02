@@ -2,6 +2,7 @@ package ar.fiuba.tdd.template.puzzle;
 
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.rules.GenericRule;
 
@@ -10,19 +11,24 @@ import java.util.ArrayList;
 public class Puzzle {
 
     private Board board;
-    private GenericRule firstRule;
+    private ArrayList<GenericRule> rules;
     private int boardHeight;
     private int boardWidth;
     private ArrayList<Cell> initialCells;
 
     public Puzzle(int boardHeight, int boardWidth,
-                  GenericRule firstRule, ArrayList<Cell> initialCells) {
+                  ArrayList<GenericRule> rules, ArrayList<Cell> initialCells) {
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
-        this.board = new Board(boardHeight, boardWidth);
+        //TODO como ultimo parametro hay que pasarle lo que se levante del parser del archivo
+
+        this.board = new Board(boardHeight, boardWidth, CellFactory.CELL_SINGLE_VALUE);
         setInitialCells(initialCells);
         this.initialCells = initialCells;
-        this.firstRule = firstRule;
+        this.rules = new ArrayList<GenericRule>();
+        for (GenericRule rule : rules) {
+            this.rules.add(rule);
+        }
     }
 
     public ArrayList<Cell> getInitialCells() {
@@ -57,7 +63,12 @@ public class Puzzle {
     }
 
     private boolean validateMove(Cell cell, int valueToAdd) {
-        return this.firstRule.validate(this.board, cell, valueToAdd);
+        for (GenericRule rule : this.rules) {
+            if (!rule.validate(this.board, cell, valueToAdd)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

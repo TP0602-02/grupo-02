@@ -5,11 +5,11 @@ import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Cell implements Summable, Editable {
+public abstract class Cell implements Summable, Editable {
 
-    private ArrayList<CellContent> contents;
-    private int row;
-    private int column;
+    protected ArrayList<CellContent> contents;
+    protected int row;
+    protected int column;
 
     public Cell(int row, int column) {
         this.row = row;
@@ -29,13 +29,14 @@ public class Cell implements Summable, Editable {
         return this.column;
     }
 
-    public void setContent(CellContent newContentCell) {
+    public abstract void setContent(CellContent newContentCell);
+  /*  public void setContent(CellContent newContentCell) {
         if (!refreshEditableContent(newContentCell)) {
             contents.add(newContentCell);
         }
-    }
+    }*/
 
-    private boolean refreshEditableContent(CellContent newContentCell) {
+   /* private boolean refreshEditableContent(CellContent newContentCell) {
         for (int index = 0; index < this.contents.size(); ++index) {
             if (this.contents.get(index).isEditable()) {
                 //TODO caundo sea posible ingresar varios ValuesCell en una celda, hay que cambiarlo
@@ -45,7 +46,7 @@ public class Cell implements Summable, Editable {
             }
         }
         return false;
-    }
+    }*/
 
     public boolean isEmpty() {
         return contents.size() == 0;

@@ -107,12 +107,16 @@ public class Parser {
 
     private void readElements(JSONObject jsonObject, String id) {
 
+        CellFactory cellFactory = new CellFactory();
         JSONArray cellContents = (JSONArray) jsonObject.get(id);
 
         for (JSONObject cellClue : (Iterable<JSONObject>) cellContents) { // for every cell
             int positionX = ((Long) cellClue.get("x")).intValue();
             int positionY = ((Long) cellClue.get("y")).intValue();
-            Cell newCell = new Cell(positionX, positionY); // create a single cell
+            //TODO en el archivo debe decir si son CELL SINGLE VLAUES O MULTIPLES
+            String tipoDeCeldaLeidoDelArchivo = CellFactory.CELL_SINGLE_VALUE;
+            Cell newCell = cellFactory.createCell(tipoDeCeldaLeidoDelArchivo,positionX,positionY);
+            // create a single cell
 
             JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the clues
 
@@ -176,7 +180,7 @@ public class Parser {
             int positionX = Integer.parseInt(tokens[1]);
             int positionY = Integer.parseInt(tokens[2]);
 
-            Cell newCell = new Cell(positionX, positionY); // create a single cell
+            Cell newCell = new CellSingleValue(positionX, positionY); // create a single cell
             //System.out.print(" The row is " + newCell.getRow() + " " + newCell.getColumn() + "\n");
 
             // Plays are considered ValueContent
@@ -196,14 +200,14 @@ public class Parser {
 
             JSONArray coordinates = (JSONArray) region.get("coord"); // read coordinates
             for (JSONObject coord : (Iterable<JSONObject>) coordinates) {
-                Cell newCell = new Cell(((Long) coord.get("x")).intValue(), ((Long) coord.get("y")).intValue());
+                Cell newCell = new CellSingleValue(((Long) coord.get("x")).intValue(), ((Long) coord.get("y")).intValue());
                 fromToRegion.add(newCell);
             }
             regions.add(fromToRegion);
 
             JSONArray exceptionsRead = (JSONArray) region.get("exceptions"); // read exceptions
             for (JSONObject excep : (Iterable<JSONObject>) exceptionsRead) {
-                Cell newCell = new Cell(((Long) excep.get("x")).intValue(), ((Long) excep.get("y")).intValue());
+                Cell newCell = new CellSingleValue(((Long) excep.get("x")).intValue(), ((Long) excep.get("y")).intValue());
                 exceptionsRegion.add(newCell);
             }
             exceptions.add(exceptionsRegion);

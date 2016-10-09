@@ -6,7 +6,6 @@
 # Package Files #
 *.war
 *.ear
-*.idea/
 .gradle/
 build/
 

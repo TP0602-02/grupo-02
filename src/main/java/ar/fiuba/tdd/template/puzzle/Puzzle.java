@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.puzzle;
 import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.rules.GenericRule;
 
 import java.util.ArrayList;
@@ -19,7 +20,9 @@ public class Puzzle {
                   GenericRule firstRule, ArrayList<Cell> initialCells) {
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
-        this.board = new Board(boardHeight, boardWidth);
+        //TODO como ultimo parametro hay que pasarle lo que se levante del parser del archivo
+
+        this.board = new Board(boardHeight, boardWidth, CellFactory.CELL_SINGLE_VALUE);
         setInitialCells(initialCells);
         this.initialCells = initialCells;
         this.firstRule = firstRule;

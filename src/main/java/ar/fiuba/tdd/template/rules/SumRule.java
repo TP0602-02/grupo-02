@@ -8,6 +8,10 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
  */
 public class SumRule extends OperationRule {
 
+    @Override
+    protected int getNeutralNumberForOperation() {
+        return 0;
+    }
 
     @Override
     protected void updateTotals(int value) {

@@ -5,11 +5,13 @@ package ar.fiuba.tdd.template.rules;
  */
 public class MultiplicationRule extends OperationRule {
     @Override
+    protected int getNeutralNumberForOperation() {
+        return 1;
+    }
+
+    @Override
     protected void updateTotals(int value) {
-        if (this.regionPartial == 0) {
-            this.regionPartial = value;
-        } else {
-            this.regionPartial *= value;
-        }
+        this.regionPartial *= value;
     }
 }
+

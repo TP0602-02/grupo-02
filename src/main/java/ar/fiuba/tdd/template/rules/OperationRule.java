@@ -24,6 +24,8 @@ public abstract class OperationRule extends GenericRule {
                 this.updateTotals(actualCellValue);
             }
         }
+        this.updateTotals(numberToAdd);
+        ++this.amountOfCellsWithValue;
         return validate();
     }
 
@@ -42,8 +44,10 @@ public abstract class OperationRule extends GenericRule {
         this.regionTotal = region.getTotal();
         this.amountOfCellsInTheRegion = region.getCells().size();
         this.amountOfCellsWithValue = 0;
-        this.regionPartial = 0;
+        this.regionPartial = getNeutralNumberForOperation();
     }
+
+    protected abstract int getNeutralNumberForOperation();
 
     protected abstract void updateTotals(int value);
 }

@@ -16,19 +16,22 @@ public abstract class OperationRule extends GenericRule {
     @Override
     public boolean validateRegion(Region region, Cell cell, int numberToAdd) {
         for (Cell actualCell : region.getCells()) {
-            //Revisar el get(0) si hay casos donde pueda haber más valores.
-            //int actualCellValue = actualCell.getContents().get(0).getValue().getValueAsInt(); ESTE ESTÁ BIEN.
+            //Revisar el get(0) si hay casos donde pueda haber mas valores.
+            //int actualCellValue = actualCell.getContents().get(0).getValue().getValueAsInt(); ESTE ESTa BIEN.
             if (actualCell != cell && actualCell.getContents().size() > 0) {
                 ++this.amountOfCellsWithValue;
-                int actualCellValue = (int)actualCell.getContents().get(0).getValue();//Este se va a borrar, cuando se cambie T a GenericValue.
+                int actualCellValue = (int)actualCell.getContents().get(0).getValue();//Estese va a borrar, cuando se cambie a GenericValue.
                 this.updateTotals(actualCellValue);
             }
         }
+        return validate();
+    }
+
+    private boolean validate() {
         if (this.regionPartial > this.regionTotal) {
             return false;
         }
-        if (this.amountOfCellsInTheRegion == this.amountOfCellsWithValue &&
-                this.regionPartial < this.regionTotal) {
+        if (this.amountOfCellsInTheRegion == this.amountOfCellsWithValue && this.regionPartial < this.regionTotal) {
             return false;
         }
         return true;

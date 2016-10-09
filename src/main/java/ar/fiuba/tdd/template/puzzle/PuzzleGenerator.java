@@ -3,7 +3,6 @@ package ar.fiuba.tdd.template.puzzle;
 import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.rules.GenericRule;
-import ar.fiuba.tdd.template.rules.NoRepeatValueValidationRule;
 import ar.fiuba.tdd.template.rules.RulesFactory;
 
 import java.util.ArrayList;

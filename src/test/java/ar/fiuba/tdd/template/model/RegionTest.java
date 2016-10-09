@@ -20,7 +20,7 @@ public class RegionTest {
     public void setUp() {
         int total = 10;
         ArrayList<Cell> cells = new ArrayList<Cell>();
-        this.region = new Region(total, cells);
+        this.region = new Region(cells);
     }
 
     @Test

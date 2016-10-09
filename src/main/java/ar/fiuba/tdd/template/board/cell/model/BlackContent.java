@@ -1,28 +1,39 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
-public class BlackContent<T> extends CellContent<T> {
+public class BlackContent extends CellContent {
 
-    public void setDef(DefValue<T> def) {
+  /*  public void setDef(DefValue<T> def) {
         this.def = def;
-    }
+    }*/
 
-    private DefValue<T> def;
+   // private DefValue<T> def;
 
     public BlackContent() {
     }
 
-    public BlackContent(DefValue defValue) {
-        this.def = defValue;
+    @Override
+    public String getValue() {
+        return "";
     }
 
-    public T getValue() throws AssertionError {
+   /* public BlackContent(DefValue defValue) {
+        this.def = defValue;
+    }*/
+
+   /* public T getValue() throws AssertionError {
         // throw new AssertionError("Cannot get value");
         return def.getDefValue();
 
+    }*/
+
+    @Override
+    public int getNumberValue() {
+        return 0;
     }
 
-    public void setValue(T value) throws AssertionError {
-        //throw new AssertionError("Cannot set value");
+    @Override
+    public void setValue(String value) {
+
     }
 
     @Override
@@ -34,8 +45,8 @@ public class BlackContent<T> extends CellContent<T> {
     public boolean isEditable() {
         return false;
     }
-
+/*
     public interface DefValue<T> {
         public T getDefValue();
-    }
+    }*/
 }

@@ -39,7 +39,7 @@ public class CellTest {
         cell.setContent(cellContent1);
         cell.setContent(cellContent2);
         Assert.assertEquals(cell.getContents().size(), 1);
-        Assert.assertEquals(cell.getContents().get(0).getValue(), secondValueToAdd);
+        Assert.assertEquals(cell.getContents().get(0).getNumberValue(), secondValueToAdd);
 
     }
 
@@ -54,8 +54,8 @@ public class CellTest {
         cell.setContent(cellContent1);
         cell.setContent(cellContent2);
         Assert.assertEquals(cell.getContents().size(), 2);
-        Assert.assertEquals(cell.getContents().get(0).getValue(), firstValueToAdd);
-        Assert.assertEquals(cell.getContents().get(1).getValue(), secondValueToAdd);
+        Assert.assertEquals(cell.getContents().get(0).getNumberValue(), firstValueToAdd);
+        Assert.assertEquals(cell.getContents().get(1).getNumberValue(), secondValueToAdd);
 
     }
 }

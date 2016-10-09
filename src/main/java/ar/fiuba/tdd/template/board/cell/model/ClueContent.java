@@ -1,20 +1,15 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
 
-public class ClueContent<T> extends CellContent<T> {
+public class ClueContent extends CellContentWithValue {
 
-    private T value;
 
-    public ClueContent(T value) {
-        this.value = value;
+    public ClueContent(String value) {
+        super(value);
     }
 
-    public T getValue() {
-        return value;
-    }
-
-    public void setValue(T value) {
-        this.value = value;
+    public ClueContent(int value) {
+        super(value);
     }
 
     @Override

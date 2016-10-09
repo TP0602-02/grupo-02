@@ -1,18 +1,15 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
 
-public class ValueContent<T> extends CellContent<T> {
+public class ValueContent extends CellContentWithValue {
 
-    public ValueContent(T value) {
-        this.value = value;
+
+    public ValueContent(String value) {
+        super(value);
     }
 
-    public T getValue() {
-        return value;
-    }
-
-    public void setValue(T value) {
-        this.value = value;
+    public ValueContent(int value) {
+        super(value);
     }
 
     @Override

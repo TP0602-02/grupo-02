@@ -1,15 +1,17 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
-public abstract class CellContent<T> implements Summable,Editable{
+public abstract class CellContent implements Summable, Editable {
 
-    protected T value;
+    protected String value;
 
     public CellContent() {
 
     }
 
-    public abstract T getValue();
+    public abstract String getValue();
 
-    public abstract void setValue(T value);
+    public abstract int getNumberValue();
+
+    public abstract void setValue(String value);
 
 }

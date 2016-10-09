@@ -2,6 +2,7 @@ package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class BoardTest {
 
@@ -17,7 +19,7 @@ public class BoardTest {
     public void createEmptyBoard() {
         int height = 3;
         int width = 5;
-        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE); // TODO: should we only accept n x n boards?
+        Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE); // TODO: should we only accept n x n boards?
 
         int row = 2;
         int col = 3;
@@ -31,10 +33,60 @@ public class BoardTest {
     }
 
     @Test
+    public void getCellRegionReturnEmpty() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        ArrayList<Cell> firstCells = new ArrayList<Cell>();
+        firstCells.add(board.getCell(1, 1));
+        firstCells.add(board.getCell(0, 0));
+        firstCells.add(board.getCell(0, 1));
+        ArrayList<Cell> secondCells = new ArrayList<Cell>();
+        secondCells.add(board.getCell(2, 1));
+        secondCells.add(board.getCell(2, 0));
+        secondCells.add(board.getCell(2, 1));
+        board.addRegion(new Region(firstCells));
+        board.addRegion(new Region(secondCells));
+        assertTrue(board.getCellRegions(board.getCell(2, 2)).isEmpty());
+    }
+
+    @Test
+    public void getCellRegionReturnFirstRegion() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        ArrayList<Cell> firstCells = new ArrayList<Cell>();
+        firstCells.add(board.getCell(1, 1));
+        firstCells.add(board.getCell(0, 0));
+        firstCells.add(board.getCell(0, 1));
+        ArrayList<Cell> secondCells = new ArrayList<Cell>();
+        secondCells.add(board.getCell(2, 1));
+        secondCells.add(board.getCell(2, 0));
+        secondCells.add(board.getCell(2, 1));
+        Region firstRegion = new Region(firstCells);
+        board.addRegion(firstRegion);
+        board.addRegion(new Region(secondCells));
+        assertTrue(board.getCellRegions(board.getCell(0, 0)).contains(firstRegion));
+    }
+
+    @Test
+    public void getCellRegionReturnTwoRegions() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        ArrayList<Cell> firstCells = new ArrayList<Cell>();
+        firstCells.add(board.getCell(2, 1));
+        firstCells.add(board.getCell(0, 0));
+        firstCells.add(board.getCell(0, 1));
+        ArrayList<Cell> secondCells = new ArrayList<Cell>();
+        secondCells.add(board.getCell(2, 1));
+        secondCells.add(board.getCell(2, 0));
+        secondCells.add(board.getCell(2, 1));
+        Region firstRegion = new Region(firstCells);
+        board.addRegion(firstRegion);
+        board.addRegion(new Region(secondCells));
+        assertTrue(board.getCellRegions(board.getCell(2, 1)).size() == 2);
+    }
+
+    @Test
     public void setValueOnBoard() {
         int height = 3;
         int width = 5;
-        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE);
+        Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
 
         int row = 1;
         int column = 1;
@@ -54,7 +106,7 @@ public class BoardTest {
     public void setMultipleContentsOnBoard() {
         int height = 3;
         int width = 5;
-        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE);
+        Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
 
         int row = 1;
         int column = 1;
@@ -76,7 +128,7 @@ public class BoardTest {
         int height = 5;
         int width = 5;
 
-        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE);
+        Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
 
         // Creates a list of numbers
         for (int row = 0; row < height; row++) {
@@ -101,7 +153,7 @@ public class BoardTest {
         int height = 5;
         int width = 5;
 
-        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE);
+        Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
 
         // Creates a list of numbers
         for (int row = 0; row < height; row++) {
@@ -127,7 +179,7 @@ public class BoardTest {
         parser.decodeJson();
         int width = parser.getWidth();
         int height = parser.getHeight();
-        Board<Integer> board = new Board<>(height, width, CellFactory.CELL_SINGLE_VALUE);
+        Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
 
         assertEquals(board.getHeight(), height);
         assertEquals(board.getWidth(), width);

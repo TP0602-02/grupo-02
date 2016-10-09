@@ -21,6 +21,7 @@ public class RegionTest {
         int total = 10;
         ArrayList<Cell> cells = new ArrayList<Cell>();
         this.region = new Region(cells);
+        region.setTotal(total);
     }
 
     @Test

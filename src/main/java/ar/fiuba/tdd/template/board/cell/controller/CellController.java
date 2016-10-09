@@ -53,7 +53,7 @@ public class CellController extends BaseController<CellView, Cell> {
             if (validInput) {
                 view.setText(text);
                 //TODO habria que ver si la celda tiene muchos valores para saber que valor se cambio
-                model.setContent(new ValueContent(Integer.valueOf(text)));
+                model.setContent(new ValueContent(text));
             }
         }
 

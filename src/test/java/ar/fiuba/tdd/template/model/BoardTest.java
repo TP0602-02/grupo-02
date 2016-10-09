@@ -20,7 +20,6 @@ public class BoardTest {
         int height = 3;
         int width = 5;
         Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE); // TODO: should we only accept n x n boards?
-
         int row = 2;
         int col = 3;
 
@@ -87,10 +86,9 @@ public class BoardTest {
         int height = 3;
         int width = 5;
         Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
-
         int row = 1;
         int column = 1;
-        ValueContent firstValue = new ValueContent<>(2);
+        ValueContent firstValue = new ValueContent(2);
 
         board.setValue(row, column, firstValue);
         ArrayList<CellContent> valuesRecovered = board.getContents(row, column);
@@ -107,12 +105,11 @@ public class BoardTest {
         int height = 3;
         int width = 5;
         Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
-
         int row = 1;
         int column = 1;
-        ValueContent firstContent = new ValueContent<>(2);
-        ClueContent secondContent = new ClueContent<>(3);
-        ArrayList<CellContent> values = new ArrayList<>();
+        ValueContent firstContent = new ValueContent(2);
+        ClueContent secondContent = new ClueContent(3);
+        ArrayList<CellContent> values = new ArrayList();
         values.add(firstContent);
         values.add(secondContent);
 
@@ -127,25 +124,23 @@ public class BoardTest {
     public void getRows() {
         int height = 5;
         int width = 5;
-
         Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
-
         // Creates a list of numbers
         for (int row = 0; row < height; row++) {
             for (int column = 0; column < width; column++) {
-                board.setValue(row, column, new ValueContent<>(row));
+                board.setValue(row, column, new ValueContent(row));
             }
         }
 
         ArrayList<Cell> rowCells = board.getRow(board.getCell(1, 0));
-        ArrayList<Integer> numbers = new ArrayList<>();
+        ArrayList<Integer> numbers = new ArrayList();
         for (Cell cell : rowCells) {
             ArrayList<CellContent> cellC = board.getContents(cell.getRow(), cell.getColumn());
-            numbers.add((Integer) cellC.get(0).getValue());
+            numbers.add(cellC.get(0).getNumberValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // row of cell wanted is 1
-        assertEquals(numbers, new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1)));
+        assertEquals(numbers, new ArrayList(Arrays.asList(1, 1, 1, 1, 1)));
     }
 
     @Test
@@ -154,23 +149,22 @@ public class BoardTest {
         int width = 5;
 
         Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
-
         // Creates a list of numbers
         for (int row = 0; row < height; row++) {
             for (int column = 0; column < width; column++) {
-                board.setValue(row, column, new ValueContent<>(column));
+                board.setValue(row, column, new ValueContent(column));
             }
         }
 
         ArrayList<Cell> firstColumn = board.getColumn(board.getCell(1, 0));
-        ArrayList<Integer> numbers = new ArrayList<>();
+        ArrayList<Integer> numbers = new ArrayList();
         for (Cell cell : firstColumn) {
             ArrayList<CellContent> cellC = board.getContents(cell.getRow(), cell.getColumn());
-            numbers.add((Integer) cellC.get(0).getValue());
+            numbers.add( cellC.get(0).getNumberValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // column of cell wanted is 0
-        assertEquals(numbers, new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0)));
+        assertEquals(numbers, new ArrayList(Arrays.asList(0, 0, 0, 0, 0)));
     }
 
     @Test
@@ -180,7 +174,6 @@ public class BoardTest {
         int width = parser.getWidth();
         int height = parser.getHeight();
         Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
-
         assertEquals(board.getHeight(), height);
         assertEquals(board.getWidth(), width);
 

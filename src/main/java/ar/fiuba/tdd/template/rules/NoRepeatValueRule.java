@@ -11,7 +11,7 @@ public class NoRepeatValueRule extends GenericRule {
             //Revisar el get(0) si hay casos donde pueda haber mas valores.
             //int actualCellValue = actualCell.getContents().get(0).getValue().getValueAsInt(); ESTE ESTa BIEN.
             if (actualCell != cell && actualCell.getContents().size() > 0) {
-                int actualCellValue = (int)actualCell.getContents().get(0).getValue();//Estese va a borrar, cuando se cambie a GenericValue.
+                int actualCellValue = actualCell.getContents().get(0).getNumberValue();//Estese va a borrar, cuando se cambie a GenericValue.
                 if (actualCellValue == numberToAdd) {
                     return false;
                 }

@@ -72,34 +72,34 @@ public class NoRepeatValueRuleTest {
 
     @Test
     public void addInTheSameCellReturnTrue() {
-        this.board.setValue(0, 0, new ValueContent<Integer>(1));
+        this.board.setValue(0, 0, new ValueContent(1));
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(0, 0), 1));
     }
 
     @Test
     public void addNumberInRowReturnFalse() {
-        this.board.setValue(0, 0, new ValueContent<Integer>(1));
-        this.board.setValue(0, 3, new ValueContent<Integer>(2));
+        this.board.setValue(0, 0, new ValueContent(1));
+        this.board.setValue(0, 3, new ValueContent(2));
         Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(0, 2), 1));
     }
 
 
     @Test
     public void addNumberIsValidForRowButNotForColumn() {
-        this.board.setValue(0, 0, new ValueContent<Integer>(1));
-        this.board.setValue(0, 3, new ValueContent<Integer>(2));
-        this.board.setValue(1, 2, new ValueContent<Integer>(3));
+        this.board.setValue(0, 0, new ValueContent(1));
+        this.board.setValue(0, 3, new ValueContent(2));
+        this.board.setValue(1, 2, new ValueContent(3));
         Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(0, 2), 3));
     }
 
     @Test
     public void addNumberCompleteColumnAndRow() {
-        this.board.setValue(0, 1, new ValueContent<Integer>(1));
-        this.board.setValue(0, 2, new ValueContent<Integer>(2));
-        this.board.setValue(0, 3, new ValueContent<Integer>(3));
-        this.board.setValue(1, 0, new ValueContent<Integer>(3));
-        this.board.setValue(2, 0, new ValueContent<Integer>(2));
-        this.board.setValue(3, 0, new ValueContent<Integer>(3));
+        this.board.setValue(0, 1, new ValueContent(1));
+        this.board.setValue(0, 2, new ValueContent(2));
+        this.board.setValue(0, 3, new ValueContent(3));
+        this.board.setValue(1, 0, new ValueContent(3));
+        this.board.setValue(2, 0, new ValueContent(2));
+        this.board.setValue(3, 0, new ValueContent(3));
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(0, 0), 4));
     }
 

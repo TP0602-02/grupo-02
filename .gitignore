@@ -9,7 +9,12 @@
 .gradle/
 .idea/
 build/
+<<<<<<< HEAD
 
+=======
+.idea/
+	
+>>>>>>> bb134e7185bf4cc02d9ec167f875973600abf726
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 

@@ -65,51 +65,51 @@ public class SumRuleTest {
 
     @Test
     public void addInRowWithValuesReturnTrue() {
-        this.board.setValue(1, 0, new ValueContent<Integer>(2));
+        this.board.setValue(1, 0, new ValueContent(2));
         Assert.assertTrue(rule.validate(this.board, this.board.getCell(1, 1), 2));
     }
 
     @Test
     public void addInRowWithValuesExcedReturnFalse() {
-        this.board.setValue(1, 0, new ValueContent<Integer>(5));
+        this.board.setValue(1, 0, new ValueContent(5));
         Assert.assertTrue(!rule.validate(this.board, this.board.getCell(1, 1), 2));
     }
 
     @Test
     public void addInCompleteRowIsLowerThanTotalReturnFalse() {
-        this.board.setValue(1, 0, new ValueContent<Integer>(1));
-        this.board.setValue(1, 2, new ValueContent<Integer>(1));
-        this.board.setValue(1, 3, new ValueContent<Integer>(1));
+        this.board.setValue(1, 0, new ValueContent(1));
+        this.board.setValue(1, 2, new ValueContent(1));
+        this.board.setValue(1, 3, new ValueContent(1));
         Assert.assertTrue(!rule.validate(this.board, this.board.getCell(1, 1), 1));
     }
 
     @Test
     public void addInCompleteRowReturnTrue() {
-        this.board.setValue(1, 0, new ValueContent<Integer>(1));
-        this.board.setValue(1, 2, new ValueContent<Integer>(1));
-        this.board.setValue(1, 3, new ValueContent<Integer>(1));
+        this.board.setValue(1, 0, new ValueContent(1));
+        this.board.setValue(1, 2, new ValueContent(1));
+        this.board.setValue(1, 3, new ValueContent(1));
         Assert.assertTrue(rule.validate(this.board, this.board.getCell(1, 1), 2));
     }
 
     @Test
     public void addInCompleteRowAndColumnReturnTrue() {
-        this.board.setValue(1, 0, new ValueContent<Integer>(1));
-        this.board.setValue(1, 2, new ValueContent<Integer>(1));
-        this.board.setValue(1, 3, new ValueContent<Integer>(1));
-        this.board.setValue(0, 1, new ValueContent<Integer>(2));
-        this.board.setValue(2, 1, new ValueContent<Integer>(1));
-        this.board.setValue(3, 1, new ValueContent<Integer>(1));
+        this.board.setValue(1, 0, new ValueContent(1));
+        this.board.setValue(1, 2, new ValueContent(1));
+        this.board.setValue(1, 3, new ValueContent(1));
+        this.board.setValue(0, 1, new ValueContent(2));
+        this.board.setValue(2, 1, new ValueContent(1));
+        this.board.setValue(3, 1, new ValueContent(1));
         Assert.assertTrue(rule.validate(this.board, this.board.getCell(1, 1), 2));
     }
 
     @Test
     public void addInCompleteRowAndColumnReturnFalseForColumn() {
-        this.board.setValue(1, 0, new ValueContent<Integer>(1));
-        this.board.setValue(1, 2, new ValueContent<Integer>(1));
-        this.board.setValue(1, 3, new ValueContent<Integer>(1));
-        this.board.setValue(0, 1, new ValueContent<Integer>(1));
-        this.board.setValue(2, 1, new ValueContent<Integer>(1));
-        this.board.setValue(3, 1, new ValueContent<Integer>(1));
+        this.board.setValue(1, 0, new ValueContent(1));
+        this.board.setValue(1, 2, new ValueContent(1));
+        this.board.setValue(1, 3, new ValueContent(1));
+        this.board.setValue(0, 1, new ValueContent(1));
+        this.board.setValue(2, 1, new ValueContent(1));
+        this.board.setValue(3, 1, new ValueContent(1));
         Assert.assertTrue(!rule.validate(this.board, this.board.getCell(1, 1), 2));
     }
 }

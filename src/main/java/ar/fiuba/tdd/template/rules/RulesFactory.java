@@ -25,7 +25,6 @@ public class RulesFactory {
     }
 
     public GenericRule createRule(String ruleName) {
-        return (GenericRule) factory.getOrDefault(ruleName, new NullRule());
-
+        return (GenericRule) factory.get(ruleName);
     }
 }

@@ -11,9 +11,13 @@ public class Region {
     private final ArrayList<Cell> cells;
     private int total;
 
-    public Region(int total, ArrayList<Cell> cells) {
-        this.total = total;
+    public Region(ArrayList<Cell> cells) {
+        this.total = 0;
         this.cells = cells;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public int getTotal() {

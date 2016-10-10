@@ -34,12 +34,12 @@ public class CellTest {
         Cell cell = cellFactory.createCell(CellFactory.CELL_SINGLE_VALUE, 1, 1);
         int firstValueToAdd = 3;
         int secondValueToAdd = 14;
-        CellContent cellContent1 = new ValueContent<>(firstValueToAdd);
-        CellContent cellContent2 = new ValueContent<>(secondValueToAdd);
+        CellContent cellContent1 = new ValueContent(firstValueToAdd);
+        CellContent cellContent2 = new ValueContent(secondValueToAdd);
         cell.setContent(cellContent1);
         cell.setContent(cellContent2);
         Assert.assertEquals(cell.getContents().size(), 1);
-        Assert.assertEquals(cell.getContents().get(0).getValue(), secondValueToAdd);
+        Assert.assertEquals(cell.getContents().get(0).getNumberValue(), secondValueToAdd);
 
     }
 
@@ -49,13 +49,13 @@ public class CellTest {
         Cell cell = cellFactory.createCell("", 1, 1);
         int firstValueToAdd = 3;
         int secondValueToAdd = 14;
-        CellContent cellContent1 = new ValueContent<>(firstValueToAdd);
-        CellContent cellContent2 = new ValueContent<>(secondValueToAdd);
+        CellContent cellContent1 = new ValueContent(firstValueToAdd);
+        CellContent cellContent2 = new ValueContent(secondValueToAdd);
         cell.setContent(cellContent1);
         cell.setContent(cellContent2);
         Assert.assertEquals(cell.getContents().size(), 2);
-        Assert.assertEquals(cell.getContents().get(0).getValue(), firstValueToAdd);
-        Assert.assertEquals(cell.getContents().get(1).getValue(), secondValueToAdd);
+        Assert.assertEquals(cell.getContents().get(0).getNumberValue(), firstValueToAdd);
+        Assert.assertEquals(cell.getContents().get(1).getNumberValue(), secondValueToAdd);
 
     }
 }

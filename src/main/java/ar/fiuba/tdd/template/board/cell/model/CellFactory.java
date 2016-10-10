@@ -7,12 +7,14 @@ public class CellFactory {
 
     public static final String CELL_SINGLE_VALUE = "CELL_SINGLE";
 
-    //public static final String CELL_MULTIPLEE_VALUE = "CELL_MULTIPLE";
-    public Cell createCell(String cellType, int coordX, int coordY) {
+    public Cell createCell(String cellType, int coordinateX, int coordinateY) {
         //Por defecto si no se especifica bien el cellType retorna una CellMultipleValue
         if (cellType.equals(CELL_SINGLE_VALUE)) {
-            return new CellSingleValue(coordX, coordY);
+            return new CellSingleValue(coordinateX, coordinateY);
         }
-        return new CellMultipleValue(coordX, coordY);
+        return new CellMultipleValue(coordinateX, coordinateY);
+
     }
+
+
 }

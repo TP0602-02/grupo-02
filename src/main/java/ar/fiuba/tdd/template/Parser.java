@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class Parser {
 
+    public static final String BLACK_CONTENT_VALUE = "-1";
     private JSONParser parser;
     private JSONObject boardFile;
     private JSONObject playsFile;
@@ -63,11 +64,11 @@ public class Parser {
     }
 
     private static Long readWidth(JSONObject jsonObject) {
-        return (Long)jsonObject.get("width");
+        return (Long) jsonObject.get("width");
     }
 
     private static Long readHeight(JSONObject jsonObject) {
-        return (Long)jsonObject.get("height");
+        return (Long) jsonObject.get("height");
     }
 
     public int getWidth() {
@@ -112,7 +113,7 @@ public class Parser {
             int positionY = ((Long) cellClue.get("y")).intValue();
             //TODO en el archivo debe decir si son CELL SINGLE VLAUES O MULTIPLES
             String tipoDeCeldaLeidoDelArchivo = CellFactory.CELL_SINGLE_VALUE;
-            Cell newCell = cellFactory.createCell(tipoDeCeldaLeidoDelArchivo,positionX,positionY);
+            Cell newCell = cellFactory.createCell(tipoDeCeldaLeidoDelArchivo, positionX, positionY);
             // create a single cell
 
             JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the clues
@@ -120,7 +121,9 @@ public class Parser {
             for (JSONObject contentsJson : (Iterable<JSONObject>) contentData) { // for every clue
                 // the first value goes below, the second value above
                 Long value = (Long) contentsJson.get("value");
-                createContent(newCell, id, value.intValue());
+
+                createContent(newCell, id, value.toString());
+
             }
 
             if (id.equals("clues")) {
@@ -131,25 +134,26 @@ public class Parser {
         }
     }
 
-    private Cell createContent(Cell newCell, String id, int value) {
+    private Cell createContent(Cell newCell, String id, String value) {
         if (id.equals("clues")) {
             // Clues are considered ClueContent or BlackContent
-            if (value != -1) {
-                ClueContent clue = new ClueContent<>(value);
+            if (!value.equals(BLACK_CONTENT_VALUE)) {
+                ClueContent clue = new ClueContent(value);
                 newCell.setContent(clue);
             } else {
                 // if it's -1 we consider it a BlackContent
-                BlackContent black = new BlackContent(new BlackContent.DefValue<String>() {
+               /* BlackContent black = new BlackContent(new BlackContent.DefValue<String>() {
                     @Override
                     public String getDefValue() {
                         return "black";
                     }
-                });
+                });*/
+                BlackContent black = new BlackContent();
                 newCell.setContent(black);
             }
         } else if (id.equals("solution")) {
             // Solutions are considered ValueContent
-            ValueContent valueContent = new ValueContent<>(value);
+            ValueContent valueContent = new ValueContent(value);
             newCell.setContent(valueContent);
         }
         return newCell;
@@ -181,7 +185,7 @@ public class Parser {
             //System.out.print(" The row is " + newCell.getRow() + " " + newCell.getColumn() + "\n");
 
             // Plays are considered ValueContent
-            ValueContent valueContent = new ValueContent<>(play.get("value"));
+            ValueContent valueContent = new ValueContent(String.valueOf(play.get("value")));
             newCell.setContent(valueContent);
             plays.add(newCell);
         }

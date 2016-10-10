@@ -237,16 +237,16 @@ public class Parser {
         jsonBoard.put("values", jsonValues);
         objPlay.put("board", jsonBoard);
 
-        writeJSONFile(objPlay);
+        writeJsonFile(objPlay);
     }
 
-    private void writeJSONFile(JSONObject objPlay) {
+    private void writeJsonFile(JSONObject objPlay) {
         try {
             File file = new File("src/json/PlayOutput.json");
-            Writer w = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
-            PrintWriter pw = new PrintWriter(w);
-            pw.println(objPlay.toJSONString());
-            pw.close();
+            Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
+            PrintWriter printWriter = new PrintWriter(writer);
+            printWriter.println(objPlay.toJSONString());
+            printWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

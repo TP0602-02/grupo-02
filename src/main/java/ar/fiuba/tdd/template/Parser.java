@@ -48,7 +48,7 @@ public class Parser {
     }
 
     public void decodeJson() {
-        readFile("src/json/Board.json", "src/json/Plays.json");
+        readFile("src/json/Sudoku.json", "src/json/Plays.json");
 
         // Board configuration
         this.width = readWidth(this.boardFile).intValue();
@@ -193,6 +193,7 @@ public class Parser {
             }
             regions.add(fromToRegion);
 
+            // Regions that have no exceptions will have x and y set to -1
             JSONArray exceptionsRead = (JSONArray) region.get("exceptions"); // read exceptions
             for (JSONObject excep : (Iterable<JSONObject>) exceptionsRead) {
                 Cell newCell = new CellSingleValue(((Long) excep.get("x")).intValue(), ((Long) excep.get("y")).intValue());
@@ -201,7 +202,8 @@ public class Parser {
             exceptions.add(exceptionsRegion);
         }
 
-        System.out.print(regions.size() + " " + exceptions.size());
+        //System.out.print(regions.size() + " " + exceptions.size());
+        //System.out.print(exceptions.get(0).get(0).getRow() + " " + exceptions.get(0).get(0).getColumn());
     }
 
     public void writePlayResults(ArrayList<Play> playResult) {

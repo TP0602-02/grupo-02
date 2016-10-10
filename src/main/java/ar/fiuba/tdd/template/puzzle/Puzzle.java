@@ -1,9 +1,9 @@
 package ar.fiuba.tdd.template.puzzle;
 
+import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
-import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.rules.GenericRule;
 
 import java.util.ArrayList;
@@ -53,7 +53,18 @@ public class Puzzle {
         }
     }
 
+    public boolean checkMovement(Play play) {
+        Cell cell = play.getSelectedCell();
+        if (this.validateMove(cell,Integer.parseInt(String.valueOf(cell.getContents().get(0).getValue())))) {
+            // this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent<Integer>(valueToAdd));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public boolean checkMovement(Cell cell, int valueToAdd) {
+        // TODO: replace parameters by Play class instead of cell and valueToAdd
         if (this.validateMove(cell, valueToAdd)) {
             // this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent<Integer>(valueToAdd));
             return true;

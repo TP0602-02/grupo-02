@@ -34,11 +34,11 @@ public class BoardTest {
     @Test
     public void getCellRegionReturnEmpty() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
-        ArrayList<Cell> firstCells = new ArrayList<Cell>();
+        ArrayList<Cell> firstCells = new ArrayList<>();
         firstCells.add(board.getCell(1, 1));
         firstCells.add(board.getCell(0, 0));
         firstCells.add(board.getCell(0, 1));
-        ArrayList<Cell> secondCells = new ArrayList<Cell>();
+        ArrayList<Cell> secondCells = new ArrayList<>();
         secondCells.add(board.getCell(2, 1));
         secondCells.add(board.getCell(2, 0));
         secondCells.add(board.getCell(2, 1));
@@ -50,11 +50,11 @@ public class BoardTest {
     @Test
     public void getCellRegionReturnFirstRegion() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
-        ArrayList<Cell> firstCells = new ArrayList<Cell>();
+        ArrayList<Cell> firstCells = new ArrayList<>();
         firstCells.add(board.getCell(1, 1));
         firstCells.add(board.getCell(0, 0));
         firstCells.add(board.getCell(0, 1));
-        ArrayList<Cell> secondCells = new ArrayList<Cell>();
+        ArrayList<Cell> secondCells = new ArrayList<>();
         secondCells.add(board.getCell(2, 1));
         secondCells.add(board.getCell(2, 0));
         secondCells.add(board.getCell(2, 1));
@@ -67,11 +67,11 @@ public class BoardTest {
     @Test
     public void getCellRegionReturnTwoRegions() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
-        ArrayList<Cell> firstCells = new ArrayList<Cell>();
+        ArrayList<Cell> firstCells = new ArrayList<>();
         firstCells.add(board.getCell(2, 1));
         firstCells.add(board.getCell(0, 0));
         firstCells.add(board.getCell(0, 1));
-        ArrayList<Cell> secondCells = new ArrayList<Cell>();
+        ArrayList<Cell> secondCells = new ArrayList<>();
         secondCells.add(board.getCell(2, 1));
         secondCells.add(board.getCell(2, 0));
         secondCells.add(board.getCell(2, 1));
@@ -109,7 +109,7 @@ public class BoardTest {
         int column = 1;
         ValueContent firstContent = new ValueContent(2);
         ClueContent secondContent = new ClueContent(3);
-        ArrayList<CellContent> values = new ArrayList();
+        ArrayList<CellContent> values = new ArrayList<>();
         values.add(firstContent);
         values.add(secondContent);
 
@@ -133,14 +133,14 @@ public class BoardTest {
         }
 
         ArrayList<Cell> rowCells = board.getRow(board.getCell(1, 0));
-        ArrayList<Integer> numbers = new ArrayList();
+        ArrayList<Integer> numbers = new ArrayList<>();
         for (Cell cell : rowCells) {
             ArrayList<CellContent> cellC = board.getContents(cell.getRow(), cell.getColumn());
             numbers.add(cellC.get(0).getNumberValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // row of cell wanted is 1
-        assertEquals(numbers, new ArrayList(Arrays.asList(1, 1, 1, 1, 1)));
+        assertEquals(numbers, new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1)));
     }
 
     @Test
@@ -177,7 +177,7 @@ public class BoardTest {
         assertEquals(board.getHeight(), height);
         assertEquals(board.getWidth(), width);
 
-/*
+        /*
         ArrayList<String> rules = parser.getRules();
         for (String rule : rules) {
             System.out.print(rule + "\n");

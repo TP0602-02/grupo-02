@@ -176,7 +176,6 @@ public class BoardTest {
         Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
         assertEquals(board.getHeight(), height);
         assertEquals(board.getWidth(), width);
-
         /*
         ArrayList<String> rules = parser.getRules();
         for (String rule : rules) {

@@ -19,7 +19,6 @@ public class Parser {
     private int height;
     private int width;
     private ArrayList<Cell> clues = new ArrayList<>();
-    private ArrayList<Cell> solution = new ArrayList<>();
     private ArrayList<String> rules = new ArrayList<>();
 
     private ArrayList<ArrayList<Cell>> regions = new ArrayList<>();
@@ -56,7 +55,6 @@ public class Parser {
         this.height = readHeight(this.boardFile).intValue();
         readRules(this.boardFile);
         readElements(this.boardFile, "clues");
-        readElements(this.boardFile, "solution");
         readRegions(this.boardFile);
 
         // Automatic plays
@@ -83,10 +81,6 @@ public class Parser {
         return this.clues;
     }
 
-    public ArrayList<Cell> getSolution() {
-        return this.solution;
-    }
-
     public ArrayList<Cell> getPlays() {
         return this.plays;
     }
@@ -98,7 +92,6 @@ public class Parser {
     private void readRules(JSONObject jsonObject) {
         JSONArray rulesContents = (JSONArray) jsonObject.get("rules");
         for (JSONObject rule : (Iterable<JSONObject>) rulesContents) { // for every rule
-            //System.out.print(rule.get("rule").toString());
             rules.add(rule.get("rule").toString());
         }
     }
@@ -128,8 +121,6 @@ public class Parser {
 
             if (id.equals("clues")) {
                 clues.add(newCell);
-            } else if (id.equals("solution")) {
-                solution.add(newCell);
             }
         }
     }
@@ -151,10 +142,6 @@ public class Parser {
                 BlackContent black = new BlackContent();
                 newCell.setContent(black);
             }
-        } else if (id.equals("solution")) {
-            // Solutions are considered ValueContent
-            ValueContent valueContent = new ValueContent(value);
-            newCell.setContent(valueContent);
         }
         return newCell;
     }
@@ -226,12 +213,9 @@ public class Parser {
         boolean validBoard = true;
         // Creates JSON
         for ( Play play : playResult) {
-
             jsonPlays.add(getPlayObject(play,numberOfPlay));
             numberOfPlay++;
-
             jsonValues.add(getValueObject(play));
-
             validBoard = validBoard && play.getValidPlay();
         }
 

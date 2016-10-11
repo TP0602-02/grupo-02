@@ -16,12 +16,12 @@ public class Region {
         this.cells = cells;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
     public int getTotal() {
         return this.total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public ArrayList<Cell> getCells() {
@@ -32,5 +32,15 @@ public class Region {
         if (!this.cells.contains(cell)) {
             this.cells.add(cell);
         }
+    }
+
+    public boolean cellBelongsToRegion(Cell cellvecina) {
+        //return cells.contains(cellvecina);
+        for (Cell cell : cells) {
+            if (cell.getColumn() == cellvecina.getColumn() && cell.getRow() == cellvecina.getRow()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

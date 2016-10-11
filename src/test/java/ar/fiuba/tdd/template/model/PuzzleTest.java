@@ -1,9 +1,5 @@
 package ar.fiuba.tdd.template.model;
 
-import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.puzzle.Puzzle;
-import ar.fiuba.tdd.template.puzzle.PuzzleGenerator;
-import org.junit.Assert;
 import org.junit.Test;
 
 public class PuzzleTest {

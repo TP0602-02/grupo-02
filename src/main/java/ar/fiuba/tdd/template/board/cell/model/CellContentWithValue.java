@@ -19,16 +19,16 @@ public abstract class CellContentWithValue extends CellContent {
         return value;
     }
 
+    public void setValue(String value) {
+        this.value = value;
+    }
+
     public int getNumberValue() {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException exception) {
             return getNumberValueOfSpecialString();
         }
-    }
-
-    public void setValue(String value) {
-        this.value = value;
     }
 
     private int getNumberValueOfSpecialString() {

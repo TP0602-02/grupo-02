@@ -2,7 +2,9 @@ package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
-import ar.fiuba.tdd.template.board.cell.model.*;
+import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.CellFactory;
+import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.rules.NoRepeatValueRule;
 import org.junit.Assert;
 import org.junit.Before;
@@ -28,13 +30,13 @@ public class NoRepeatValueRuleTest {
 
     private void setCols() {
         ArrayList<Cell> firstCol = new ArrayList<Cell>(Arrays.asList(this.board.getCell(0, 0), this.board.getCell(1, 0)));
-        firstCol.add(board.getCell(2,0));
+        firstCol.add(board.getCell(2, 0));
         firstCol.add(this.board.getCell(3, 0));
         ArrayList<Cell> secondCol = new ArrayList<Cell>(Arrays.asList(this.board.getCell(0, 1), this.board.getCell(1, 1)));
-        secondCol.add(this.board.getCell(2,1));
+        secondCol.add(this.board.getCell(2, 1));
         secondCol.add(this.board.getCell(3, 1));
         ArrayList<Cell> thirdCol = new ArrayList<Cell>(Arrays.asList(this.board.getCell(0, 2), this.board.getCell(1, 2)));
-        thirdCol.add(this.board.getCell(2,2));
+        thirdCol.add(this.board.getCell(2, 2));
         thirdCol.add(board.getCell(3, 2));
         ArrayList<Cell> fourthCol = new ArrayList<Cell>(Arrays.asList(this.board.getCell(0, 3), this.board.getCell(1, 3)));
         fourthCol.add(this.board.getCell(2, 3));

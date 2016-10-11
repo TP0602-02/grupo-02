@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class PuzzleGenerator {
 
-    public PuzzleGenerator() {}
+    public PuzzleGenerator() {
+    }
 
     public Puzzle startGeneration() {
 

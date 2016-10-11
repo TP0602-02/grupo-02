@@ -6,7 +6,7 @@ public class BlackContent extends CellContent {
         this.def = def;
     }*/
 
-   // private DefValue<T> def;
+    // private DefValue<T> def;
 
     public BlackContent() {
     }
@@ -27,13 +27,13 @@ public class BlackContent extends CellContent {
     }*/
 
     @Override
-    public int getNumberValue() {
-        return 0;
+    public void setValue(String value) {
+
     }
 
     @Override
-    public void setValue(String value) {
-
+    public int getNumberValue() {
+        return 0;
     }
 
     @Override

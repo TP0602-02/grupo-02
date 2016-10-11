@@ -32,14 +32,14 @@ public class RegionTest {
 
     @Test
     public void addCellToRegion() {
-        Cell cell = new CellSingleValue(5,5);
+        Cell cell = new CellSingleValue(5, 5);
         this.region.addCell(cell);
         Assert.assertTrue(this.region.getCells().contains(cell));
     }
 
     @Test
     public void doesNotAddCellToRegionIfAlreadyHave() {
-        Cell cell = new CellSingleValue(5,5);
+        Cell cell = new CellSingleValue(5, 5);
         this.region.addCell(cell);
         this.region.addCell(cell);
         Assert.assertTrue(region.getCells().size() == 1);

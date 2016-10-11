@@ -15,7 +15,7 @@ public class Board<T> {
     private String cellType;
     private ArrayList<Region> regions;
 
-    public Board(int height, int width,String cellType) {
+    public Board(int height, int width, String cellType) {
         board = new ArrayList<>();
         this.height = height;
         this.width = width;
@@ -24,7 +24,7 @@ public class Board<T> {
         for (int col = 0; col < width; col++) {
             ArrayList<Cell> inner = new ArrayList<>();
             for (int row = 0; row < height; row++) {
-                inner.add(cellFactory.createCell(this.cellType,row, col));
+                inner.add(cellFactory.createCell(this.cellType, row, col));
             }
             board.add(inner);
         }
@@ -42,8 +42,11 @@ public class Board<T> {
     public ArrayList<Region> getCellRegions(Cell cell) {
         ArrayList<Region> cellRegions = new ArrayList<Region>();
         for (Region region : this.regions) {
-            if (region.getCells().contains(cell)) {
-                cellRegions.add(region);
+            ArrayList<Cell> cells = region.getCells();
+            for (Cell cellu : cells) {
+                if (cellu.getRow() == cell.getRow() && cellu.getColumn() == cell.getColumn()) {
+                    cellRegions.add(region);
+                }
             }
         }
         return cellRegions;

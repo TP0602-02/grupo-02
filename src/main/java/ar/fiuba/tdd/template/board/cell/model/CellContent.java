@@ -10,8 +10,8 @@ public abstract class CellContent implements Summable, Editable {
 
     public abstract String getValue();
 
-    public abstract int getNumberValue();
-
     public abstract void setValue(String value);
+
+    public abstract int getNumberValue();
 
 }

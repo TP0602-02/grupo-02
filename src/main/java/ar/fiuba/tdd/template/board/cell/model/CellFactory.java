@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
-import java.util.ArrayList;
-
 /**
  * Created by Nicolas on 7/10/2016.
  */

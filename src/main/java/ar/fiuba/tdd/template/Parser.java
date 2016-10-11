@@ -25,6 +25,14 @@ public class Parser {
 
     // Class designed to parse JSON data
 
+    private static Long readWidth(JSONObject jsonObject) {
+        return (Long) jsonObject.get("width");
+    }
+
+    private static Long readHeight(JSONObject jsonObject) {
+        return (Long) jsonObject.get("height");
+    }
+
     public void decodeJson() {
         // Getting board data from the json file
         JSONParser parser = new JSONParser();
@@ -51,14 +59,6 @@ public class Parser {
             e.printStackTrace();
         }
 
-    }
-
-    private static Long readWidth(JSONObject jsonObject) {
-        return (Long) jsonObject.get("width");
-    }
-
-    private static Long readHeight(JSONObject jsonObject) {
-        return (Long) jsonObject.get("height");
     }
 
     public int getWidth() {

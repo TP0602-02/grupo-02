@@ -22,6 +22,7 @@ public abstract class OperationRule extends GenericRule {
                 ++this.amountOfCellsWithValue;
                 int actualCellValue = actualCell.getContents().get(0).getNumberValue();
                 this.updateTotals(actualCellValue);
+
             }
         }
         this.updateTotals(numberToAdd);

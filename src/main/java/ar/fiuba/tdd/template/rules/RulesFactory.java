@@ -4,12 +4,12 @@ import java.util.Properties;
 
 public class RulesFactory {
 
-    private static Properties factory;
-    private static RulesFactory instance;
     public static final String DOESNT_REPEAT_NUMBER_IN_ROW = "Doesnt repeat number in row";
     public static final String DOESNT_REPEAT_NUMBER_IN_COLUMN = "Doesnt repeat number in column";
     public static final String DOESNT_REPEAT_NUMBER_IN_SQUARE_REGION = "Doesnt repeat number in square region";
     public static final String NUMBER_VALIDATION = "Number validation";
+    private static Properties factory;
+    private static RulesFactory instance;
 
     private static void initFactory() {
         factory = new Properties();

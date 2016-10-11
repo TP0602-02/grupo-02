@@ -1,8 +1,5 @@
 package ar.fiuba.tdd.template.model;
 
-import ar.fiuba.tdd.template.rules.*;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -21,6 +18,6 @@ public class RuleFactoryTest {
     public void testCreateNullRuleWithNotValidRuleNmae() {
         //GenericRule rule =
         //        RulesFactory.getFactory().createRule("RANDOM NAME: ABCDEFG");
-      //  Assert.assertTrue(rule instanceof NullRule);
+        //  Assert.assertTrue(rule instanceof NullRule);
     }
 }

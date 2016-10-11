@@ -3,11 +3,9 @@ package ar.fiuba.tdd.template.userinterface.controller;
 
 import ar.fiuba.tdd.template.userinterface.model.TextBox;
 
-
-import java.awt.event.KeyEvent;
-
-import java.awt.event.KeyListener;
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Created by Colo on 23/09/2016.

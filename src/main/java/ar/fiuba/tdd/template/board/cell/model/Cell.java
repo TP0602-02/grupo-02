@@ -1,9 +1,6 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
-import ar.fiuba.tdd.template.board.cell.controller.CellController;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public abstract class Cell implements Summable, Editable {
 

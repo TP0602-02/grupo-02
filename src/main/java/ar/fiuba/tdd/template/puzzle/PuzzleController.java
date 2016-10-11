@@ -2,9 +2,7 @@ package ar.fiuba.tdd.template.puzzle;
 
 import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.entity.BaseController;
-import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 
 import java.util.ArrayList;

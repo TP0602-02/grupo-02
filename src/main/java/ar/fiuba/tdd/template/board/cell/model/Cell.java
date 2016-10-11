@@ -71,4 +71,21 @@ public abstract class Cell implements Summable, Editable {
         }
         return isSummable;
     }
+
+    public void deleteContent(String text) {
+        for (CellContent content : contents) {
+            if (content.getValue().equals(text)) {
+                contents.remove(content);
+                return;
+            }
+        }
+    }
+
+    public ArrayList<String> getValuesToString() {
+        ArrayList<String> values = new ArrayList<>();
+        for (CellContent content : contents) {
+            values.add(content.getValue());
+        }
+        return values;
+    }
 }

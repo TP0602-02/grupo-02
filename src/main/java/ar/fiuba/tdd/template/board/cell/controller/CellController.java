@@ -7,18 +7,15 @@ import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.entity.BaseController;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by Nicolas on 27/9/2016.
  */
 public class CellController extends BaseController<CellView, Cell> {
 
-    private InputUserView inputUserView;
     private UserInputListener userInputListener;
-
-    public CellController() {
-        inputUserView = new InputUserView();
-    }
 
     @Override
     public void elementsAttached(CellView cellView, Cell cell) {
@@ -33,27 +30,33 @@ public class CellController extends BaseController<CellView, Cell> {
     }
 
     public void showMessageInput() {
-        inputUserView.setVisible(true);
-        inputUserView.setListener(new InputUserView.UserInputListener() {
+        InputUserView.getInstance().showInputUserView();
+        InputUserView.getInstance().setCellValuesToDelete(this.model.getValuesToString());
+        InputUserView.getInstance().setListener(new InputUserView.UserInputListener() {
             @Override
-            public void textInputed(String text) {
+            public void inputedText(String text) {
                 CellController.this.textInputed(text);
 
             }
+
+            @Override
+            public void deletedValue(String text) {
+                CellController.this.deletedValue(text);
+            }
         });
-        inputUserView.setBounds(0, 0, 300, 150);
-        inputUserView.setVisible(true);
+    }
 
-
+    private void deletedValue(String text) {
+        this.model.deleteContent(text);
+        view.setValues(model.getValuesToString());
     }
 
     private void textInputed(String text) {
         if (userInputListener != null) {
             boolean validInput = userInputListener.validateUserTextInputed(this.model, text);
             if (validInput) {
-                view.setText(text);
-                //TODO habria que ver si la celda tiene muchos valores para saber que valor se cambio
                 model.setContent(new ValueContent(text));
+                view.setValues(model.getValuesToString());
             }
         }
 

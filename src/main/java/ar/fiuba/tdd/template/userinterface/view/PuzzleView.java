@@ -1,14 +1,12 @@
 package ar.fiuba.tdd.template.userinterface.view;
 
 
-import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.*;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.userinterface.controller.Facade;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Random;
 import javax.swing.*;
 
 /**
@@ -16,10 +14,10 @@ import javax.swing.*;
  */
 public class PuzzleView extends JFrame {
     public static final int cellViewDimension = 40;
-    public static final int boardInitialPositionPixelX = 200;
-    public static final int boardInitialPositionPixelY = 300;
     public static final int screenHeight = 768;
-    public static final int screenLenght = 1024;
+    public static final int screenWidth = 1024;
+    public static final int boardInitialPositionPixelX = screenWidth / 2;
+    public static final int boardInitialPositionPixelY = screenHeight / 2;
     private int width;
     private int height;
     private final HomeView menu;
@@ -32,14 +30,14 @@ public class PuzzleView extends JFrame {
         this.height = height;
         this.initialCells = initialCells;
         setBackground(Color.gray);
-        this.getContentPane().setPreferredSize(new Dimension(screenLenght, screenHeight));
+        this.getContentPane().setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         container = new Container();
 
-        container.setPreferredSize(new Dimension(screenLenght, screenHeight));
+        container.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.add(container);
 
-        this.menu = new HomeView(screenLenght, screenHeight, this);
+        this.menu = new HomeView(screenWidth, screenHeight, this);
         this.pack();
         createBoardView("sudoku");
        /*  menu.createMenu();

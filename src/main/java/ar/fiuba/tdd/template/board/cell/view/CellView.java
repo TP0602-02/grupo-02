@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.board.cell.view;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
@@ -26,6 +27,16 @@ public class CellView extends JLabel {
             setBackground(Color.BLACK);
         } else {
             setText(text);
+        }
+    }
+
+    public void setValues(ArrayList<String> values) {
+        //TODO VER LA FORMA DE DIBUJAR VARIOS VALORES EN UNA CELL VIEW
+        removeAll();
+        setText("");
+        for (String value : values) {
+            //TODO no sera un simple setText caundo haya que dibujar varios valores en la misma celda
+            setText(value);
         }
     }
 

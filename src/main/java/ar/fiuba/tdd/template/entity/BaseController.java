@@ -16,4 +16,5 @@ public abstract class BaseController<T, E> {
 
     public abstract void elementsAttached(T view, E model);
 
+
 }

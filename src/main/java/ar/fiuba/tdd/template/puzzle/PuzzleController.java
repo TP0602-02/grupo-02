@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.entity.BaseController;
+import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 
@@ -35,7 +36,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                     @Override
                     public boolean validateUserTextInputed(Cell cell, String text) {
                         try {
-                            int textParsed = Integer.parseInt(text);
+                            int textParsed = SpecialCharactersParser.getInstance().getValueOf(text);
                            /*
                             //TODO esto debe ser otra RULE que valide el dominio de los numeros posibles
                             if(textParsed > 0 && textParsed <= model.getBoardHeight()){

@@ -20,19 +20,11 @@ public abstract class CellContentWithValue extends CellContent {
     }
 
     public int getNumberValue() {
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException exception) {
-            return getNumberValueOfSpecialString();
-        }
+        return SpecialCharactersParser.getInstance().getValueOf(this.value);
     }
 
     public void setValue(String value) {
         this.value = value;
     }
 
-    private int getNumberValueOfSpecialString() {
-        return SpecialCharactersParser.getInstance().getValueOf(this.value);
-
-    }
 }

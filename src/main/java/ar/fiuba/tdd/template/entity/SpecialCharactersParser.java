@@ -15,7 +15,7 @@ public class SpecialCharactersParser {
     //TODO DEFINIR VALORES!!!
     public static final int BARRA_VALUE = 0;
     public static final int BARRA_INVERTIDA_VALUE = 0;
-    public static final int GUION_MEDIO_VALUE = 0;
+    public static final int GUION_MEDIO_VALUE = 1;
     public static final int GUION_BAJO_VALUE = 0;
 
     private static Properties table;
@@ -38,7 +38,11 @@ public class SpecialCharactersParser {
     }
 
     public int getValueOf(String text) {
-        return (int) table.getOrDefault(text, 0);
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException exception) {
+            return (int) table.getOrDefault(text, 0);
+        }
     }
 
 }

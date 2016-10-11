@@ -1,24 +1,15 @@
 package ar.fiuba.tdd.template;
 
-import ar.fiuba.tdd.template.board.cell.model.BlackContent;
-import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.board.cell.model.CellContent;
-import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.puzzle.Puzzle;
 import ar.fiuba.tdd.template.puzzle.PuzzleController;
 import ar.fiuba.tdd.template.puzzle.PuzzleGenerator;
-import ar.fiuba.tdd.template.rules.GenericRule;
-import ar.fiuba.tdd.template.rules.RulesFactory;
-import ar.fiuba.tdd.template.userinterface.controller.Facade;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
-
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("This is just a template project\n ");
 
-        Facade.createInstance(new Object());
+        //Facade.createInstance(new Object());
 
         //Simulacion de rules leidas del arxhivo y creadas por el puzzleGenerator
         /*GenericRule rule1 = RulesFactory.getFactory().createRule(RulesFactory.DOESNT_REPEAT_NUMBER_IN_COLUMN);
@@ -84,10 +75,12 @@ public class Main {
 
         PuzzleGenerator generator = new PuzzleGenerator();
         Puzzle puzzle = generator.startGeneration();
-        PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(), puzzle.getInitialCells());
+
+
+        PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(), puzzle.getInitialCells(), puzzle);
         puzzleView.showVisu();
         PuzzleController puzzleController = new PuzzleController();
-        puzzleController.attachElements(puzzleView,puzzle);
+        puzzleController.attachElements(puzzleView, puzzle);
 
     }
 

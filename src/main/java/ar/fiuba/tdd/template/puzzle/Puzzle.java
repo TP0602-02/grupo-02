@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.template.puzzle;
 
 import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
@@ -35,6 +36,12 @@ public class Puzzle {
         return this.initialCells;
     }
 
+    private void setInitialCells(ArrayList<Cell> initialCells) {
+        for (Cell cellToAdd : initialCells) {
+            this.board.setValues(cellToAdd.getRow(), cellToAdd.getColumn(), cellToAdd.getContents());
+        }
+    }
+
     public int getBoardHeight() {
         return boardHeight;
     }
@@ -47,15 +54,9 @@ public class Puzzle {
         return this.board.getCell(row, column);
     }
 
-    private void setInitialCells(ArrayList<Cell> initialCells) {
-        for (Cell cellToAdd : initialCells) {
-            this.board.setValues(cellToAdd.getRow(), cellToAdd.getColumn(), cellToAdd.getContents());
-        }
-    }
-
     public boolean checkMovement(Cell cell, int valueToAdd) {
         if (this.validateMove(cell, valueToAdd)) {
-            // this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent<Integer>(valueToAdd));
+            this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent(valueToAdd));
             return true;
         } else {
             return false;
@@ -71,5 +72,9 @@ public class Puzzle {
         return true;
     }
 
+
+    public ArrayList<Region> getCellRegion(Cell cell) {
+        return board.getCellRegions(cell);
+    }
 }
 

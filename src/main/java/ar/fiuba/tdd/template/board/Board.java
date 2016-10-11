@@ -46,6 +46,7 @@ public class Board<T> {
             for (Cell cellu : cells) {
                 if (cellu.getRow() == cell.getRow() && cellu.getColumn() == cell.getColumn()) {
                     cellRegions.add(region);
+                    break;
                 }
             }
         }

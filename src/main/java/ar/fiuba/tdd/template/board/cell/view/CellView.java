@@ -1,10 +1,10 @@
 package ar.fiuba.tdd.template.board.cell.view;
 
+import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
 
 /**
  * Created by Nicolas on 27/9/2016.
@@ -12,12 +12,20 @@ import javax.swing.border.BevelBorder;
 public class CellView extends JLabel {
 
     private ClickCellListener listener;
+    private int leftBorder;
+    private int rightBorder;
+    private int topBorder;
+    private int bottomBorder;
 
     public CellView() {
         super("", SwingConstants.CENTER);
+        leftBorder = rightBorder = topBorder = bottomBorder = 1;
         setOpaque(true);
         setBackground(Color.white);
-        setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+        //setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+        //setBorder(new MatteBorder(0,0,1,1,Color.BLACK));//Para los bordes se pueden confirgurar
+
+
     }
 
     public CellView(String text) {
@@ -29,10 +37,29 @@ public class CellView extends JLabel {
         }
     }
 
-    public interface ClickCellListener {
-        public void onClick();
+    public void borderSetter(int x, int y, boolean borderTrue) {
+        if (!borderTrue) {
+            if (x == 1 && y == 0) {
+                rightBorder += 2;
+            }
+            else if (x == -1 && y == 0) {
+                leftBorder += 2;
+            }
+            else if (x == 0 && y == 1) {
+                bottomBorder += 2;
+            }
+            else if (x == 0 && y == -1) {
+                topBorder += 2;
+            }
+
+        }
     }
 
+    public void refreshBorders() {
+        setBorder(new MatteBorder(topBorder, leftBorder, bottomBorder, rightBorder, Color.BLACK));//Para los bordes se pueden confirgurar
+
+
+    }
 
     public void setListener(ClickCellListener listener) {
         this.listener = listener;
@@ -64,5 +91,9 @@ public class CellView extends JLabel {
             public void mouseExited(MouseEvent evemt) {
             }
         });
+    }
+
+    public interface ClickCellListener {
+        public void onClick();
     }
 }

@@ -58,4 +58,22 @@ public class CellTest {
         Assert.assertEquals(cell.getContents().get(1).getNumberValue(), secondValueToAdd);
 
     }
+
+    @Test
+    public void deleteCellContentInASingeCellValue() {
+        Cell cell = cellFactory.createCell(CellFactory.CELL_SINGLE_VALUE, 1, 1);
+        String value = "3";
+        cell.setContent(new ValueContent(value));
+        cell.deleteContent(value);
+        Assert.assertTrue(cell.getContents().isEmpty());
+    }
+
+    @Test
+    public void deleteCellContentInAMultipleCellValue() {
+        Cell cell = cellFactory.createCell("", 1, 1);
+        String value = "3";
+        cell.setContent(new ValueContent(value));
+        cell.deleteContent(value);
+        Assert.assertTrue(cell.getContents().isEmpty());
+    }
 }

@@ -10,9 +10,9 @@ import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.puzzle.Puzzle;
 import ar.fiuba.tdd.template.userinterface.controller.Facade;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import javax.swing.*;
 
 /**
  * Created by Colo on 23/09/2016.
@@ -155,14 +155,14 @@ public class PuzzleView extends JFrame {
         }
     }
 
-    private boolean hasNeighbour(int x, int y, Cell cell, CellView cellVIew, Region region) {
-        int neighbourColumn = cell.getColumn() + x;
-        int neighbourRow = cell.getRow() + y;
+    private boolean hasNeighbour(int xmove, int ymove, Cell cell, CellView cellVIew, Region region) {
+        int neighbourColumn = cell.getColumn() + xmove;
+        int neighbourRow = cell.getRow() + ymove;
         if (neighbourColumn >= 0 && neighbourRow >= 0 && neighbourColumn <= 8 && neighbourRow <= 8) {
             Cell cellvecina = puzzle.getCell(neighbourRow, neighbourColumn);
-            cellVIew.borderSetter(x, y, region.cellBelongsToRegion(cellvecina));
+            cellVIew.borderSetter(xmove, ymove, region.cellBelongsToRegion(cellvecina));
         } else {
-            cellVIew.borderSetter(x, y, false);
+            cellVIew.borderSetter(xmove, ymove, false);
         }
         return false;
     }
@@ -184,6 +184,7 @@ public class PuzzleView extends JFrame {
         return this.boardView.get(column).get(row);
     }
 
+
     public String getLabelView(Cell cell) {
         String data;
         if (cell.getContents().size() > 1) {
@@ -196,7 +197,7 @@ public class PuzzleView extends JFrame {
                     data = data.concat(cell.getContents().get(i).getValue() + "  " + cell.getContents().get(i + 1).getValue());
                     i++;
                 }
-                data.concat("</b></br>");
+                data = data.concat("</b></br>");
             }
         } else {
             data = cell.getContents().get(0).getValue();

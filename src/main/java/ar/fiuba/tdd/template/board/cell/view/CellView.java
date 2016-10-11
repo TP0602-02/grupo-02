@@ -1,10 +1,11 @@
 package ar.fiuba.tdd.template.board.cell.view;
 
-import javax.swing.*;
-import javax.swing.border.MatteBorder;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.*;
+import javax.swing.border.MatteBorder;
 
 /**
  * Created by Nicolas on 27/9/2016.
@@ -37,18 +38,15 @@ public class CellView extends JLabel {
         }
     }
 
-    public void borderSetter(int x, int y, boolean borderTrue) {
+    public void borderSetter(int xmove, int ymove, boolean borderTrue) {
         if (!borderTrue) {
-            if (x == 1 && y == 0) {
+            if (xmove == 1 && ymove == 0) {
                 rightBorder += 2;
-            }
-            else if (x == -1 && y == 0) {
+            } else if (xmove == -1 && ymove == 0) {
                 leftBorder += 2;
-            }
-            else if (x == 0 && y == 1) {
+            } else if (xmove == 0 && ymove == 1) {
                 bottomBorder += 2;
-            }
-            else if (x == 0 && y == -1) {
+            } else if (xmove == 0 && ymove == -1) {
                 topBorder += 2;
             }
 

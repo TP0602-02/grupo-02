@@ -28,6 +28,16 @@ public class Region {
         return this.cells;
     }
 
+    public int getOcuppiedCells() {
+        int total = 0;
+        for (Cell cell: this.cells) {
+            if (cell.isSummable()) {
+                total += 1;
+            }
+        }
+        return total;
+    }
+
     public void addCell(Cell cell) {
         if (!this.cells.contains(cell)) {
             this.cells.add(cell);

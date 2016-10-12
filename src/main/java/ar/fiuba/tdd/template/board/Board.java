@@ -7,7 +7,7 @@ import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 
 import java.util.ArrayList;
 
-public class Board<T> {
+public class Board {
 
     private ArrayList<ArrayList<Cell>> board;
     private int width;  // number of columns
@@ -29,6 +29,10 @@ public class Board<T> {
             board.add(inner);
         }
         this.regions = new ArrayList<Region>();
+    }
+
+    public ArrayList<Region> getRegions() {
+        return this.regions;
     }
 
     public int getWidth() {

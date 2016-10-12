@@ -21,9 +21,9 @@ public class RegionFactory {
         return instance;
     }
 
-    public Region createRegion(Cell topLeft, Cell bottomRight, ArrayList<Cell> exceptions, String regionType) {
+    public Region createRegion(Board board, Cell topLeft, Cell bottomRight, ArrayList<Cell> exceptions, String regionType) {
         if ( regionType.equals(GENERIC_REGION)) {
-            return new GenericRegion().getRegion(topLeft, bottomRight, exceptions);
+            return new GenericRegion().getRegion(board, topLeft, bottomRight, exceptions);
         }
         return new Region(exceptions);
     }

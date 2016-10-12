@@ -223,7 +223,7 @@ public class Parser {
             exceptions.add(exceptionsRegion);
         }
 
-        System.out.print(regions.size() + " " + exceptions.size());
+        //System.out.print(regions.size() + " " + exceptions.size());
     }
 
     @SuppressWarnings("unchecked")

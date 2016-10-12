@@ -26,14 +26,12 @@ public class Puzzle {
 
         this.board = new Board(boardHeight, boardWidth, CellFactory.CELL_SINGLE_VALUE);
         setInitialCells(initialCells);
-
-        setInitialRegions(regions, exceptions);
-
         this.initialCells = initialCells;
         this.rules = new ArrayList<GenericRule>();
         for (GenericRule rule : rules) {
             this.rules.add(rule);
         }
+        setInitialRegions(regions, exceptions);
     }
 
     private void setInitialRegions(ArrayList<ArrayList<Cell>> regions, ArrayList<ArrayList<Cell>> exceptions) {
@@ -41,8 +39,8 @@ public class Puzzle {
             ArrayList<Cell> fromToRegion = regions.get(i); // contains topLeft and bottomRight
             ArrayList<Cell> exceptionCells = exceptions.get(i); // contains cells that are not part of the region
 
-            //TODO pasar el board a la factory para que las cells sean las mismas !!!
-            Region region = RegionFactory.getFactory().createRegion(fromToRegion.get(0), fromToRegion.get(1), exceptionCells, "GENERIC REGION");
+            Region region = RegionFactory.getFactory().createRegion(this.board,
+                    fromToRegion.get(0), fromToRegion.get(1), exceptionCells, "GENERIC REGION");
             board.addRegion(region);
         }
     }

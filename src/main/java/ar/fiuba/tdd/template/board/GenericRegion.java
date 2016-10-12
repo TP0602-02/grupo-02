@@ -17,7 +17,7 @@ public class GenericRegion extends Region {
         super(null);
     }
 
-    public Region getRegion(Cell topLeft, Cell bottomRight, ArrayList<Cell> exceptions) {
+    public Region getRegion(Board board, Cell topLeft, Cell bottomRight, ArrayList<Cell> exceptions) {
         ArrayList<Cell> regionCells = new ArrayList<>();
 
         for ( int coordX = topLeft.getRow(); coordX <= bottomRight.getRow(); coordX++) {
@@ -30,8 +30,7 @@ public class GenericRegion extends Region {
                     }
                 }
                 if (!inExceptions) {
-                    // TODO ojo que esta cell deberia ser la misma que la del board
-                    regionCells.add(new CellFactory().createCell(CELL_SINGLE_VALUE, coordX, coordY));
+                    regionCells.add(board.getCell(coordX, coordY)); // same cell as board
                 }
             }
         }

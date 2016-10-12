@@ -30,6 +30,7 @@ public class GenericRegion extends Region {
                     }
                 }
                 if (!inExceptions) {
+                    // TODO ojo que esta cell deberia ser la misma que la del board
                     regionCells.add(new CellFactory().createCell(CELL_SINGLE_VALUE, coordX, coordY));
                 }
             }

@@ -10,7 +10,16 @@ import java.util.ArrayList;
 
 public class RegionFactory {
 
+    private static RegionFactory instance;
+
     public static final String GENERIC_REGION = "GENERIC REGION";
+
+    public static RegionFactory getFactory() {
+        if (instance == null) {
+            instance = new RegionFactory();
+        }
+        return instance;
+    }
 
     public Region createRegion(Cell topLeft, Cell bottomRight, ArrayList<Cell> exceptions, String regionType) {
         if ( regionType.equals(GENERIC_REGION)) {

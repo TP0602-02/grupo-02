@@ -89,6 +89,14 @@ public class Parser {
         return this.rules;
     }
 
+    public ArrayList<ArrayList<Cell>> getRegions() {
+        return this.regions;
+    }
+
+    public ArrayList<ArrayList<Cell>> getExceptions() {
+        return this.exceptions;
+    }
+
     @SuppressWarnings("unchecked")
     private void readRules(JSONObject jsonObject) {
         JSONArray rulesContents = (JSONArray) jsonObject.get("rules");

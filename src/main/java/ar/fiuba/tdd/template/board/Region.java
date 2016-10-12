@@ -16,6 +16,16 @@ public class Region {
         this.cells = cells;
     }
 
+    public int getOcuppiedCells() {
+        int total = 0;
+        for (Cell cell: this.cells) {
+            if (cell.isSummable()) {
+                total += 1;
+            }
+        }
+        return total;
+    }
+
     public void setTotal(int total) {
         this.total = total;
     }

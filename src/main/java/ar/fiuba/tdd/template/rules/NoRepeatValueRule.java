@@ -3,7 +3,7 @@ package ar.fiuba.tdd.template.rules;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 
-public class NoRepeatValueRule extends GenericRule {
+public class NoRepeatValueRule extends NumberRule {
 
     @Override
     public boolean validateRegion(Region region, Cell cell, int numberToAdd) {

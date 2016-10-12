@@ -71,9 +71,12 @@ public class CellTest {
     @Test
     public void deleteCellContentInAMultipleCellValue() {
         Cell cell = cellFactory.createCell("", 1, 1);
-        String value = "3";
-        cell.setContent(new ValueContent(value));
-        cell.deleteContent(value);
-        Assert.assertTrue(cell.getContents().isEmpty());
+        String value1 = "3";
+        String value2 = "4";
+        cell.setContent(new ValueContent(value1));
+        cell.setContent(new ValueContent(value2));
+        cell.deleteContent(value2);
+        Assert.assertEquals(cell.getContents().size(),1);
+        Assert.assertEquals(cell.getContents().get(0).getValue(),value1);
     }
 }

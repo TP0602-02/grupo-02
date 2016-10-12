@@ -12,7 +12,7 @@ import javax.swing.*;
  * Created by Colo on 25/09/2016.
  */
 public class HomeView extends Container {
-    static final int buttonHeight = 50;
+   /* static final int buttonHeight = 50;
     static final int buttonLenght = 200;
     static final int menuInitialPositionX = 400;
     static final int menuInitialPositionY = 100;
@@ -70,7 +70,7 @@ public class HomeView extends Container {
                 }
             }
         }
-    }
+    }*/
 
 
 }

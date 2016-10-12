@@ -25,12 +25,12 @@ public class Parser {
 
     // Class designed to parse JSON data
 
-    public void decodeJson() {
+    public void decodeJson(String file) {
         // Getting board data from the json file
         JSONParser parser = new JSONParser();
         try {
             // Uses bufferedReader to avoid reliance on default encoding
-            String jsonFileName = "src/json/Sudoku.json";
+            String jsonFileName = "src/json/" + file;
             BufferedReader inJsonFile = new BufferedReader(new InputStreamReader(new FileInputStream(jsonFileName), "UTF8"));
             Object fileObject = parser.parse(inJsonFile);
             JSONObject jsonObject = (JSONObject) fileObject;

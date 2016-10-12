@@ -16,10 +16,6 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("This is just a template project\n ");
-
-        Facade.createInstance(new Object());
-
         //Simulacion de rules leidas del arxhivo y creadas por el puzzleGenerator
         /*GenericRule rule1 = RulesFactory.getFactory().createRule(RulesFactory.DOESNT_REPEAT_NUMBER_IN_COLUMN);
         GenericRule rule2 = RulesFactory.getFactory().createRule(RulesFactory.DOESNT_REPEAT_NUMBER_IN_ROW);
@@ -81,13 +77,15 @@ public class Main {
         PuzzleController puzzleController = new PuzzleController();
         puzzleController.attachElements(puzzleView,puzzle);
 */
+        PuzzleGenerator puzzleGenerator = new PuzzleGenerator();
+        puzzleGenerator.runGeneration();
 
-        PuzzleGenerator generator = new PuzzleGenerator();
-        Puzzle puzzle = generator.startGeneration();
+        /*PuzzleGenerator generator = new PuzzleGenerator();
+        Puzzle puzzle = generator.getPuzzle();
         PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(), puzzle.getInitialCells());
         puzzleView.showVisu();
         PuzzleController puzzleController = new PuzzleController();
-        puzzleController.attachElements(puzzleView,puzzle);
+        puzzleController.attachElements(puzzleView,puzzle);*/
 
     }
 

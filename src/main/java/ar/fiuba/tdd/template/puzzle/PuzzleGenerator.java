@@ -5,17 +5,38 @@ import ar.fiuba.tdd.template.board.InputUserView;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.rules.RulesFactory;
+import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
+import ar.fiuba.tdd.template.userinterface.view.StartView;
 
 import java.util.ArrayList;
 
 public class PuzzleGenerator {
 
-    public PuzzleGenerator() {}
+    public PuzzleGenerator() {
 
-    public Puzzle startGeneration() {
+    }
+
+    public void runGeneration() {
+        StartView startView = new StartView(new StartView.StartGameListener() {
+            @Override
+            public void loadNewGame(String gameName, String gameFile) {
+                Puzzle puzzle = startGeneration(gameFile);
+                PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(),
+                        puzzle.getInitialCells(), gameName);
+                puzzleView.showVisu();
+                PuzzleController puzzleController = new PuzzleController();
+                puzzleController.attachElements(puzzleView, puzzle);
+            }
+        });
+        startView.start();
+    }
+
+
+    private Puzzle startGeneration(String fileName) {
+
 
         Parser parser = new Parser();
-        parser.decodeJson();
+        parser.decodeJson(fileName);
 
         ArrayList<Cell> clues = parser.getClues();
         //ArrayList<Cell> solution = parser.getSolution();
@@ -30,6 +51,7 @@ public class PuzzleGenerator {
         initEnabledButtonsToPlay();
         return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues);
     }
+
 
     private void initEnabledButtonsToPlay() {
         //TODO debe ser levantado del archivo con el parser

@@ -20,12 +20,12 @@ public class PuzzleView extends JFrame {
     public static final int boardInitialPositionPixelY = screenHeight / 2;
     private int width;
     private int height;
-    private final HomeView menu;
+    //private final HomeView menu;
     private ArrayList<ArrayList<CellView>> boardView;
     private Container container;
     private ArrayList<Cell> initialCells;
 
-    public PuzzleView(int height, int width, ArrayList<Cell> initialCells) {
+    public PuzzleView(int height, int width, ArrayList<Cell> initialCells, String gameName) {
         this.width = width;
         this.height = height;
         this.initialCells = initialCells;
@@ -37,16 +37,15 @@ public class PuzzleView extends JFrame {
         container.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.add(container);
 
-        this.menu = new HomeView(screenWidth, screenHeight, this);
+        //this.menu = new HomeView(screenWidth, screenHeight, this);
         this.pack();
-        createBoardView("sudoku");
+        createBoardView(gameName);
        /*  menu.createMenu();
         this.add(menu);
         this.pack();*/
     }
 
     private void createBoardView(String game) {
-        //int boardSize = Facade.getBoardSize();
         initBoardDimensions();
         setInitialsCells();
         this.addTitle(game);
@@ -123,14 +122,14 @@ public class PuzzleView extends JFrame {
         this.setVisible(true);
     }
 
-    public void startGame(String game) {
+ /*   public void startGame(String game) {
         menu.setVisible(false);
         this.remove(menu);
         // this.pack();
         Facade.getInstance().setGame(game);
         this.createBoardView(game);
         //this.pack();
-    }
+    }*/
 
     public CellView getCellView(int row, int column) {
         return this.boardView.get(column).get(row);

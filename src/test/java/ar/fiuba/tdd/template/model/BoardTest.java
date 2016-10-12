@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.*;
+import ar.fiuba.tdd.template.userinterface.view.StartView;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -160,7 +161,7 @@ public class BoardTest {
         ArrayList<Integer> numbers = new ArrayList();
         for (Cell cell : firstColumn) {
             ArrayList<CellContent> cellC = board.getContents(cell.getRow(), cell.getColumn());
-            numbers.add( cellC.get(0).getNumberValue());
+            numbers.add(cellC.get(0).getNumberValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // column of cell wanted is 0
@@ -170,7 +171,8 @@ public class BoardTest {
     @Test
     public void decodeJson() {
         Parser parser = new Parser();
-        parser.decodeJson();
+        String file = StartView.SUDOKU_FILE;
+        parser.decodeJson(file);
         int width = parser.getWidth();
         int height = parser.getHeight();
         Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);

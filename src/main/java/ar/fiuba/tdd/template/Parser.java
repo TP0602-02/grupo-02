@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Parser {
 
-    public static final String BLACK_CONTENT_VALUE = "-1";
+    private static final String BLACK_CONTENT_VALUE = "-1";
     private JSONParser parser;
     private JSONObject boardFile;
     private JSONObject playsFile;
@@ -89,6 +89,7 @@ public class Parser {
         return this.rules;
     }
 
+    @SuppressWarnings("unchecked")
     private void readRules(JSONObject jsonObject) {
         JSONArray rulesContents = (JSONArray) jsonObject.get("rules");
         for (JSONObject rule : (Iterable<JSONObject>) rulesContents) { // for every rule
@@ -96,6 +97,7 @@ public class Parser {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void readElements(JSONObject jsonObject, String id) {
 
         CellFactory cellFactory = new CellFactory();
@@ -156,6 +158,7 @@ public class Parser {
         return newCell;
     }
 
+    @SuppressWarnings("unchecked")
     private void readPlays() {
         JSONArray playsContents = (JSONArray) this.playsFile.get("plays");
 
@@ -179,7 +182,6 @@ public class Parser {
             int positionY = Integer.parseInt(tokens[2]);
 
             Cell newCell = new CellSingleValue(positionX, positionY); // create a single cell
-            //System.out.print(" The row is " + newCell.getRow() + " " + newCell.getColumn() + "\n");
 
             // Plays are considered ValueContent
             ValueContent valueContent = new ValueContent(String.valueOf(play.get("value")));
@@ -189,6 +191,7 @@ public class Parser {
 
     }
 
+    @SuppressWarnings("unchecked")
     private void readRegions(JSONObject jsonObject) {
         JSONArray regionContents = (JSONArray) jsonObject.get("regions");
 
@@ -212,10 +215,10 @@ public class Parser {
             exceptions.add(exceptionsRegion);
         }
 
-        //System.out.print(regions.size() + " " + exceptions.size());
-        //System.out.print(exceptions.get(0).get(0).getRow() + " " + exceptions.get(0).get(0).getColumn());
+        System.out.print(regions.size() + " " + exceptions.size());
     }
 
+    @SuppressWarnings("unchecked")
     public void writePlayResults(ArrayList<Play> playResult, String fileName) {
         JSONObject objPlay = new JSONObject();
         JSONArray jsonPlays = new JSONArray();
@@ -252,6 +255,7 @@ public class Parser {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private JSONObject getPlayObject(Play play, int numberOfPlay) {
         JSONObject jsonPlay = new JSONObject();
         jsonPlay.put("number", numberOfPlay);
@@ -259,6 +263,7 @@ public class Parser {
         return jsonPlay;
     }
 
+    @SuppressWarnings("unchecked")
     private JSONObject getValueObject(Play play) {
         JSONObject jsonValue = new JSONObject();
         jsonValue.put("position", "[" + play.getSelectedCell().getRow() + " ," + play.getSelectedCell().getColumn() + "]");

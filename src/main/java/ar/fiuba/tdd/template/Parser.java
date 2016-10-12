@@ -104,12 +104,15 @@ public class Parser {
         for (JSONObject cellClue : (Iterable<JSONObject>) cellContents) { // for every cell
             int positionX = ((Long) cellClue.get("x")).intValue();
             int positionY = ((Long) cellClue.get("y")).intValue();
-            //TODO en el archivo debe decir si son CELL SINGLE VLAUES O MULTIPLES
-            String tipoDeCeldaLeidoDelArchivo = CellFactory.CELL_SINGLE_VALUE;
-            Cell newCell = cellFactory.createCell(tipoDeCeldaLeidoDelArchivo, positionX, positionY);
-            // create a single cell
 
             JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the clues
+
+            String cellType = getCellType(contentData.size());
+
+
+            Cell newCell = cellFactory.createCell(cellType, positionX, positionY);
+            // create a single cell
+
 
             for (JSONObject contentsJson : (Iterable<JSONObject>) contentData) { // for every clue
                 // the first value goes below, the second value above
@@ -123,6 +126,13 @@ public class Parser {
                 clues.add(newCell);
             }
         }
+    }
+
+    private String getCellType(int size) {
+        if ( size > 1 ) {
+            return " ";
+        }
+        return CellFactory.CELL_SINGLE_VALUE;
     }
 
     private Cell createContent(Cell newCell, String id, String value) {

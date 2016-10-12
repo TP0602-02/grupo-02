@@ -1,6 +1,15 @@
 package ar.fiuba.tdd.template.model;
 
+import ar.fiuba.tdd.template.Parser;
+import ar.fiuba.tdd.template.Play;
+import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.board.Region;
+import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.CellFactory;
+import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 public class PuzzleTest {
 
@@ -39,5 +48,23 @@ public class PuzzleTest {
         parser.writePlayResults(playResults);*/
 
 
+    }
+
+    @Test
+    public void writingFileTest() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        Parser parser = new Parser();
+        ArrayList<Play> playResults = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            board.setValue(i, i, new ValueContent(2));
+            Play play = new Play(board.getCell(i, i));
+            if (i == 2) {
+                play.setValidPlay(true);
+            } else {
+                play.setValidPlay(false);
+            }
+            playResults.add(play);
+        }
+        parser.writePlayResults(playResults, "src/json/PlayOutputTest.json");
     }
 }

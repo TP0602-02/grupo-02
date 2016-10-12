@@ -206,7 +206,7 @@ public class Parser {
         //System.out.print(exceptions.get(0).get(0).getRow() + " " + exceptions.get(0).get(0).getColumn());
     }
 
-    public void writePlayResults(ArrayList<Play> playResult) {
+    public void writePlayResults(ArrayList<Play> playResult, String fileName) {
         JSONObject objPlay = new JSONObject();
         JSONArray jsonPlays = new JSONArray();
         JSONArray jsonValues = new JSONArray();
@@ -227,12 +227,12 @@ public class Parser {
         jsonBoard.put("values", jsonValues);
         objPlay.put("board", jsonBoard);
 
-        writeJsonFile(objPlay);
+        writeJsonFile(objPlay, fileName);
     }
 
-    private void writeJsonFile(JSONObject objPlay) {
+    private void writeJsonFile(JSONObject objPlay, String fileName) {
         try {
-            File file = new File("src/json/PlayOutput.json");
+            File file = new File(fileName);
             Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
             PrintWriter printWriter = new PrintWriter(writer);
             printWriter.println(objPlay.toJSONString());

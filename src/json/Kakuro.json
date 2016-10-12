@@ -1,6 +1,11 @@
 {
   "width": 8,
   "height": 8,
+  "rules": [{
+    "rule": "Doesnt repeat number in row"
+  }, {
+    "rule": "Doesnt repeat number in column"
+  }],
   "clues": [{
     "x": 0,
     "y": 0,
@@ -227,221 +232,293 @@
       "value": 3
     }]
   }],
-  "solution": [{
-    "x": 1,
-    "y": 1,
-    "content": [{
-      "value": 9
+  "regions": [{
+    "coord": [{
+      "x": 1,
+      "y": 1
+    }, {
+      "x": 1,
+      "y": 2
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 1,
-    "y": 2,
-    "content": [{
-      "value": 7
+    "coord": [{
+      "x": 1,
+      "y": 5
+    }, {
+      "x": 1,
+      "y": 7
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 1,
-    "y": 5,
-    "content": [{
-      "value": 8
+    "coord": [{
+      "x": 2,
+      "y": 1
+    }, {
+      "x": 2,
+      "y": 2
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 1,
-    "y": 6,
-    "content": [{
-      "value": 7
+    "coord": [{
+      "x": 2,
+      "y": 4
+    }, {
+      "x": 2,
+      "y": 7
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 1,
-    "y": 7,
-    "content": [{
-      "value": 9
+    "coord": [{
+      "x": 3,
+      "y": 1
+    }, {
+      "x": 3,
+      "y": 5
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 2,
-    "y": 1,
-    "content": [{
-      "value": 8
+    "coord": [{
+      "x": 4,
+      "y": 2
+    }, {
+      "x": 4,
+      "y": 3
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 2,
-    "y": 2,
-    "content": [{
-      "value": 9
+    "coord": [{
+      "x": 4,
+      "y": 5
+    }, {
+      "x": 4,
+      "y": 6
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 2,
-    "y": 4,
-    "content": [{
-      "value": 8
+    "coord": [{
+      "x": 5,
+      "y": 3
+    }, {
+      "x": 5,
+      "y": 7
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 2,
-    "y": 5,
-    "content": [{
-      "value": 9
+    "coord": [{
+      "x": 6,
+      "y": 1
+    }, {
+      "x": 6,
+      "y": 4
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 2,
-    "y": 6,
-    "content": [{
-      "value": 5
+    "coord": [{
+      "x": 6,
+      "y": 6
+    }, {
+      "x": 6,
+      "y": 7
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 2,
-    "y": 7,
-    "content": [{
-      "value": 7
+    "coord": [{
+      "x": 7,
+      "y": 1
+    }, {
+      "x": 7,
+      "y": 3
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 3,
-    "y": 1,
-    "content": [{
-      "value": 6
+    "coord": [{
+      "x": 7,
+      "y": 6
+    }, {
+      "x": 7,
+      "y": 7
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 3,
-    "y": 2,
-    "content": [{
-      "value": 8
+    "coord": [{
+      "x": 1,
+      "y": 1
+    }, {
+      "x": 3,
+      "y": 1
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 3,
-    "y": 3,
-    "content": [{
-      "value": 5
+    "coord": [{
+      "x": 6,
+      "y": 1
+    }, {
+      "x": 7,
+      "y": 1
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 3,
-    "y": 4,
-    "content": [{
-      "value": 9
+    "coord": [{
+      "x": 1,
+      "y": 2
+    }, {
+      "x": 4,
+      "y": 2
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 3,
-    "y": 5,
-    "content": [{
-      "value": 7
+    "coord": [{
+      "x": 6,
+      "y": 2
+    }, {
+      "x": 7,
+      "y": 2
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 4,
-    "y": 2,
-    "content": [{
-      "value": 6
+    "coord": [{
+      "x": 3,
+      "y": 3
+    }, {
+      "x": 7,
+      "y": 3
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 4,
-    "y": 3,
-    "content": [{
-      "value": 1
+    "coord": [{
+      "x": 2,
+      "y": 4
+    }, {
+      "x": 3,
+      "y": 4
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 4,
-    "y": 5,
-    "content": [{
-      "value": 2
+    "coord": [{
+      "x": 5,
+      "y": 4
+    }, {
+      "x": 6,
+      "y": 4
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 4,
-    "y": 6,
-    "content": [{
-      "value": 6
+    "coord": [{
+      "x": 1,
+      "y": 5
+    }, {
+      "x": 5,
+      "y": 5
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 5,
-    "y": 3,
-    "content": [{
-      "value": 4
+    "coord": [{
+      "x": 1,
+      "y": 6
+    }, {
+      "x": 2,
+      "y": 6
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 5,
-    "y": 4,
-    "content": [{
-      "value": 6
+    "coord": [{
+      "x": 4,
+      "y": 6
+    }, {
+      "x": 7,
+      "y": 6
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 5,
-    "y": 5,
-    "content": [{
-      "value": 1
+    "coord": [{
+      "x": 1,
+      "y": 7
+    }, {
+      "x": 2,
+      "y": 7
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }, {
-    "x": 5,
-    "y": 6,
-    "content": [{
-      "value": 3
-    }]
-  }, {
-    "x": 5,
-    "y": 7,
-    "content": [{
-      "value": 2
-    }]
-  }, {
-    "x": 6,
-    "y": 1,
-    "content": [{
-      "value": 8
-    }]
-  }, {
-    "x": 6,
-    "y": 2,
-    "content": [{
-      "value": 9
-    }]
-  }, {
-    "x": 6,
-    "y": 3,
-    "content": [{
-      "value": 3
-    }]
-  }, {
-    "x": 6,
-    "y": 4,
-    "content": [{
-      "value": 1
-    }]
-  }, {
-    "x": 6,
-    "y": 6,
-    "content": [{
-      "value": 1
-    }]
-  }, {
-    "x": 6,
-    "y": 7,
-    "content": [{
-      "value": 4
-    }]
-  }, {
-    "x": 7,
-    "y": 1,
-    "content": [{
-      "value": 3
-    }]
-  }, {
-    "x": 7,
-    "y": 2,
-    "content": [{
-      "value": 1
-    }]
-  }, {
-    "x": 7,
-    "y": 3,
-    "content": [{
-      "value": 2
-    }]
-  }, {
-    "x": 7,
-    "y": 6,
-    "content": [{
-      "value": 2
-    }]
-  }, {
-    "x": 7,
-    "y": 7,
-    "content": [{
-      "value": 1
+    "coord": [{
+      "x": 5,
+      "y": 7
+    }, {
+      "x": 7,
+      "y": 7
+    }],
+    "exceptions": [{
+      "x": -1,
+      "y": -1
     }]
   }
 

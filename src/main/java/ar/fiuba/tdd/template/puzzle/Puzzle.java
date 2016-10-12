@@ -63,16 +63,6 @@ public class Puzzle {
         }
     }
 
-    public boolean checkMovement(Cell cell, int valueToAdd) {
-        // TODO: replace parameters by Play class instead of cell and valueToAdd
-        if (this.validateMove(cell, valueToAdd)) {
-            // this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent<Integer>(valueToAdd));
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     private boolean validateMove(Cell cell, int valueToAdd) {
         for (GenericRule rule : this.rules) {
             if (!rule.validate(this.board, cell, valueToAdd)) {

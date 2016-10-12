@@ -21,7 +21,7 @@ public abstract class CellContentWithValue extends CellContent {
 
     public int getNumberValue() {
         try {
-            return Integer.parseInt(value);
+            return Integer.parseInt(String.valueOf(value));
         } catch (NumberFormatException exception) {
             return getNumberValueOfSpecialString();
         }
@@ -32,7 +32,7 @@ public abstract class CellContentWithValue extends CellContent {
     }
 
     private int getNumberValueOfSpecialString() {
-        return SpecialCharactersParser.getInstance().getValueOf(this.value);
+        return SpecialCharactersParser.getInstance().getValueOf(String.valueOf(this.value));
 
     }
 }

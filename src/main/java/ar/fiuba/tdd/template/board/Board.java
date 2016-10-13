@@ -31,6 +31,17 @@ public class Board {
         this.regions = new ArrayList<Region>();
     }
 
+    public boolean isFull() {
+        for (int col = 0; col < width; col++) {
+            for (int row = 0; row < height; row++) {
+                if (this.getCell(row, col).isEmpty()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public ArrayList<Region> getRegions() {
         return this.regions;
     }

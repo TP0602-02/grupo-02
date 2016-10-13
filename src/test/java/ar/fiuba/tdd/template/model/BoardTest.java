@@ -32,6 +32,32 @@ public class BoardTest {
     }
 
     @Test
+    public void emptyBoardIsFull_ReturnFalse() {
+        Board board = new Board(4,4,CellFactory.CELL_SINGLE_VALUE);
+        Assert.assertTrue(!board.isFull());
+    }
+
+    @Test
+    public void boardWithDiferentValuesIsFull_ReturnFalse() {
+        Board board = new Board(4,4,CellFactory.CELL_SINGLE_VALUE);
+        board.setValue(1,1,new BlackContent());
+        board.setValue(1,2,new ClueContent(1));
+        board.setValue(3,3,new ValueContent(1));
+        Assert.assertTrue(!board.isFull());
+    }
+
+    @Test
+    public void boardWithDiferentValuesIsFull_ReturnTrue() {
+        Board board = new Board(2,2,CellFactory.CELL_SINGLE_VALUE);
+        board.setValue(1,1,new BlackContent());
+        board.setValue(0,0,new ValueContent(1));
+        board.setValue(0,1,new ClueContent(1));
+        board.setValue(1,0,new ValueContent(1));
+        Assert.assertTrue(board.isFull());
+    }
+
+
+    @Test
     public void getCellRegionReturnEmpty() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
         ArrayList<Cell> firstCells = new ArrayList<Cell>();

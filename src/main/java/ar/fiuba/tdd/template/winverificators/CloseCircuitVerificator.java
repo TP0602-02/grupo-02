@@ -11,7 +11,7 @@ public class CloseCircuitVerificator extends WinVerificator {
 
     @Override
     public boolean wonTheGame(Board board) {
-        return this.verificator.verificate(board);
+        return this.verificator.isCircuitClosed(board);
     }
 
     public CloseCircuitVerificator() {

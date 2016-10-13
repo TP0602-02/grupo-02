@@ -32,13 +32,13 @@ public class CircuitVerificator {
         return this.amountOfCellsInTheCircuit;
     }
 
-    public boolean verificate(Board board) {
+    public boolean isCircuitClosed(Board board) {
         this.firstCell = this.getFirstCellWithValue(board);
         if (this.firstCell != null) {
             ++this.amountOfCellsInTheCircuit;
             int firstCellDirection = this.firstCell.getContents().get(0).getNumberValue();
             if (checkCircuit(this.firstCell, firstCellDirection, board)
-                    && this.amountOfCellsInTheCircuit == this.getAmountOfCellsWithValueInTheBoard(board)) {
+                /*&& this.amountOfCellsInTheCircuit == this.getAmountOfCellsWithValueInTheBoard(board)*/) {
                 return true;
             }
             return false;
@@ -46,6 +46,10 @@ public class CircuitVerificator {
             return false;
         }
 
+    }
+
+    public boolean hasLinesOutOfTheCircuit(Board board) {
+        return (this.amountOfCellsInTheCircuit < this.getAmountOfCellsWithValueInTheBoard(board));
     }
 
     private boolean checkCircuit(Cell cell, int direction, Board board) {

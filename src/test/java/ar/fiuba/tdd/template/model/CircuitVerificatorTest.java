@@ -4,7 +4,6 @@ import ar.fiuba.tdd.template.CircuitVerificator;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import org.junit.Assert;
 import org.junit.Test;
@@ -47,7 +46,7 @@ public class CircuitVerificatorTest {
         board.addRegion(region);
         setMovements(board);
         CircuitVerificator verificator = new CircuitVerificator();
-        Assert.assertTrue(verificator.verificate(board));
+        Assert.assertTrue(verificator.isCircuitClosed(board));
     }
 
     private void setMovements(Board board) {
@@ -87,7 +86,7 @@ public class CircuitVerificatorTest {
         board.getCell(2,0).setContent(new ValueContent(UP));
         board.getCell(1,0).setContent(new ValueContent(DOWN));
         CircuitVerificator verificator = new CircuitVerificator();
-        Assert.assertFalse(verificator.verificate(board));
+        Assert.assertFalse(verificator.isCircuitClosed(board));
     }
 
     @Test
@@ -111,7 +110,7 @@ public class CircuitVerificatorTest {
         board.getCell(1,2).setContent(new ValueContent(UP));
         board.getCell(0,2).setContent(new ValueContent(DOWN));
         CircuitVerificator verificator = new CircuitVerificator();
-        Assert.assertFalse(verificator.verificate(board));
+        Assert.assertFalse(verificator.isCircuitClosed(board));
     }
 
     @Test

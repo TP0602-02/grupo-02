@@ -5,7 +5,6 @@ import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
-import ar.fiuba.tdd.template.board.cell.model.GenericValue;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 
 /**
@@ -26,16 +25,17 @@ public class CloseCircuitRule extends GenericRule {
         cell.setContent(cellContent);
         nextCell.setContent(nextCellContent);
         nextCell.setContent(nextCellContent);
-        if (!verificator.verificate(board)) {
+        if (!verificator.isCircuitClosed(board)) {
             cell.removeContent(cellContent);
             nextCell.removeContent(nextCellContent);
             return true;
         }
         boolean validRegions = validateRegions(board);
         boolean adyacentCells = validateAdyacentCells(board);
+        boolean hasLinesOutOfTheCircuit = this.verificator.hasLinesOutOfTheCircuit(board);
         cell.removeContent(cellContent);
         nextCell.removeContent(nextCellContent);
-        return validRegions && adyacentCells;
+        return (validRegions && adyacentCells && hasLinesOutOfTheCircuit);
     }
 
     private boolean validateRegions(Board board) {

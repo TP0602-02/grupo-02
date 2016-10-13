@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
+import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class CircuitVerificator {
 
     }
 
-    private boolean checkCircuit(Cell cell,int direction, Board board) {
+    private boolean checkCircuit(Cell cell, int direction, Board board) {
         Cell nextCell = this.getNextCell(board, cell, direction);
         ++this.amountOfCellsInTheCircuit;
         if (nextCell == this.firstCell) {
@@ -72,23 +73,33 @@ public class CircuitVerificator {
         return -1;
     }
 
-    private int getOppositeDirection(int direction) {
+    public int getOppositeDirection(int direction) {
         switch (direction) {
-            case LEFT:  return RIGHT;
-            case RIGHT: return LEFT;
-            case UP:    return DOWN;
-            case DOWN:  return UP;
-            default: return 0;
+            case LEFT:
+                return RIGHT;
+            case RIGHT:
+                return LEFT;
+            case UP:
+                return DOWN;
+            case DOWN:
+                return UP;
+            default:
+                return 0;
         }
     }
 
-    private Cell getNextCell(Board board, Cell previousCell, int direction) {
+    public Cell getNextCell(Board board, Cell previousCell, int direction) {
         switch (direction) {
-            case LEFT:  return board.getCell(previousCell.getRow(), previousCell.getColumn() - 1);
-            case RIGHT: return board.getCell(previousCell.getRow(), previousCell.getColumn() + 1);
-            case UP:    return board.getCell(previousCell.getRow() - 1, previousCell.getColumn());
-            case DOWN:  return board.getCell(previousCell.getRow() + 1, previousCell.getColumn());
-            default: return null;
+            case LEFT:
+                return board.getCell(previousCell.getRow(), previousCell.getColumn() - 1);
+            case RIGHT:
+                return board.getCell(previousCell.getRow(), previousCell.getColumn() + 1);
+            case UP:
+                return board.getCell(previousCell.getRow() - 1, previousCell.getColumn());
+            case DOWN:
+                return board.getCell(previousCell.getRow() + 1, previousCell.getColumn());
+            default:
+                return null;
         }
     }
 
@@ -110,5 +121,21 @@ public class CircuitVerificator {
             total += region.getOcuppiedCells();
         }
         return total;
+    }
+
+    public boolean validateDirection(Board board, Cell cell, int direction) {
+        switch (direction) {
+            case LEFT:
+                return cell.getColumn() != 0;
+            case RIGHT:
+                return cell.getColumn() != (board.getWidth() - 1);
+            case UP:
+                return cell.getRow() != 0;
+            case DOWN:
+                return cell.getRow() != (board.getHeight() - 1);
+            default:
+                return true;
+        }
+
     }
 }

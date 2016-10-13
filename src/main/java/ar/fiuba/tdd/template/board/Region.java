@@ -18,7 +18,7 @@ public class Region {
 
     public int getOcuppiedCells() {
         int total = 0;
-        for (Cell cell: this.cells) {
+        for (Cell cell : this.cells) {
             if (cell.isSummable()) {
                 total += 1;
             }
@@ -38,19 +38,13 @@ public class Region {
         return this.cells;
     }
 
-    public int getOcuppiedCells() {
-        int total = 0;
-        for (Cell cell: this.cells) {
-            if (cell.isSummable()) {
-                total += 1;
-            }
-        }
-        return total;
-    }
-
     public void addCell(Cell cell) {
         if (!this.cells.contains(cell)) {
             this.cells.add(cell);
         }
+    }
+
+    public boolean containsCell(Cell cell) {
+        return this.cells.contains(cell);
     }
 }

@@ -6,7 +6,7 @@ public class BlackContent extends CellContent {
         this.def = def;
     }*/
 
-   // private DefValue<T> def;
+    // private DefValue<T> def;
 
     public BlackContent() {
     }

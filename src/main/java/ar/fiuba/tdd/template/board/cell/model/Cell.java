@@ -71,4 +71,20 @@ public abstract class Cell implements Summable, Editable {
         }
         return isSummable;
     }
+
+    public void removeContent(CellContent content) {
+        if (this.contents.contains(content)) {
+            this.contents.remove(content);
+        }
+    }
+
+    public int getQuantityOfValues() {
+        int total = 0;
+        for (CellContent cellContent : contents) {
+            if (cellContent.isSummable()) {
+                total++;
+            }
+        }
+        return total;
+    }
 }

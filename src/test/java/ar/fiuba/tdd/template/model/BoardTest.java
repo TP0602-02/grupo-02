@@ -65,6 +65,30 @@ public class BoardTest {
     }
 
     @Test
+    public void getInvalidIndexReturnsNull() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        Assert.assertNull(board.getCell(1, 5));
+    }
+
+    @Test
+    public void getAdyacentsCellInExtremeReturnsTwoCells() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        Assert.assertTrue(board.getAdyacentCells(board.getCell(3, 3)).size() == 2);
+    }
+
+    @Test
+    public void getAdyacentsCellInMiddleReturnsFourCells() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        Assert.assertTrue(board.getAdyacentCells(board.getCell(1, 1)).size() == 4);
+    }
+
+    @Test
+    public void getAdyacentsCellInBoardReturnsThreeCells() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        Assert.assertTrue(board.getAdyacentCells(board.getCell(1, 3)).size() == 3);
+    }
+
+    @Test
     public void getCellRegionReturnTwoRegions() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
         ArrayList<Cell> firstCells = new ArrayList<Cell>();
@@ -160,7 +184,7 @@ public class BoardTest {
         ArrayList<Integer> numbers = new ArrayList();
         for (Cell cell : firstColumn) {
             ArrayList<CellContent> cellC = board.getContents(cell.getRow(), cell.getColumn());
-            numbers.add( cellC.get(0).getNumberValue());
+            numbers.add(cellC.get(0).getNumberValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // column of cell wanted is 0

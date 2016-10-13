@@ -21,6 +21,8 @@ public class CircuitVerificatorTest {
     public static final int UP = 3;
     public static final int DOWN = 4;
 
+
+
     @Test
     public void createCircuitVerificatorWithCountersInZero() {
         CircuitVerificator verificator = new CircuitVerificator();
@@ -43,6 +45,12 @@ public class CircuitVerificatorTest {
         cells.add(board.getCell(1,1));
         Region region = new Region(cells);
         board.addRegion(region);
+        setMovements(board);
+        CircuitVerificator verificator = new CircuitVerificator();
+        Assert.assertTrue(verificator.verificate(board));
+    }
+
+    private void setMovements(Board board) {
         board.getCell(0,0).setContent(new ValueContent(RIGHT));
         board.getCell(0,1).setContent(new ValueContent(LEFT));
         board.getCell(0,1).setContent(new ValueContent(RIGHT));
@@ -59,8 +67,6 @@ public class CircuitVerificatorTest {
         board.getCell(1,0).setContent(new ValueContent(DOWN));
         board.getCell(1,0).setContent(new ValueContent(UP));
         board.getCell(0,0).setContent(new ValueContent(DOWN));
-        CircuitVerificator verificator = new CircuitVerificator();
-        Assert.assertTrue(verificator.verificate(board));
     }
 
     @Test
@@ -106,6 +112,41 @@ public class CircuitVerificatorTest {
         board.getCell(0,2).setContent(new ValueContent(DOWN));
         CircuitVerificator verificator = new CircuitVerificator();
         Assert.assertFalse(verificator.verificate(board));
+    }
+
+    @Test
+    public void insertValidMovement_returnTrue() {
+        Board board = new Board(4, 4, "");
+        CircuitVerificator verificator = new CircuitVerificator();
+        Assert.assertTrue(verificator.validateDirection(board,board.getCell(2,2),UP));
+    }
+
+    @Test
+    public void insertRightValidMovement_returnFalse() {
+        Board board = new Board(4, 4, "");
+        CircuitVerificator verificator = new CircuitVerificator();
+        Assert.assertTrue(!verificator.validateDirection(board,board.getCell(2,3),RIGHT));
+    }
+
+    @Test
+    public void insertLeftValidMovement_returnFalse() {
+        Board board = new Board(4, 4, "");
+        CircuitVerificator verificator = new CircuitVerificator();
+        Assert.assertTrue(!verificator.validateDirection(board,board.getCell(2,0),LEFT));
+    }
+
+    @Test
+    public void insertDownValidMovement_returnFalse() {
+        Board board = new Board(4, 4, "");
+        CircuitVerificator verificator = new CircuitVerificator();
+        Assert.assertTrue(!verificator.validateDirection(board,board.getCell(3,2),DOWN));
+    }
+
+    @Test
+    public void insertUpValidMovement_returnFalse() {
+        Board board = new Board(4, 4, "");
+        CircuitVerificator verificator = new CircuitVerificator();
+        Assert.assertTrue(!verificator.validateDirection(board,board.getCell(0,3),UP));
     }
 
 }

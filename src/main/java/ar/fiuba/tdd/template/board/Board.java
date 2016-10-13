@@ -43,6 +43,16 @@ public class Board {
         this.regions.add(region);
     }
 
+    public boolean cellsInSameRegion(Cell cell, Cell nextCell) {
+        ArrayList<Region> regions = this.getCellRegions(cell);
+        for (Region region : regions) {
+            if (region.containsCell(nextCell)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<Region> getCellRegions(Cell cell) {
         ArrayList<Region> cellRegions = new ArrayList<Region>();
         for (Region region : this.regions) {
@@ -58,7 +68,30 @@ public class Board {
     }
 
     public Cell getCell(int row, int column) {
-        return board.get(column).get(row);
+        if (validateNumber(row, this.getHeight()) && validateNumber(column, this.getWidth())) {
+            return board.get(column).get(row);
+        }
+        return null;
+    }
+
+    private boolean validateNumber(int index, int max) {
+        return index >= 0 && index < max;
+    }
+
+    public ArrayList<Cell> getAdyacentCells(Cell cell) {
+        ArrayList<Cell> adyacents = new ArrayList<Cell>();
+        agregate(this.getCell(cell.getRow() - 1, cell.getColumn()), adyacents);
+        agregate(this.getCell(cell.getRow() + 1, cell.getColumn()), adyacents);
+        agregate(this.getCell(cell.getRow(), cell.getColumn() - 1), adyacents);
+        agregate(this.getCell(cell.getRow(), cell.getColumn() + 1), adyacents);
+        return adyacents;
+    }
+
+    private ArrayList<Cell> agregate(Cell cell, ArrayList<Cell> cells) {
+        if (cell != null) {
+            cells.add(cell);
+        }
+        return cells;
     }
 
     public ArrayList<CellContent> getContents(int row, int column) {

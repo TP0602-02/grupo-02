@@ -141,7 +141,7 @@ public class BoardTest {
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // row of cell wanted is 1
-        assertEquals(numbers, new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1)));
+        assertEquals(numbers, new ArrayList<Integer>(Arrays.asList(1, 1, 1, 1, 1)));
     }
 
     @Test
@@ -158,27 +158,26 @@ public class BoardTest {
         }
 
         ArrayList<Cell> firstColumn = board.getColumn(board.getCell(1, 0));
-        ArrayList<Integer> numbers = new ArrayList();
+        ArrayList<Integer> numbers = new ArrayList<>();
         for (Cell cell : firstColumn) {
             ArrayList<CellContent> cellC = board.getContents(cell.getRow(), cell.getColumn());
             numbers.add(cellC.get(0).getNumberValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // column of cell wanted is 0
-        assertEquals(numbers, new ArrayList(Arrays.asList(0, 0, 0, 0, 0)));
+        assertEquals(numbers, new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0, 0)));
     }
 
     @Test
     public void decodeJson() {
         Parser parser = new Parser();
         String file = StartView.SUDOKU_FILE;
-        parser.decodeJson(file);
+        parser.decodeJson(file, null);
         int width = parser.getWidth();
         int height = parser.getHeight();
         Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
         assertEquals(board.getHeight(), height);
         assertEquals(board.getWidth(), width);
-
         /*
         ArrayList<String> rules = parser.getRules();
         for (String rule : rules) {

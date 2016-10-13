@@ -6,14 +6,16 @@ public class RulesFactory {
 
     private static Properties factory;
     private static RulesFactory instance;
-    public static final String DOESNT_REPEAT_NUMBER_IN_ROW = "Doesnt repeat number in row";
-    public static final String DOESNT_REPEAT_NUMBER_IN_COLUMN = "Doesnt repeat number in column";
-    public static final String DOESNT_REPEAT_NUMBER_IN_SQUARE_REGION = "Doesnt repeat number in square region";
+    private static final String DOESNT_REPEAT_NUMBER_IN_ROW = "Doesnt repeat number in row";
+    private static final String DOESNT_REPEAT_NUMBER_IN_COLUMN = "Doesnt repeat number in column";
+    private static final String DOESNT_REPEAT_NUMBER_IN_SQUARE_REGION = "Doesnt repeat number in square region";
     public static final String NUMBER_VALIDATION = "Number validation";
 
     private static void initFactory() {
         factory = new Properties();
-        //factory.put(DOESNT_REPEAT_NUMBER_IN_ROW,new NoRepeatNumberInRowValidationRule())
+        factory.put(DOESNT_REPEAT_NUMBER_IN_ROW, new NoRepeatValueRule());
+        factory.put(DOESNT_REPEAT_NUMBER_IN_COLUMN, new NoRepeatValueRule());
+        factory.put(DOESNT_REPEAT_NUMBER_IN_SQUARE_REGION, new NoRepeatValueRule());
     }
 
     public static RulesFactory getFactory() {

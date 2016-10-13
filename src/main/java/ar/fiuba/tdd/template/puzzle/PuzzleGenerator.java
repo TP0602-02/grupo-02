@@ -36,10 +36,9 @@ public class PuzzleGenerator {
 
 
         Parser parser = new Parser();
-        parser.decodeJson(fileName);
+        parser.decodeJson(fileName, null);
+        //  parser.decodeJson(fileName,"Plays.json");
 
-        ArrayList<Cell> clues = parser.getClues();
-        //ArrayList<Cell> solution = parser.getSolution();
         ArrayList<String> rules = parser.getRules();
 
         // Converts rules array of strings into GenericRule array
@@ -49,7 +48,10 @@ public class PuzzleGenerator {
         }
 
         initEnabledButtonsToPlay();
-        return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues);
+        ArrayList<Cell> clues = parser.getClues();
+        ArrayList<ArrayList<Cell>> regions = parser.getRegions();
+        ArrayList<ArrayList<Cell>> exceptions = parser.getExceptions();
+        return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues, regions, exceptions);
     }
 
 

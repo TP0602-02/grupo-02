@@ -2,6 +2,8 @@ package ar.fiuba.tdd.template.puzzle;
 
 import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.board.Region;
+import ar.fiuba.tdd.template.board.RegionFactory;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.rules.GenericRule;
@@ -16,8 +18,8 @@ public class Puzzle {
     private int boardWidth;
     private ArrayList<Cell> initialCells;
 
-    public Puzzle(int boardHeight, int boardWidth,
-                  ArrayList<GenericRule> rules, ArrayList<Cell> initialCells) {
+    public Puzzle(int boardHeight, int boardWidth, ArrayList<GenericRule> rules, ArrayList<Cell> initialCells,
+                  ArrayList<ArrayList<Cell>> regions, ArrayList<ArrayList<Cell>> exceptions) {
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
         //TODO como ultimo parametro hay que pasarle lo que se levante del parser del archivo
@@ -28,6 +30,18 @@ public class Puzzle {
         this.rules = new ArrayList<GenericRule>();
         for (GenericRule rule : rules) {
             this.rules.add(rule);
+        }
+        setInitialRegions(regions, exceptions);
+    }
+
+    private void setInitialRegions(ArrayList<ArrayList<Cell>> regions, ArrayList<ArrayList<Cell>> exceptions) {
+        for (int i = 0; i < regions.size(); i++) {
+            ArrayList<Cell> fromToRegion = regions.get(i); // contains topLeft and bottomRight
+            ArrayList<Cell> exceptionCells = exceptions.get(i); // contains cells that are not part of the region
+
+            Region region = RegionFactory.getFactory().createRegion(this.board,
+                    fromToRegion.get(0), fromToRegion.get(1), exceptionCells, "GENERIC REGION");
+            board.addRegion(region);
         }
     }
 
@@ -57,18 +71,10 @@ public class Puzzle {
         Cell cell = play.getSelectedCell();
         if (this.validateMove(cell,Integer.parseInt(String.valueOf(cell.getContents().get(0).getValue())))) {
             // this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent<Integer>(valueToAdd));
+            play.setValidPlay(true);
             return true;
         } else {
-            return false;
-        }
-    }
-
-    public boolean checkMovement(Cell cell, int valueToAdd) {
-        // TODO: replace parameters by Play class instead of cell and valueToAdd
-        if (this.validateMove(cell, valueToAdd)) {
-            // this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent<Integer>(valueToAdd));
-            return true;
-        } else {
+            play.setValidPlay(false);
             return false;
         }
     }

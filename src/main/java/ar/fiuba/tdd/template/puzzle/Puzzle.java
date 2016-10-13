@@ -69,7 +69,7 @@ public class Puzzle {
 
     public boolean checkMovement(Play play) {
         Cell cell = play.getSelectedCell();
-        if (this.validateMove(cell,Integer.parseInt(String.valueOf(cell.getContents().get(0).getValue())))) {
+        if (this.validateMove(cell, play.getSelectedCellValue())) {
             // this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent<Integer>(valueToAdd));
             play.setValidPlay(true);
             return true;

@@ -141,7 +141,7 @@ public class BoardTest {
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // row of cell wanted is 1
-        assertEquals(numbers, new ArrayList<Integer>(Arrays.asList(1, 1, 1, 1, 1)));
+        assertEquals(numbers,(Arrays.asList(1, 1, 1, 1, 1)));
     }
 
     @Test
@@ -165,7 +165,7 @@ public class BoardTest {
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // column of cell wanted is 0
-        assertEquals(numbers, new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0, 0)));
+        assertEquals(numbers,(Arrays.asList(0, 0, 0, 0, 0)));
     }
 
     @Test

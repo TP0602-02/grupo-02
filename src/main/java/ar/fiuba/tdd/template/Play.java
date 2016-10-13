@@ -1,7 +1,6 @@
 package ar.fiuba.tdd.template;
 
 import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.board.cell.model.GenericValue;
 
 /**
  * Created by martin on 08/10/16.
@@ -9,7 +8,7 @@ import ar.fiuba.tdd.template.board.cell.model.GenericValue;
 public class Play {
     // Criteria of acceptance : we only add single cell values
     private Cell selectedCell;
-    private GenericValue selectedValue;
+    private int selectedValue;
     private boolean validPlay;
     
     public Play(Cell selectedCell) {
@@ -28,15 +27,12 @@ public class Play {
         return this.selectedCell;
     }
 
-    public void setSelectedValue(String value) {
-        this.selectedValue = new GenericValue(value.charAt(0));
-    }
-
     public void setSelectedValue(int value) {
-        this.selectedValue = new GenericValue(String.valueOf(value).charAt(0));
+        this.selectedValue = value;
     }
 
-    public GenericValue getSelectedCellValue() {
+
+    public int getSelectedCellValue() {
         return selectedValue;
     }
 

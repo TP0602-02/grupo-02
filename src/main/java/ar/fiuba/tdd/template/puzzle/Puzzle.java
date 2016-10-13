@@ -71,8 +71,10 @@ public class Puzzle {
         Cell cell = play.getSelectedCell();
         if (this.validateMove(cell,Integer.parseInt(String.valueOf(cell.getContents().get(0).getValue())))) {
             // this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent<Integer>(valueToAdd));
+            play.setValidPlay(true);
             return true;
         } else {
+            play.setValidPlay(false);
             return false;
         }
     }

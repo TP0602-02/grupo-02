@@ -1,11 +1,8 @@
 package ar.fiuba.tdd.template.board;
 
 import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 
 import java.util.ArrayList;
-
-import static ar.fiuba.tdd.template.board.cell.model.CellFactory.CELL_SINGLE_VALUE;
 
 /**
  * Created by martin on 10/12/16.
@@ -14,7 +11,7 @@ public class GenericRegion extends Region {
 
 
     GenericRegion() {
-        super(null);
+        super();
     }
 
     public Region getRegion(Board board, Cell topLeft, Cell bottomRight, ArrayList<Cell> exceptions) {
@@ -22,19 +19,21 @@ public class GenericRegion extends Region {
 
         for ( int coordX = topLeft.getRow(); coordX <= bottomRight.getRow(); coordX++) {
             for ( int coordY = topLeft.getColumn(); coordY <= bottomRight.getColumn(); coordY++) {
-                boolean inExceptions = false;
-                for ( Cell exception : exceptions) {
-                    if ( exception.getRow() == coordX && exception.getColumn() == coordY) {
-                        inExceptions = true;
-                        break;
-                    }
-                }
-                if (!inExceptions) {
+                if (!inExceptions(coordX, coordY, exceptions)) {
                     regionCells.add(board.getCell(coordX, coordY)); // same cell as board
                 }
             }
         }
 
         return new Region(regionCells);
+    }
+
+    private boolean inExceptions(int coordX, int coordY, ArrayList<Cell> exceptions) {
+        for ( Cell exception : exceptions) {
+            if ( exception.getRow() == coordX && exception.getColumn() == coordY) {
+                return true;
+            }
+        }
+        return false;
     }
 }

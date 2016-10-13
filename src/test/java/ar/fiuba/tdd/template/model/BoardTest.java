@@ -157,14 +157,14 @@ public class BoardTest {
         }
 
         ArrayList<Cell> firstColumn = board.getColumn(board.getCell(1, 0));
-        ArrayList<Integer> numbers = new ArrayList();
+        ArrayList<Integer> numbers = new ArrayList<>();
         for (Cell cell : firstColumn) {
             ArrayList<CellContent> cellC = board.getContents(cell.getRow(), cell.getColumn());
             numbers.add( cellC.get(0).getNumberValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // column of cell wanted is 0
-        assertEquals(numbers, new ArrayList(Arrays.asList(0, 0, 0, 0, 0)));
+        assertEquals(numbers, new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0)));
     }
 
     @Test

@@ -11,10 +11,18 @@ public class Region {
     private final ArrayList<Cell> cells;
     private int total;
 
+
     public Region(ArrayList<Cell> cells) {
         this.total = 0;
         this.cells = cells;
     }
+
+    public Region() {
+        // Empty region
+        this.total = 0;
+        this.cells = new ArrayList<>();
+    }
+
 
     public void setTotal(int total) {
         this.total = total;

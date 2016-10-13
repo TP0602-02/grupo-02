@@ -9,11 +9,11 @@
   "clues": [{
     "x": 2,
     "y": 3,
-    "content": [{
-      "value": 20
-    }, {
-      "value": -1
-    }]
+      "content": [{
+        "value": 20
+      }, {
+        "value": -1
+      }]
   }, {
     "x": 4,
     "y": 6,
@@ -32,6 +32,19 @@
     "y": 4,
     "content": [{
       "value": 5
+    }]
+  }],
+  "regions": [{
+    "coord": [{
+      "x": 0,
+      "y": 0
+    }, {
+      "x": 2,
+      "y": 2
+    }],
+    "exceptions": [{
+      "x": 1,
+      "y": 1
     }]
   }]
 }

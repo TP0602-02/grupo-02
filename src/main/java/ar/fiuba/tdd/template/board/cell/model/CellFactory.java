@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
-import java.util.ArrayList;
-
 /**
  * Created by Nicolas on 7/10/2016.
  */
@@ -15,6 +13,7 @@ public class CellFactory {
             return new CellSingleValue(coordinateX, coordinateY);
         }
         return new CellMultipleValue(coordinateX, coordinateY);
+
     }
 
 

@@ -41,7 +41,6 @@ public class CircuitVerificator {
         } else {
             return false;
         }
-
     }
 
     public boolean hasLinesOutOfTheCircuit(Board board) {
@@ -88,19 +87,23 @@ public class CircuitVerificator {
         }
     }
 
+    //TODO Ver de refactorear este método, unirlo con el validateDirection.
     public Cell getNextCell(Board board, Cell previousCell, int direction) {
-        switch (direction) {
-            case LEFT:
-                return board.getCell(previousCell.getRow(), previousCell.getColumn() - 1);
-            case RIGHT:
-                return board.getCell(previousCell.getRow(), previousCell.getColumn() + 1);
-            case UP:
-                return board.getCell(previousCell.getRow() - 1, previousCell.getColumn());
-            case DOWN:
-                return board.getCell(previousCell.getRow() + 1, previousCell.getColumn());
-            default:
-                return null;
+        if (this.validateDirection(board, previousCell, direction)) {
+            switch (direction) {
+                case LEFT:
+                    return board.getCell(previousCell.getRow(), previousCell.getColumn() - 1);
+                case RIGHT:
+                    return board.getCell(previousCell.getRow(), previousCell.getColumn() + 1);
+                case UP:
+                    return board.getCell(previousCell.getRow() - 1, previousCell.getColumn());
+                case DOWN:
+                    return board.getCell(previousCell.getRow() + 1, previousCell.getColumn());
+                default:
+                    return null;
+            }
         }
+        return null;
     }
 
     private Cell getFirstCellWithValue(Board board) {

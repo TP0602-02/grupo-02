@@ -11,8 +11,11 @@ import java.util.ArrayList;
  */
 public class CircuitVerificatorWithBorders extends CircuitVerificator {
 
+    private ArrayList<Cell> circuitCells = new ArrayList<Cell>();
+
     @Override
     public boolean isCircuitClosed(Board board) {
+        this.cleanCircuitCells();
         Cell firstCellInTheCircuit = this.getFirstCellInTheCircuit(board);
         if (firstCellInTheCircuit != null) {
             return checkAllDirections(board, firstCellInTheCircuit);
@@ -20,7 +23,12 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
         return false;
     }
 
+    private void cleanCircuitCells() {
+        this.circuitCells.clear();
+    }
+
     private boolean checkAllDirections(Board board, Cell cell) {
+        this.addCellToTheCircuit(cell);
         ArrayList<Integer> validDirections = this.getValidDirections(cell);
         for (Integer direction: validDirections) {
             if (this.hasOpenRoads(board, cell, direction)) {
@@ -30,19 +38,37 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
         return true;
     }
 
+    private void addCellToTheCircuit(Cell cell) {
+        if (!this.circuitCells.contains(cell)) {
+            this.circuitCells.add(cell);
+        }
+    }
+
+    private boolean isCellInTheCircuit(Cell cell) {
+        return this.circuitCells.contains(cell);
+    }
+
     private boolean hasOpenRoads(Board board, Cell previousCell, Integer previousDirection) {
         Cell cell = this.getNextCell(board, previousCell, previousDirection);
-        if (this.isACloseRoad(cell, previousDirection)) {
+        this.addCellToTheCircuit(cell);
+        if (cell == null) {
+            return true;
+        }
+        if (this.isACloseRoad(cell, previousDirection) || this.isCellInTheCircuit(cell)) {
             return false;
         } else {
-            ArrayList<Integer> directions = this.getValidDirectionsWithoutPreviousDirection(cell, previousDirection);
-            for (Integer direction: directions) {
-                if (this.hasOpenRoads(board, cell, direction)) {
-                    return true;
-                }
-            }
-            return false;
+            return this.verificateAllRoads(board, cell, previousDirection);
         }
+    }
+
+    private boolean verificateAllRoads(Board board, Cell cell, Integer previousDirection) {
+        ArrayList<Integer> directions = this.getValidDirectionsWithoutPreviousDirection(cell, previousDirection);
+        for (Integer direction: directions) {
+            if (this.hasOpenRoads(board, cell, direction)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isACloseRoad(Cell cell, Integer previousDirection) {

@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 public class CircuitVerificator {
 
-    private static final int LEFT = 1;
-    private static final int RIGHT = 2;
-    private static final int UP = 3;
-    private static final int DOWN = 4;
+    protected static final int LEFT = 1;
+    protected static final int RIGHT = 2;
+    protected static final int UP = 3;
+    protected static final int DOWN = 4;
 
     private Cell firstCell;
     private int amountOfCellsInTheCircuit;
@@ -37,11 +37,7 @@ public class CircuitVerificator {
         if (this.firstCell != null) {
             ++this.amountOfCellsInTheCircuit;
             int firstCellDirection = this.firstCell.getContents().get(0).getNumberValue();
-            if (checkCircuit(this.firstCell, firstCellDirection, board)
-                /*&& this.amountOfCellsInTheCircuit == this.getAmountOfCellsWithValueInTheBoard(board)*/) {
-                return true;
-            }
-            return false;
+            return checkCircuit(this.firstCell, firstCellDirection, board);
         } else {
             return false;
         }

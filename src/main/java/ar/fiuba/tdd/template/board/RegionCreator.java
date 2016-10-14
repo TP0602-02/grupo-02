@@ -7,21 +7,22 @@ import java.util.ArrayList;
 /**
  * Created by martin on 10/12/16.
  */
-public class GenericRegion extends Region {
+
+public class RegionCreator {
+    private Board board;
+   // public static final String GENERIC_REGION = "GENERIC REGION";
 
 
-    public GenericRegion(ArrayList<Cell> cells) {
-        super(cells);
-    }
-/*
-
-    GenericRegion() {
-        super();
+    public RegionCreator(Board board) {
+        this.board = board;
     }
 
-    public Region getRegion(Board board, Cell topLeft, Cell bottomRight, ArrayList<Cell> exceptions) {
+    public Region createRegion(Cell topLeft, Cell bottomRight, ArrayList<Cell> exceptions) {
+        return getRegion(topLeft,bottomRight,exceptions);
+    }
+
+    private Region getRegion(Cell topLeft, Cell bottomRight, ArrayList<Cell> exceptions) {
         ArrayList<Cell> regionCells = new ArrayList<>();
-
         for ( int coordX = topLeft.getRow(); coordX <= bottomRight.getRow(); coordX++) {
             for ( int coordY = topLeft.getColumn(); coordY <= bottomRight.getColumn(); coordY++) {
                 if (!inExceptions(coordX, coordY, exceptions)) {
@@ -41,5 +42,7 @@ public class GenericRegion extends Region {
         }
         return false;
     }
-    */
+
+
 }
+

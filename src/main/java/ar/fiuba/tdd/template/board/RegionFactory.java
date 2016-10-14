@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class RegionFactory {
 
-    private static RegionFactory instance;
+    /*private static RegionFactory instance;
 
     public static final String GENERIC_REGION = "GENERIC REGION";
 
@@ -26,7 +26,7 @@ public class RegionFactory {
             return new GenericRegion().getRegion(board, topLeft, bottomRight, exceptions);
         }
         return new Region(exceptions);
-    }
+    }*/
 
 
 }

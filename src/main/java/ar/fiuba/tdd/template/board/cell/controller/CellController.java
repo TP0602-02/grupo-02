@@ -6,8 +6,6 @@ import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.entity.BaseController;
 
-import java.util.ArrayList;
-
 
 /**
  * Created by Nicolas on 27/9/2016.
@@ -45,7 +43,7 @@ public class CellController extends BaseController<CellView, Cell> {
     }
 
     private void deletedValue(String text) {
-        this.model.deleteContent(text);
+        this.model.removeContentWithValue(text);
         view.setValues(model.getValuesToString());
     }
 

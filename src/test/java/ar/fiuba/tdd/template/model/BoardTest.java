@@ -33,6 +33,32 @@ public class BoardTest {
     }
 
     @Test
+    public void emptyBoardIsFull_ReturnFalse() {
+        Board board = new Board(4,4,CellFactory.CELL_SINGLE_VALUE);
+        Assert.assertTrue(!board.isFull());
+    }
+
+    @Test
+    public void boardWithDiferentValuesIsFull_ReturnFalse() {
+        Board board = new Board(4,4,CellFactory.CELL_SINGLE_VALUE);
+        board.setValue(1,1,new BlackContent());
+        board.setValue(1,2,new ClueContent(1));
+        board.setValue(3,3,new ValueContent(1));
+        Assert.assertTrue(!board.isFull());
+    }
+
+    @Test
+    public void boardWithDiferentValuesIsFull_ReturnTrue() {
+        Board board = new Board(2,2,CellFactory.CELL_SINGLE_VALUE);
+        board.setValue(1,1,new BlackContent());
+        board.setValue(0,0,new ValueContent(1));
+        board.setValue(0,1,new ClueContent(1));
+        board.setValue(1,0,new ValueContent(1));
+        Assert.assertTrue(board.isFull());
+    }
+
+
+    @Test
     public void getCellRegionReturnEmpty() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
         ArrayList<Cell> firstCells = new ArrayList<>();
@@ -63,6 +89,30 @@ public class BoardTest {
         board.addRegion(firstRegion);
         board.addRegion(new Region(secondCells));
         assertTrue(board.getCellRegions(board.getCell(0, 0)).contains(firstRegion));
+    }
+
+    @Test
+    public void getInvalidIndexReturnsNull() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        Assert.assertNull(board.getCell(1, 5));
+    }
+
+    @Test
+    public void getAdyacentsCellInExtremeReturnsTwoCells() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        Assert.assertTrue(board.getAdyacentCells(board.getCell(3, 3)).size() == 2);
+    }
+
+    @Test
+    public void getAdyacentsCellInMiddleReturnsFourCells() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        Assert.assertTrue(board.getAdyacentCells(board.getCell(1, 1)).size() == 4);
+    }
+
+    @Test
+    public void getAdyacentsCellInBoardReturnsThreeCells() {
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        Assert.assertTrue(board.getAdyacentCells(board.getCell(1, 3)).size() == 3);
     }
 
     @Test

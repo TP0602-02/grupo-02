@@ -3,7 +3,8 @@ package ar.fiuba.tdd.template.puzzle;
 import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
-import ar.fiuba.tdd.template.board.RegionFactory;
+import ar.fiuba.tdd.template.board.RegionCreator;
+import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.rules.GenericRule;
@@ -19,7 +20,7 @@ public class Puzzle {
     private ArrayList<Cell> initialCells;
 
     public Puzzle(int boardHeight, int boardWidth, ArrayList<GenericRule> rules, ArrayList<Cell> initialCells,
-                  ArrayList<ArrayList<Cell>> regions, ArrayList<ArrayList<Cell>> exceptions) {
+                  ArrayList<RegionJson> regionJsons) {
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
         //TODO como ultimo parametro hay que pasarle lo que se levante del parser del archivo
@@ -31,16 +32,15 @@ public class Puzzle {
         for (GenericRule rule : rules) {
             this.rules.add(rule);
         }
-        setInitialRegions(regions, exceptions);
+        setInitialRegions(regionJsons);
     }
 
-    private void setInitialRegions(ArrayList<ArrayList<Cell>> regions, ArrayList<ArrayList<Cell>> exceptions) {
-        for (int i = 0; i < regions.size(); i++) {
-            ArrayList<Cell> fromToRegion = regions.get(i); // contains topLeft and bottomRight
-            ArrayList<Cell> exceptionCells = exceptions.get(i); // contains cells that are not part of the region
+    private void setInitialRegions(ArrayList<RegionJson> regionJsons) {
+        RegionCreator regionCreator = new RegionCreator(this.board);
+        for (RegionJson regionJson : regionJsons) {
 
-            Region region = RegionFactory.getFactory().createRegion(this.board,
-                    fromToRegion.get(0), fromToRegion.get(1), exceptionCells, "GENERIC REGION");
+            Region region = regionCreator.createRegion(regionJson.getLeftTop(),
+                    regionJson.getRightBottom(), regionJson.getExceptions());
             board.addRegion(region);
         }
     }

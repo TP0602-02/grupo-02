@@ -4,10 +4,11 @@ package ar.fiuba.tdd.template.board;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
+import ar.fiuba.tdd.template.entity.Coordinate;
 
 import java.util.ArrayList;
 
-public class Board<T> {
+public class Board {
 
     private ArrayList<ArrayList<Cell>> board;
     private int width;  // number of columns
@@ -15,7 +16,7 @@ public class Board<T> {
     private String cellType;
     private ArrayList<Region> regions;
 
-    public Board(int height, int width,String cellType) {
+    public Board(int height, int width, String cellType) {
         board = new ArrayList<>();
         this.height = height;
         this.width = width;
@@ -24,11 +25,26 @@ public class Board<T> {
         for (int col = 0; col < width; col++) {
             ArrayList<Cell> inner = new ArrayList<>();
             for (int row = 0; row < height; row++) {
-                inner.add(cellFactory.createCell(this.cellType,row, col));
+                inner.add(cellFactory.createCell(this.cellType, new Coordinate(row, col)));
             }
             board.add(inner);
         }
         this.regions = new ArrayList<Region>();
+    }
+
+    public boolean isFull() {
+        for (int col = 0; col < width; col++) {
+            for (int row = 0; row < height; row++) {
+                if (this.getCell(row, col).isEmpty()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public ArrayList<Region> getRegions() {
+        return this.regions;
     }
 
     public int getWidth() {
@@ -37,6 +53,16 @@ public class Board<T> {
 
     public void addRegion(Region region) {
         this.regions.add(region);
+    }
+
+    public boolean cellsInSameRegion(Cell cell, Cell nextCell) {
+        ArrayList<Region> regions = this.getCellRegions(cell);
+        for (Region region : regions) {
+            if (region.containsCell(nextCell)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<Region> getCellRegions(Cell cell) {
@@ -54,7 +80,30 @@ public class Board<T> {
     }
 
     public Cell getCell(int row, int column) {
-        return board.get(column).get(row);
+        if (validateNumber(row, this.getHeight()) && validateNumber(column, this.getWidth())) {
+            return board.get(column).get(row);
+        }
+        return null;
+    }
+
+    private boolean validateNumber(int index, int max) {
+        return index >= 0 && index < max;
+    }
+
+    public ArrayList<Cell> getAdyacentCells(Cell cell) {
+        ArrayList<Cell> adyacents = new ArrayList<Cell>();
+        agregate(this.getCell(cell.getRow() - 1, cell.getColumn()), adyacents);
+        agregate(this.getCell(cell.getRow() + 1, cell.getColumn()), adyacents);
+        agregate(this.getCell(cell.getRow(), cell.getColumn() - 1), adyacents);
+        agregate(this.getCell(cell.getRow(), cell.getColumn() + 1), adyacents);
+        return adyacents;
+    }
+
+    private ArrayList<Cell> agregate(Cell cell, ArrayList<Cell> cells) {
+        if (cell != null) {
+            cells.add(cell);
+        }
+        return cells;
     }
 
     public ArrayList<CellContent> getContents(int row, int column) {
@@ -62,7 +111,8 @@ public class Board<T> {
     }
 
     public void setValue(int row, int column, CellContent content) {
-        getCell(row, column).setContent(content);
+        Cell cell = getCell(row, column);
+        cell.setContent(content);
     }
 
     public void setValues(int row, int column, ArrayList<CellContent> contents) {

@@ -11,18 +11,20 @@ public class Region {
     private final ArrayList<Cell> cells;
     private int total;
 
-
     public Region(ArrayList<Cell> cells) {
         this.total = 0;
         this.cells = cells;
     }
 
-    public Region() {
-        // Empty region
-        this.total = 0;
-        this.cells = new ArrayList<>();
+    public int getOcuppiedCells() {
+        int total = 0;
+        for (Cell cell : this.cells) {
+            if (cell.isSummable()) {
+                total += 1;
+            }
+        }
+        return total;
     }
-
 
     public void setTotal(int total) {
         this.total = total;
@@ -42,4 +44,7 @@ public class Region {
         }
     }
 
+    public boolean containsCell(Cell cell) {
+        return this.cells.contains(cell);
+    }
 }

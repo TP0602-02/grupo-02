@@ -2,6 +2,7 @@ package ar.fiuba.tdd.template.puzzle;
 
 import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.InputUserView;
+import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.rules.RulesFactory;
@@ -11,10 +12,6 @@ import ar.fiuba.tdd.template.userinterface.view.StartView;
 import java.util.ArrayList;
 
 public class PuzzleGenerator {
-
-    public PuzzleGenerator() {
-
-    }
 
     public void runGeneration() {
         StartView startView = new StartView(new StartView.StartGameListener() {
@@ -49,9 +46,10 @@ public class PuzzleGenerator {
 
         initEnabledButtonsToPlay();
         ArrayList<Cell> clues = parser.getClues();
-        ArrayList<ArrayList<Cell>> regions = parser.getRegions();
-        ArrayList<ArrayList<Cell>> exceptions = parser.getExceptions();
-        return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues, regions, exceptions);
+        ArrayList<RegionJson> regionJsons = parser.getRegionJsons();
+       // ArrayList<ArrayList<Cell>> regions = parser.getRegions();
+        //ArrayList<ArrayList<Cell>> exceptions = parser.getExceptions();
+        return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues, regionJsons);
     }
 
 

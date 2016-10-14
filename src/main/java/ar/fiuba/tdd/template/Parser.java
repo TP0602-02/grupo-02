@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.template;
 
+import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.*;
+import ar.fiuba.tdd.template.entity.Coordinate;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,6 +14,8 @@ import java.util.ArrayList;
 public class Parser {
 
     private static final String BLACK_CONTENT_VALUE = "-1";
+    private static final int TOP_LEFT_CELL_REGION_INDEX = 0;
+    private static final int RIGHT_BOTTOM_CELL_REGION_INDEX = 1;
     public static final String JSON_FILES_ROOT = "src/json/";
     public static final String JSON_PARSED_KEY = "Response";
     private JSONParser parser;
@@ -23,14 +27,14 @@ public class Parser {
     private ArrayList<Cell> clues = new ArrayList<>();
     private ArrayList<String> rules = new ArrayList<>();
 
-    private ArrayList<ArrayList<Cell>> regions = new ArrayList<>();
-    private ArrayList<ArrayList<Cell>> exceptions = new ArrayList<>();
 
+    private ArrayList<RegionJson> regionJsons;
     private ArrayList<Cell> plays = new ArrayList<>();
 
     public Parser() {
         this.boardFile = new JSONObject();
         this.playsFile = new JSONObject();
+        this.regionJsons = new ArrayList<>();
         parser = new JSONParser();
     }
 
@@ -60,7 +64,7 @@ public class Parser {
             BufferedReader jsonFile = new BufferedReader(new InputStreamReader(
                     new FileInputStream(JSON_FILES_ROOT + jsonFileName), "UTF8"));
 
-            objectParsed.put(JSON_PARSED_KEY,(JSONObject) parser.parse(jsonFile));
+            objectParsed.put(JSON_PARSED_KEY, (JSONObject) parser.parse(jsonFile));
             System.out.print("Object Parsed: " + objectParsed.toString());
             jsonFile.close();
         } catch (IOException | ParseException e) {
@@ -114,12 +118,9 @@ public class Parser {
         return this.rules;
     }
 
-    public ArrayList<ArrayList<Cell>> getRegions() {
-        return this.regions;
-    }
 
-    public ArrayList<ArrayList<Cell>> getExceptions() {
-        return this.exceptions;
+    public ArrayList<RegionJson> getRegionJsons() {
+        return this.regionJsons;
     }
 
     @SuppressWarnings("unchecked")
@@ -145,7 +146,7 @@ public class Parser {
             String cellType = getCellType(contentData.size());
 
 
-            Cell newCell = cellFactory.createCell(cellType, positionX, positionY);
+            Cell newCell = cellFactory.createCell(cellType, new Coordinate(positionX, positionY));
             // create a single cell
 
 
@@ -214,7 +215,7 @@ public class Parser {
             int positionX = Integer.parseInt(tokens[1]);
             int positionY = Integer.parseInt(tokens[2]);
 
-            Cell newCell = new CellSingleValue(positionX, positionY); // create a single cell
+            Cell newCell = new CellSingleValue(new Coordinate(positionX, positionY)); // create a single cell
 
             // Plays are considered ValueContent
             ValueContent valueContent = new ValueContent(String.valueOf(play.get("value")));
@@ -226,32 +227,30 @@ public class Parser {
 
     @SuppressWarnings("unchecked")
     private void readRegions(JSONObject jsonObject) {
-        CellFactory cellFactory = new CellFactory();
         JSONArray regionContents = (JSONArray) jsonObject.get("regions");
 
         for (JSONObject region : (Iterable<JSONObject>) regionContents) { // for every region
-            ArrayList<Cell> fromToRegion = new ArrayList<>();
-            ArrayList<Cell> exceptionsRegion = new ArrayList<>();
-
-            JSONArray coordinates = (JSONArray) region.get("coord"); // read coordinates
-            for (JSONObject coord : (Iterable<JSONObject>) coordinates) {
-                Cell newCell = cellFactory.createCell(CellFactory.CELL_SINGLE_VALUE,
-                        ((Long) coord.get("x")).intValue(), ((Long) coord.get("y")).intValue());
-                fromToRegion.add(newCell);
-            }
-            regions.add(fromToRegion);
-
+            ArrayList<Cell> fromToRegion = getCellsFromArrayJsonCell((JSONArray) region.get("coord"));
+            ArrayList<Cell> exceptionsRegion = getCellsFromArrayJsonCell((JSONArray) region.get("exceptions"));
+            Cell topLeft = fromToRegion.get(TOP_LEFT_CELL_REGION_INDEX);
+            Cell rightBottom = fromToRegion.get(RIGHT_BOTTOM_CELL_REGION_INDEX);
             // Regions that have no exceptions will have x and y set to -1
-            JSONArray exceptionsRead = (JSONArray) region.get("exceptions"); // read exceptions
-            for (JSONObject excep : (Iterable<JSONObject>) exceptionsRead) {
-                Cell newCell = cellFactory.createCell(CellFactory.CELL_SINGLE_VALUE,
-                        ((Long) excep.get("x")).intValue(), ((Long) excep.get("y")).intValue());
-                exceptionsRegion.add(newCell);
-            }
-            exceptions.add(exceptionsRegion);
+            this.regionJsons.add(new RegionJson(topLeft, rightBottom, exceptionsRegion));
         }
 
         //System.out.print(regions.size() + " " + exceptions.size());
+    }
+
+    private ArrayList<Cell> getCellsFromArrayJsonCell(JSONArray cellJsonArray) {
+        CellFactory cellFactory = new CellFactory();
+        ArrayList<Cell> cells = new ArrayList<>();
+        for (JSONObject excep : (Iterable<JSONObject>) cellJsonArray) {
+            Cell newCell = cellFactory.createCell(CellFactory.CELL_SINGLE_VALUE,
+                    new Coordinate(((Long) excep.get("x")).intValue(),
+                    ((Long) excep.get("y")).intValue()));
+            cells.add(newCell);
+        }
+        return cells;
     }
 
     @SuppressWarnings("unchecked")

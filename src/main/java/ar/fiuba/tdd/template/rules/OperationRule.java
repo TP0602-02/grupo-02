@@ -6,7 +6,7 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 /**
  * Created by matiaskamien on 08/10/16.
  */
-public abstract class OperationRule extends GenericRule {
+public abstract class OperationRule extends NumberRule {
 
     protected int regionTotal;
     protected int amountOfCellsInTheRegion;

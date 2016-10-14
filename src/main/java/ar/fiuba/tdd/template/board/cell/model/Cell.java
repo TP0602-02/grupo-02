@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
 import ar.fiuba.tdd.template.board.cell.controller.CellController;
+import ar.fiuba.tdd.template.entity.Coordinate;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,12 +9,10 @@ import java.util.Iterator;
 public abstract class Cell implements Summable, Editable {
 
     protected ArrayList<CellContent> contents;
-    protected int row;
-    protected int column;
+    protected Coordinate coordinate;
 
-    public Cell(int row, int column) {
-        this.row = row;
-        this.column = column;
+    public Cell(Coordinate coordinate) {
+        this.coordinate = coordinate;
         contents = new ArrayList<>();
     }
 
@@ -22,11 +21,11 @@ public abstract class Cell implements Summable, Editable {
     }
 
     public int getRow() {
-        return this.row;
+        return this.coordinate.getRow();
     }
 
     public int getColumn() {
-        return this.column;
+        return this.coordinate.getColumn();
     }
 
     public abstract void setContent(CellContent newContentCell);
@@ -72,9 +71,9 @@ public abstract class Cell implements Summable, Editable {
         return isSummable;
     }
 
-    public void deleteContent(String text) {
+    public void removeContentWithValue(String value) {
         for (CellContent content : contents) {
-            if (content.getValue().equals(text)) {
+            if (content.getValue().equals(value)) {
                 contents.remove(content);
                 return;
             }
@@ -87,5 +86,21 @@ public abstract class Cell implements Summable, Editable {
             values.add(content.getValue());
         }
         return values;
+    }
+
+    public void removeContent(CellContent content) {
+        if (this.contents.contains(content)) {
+            this.contents.remove(content);
+        }
+    }
+
+    public int getQuantityOfValues() {
+        int total = 0;
+        for (CellContent cellContent : contents) {
+            if (cellContent.isSummable()) {
+                total++;
+            }
+        }
+        return total;
     }
 }

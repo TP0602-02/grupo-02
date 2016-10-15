@@ -37,7 +37,7 @@ public class CircuitVerificatorWithBordersTest {
         Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
     }
 
-    @Test
+/*    @Test
     public void squareInBoardReturnTrue() {
         this.board.setValue(1, 1, new ValueContent(RIGHT));
         this.board.setValue(2, 1, new ValueContent(RIGHT));
@@ -69,6 +69,6 @@ public class CircuitVerificatorWithBordersTest {
         this.board.setValue(4, 3, new ValueContent(UP));
         this.board.setValue(4, 4, new ValueContent(UP));
     }
-
+*/
 
 }

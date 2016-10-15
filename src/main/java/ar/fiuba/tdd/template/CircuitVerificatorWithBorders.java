@@ -54,7 +54,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
         if (cell == null) {
             return true;
         }
-        if (this.isACloseRoad(cell, previousDirection) || this.isCellInTheCircuit(cell)) {
+        if (this.isACloseRoad(cell, previousDirection)) {
             return false;
         } else {
             return this.verificateAllRoads(board, cell, previousDirection);
@@ -86,7 +86,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
     private ArrayList<Integer> getValidDirections(Cell cell) {
         ArrayList<Integer> directions = this.getAllDirections();
         for (CellContent cellContent : cell.getContents()) {
-            directions.remove(cellContent.getNumberValue());
+            directions.remove((Integer)cellContent.getNumberValue());
         }
         return directions;
     }

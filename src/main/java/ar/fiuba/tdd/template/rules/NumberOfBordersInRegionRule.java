@@ -9,10 +9,11 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
  */
 public class NumberOfBordersInRegionRule extends NumberRule {
 
+    private static final int noClueRestriction = -1;
 
     @Override
     public boolean validateRegion(Region region, Cell cell, int numberToAdd) {
-        return (cell.getSummableContents().size() < region.getTotal()) || (region.getTotal() == 0);
+        return (cell.getSummableContents().size() < region.getTotal()) || (region.getTotal() == this.noClueRestriction);
     }
 
     @Override

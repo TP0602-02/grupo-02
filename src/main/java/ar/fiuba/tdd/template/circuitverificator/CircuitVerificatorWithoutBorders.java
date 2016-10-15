@@ -15,8 +15,6 @@ import java.util.ArrayList;
 
 public class CircuitVerificatorWithoutBorders extends CircuitVerificator {
 
-    private int amountOfCellsInTheCircuit;
-
     public CircuitVerificatorWithoutBorders() {
         this.firstCell = null;
         this.amountOfCellsInTheCircuit = 0;
@@ -35,10 +33,6 @@ public class CircuitVerificatorWithoutBorders extends CircuitVerificator {
         } else {
             return false;
         }
-    }
-
-    public boolean hasLinesOutOfTheCircuit(Board board) {
-        return (this.amountOfCellsInTheCircuit < this.getAmountOfCellsWithValueInTheBoard(board));
     }
 
     private boolean checkCircuit(Cell cell, int direction, Board board) {
@@ -64,13 +58,5 @@ public class CircuitVerificatorWithoutBorders extends CircuitVerificator {
             }
         }
         return -1;
-    }
-
-    public int getAmountOfCellsWithValueInTheBoard(Board board) {
-        int total = 0;
-        for (Region region : board.getRegions()) {
-            total += region.getOcuppiedCells();
-        }
-        return total;
     }
 }

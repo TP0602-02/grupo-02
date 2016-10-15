@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.template.circuitverificator;
 
 import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 
 /**
@@ -15,6 +16,8 @@ public abstract class CircuitVerificator {
     protected static final int DOWN = 4;
 
     protected Cell firstCell;
+
+    protected int amountOfCellsInTheCircuit;
 
     public abstract boolean isCircuitClosed(Board board);
 
@@ -76,5 +79,17 @@ public abstract class CircuitVerificator {
             default:
                 return true;
         }
+    }
+
+    public boolean hasLinesOutOfTheCircuit(Board board) {
+        return (this.amountOfCellsInTheCircuit < this.getAmountOfCellsWithValueInTheBoard(board));
+    }
+
+    public int getAmountOfCellsWithValueInTheBoard(Board board) {
+        int total = 0;
+        for (Region region : board.getRegions()) {
+            total += region.getOcuppiedCells();
+        }
+        return total;
     }
 }

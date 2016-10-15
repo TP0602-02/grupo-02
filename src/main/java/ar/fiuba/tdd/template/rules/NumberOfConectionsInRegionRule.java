@@ -9,10 +9,12 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
  */
 public class NumberOfConectionsInRegionRule extends RegionConectionRule {
 
+    private static final int noClueRestriction = -1;
+
     private boolean validateRegion(Board board, Cell cell) {
         Region region = board.getCellRegions(cell).get(0);
         int conections = addConection(cell, region.getOcuppiedCells());
-        return (conections <= region.getTotal() || region.getTotal() == 0);
+        return (conections <= region.getTotal() || region.getTotal() == this.noClueRestriction);
     }
 
     @Override

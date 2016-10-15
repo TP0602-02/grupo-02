@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.template.winverificators;
 
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithoutBorders;
 import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithoutBorders;
 
 /**
  * Created by alazraqui on 13/10/2016.

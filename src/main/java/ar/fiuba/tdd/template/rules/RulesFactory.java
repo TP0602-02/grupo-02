@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.template.rules;
 
-import java.nio.channels.NonReadableChannelException;
 import java.util.Properties;
 
 public class RulesFactory {
@@ -24,7 +23,7 @@ public class RulesFactory {
         factory.put(NO_REPEAT_VALUE_RULE, new NoRepeatValueRule());
         factory.put(CONECTIONS_IN_CELL_RULE, new CellHasValidConectionsRule());
         factory.put(CONECTIONS_IN_REGION_RULE, new RegionHasValidConectionsRule());
-        factory.put(CLOSE_CIRCUIT_RULE, new CloseCircuitRule());
+        factory.put(CLOSE_CIRCUIT_RULE, new CloseCircuitConnectionRule());
         factory.put(CONECTIONS_INSIDE_BOARD_RULE, new ConectionInsideBoardRule());
         factory.put(NUMBER_CONECTIONS_IN_REGION_RULE, new NumberOfConectionsInRegionRule());
     }

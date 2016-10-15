@@ -30,7 +30,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
     private boolean checkAllDirections(Board board, Cell cell) {
         this.addCellToTheCircuit(cell);
         ArrayList<Integer> validDirections = this.getValidDirections(cell);
-        for (Integer direction : validDirections) {
+        for (Integer direction: validDirections) {
             if (this.hasOpenRoads(board, cell, direction)) {
                 return false;
             }
@@ -63,7 +63,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
 
     private boolean verificateAllRoads(Board board, Cell cell, Integer previousDirection) {
         ArrayList<Integer> directions = this.getValidDirectionsWithoutPreviousDirection(cell, previousDirection);
-        for (Integer direction : directions) {
+        for (Integer direction: directions) {
             if (this.hasOpenRoads(board, cell, direction)) {
                 return true;
             }
@@ -99,7 +99,6 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
         directions.add(DOWN);
         return directions;
     }
-
 
     private Cell getFirstCellInsideCircuit(Board board) {
         Cell cell = this.getFirstCellWithValue(board);

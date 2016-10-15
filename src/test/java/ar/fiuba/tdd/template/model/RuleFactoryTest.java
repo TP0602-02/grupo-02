@@ -2,7 +2,6 @@ package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.rules.*;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -21,7 +20,7 @@ public class RuleFactoryTest {
     public void testCreateCloseCircuitRule() {
         GenericRule rule =
                 RulesFactory.getFactory().createRule(RulesFactory.CLOSE_CIRCUIT_RULE);
-        Assert.assertTrue(rule instanceof CloseCircuitRule);
+        Assert.assertTrue(rule instanceof CloseCircuitConnectionRule);
     }
 
     @Test

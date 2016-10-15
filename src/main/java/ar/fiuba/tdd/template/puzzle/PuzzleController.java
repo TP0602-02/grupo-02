@@ -35,22 +35,17 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                 cellController.setUserInputListener(new CellController.UserInputListener() {
                     @Override
                     public boolean validateUserTextInputed(Cell cell, String text) {
-                        try {
-                            int textParsed = SpecialCharactersParser.getInstance().getValueOf(text);
-                           /*
-                            //TODO esto debe ser otra RULE que valide el dominio de los numeros posibles
-                            if(textParsed > 0 && textParsed <= model.getBoardHeight()){
-                                return model.checkMovement(cell,textParsed);
-                            }else{
-                                return false;
-                            }*/
-                            Play play = new Play(cell);
-                            play.setSelectedValue(textParsed);
-                            return model.checkMovement(play);
-
-                        } catch (NumberFormatException exception) {
+                        int textParsed = SpecialCharactersParser.getInstance().getValueOf(text);
+                       /*
+                        //TODO esto debe ser otra RULE que valide el dominio de los numeros posibles
+                        if(textParsed > 0 && textParsed <= model.getBoardHeight()){
+                            return model.checkMovement(cell,textParsed);
+                        }else{
                             return false;
-                        }
+                        }*/
+                        Play play = new Play(cell);
+                        play.setSelectedValue(textParsed);
+                        return model.checkMovement(play);
                     }
                 });
                 this.cellControllers.add(cellController);

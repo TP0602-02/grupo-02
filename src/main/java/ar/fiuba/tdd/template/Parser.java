@@ -73,7 +73,9 @@ public class Parser {
     }
 
     public void decodeJson(String fileGame, String playsFileName) {
+        //TODO uncomment this v
         readFile(fileGame, this.boardFile);
+        //readFile("Board.json", this.boardFile);
 
         // Board configuration
         this.width = readWidth((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).intValue();
@@ -230,12 +232,13 @@ public class Parser {
         JSONArray regionContents = (JSONArray) jsonObject.get("regions");
 
         for (JSONObject region : (Iterable<JSONObject>) regionContents) { // for every region
+            int total = ((Long)region.get("total")).intValue();
             ArrayList<Cell> fromToRegion = getCellsFromArrayJsonCell((JSONArray) region.get("coord"));
             ArrayList<Cell> exceptionsRegion = getCellsFromArrayJsonCell((JSONArray) region.get("exceptions"));
             Cell topLeft = fromToRegion.get(TOP_LEFT_CELL_REGION_INDEX);
             Cell rightBottom = fromToRegion.get(RIGHT_BOTTOM_CELL_REGION_INDEX);
             // Regions that have no exceptions will have x and y set to -1
-            this.regionJsons.add(new RegionJson(topLeft, rightBottom, exceptionsRegion));
+            this.regionJsons.add(new RegionJson(topLeft, rightBottom, exceptionsRegion, total));
         }
 
         //System.out.print(regions.size() + " " + exceptions.size());

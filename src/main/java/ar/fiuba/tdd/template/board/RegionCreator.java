@@ -4,10 +4,6 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 
 import java.util.ArrayList;
 
-/**
- * Created by martin on 10/12/16.
- */
-
 public class RegionCreator {
     private Board board;
    // public static final String GENERIC_REGION = "GENERIC REGION";

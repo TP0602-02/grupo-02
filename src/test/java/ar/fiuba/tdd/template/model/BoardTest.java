@@ -226,9 +226,18 @@ public class BoardTest {
         int width = parser.getWidth();
         int height = parser.getHeight();
         Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
+
+        /*
+        ArrayList<GenericRule> parsedRules = new ArrayList<>();
+        for (String rule : parser.getRules()) {
+            parsedRules.add(RulesFactory.getFactory().createRule(rule));
+        }
+        Puzzle puzzle = new Puzzle(height, width, parsedRules, parser.getClues(), parser.getRegionJsons());
+
+        */
         assertEquals(board.getHeight(), height);
         assertEquals(board.getWidth(), width);
-        /*
+/*
         ArrayList<String> rules = parser.getRules();
         for (String rule : rules) {
             System.out.print(rule + "\n");

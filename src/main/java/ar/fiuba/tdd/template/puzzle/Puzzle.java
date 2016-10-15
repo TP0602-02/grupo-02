@@ -38,9 +38,10 @@ public class Puzzle {
     private void setInitialRegions(ArrayList<RegionJson> regionJsons) {
         RegionCreator regionCreator = new RegionCreator(this.board);
         for (RegionJson regionJson : regionJsons) {
-
             Region region = regionCreator.createRegion(regionJson.getLeftTop(),
                     regionJson.getRightBottom(), regionJson.getExceptions());
+            region.setTotal(regionJson.getTotal());
+            System.out.print(regionJson.getTotal() + "\n");
             board.addRegion(region);
         }
     }

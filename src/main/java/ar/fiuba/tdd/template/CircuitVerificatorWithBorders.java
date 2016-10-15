@@ -16,7 +16,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
     @Override
     public boolean isCircuitClosed(Board board) {
         this.cleanCircuitCells();
-        Cell firstCellInTheCircuit = this.getFirstCellInTheCircuit(board);
+        Cell firstCellInTheCircuit = this.getFirstCellInsideCircuit(board);
         if (firstCellInTheCircuit != null) {
             return checkAllDirections(board, firstCellInTheCircuit);
         }
@@ -30,7 +30,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
     private boolean checkAllDirections(Board board, Cell cell) {
         this.addCellToTheCircuit(cell);
         ArrayList<Integer> validDirections = this.getValidDirections(cell);
-        for (Integer direction: validDirections) {
+        for (Integer direction : validDirections) {
             if (this.hasOpenRoads(board, cell, direction)) {
                 return false;
             }
@@ -63,7 +63,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
 
     private boolean verificateAllRoads(Board board, Cell cell, Integer previousDirection) {
         ArrayList<Integer> directions = this.getValidDirectionsWithoutPreviousDirection(cell, previousDirection);
-        for (Integer direction: directions) {
+        for (Integer direction : directions) {
             if (this.hasOpenRoads(board, cell, direction)) {
                 return true;
             }
@@ -100,8 +100,15 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
         return directions;
     }
 
-    private Cell getFirstCellInTheCircuit(Board board) {
-        //TODO Ver como agarrar laa primer celda.
-        return null;
+
+    private Cell getFirstCellInsideCircuit(Board board) {
+        Cell cell = this.getFirstCellWithValue(board);
+        ArrayList<CellContent> contents = cell.getSummableContents();
+        for (CellContent content : contents) {
+            if (!this.validateDirection(board, cell, content.getNumberValue())) {
+                return cell;
+            }
+        }
+        return this.getNextCell(board, cell, contents.get(0).getNumberValue()); //es lo mismo cual le paso
     }
 }

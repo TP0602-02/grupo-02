@@ -106,7 +106,7 @@ public class CircuitVerificator {
         return null;
     }
 
-    private Cell getFirstCellWithValue(Board board) {
+    public Cell getFirstCellWithValue(Board board) {
         for (int row = 0; row < board.getWidth(); ++row) {
             for (int column = 0; column < board.getHeight(); ++column) {
                 Cell cell = board.getCell(row, column);

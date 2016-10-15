@@ -217,6 +217,7 @@ public class Parser {
         JSONArray regionContents = (JSONArray) jsonObject.get("regions");
 
         for (JSONObject region : (Iterable<JSONObject>) regionContents) { // for every region
+            // totals that are -1 mean there's no total to work with in that region
             int total = ((Long)region.get("total")).intValue();
             ArrayList<Cell> fromToRegion = getCellsFromArrayJsonCell((JSONArray) region.get("coord"));
             ArrayList<Cell> exceptionsRegion = getCellsFromArrayJsonCell((JSONArray) region.get("exceptions"));

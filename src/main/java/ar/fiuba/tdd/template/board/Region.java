@@ -4,9 +4,6 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 
 import java.util.ArrayList;
 
-/**
- * Created by matiaskamien on 07/10/16.
- */
 public class Region {
     private final ArrayList<Cell> cells;
     private int total;

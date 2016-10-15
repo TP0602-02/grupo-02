@@ -1,10 +1,11 @@
 package ar.fiuba.tdd.template.model;
 
-import ar.fiuba.tdd.template.CircuitVerificator;
+
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
+import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithoutBorders;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -23,7 +24,7 @@ public class CircuitVerificatorTest {
 
     @Test
     public void createCircuitVerificatorWithCountersInZero() {
-        CircuitVerificator verificator = new CircuitVerificator();
+        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertTrue(verificator.getAmountOfCellsInTheCircuit() == 0);
     }
 
@@ -44,7 +45,7 @@ public class CircuitVerificatorTest {
         Region region = new Region(cells);
         board.addRegion(region);
         setMovements(board);
-        CircuitVerificator verificator = new CircuitVerificator();
+        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertTrue(verificator.isCircuitClosed(board));
     }
 
@@ -84,7 +85,7 @@ public class CircuitVerificatorTest {
         board.getCell(2, 0).setContent(new ValueContent(RIGHT));
         board.getCell(2, 0).setContent(new ValueContent(UP));
         board.getCell(1, 0).setContent(new ValueContent(DOWN));
-        CircuitVerificator verificator = new CircuitVerificator();
+        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertFalse(verificator.isCircuitClosed(board));
     }
 
@@ -108,42 +109,42 @@ public class CircuitVerificatorTest {
         board.getCell(1, 2).setContent(new ValueContent(DOWN));
         board.getCell(1, 2).setContent(new ValueContent(UP));
         board.getCell(0, 2).setContent(new ValueContent(DOWN));
-        CircuitVerificator verificator = new CircuitVerificator();
+        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertFalse(verificator.isCircuitClosed(board));
     }
 
     @Test
     public void insertValidMovement_returnTrue() {
         Board board = new Board(4, 4, "");
-        CircuitVerificator verificator = new CircuitVerificator();
+        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertTrue(verificator.validateDirection(board, board.getCell(2, 2), UP));
     }
 
     @Test
     public void insertRightValidMovement_returnFalse() {
         Board board = new Board(4, 4, "");
-        CircuitVerificator verificator = new CircuitVerificator();
+        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertTrue(!verificator.validateDirection(board, board.getCell(2, 3), RIGHT));
     }
 
     @Test
     public void insertLeftValidMovement_returnFalse() {
         Board board = new Board(4, 4, "");
-        CircuitVerificator verificator = new CircuitVerificator();
+        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertTrue(!verificator.validateDirection(board, board.getCell(2, 0), LEFT));
     }
 
     @Test
     public void insertDownValidMovement_returnFalse() {
         Board board = new Board(4, 4, "");
-        CircuitVerificator verificator = new CircuitVerificator();
+        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertTrue(!verificator.validateDirection(board, board.getCell(3, 2), DOWN));
     }
 
     @Test
     public void insertUpValidMovement_returnFalse() {
         Board board = new Board(4, 4, "");
-        CircuitVerificator verificator = new CircuitVerificator();
+        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertTrue(!verificator.validateDirection(board, board.getCell(0, 3), UP));
     }
 

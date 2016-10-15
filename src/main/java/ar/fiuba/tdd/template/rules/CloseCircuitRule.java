@@ -1,20 +1,20 @@
 package ar.fiuba.tdd.template.rules;
 
-import ar.fiuba.tdd.template.CircuitVerificator;
+
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
-
+import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithoutBorders;
+import ar.fiuba.tdd.template.board.Region;
 /**
  * Created by alazraqui on 12/10/2016.
  */
 public class CloseCircuitRule extends GenericRule {
-    CircuitVerificator verificator;
+    private CircuitVerificatorWithoutBorders verificator;
 
     public CloseCircuitRule() {
-        this.verificator = new CircuitVerificator();
+        this.verificator = new CircuitVerificatorWithoutBorders();
     }
 
     @Override

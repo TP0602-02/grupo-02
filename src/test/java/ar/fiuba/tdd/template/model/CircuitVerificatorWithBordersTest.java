@@ -1,8 +1,8 @@
 package ar.fiuba.tdd.template.model;
 
-import ar.fiuba.tdd.template.CircuitVerificatorWithBorders;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
+import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithBorders;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

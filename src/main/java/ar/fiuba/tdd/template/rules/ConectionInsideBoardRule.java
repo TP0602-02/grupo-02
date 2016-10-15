@@ -1,14 +1,14 @@
 package ar.fiuba.tdd.template.rules;
 
-import ar.fiuba.tdd.template.CircuitVerificator;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithoutBorders;
 
 /**
  * Created by alazraqui on 12/10/2016.
  */
 public class ConectionInsideBoardRule extends GenericRule {
-    CircuitVerificator verificator;
+    CircuitVerificatorWithoutBorders verificator;
 
     @Override
     public boolean validate(Board board, Cell cell, int numberToAdd) {
@@ -16,6 +16,6 @@ public class ConectionInsideBoardRule extends GenericRule {
     }
 
     public ConectionInsideBoardRule() {
-        this.verificator = new CircuitVerificator();
+        this.verificator = new CircuitVerificatorWithoutBorders();
     }
 }

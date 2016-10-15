@@ -47,8 +47,6 @@ public class PuzzleGenerator {
         initEnabledButtonsToPlay();
         ArrayList<Cell> clues = parser.getClues();
         ArrayList<RegionJson> regionJsons = parser.getRegionJsons();
-       // ArrayList<ArrayList<Cell>> regions = parser.getRegions();
-        //ArrayList<ArrayList<Cell>> exceptions = parser.getExceptions();
         return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues, regionJsons);
     }
 

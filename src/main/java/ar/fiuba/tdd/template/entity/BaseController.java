@@ -16,5 +16,14 @@ public abstract class BaseController<T, E> {
 
     public abstract void elementsAttached(T view, E model);
 
+    public T getView() {
+        return view;
+    }
+
+    public E getModel() {
+        return model;
+    }
+
+
 
 }

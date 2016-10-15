@@ -7,6 +7,7 @@ import ar.fiuba.tdd.template.board.RegionCreator;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
+import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.rules.GenericRule;
 
 import java.util.ArrayList;
@@ -69,15 +70,10 @@ public class Puzzle {
     }
 
     public boolean checkMovement(Play play) {
-        Cell cell = play.getSelectedCell();
-        if (this.validateMove(cell, play.getSelectedCellValue())) {
-            // this.board.setValue(cell.getRow(), cell.getColumn(), new ValueContent<Integer>(valueToAdd));
-            play.setValidPlay(true);
-            return true;
-        } else {
-            play.setValidPlay(false);
-            return false;
-        }
+        boolean validPlay = this.validateMove( play.getSelectedCell(),
+                SpecialCharactersParser.getInstance().getValueOf(play.getSelectedCellValue()));
+        play.setValidPlay(validPlay);
+        return validPlay;
     }
 
     private boolean validateMove(Cell cell, int valueToAdd) {
@@ -90,5 +86,8 @@ public class Puzzle {
         return true;
     }
 
+    public Board getBoard() {
+        return board;
+    }
 }
 

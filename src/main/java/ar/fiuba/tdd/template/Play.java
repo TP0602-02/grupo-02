@@ -8,11 +8,16 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 public class Play {
     // Criteria of acceptance : we only add single cell values
     private Cell selectedCell;
-    private int selectedValue;
+    private String selectedValue;
     private boolean validPlay;
-    
+
     public Play(Cell selectedCell) {
         this.selectedCell = selectedCell;
+    }
+
+    public Play(Cell selectedCell, String selectedValue) {
+        this.selectedCell = selectedCell;
+        this.selectedValue = selectedValue;
     }
 
     public void setValidPlay(boolean validPlay) {
@@ -27,12 +32,12 @@ public class Play {
         return this.selectedCell;
     }
 
-    public void setSelectedValue(int value) {
+    public void setSelectedValue(String value) {
         this.selectedValue = value;
     }
 
 
-    public int getSelectedCellValue() {
+    public String getSelectedCellValue() {
         return selectedValue;
     }
 

@@ -18,6 +18,7 @@ public class SpecialCharactersParser {
     public static final int GUION_MEDIO_VALUE = 1;
     public static final int GUION_BAJO_VALUE = 0;
 
+
     private static Properties table;
     private static SpecialCharactersParser instance;
 
@@ -44,5 +45,4 @@ public class SpecialCharactersParser {
             return (int) table.getOrDefault(text, 0);
         }
     }
-
 }

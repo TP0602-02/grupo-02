@@ -22,6 +22,8 @@ public class PuzzleGenerator {
                         puzzle.getInitialCells(), gameName);
                 puzzleView.showVisu();
                 PuzzleController puzzleController = new PuzzleController();
+                //TODO se debe levantar del archivo el booleano que se le pasa
+                puzzleController.setAddWithConnections(false);
                 puzzleController.attachElements(puzzleView, puzzle);
             }
         });

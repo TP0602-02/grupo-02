@@ -1,11 +1,11 @@
 package ar.fiuba.tdd.template.puzzle;
 
+import ar.fiuba.tdd.template.CircuitVerificator;
 import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.entity.BaseController;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
-import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 
 import java.util.ArrayList;
@@ -16,9 +16,14 @@ import java.util.ArrayList;
 public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
 
     private ArrayList<CellController> cellControllers;
+    private boolean addWithConnections;
 
     public PuzzleController() {
         this.cellControllers = new ArrayList<>();
+    }
+
+    public void setAddWithConnections(boolean addWithConnections) {
+        this.addWithConnections = addWithConnections;
     }
 
     @Override
@@ -34,8 +39,8 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                         model.getCell(row, column));
                 cellController.setUserInputListener(new CellController.UserInputListener() {
                     @Override
-                    public boolean validateUserTextInputed(Cell cell, String text) {
-                        int textParsed = SpecialCharactersParser.getInstance().getValueOf(text);
+                    public void validateUserTextInputed(Cell cell, String text) {
+                        // int textParsed = SpecialCharactersParser.getInstance().getValueOf(text);
                        /*
                         //TODO esto debe ser otra RULE que valide el dominio de los numeros posibles
                         if(textParsed > 0 && textParsed <= model.getBoardHeight()){
@@ -43,13 +48,40 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                         }else{
                             return false;
                         }*/
-                        Play play = new Play(cell);
-                        play.setSelectedValue(textParsed);
-                        return model.checkMovement(play);
+                        Play play = new Play(cell, text);
+                        if (model.checkMovement(play)) {
+                            runPlay(play);
+                        }
                     }
                 });
                 this.cellControllers.add(cellController);
             }
         }
+    }
+
+    private void runPlay(Play play) {
+        getCellControllerOfCell(play.getSelectedCell()).addValue(play.getSelectedCellValue());
+        //TODO hay que hacerlo levantando algo del archivo Y QUE EL PARSER SE LO SETEE AL PUZZLE CONTORLLER
+        if (addWithConnections) {
+            Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), play.getSelectedCellValue());
+            getCellControllerOfCell(newPLayToRun.getSelectedCell()).addValue(newPLayToRun.getSelectedCellValue());
+        }
+    }
+
+    private CellController getCellControllerOfCell(Cell cell) {
+        for (CellController cellController : this.cellControllers) {
+            if (cellController.getModel().equals(cell)) {
+                return cellController;
+            }
+        }
+        return null;
+    }
+
+    private Play getPlayFromCellConnection(Cell cell, String valueOfConnection) {
+        CircuitVerificator circuit = new CircuitVerificator();
+        Cell nextCell = circuit.getNextCell(this.model.getBoard(),
+                cell, SpecialCharactersParser.getInstance().getValueOf(valueOfConnection));
+        String opositeDirection = circuit.getOppositeDirection(valueOfConnection);
+        return new Play(nextCell, opositeDirection);
     }
 }

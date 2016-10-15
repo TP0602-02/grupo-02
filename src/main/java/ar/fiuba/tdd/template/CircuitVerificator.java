@@ -5,6 +5,8 @@ import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
+import ar.fiuba.tdd.template.entity.Constants;
+import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 
 import java.util.ArrayList;
 
@@ -79,17 +81,31 @@ public class CircuitVerificator {
 
     public int getOppositeDirection(int direction) {
         switch (direction) {
-            case LEFT:
-                return RIGHT;
-            case RIGHT:
-                return LEFT;
-            case UP:
-                return DOWN;
-            case DOWN:
-                return UP;
+            case Constants.IZQUIERDA_VALUE:
+                return Constants.DERECHA_VALUE;
+            case Constants.DERECHA_VALUE:
+                return Constants.IZQUIERDA_VALUE;
+            case Constants.ARRIBA_VALUE:
+                return Constants.ABAJO_VALUE;
+            case Constants.ABAJO_VALUE:
+                return Constants.ARRIBA_VALUE;
             default:
                 return 0;
         }
+    }
+
+
+    public String getOppositeDirection(String direction) {
+        if (direction.equals(Constants.IZQUIERDA)) {
+            return Constants.DERECHA;
+        } else if (direction.equals(Constants.DERECHA)) {
+            return Constants.IZQUIERDA;
+        } else if (direction.equals(Constants.ARRIBA)) {
+            return Constants.ABAJO;
+        } else if (direction.equals(Constants.ABAJO)) {
+            return Constants.ARRIBA;
+        }
+        return "";
     }
 
     public Cell getNextCell(Board board, Cell previousCell, int direction) {

@@ -49,11 +49,7 @@ public class CellController extends BaseController<CellView, Cell> {
 
     private void textInputed(String text) {
         if (userInputListener != null) {
-            boolean validInput = userInputListener.validateUserTextInputed(this.model, text);
-            if (validInput) {
-                model.setContent(new ValueContent(text));
-                view.setValues(model.getValuesToString());
-            }
+            userInputListener.validateUserTextInputed(this.model, text);
         }
 
     }
@@ -63,7 +59,12 @@ public class CellController extends BaseController<CellView, Cell> {
     }
 
     public interface UserInputListener {
-        public boolean validateUserTextInputed(Cell cell, String text);
+        public void validateUserTextInputed(Cell cell, String text);
+    }
+
+    public void addValue(String value) {
+        model.setContent(new ValueContent(value));
+        view.setValues(model.getValuesToString());
     }
 
 }

@@ -50,13 +50,13 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
 
     private boolean hasOpenRoads(Board board, Cell previousCell, Integer previousDirection) {
         Cell cell = this.getNextCell(board, previousCell, previousDirection);
-        this.addCellToTheCircuit(cell);
         if (cell == null) {
             return true;
         }
-        if (this.isACloseRoad(cell, previousDirection)) {
+        if (this.isACloseRoad(cell, previousDirection) || this.isCellInTheCircuit(cell)) {
             return false;
         } else {
+            this.addCellToTheCircuit(cell);
             return this.verificateAllRoads(board, cell, previousDirection);
         }
     }

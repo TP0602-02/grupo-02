@@ -36,10 +36,11 @@ public class CircuitVerificatorWithoutBorders extends CircuitVerificator {
     }
 
     private boolean checkCircuit(Cell cell, int direction, Board board) {
-        Cell nextCell = this.getNextCell(board, cell, direction);
+        Cell nextCell = this.iterator.getNextCell(board, cell, direction);
         ++this.amountOfCellsInTheCircuit;
         if (nextCell == this.firstCell) {
             --this.amountOfCellsInTheCircuit;
+            this.isClose = true;
             return true;
         } else {
             int nextCellDirection = this.getNextDirection(nextCell, direction);
@@ -51,7 +52,7 @@ public class CircuitVerificatorWithoutBorders extends CircuitVerificator {
     }
 
     private int getNextDirection(Cell nextCell, int direction) {
-        int oppositeDirection = this.getOppositeDirection(direction);
+        int oppositeDirection = this.iterator.getOppositeDirection(direction);
         for (CellContent cellContent : nextCell.getContents()) {
             if (cellContent.getNumberValue() != oppositeDirection) {
                 return cellContent.getNumberValue();

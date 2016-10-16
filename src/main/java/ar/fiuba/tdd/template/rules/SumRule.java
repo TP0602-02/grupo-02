@@ -17,4 +17,6 @@ public class SumRule extends OperationRule {
     protected void updateTotals(int value) {
         this.regionPartial += value;
     }
+
+    public SumRule() {}
 }

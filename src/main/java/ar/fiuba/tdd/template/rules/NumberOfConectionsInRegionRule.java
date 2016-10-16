@@ -3,18 +3,17 @@ package ar.fiuba.tdd.template.rules;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.entity.Constants;
 
 /**
  * Created by alazraqui on 12/10/2016.
  */
 public class NumberOfConectionsInRegionRule extends RegionConectionRule {
 
-    private static final int noClueRestriction = -1;
-
     private boolean validateRegion(Board board, Cell cell) {
         Region region = board.getCellRegions(cell).get(0);
         int conections = addConection(cell, region.getOcuppiedCells());
-        return (conections <= region.getTotal() || region.getTotal() == this.noClueRestriction);
+        return (conections <= region.getTotal() || region.getTotal() == Constants.NO_CLUE_RESTRICTION);
     }
 
     @Override

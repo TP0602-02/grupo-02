@@ -16,18 +16,17 @@ public class Parser {
     private static final String BLACK_CONTENT_VALUE = "-1";
     private static final int TOP_LEFT_CELL_REGION_INDEX = 0;
     private static final int RIGHT_BOTTOM_CELL_REGION_INDEX = 1;
-    public static final String JSON_FILES_ROOT = "src/json/";
-    public static final String JSON_PARSED_KEY = "Response";
+    private static final String JSON_FILES_ROOT = "src/json/";
+    private static final String JSON_PARSED_KEY = "Response";
     private JSONParser parser;
     private JSONObject boardFile;
     private JSONObject playsFile;
 
     private int height;
     private int width;
+    private ArrayList<String> acceptedKeys = new ArrayList<>();
     private ArrayList<Cell> clues = new ArrayList<>();
     private ArrayList<String> rules = new ArrayList<>();
-
-
     private ArrayList<RegionJson> regionJsons;
     private ArrayList<Cell> plays = new ArrayList<>();
 
@@ -38,25 +37,7 @@ public class Parser {
         parser = new JSONParser();
     }
 
-    /*
-    // Obtains both files as JSONObjects to work on
-    private void readFile(String boardFileName, String playsFileName) {
-        try {
-            // Uses bufferedReader to avoid reliance on default encoding
-            BufferedReader boardJsonFile = new BufferedReader(new InputStreamReader(new FileInputStream(boardFileName), "UTF8"));
-            BufferedReader playsJsonFile = new BufferedReader(new InputStreamReader(new FileInputStream(playsFileName), "UTF8"));
-            Object boardFileObject = parser.parse(boardJsonFile);
-            Object playsFileObject = parser.parse(playsJsonFile);
-            this.boardFile = (JSONObject) boardFileObject;
-            this.playsFile = (JSONObject) playsFileObject;
-            boardJsonFile.close();
-            playsJsonFile.close();
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
-    }
-*/
-
+    @SuppressWarnings("unchecked")
     // Obtains files as JSONObjects to work on
     private void readFile(String jsonFileName, JSONObject objectParsed) {
         try {
@@ -64,7 +45,7 @@ public class Parser {
             BufferedReader jsonFile = new BufferedReader(new InputStreamReader(
                     new FileInputStream(JSON_FILES_ROOT + jsonFileName), "UTF8"));
 
-            objectParsed.put(JSON_PARSED_KEY, (JSONObject) parser.parse(jsonFile));
+            objectParsed.put(JSON_PARSED_KEY, parser.parse(jsonFile));
             System.out.print("Object Parsed: " + objectParsed.toString());
             jsonFile.close();
         } catch (IOException | ParseException e) {
@@ -73,13 +54,14 @@ public class Parser {
     }
 
     public void decodeJson(String fileGame, String playsFileName) {
-        //TODO uncomment this v
         readFile(fileGame, this.boardFile);
-        //readFile("Board.json", this.boardFile);
 
         // Board configuration
         this.width = readWidth((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).intValue();
         this.height = readHeight((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).intValue();
+
+        readKeys((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+
         readRules((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readElements((JSONObject) this.boardFile.get(JSON_PARSED_KEY), "clues");
         readRegions((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
@@ -116,10 +98,13 @@ public class Parser {
         return this.plays;
     }
 
+    public ArrayList<String> getAcceptedKeys() {
+        return this.acceptedKeys;
+    }
+
     public ArrayList<String> getRules() {
         return this.rules;
     }
-
 
     public ArrayList<RegionJson> getRegionJsons() {
         return this.regionJsons;
@@ -232,6 +217,7 @@ public class Parser {
         JSONArray regionContents = (JSONArray) jsonObject.get("regions");
 
         for (JSONObject region : (Iterable<JSONObject>) regionContents) { // for every region
+            // totals that are -1 mean there's no total to work with in that region
             int total = ((Long)region.get("total")).intValue();
             ArrayList<Cell> fromToRegion = getCellsFromArrayJsonCell((JSONArray) region.get("coord"));
             ArrayList<Cell> exceptionsRegion = getCellsFromArrayJsonCell((JSONArray) region.get("exceptions"));
@@ -240,10 +226,9 @@ public class Parser {
             // Regions that have no exceptions will have x and y set to -1
             this.regionJsons.add(new RegionJson(topLeft, rightBottom, exceptionsRegion, total));
         }
-
-        //System.out.print(regions.size() + " " + exceptions.size());
     }
 
+    @SuppressWarnings("unchecked")
     private ArrayList<Cell> getCellsFromArrayJsonCell(JSONArray cellJsonArray) {
         CellFactory cellFactory = new CellFactory();
         ArrayList<Cell> cells = new ArrayList<>();
@@ -254,6 +239,14 @@ public class Parser {
             cells.add(newCell);
         }
         return cells;
+    }
+
+    @SuppressWarnings("unchecked")
+    private void readKeys(JSONObject jsonObject) {
+        JSONArray keyContents = (JSONArray) jsonObject.get("keys");
+        for (String key : (Iterable<String>) keyContents) { // for each key
+            this.acceptedKeys.add(key);
+        }
     }
 
     @SuppressWarnings("unchecked")

@@ -7,10 +7,6 @@ import java.util.Enumeration;
 import java.util.Properties;
 import javax.swing.*;
 
-
-/**
- * Created by Nicolas on 12/10/2016.
- */
 public class StartView extends JFrame {
     public static final int screenHeight = 768;
     public static final int screenWidth = 1024;

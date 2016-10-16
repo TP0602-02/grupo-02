@@ -22,8 +22,8 @@ public abstract class CircuitVerificator {
 
     public abstract boolean isCircuitClosed(Board board);
 
-    public Cell getNextCell(Board board, Cell previousCell, int direction){
-        return this.iterator.getNextCell(board,previousCell,direction);
+    public Cell getNextCell(Board board, Cell previousCell, int direction) {
+        return this.iterator.getNextCell(board, previousCell, direction);
     }
 
     public Cell getFirstCellWithValue(Board board) {

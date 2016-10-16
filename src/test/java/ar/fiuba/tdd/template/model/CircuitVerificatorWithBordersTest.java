@@ -100,14 +100,14 @@ public class CircuitVerificatorWithBordersTest {
         Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
     }
 
- /*   @Test
+   @Test
     public void setSquarewithLineInsideReturnFalse() {
         setVertical();
         setHorizontal();
         this.board.setValue(2,2,new ValueContent(RIGHT));
         this.board.setValue(2,3,new ValueContent(LEFT));
         Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
-    }*/
+    }
 
     @Test
     public void setCloseCircuitInOneBorderReturnTrue() {

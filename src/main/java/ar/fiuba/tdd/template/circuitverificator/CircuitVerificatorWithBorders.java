@@ -21,7 +21,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
         this.cleanCircuitCells();
         Cell firstCellInTheCircuit = this.getFirstCellInsideCircuit(board);
         if (firstCellInTheCircuit != null) {
-            return (checkAllDirections(board, firstCellInTheCircuit) && (!checkValuesOutsideCircuit(board)));
+            return (checkAllDirections(board, firstCellInTheCircuit) && (hasValidValues(board)));
         }
         return false;
     }
@@ -42,37 +42,44 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
         return true;
     }
 
-    private boolean checkValuesOutsideCircuit(Board board) {
+    private boolean hasValidValues(Board board) {
         if (!this.isClose) {
             return false;
         }
-        return checkContentsInCircuit(board);
+        return hasValidContents(board);
     }
 
-    private boolean checkContentsInCircuit(Board board) {
+    private boolean hasValidContents(Board board) {
         for (int col = 0; col < board.getWidth(); col++) {
             for (int row = 0; row < board.getHeight(); row++) {
                 Cell cell = board.getCell(row, col);
-                if (cell.getSummableContents().size() != 0 && !this.circuitCells.contains(cell)) {
-                    if (checkConnectedCells(board, cell)) {
-                        return true;
+                if (cell.getSummableContents().size() != 0) {
+                    if (!cellHasValidValues(board, cell)) {
+                        this.isClose = true;
+                        return false;
                     }
-                    ;
                 }
             }
         }
-        return false;
+        return true;
     }
 
-    private boolean checkConnectedCells(Board board, Cell cell) {
+    private boolean cellHasValidValues(Board board, Cell cell) {
+        if (!this.circuitCells.contains(cell)) {
+            return (nextCellOutsideCircuite(board, cell));
+        } else {
+            return (!nextCellOutsideCircuite(board, cell));
+        }
+    }
+
+    private boolean nextCellOutsideCircuite(Board board, Cell cell) {
         for (CellContent content : cell.getSummableContents()) {
             Cell nextCell = this.iterator.getNextCell(board, cell, content.getNumberValue());
             if (!this.circuitCells.contains(nextCell)) {
-                this.isClose = false;
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     private void addCellToTheCircuit(Cell cell) {

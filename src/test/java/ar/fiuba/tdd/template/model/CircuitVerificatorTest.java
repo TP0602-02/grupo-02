@@ -113,40 +113,4 @@ public class CircuitVerificatorTest {
         CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertFalse(verificator.isCircuitClosed(board));
     }
-
-    @Test
-    public void insertValidMovement_returnTrue() {
-        Board board = new Board(4, 4, "");
-        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
-        Assert.assertTrue(verificator.validateDirection(board, board.getCell(new Coordinate(2, 2)), UP));
-    }
-
-    @Test
-    public void insertRightValidMovement_returnFalse() {
-        Board board = new Board(4, 4, "");
-        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
-        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(new Coordinate(2, 3)), RIGHT));
-    }
-
-    @Test
-    public void insertLeftValidMovement_returnFalse() {
-        Board board = new Board(4, 4, "");
-        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
-        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(new Coordinate(2, 0)), LEFT));
-    }
-
-    @Test
-    public void insertDownValidMovement_returnFalse() {
-        Board board = new Board(4, 4, "");
-        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
-        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(new Coordinate(3, 2)), DOWN));
-    }
-
-    @Test
-    public void insertUpValidMovement_returnFalse() {
-        Board board = new Board(4, 4, "");
-        CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
-        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(new Coordinate(0, 3)), UP));
-    }
-
 }

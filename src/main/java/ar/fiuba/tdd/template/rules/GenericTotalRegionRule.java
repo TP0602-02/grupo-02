@@ -7,7 +7,5 @@ import ar.fiuba.tdd.template.board.Board;
  */
 public abstract class GenericTotalRegionRule {
 
-    protected static final int noClueRestriction = -1;
-
     public abstract boolean validate(Board board);
 }

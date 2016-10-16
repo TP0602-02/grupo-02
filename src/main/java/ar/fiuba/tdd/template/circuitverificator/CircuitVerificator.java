@@ -13,25 +13,18 @@ public abstract class CircuitVerificator {
 
     protected Cell firstCell;
     protected int amountOfCellsInTheCircuit;
+    protected boolean isClose;
+    protected BoardIteratorConnections iterator;
+
+    public CircuitVerificator() {
+        this.isClose = false;
+        this.iterator = new BoardIteratorConnections();
+    }
 
     public abstract boolean isCircuitClosed(Board board);
 
     public Cell getNextCell(Board board, Cell previousCell, int direction) {
-        if (this.validateDirection(board, previousCell, direction)) {
-            switch (direction) {
-                case Constants.IZQUIERDA_VALUE:
-                    return board.getCell(new Coordinate(previousCell.getRow(), previousCell.getColumn() - 1));
-                case Constants.DERECHA_VALUE:
-                    return board.getCell(new Coordinate(previousCell.getRow(), previousCell.getColumn() + 1));
-                case Constants.ARRIBA_VALUE:
-                    return board.getCell(new Coordinate(previousCell.getRow() - 1, previousCell.getColumn()));
-                case Constants.ABAJO_VALUE:
-                    return board.getCell(new Coordinate(previousCell.getRow() + 1, previousCell.getColumn()));
-                default:
-                    return null;
-            }
-        }
-        return null;
+        return this.iterator.getNextCell(board, previousCell, direction);
     }
 
     public Cell getFirstCellWithValue(Board board) {
@@ -46,36 +39,6 @@ public abstract class CircuitVerificator {
         return null;
     }
 
-    public int getOppositeDirection(int direction) {
-        switch (direction) {
-            case Constants.IZQUIERDA_VALUE:
-                return Constants.DERECHA_VALUE;
-            case Constants.DERECHA_VALUE:
-                return Constants.IZQUIERDA_VALUE;
-            case Constants.ARRIBA_VALUE:
-                return Constants.ABAJO_VALUE;
-            case Constants.ABAJO_VALUE:
-                return Constants.ARRIBA_VALUE;
-            default:
-                return 0;
-        }
-    }
-
-    public boolean validateDirection(Board board, Cell cell, int direction) {
-        switch (direction) {
-            case Constants.IZQUIERDA_VALUE:
-                return cell.getColumn() != 0;
-            case Constants.DERECHA_VALUE:
-                return cell.getColumn() != (board.getWidth() - 1);
-            case Constants.ARRIBA_VALUE:
-                return cell.getRow() != 0;
-            case Constants.ABAJO_VALUE:
-                return cell.getRow() != (board.getHeight() - 1);
-            default:
-                return true;
-        }
-    }
-
     public boolean hasLinesOutOfTheCircuit(Board board) {
         return (this.amountOfCellsInTheCircuit < this.getAmountOfCellsWithValueInTheBoard(board));
     }
@@ -88,16 +51,5 @@ public abstract class CircuitVerificator {
         return total;
     }
 
-    public String getNameOppositeDirection(String direction) {
-        if (direction.equals(Constants.IZQUIERDA)) {
-            return Constants.DERECHA;
-        } else if (direction.equals(Constants.DERECHA)) {
-            return Constants.IZQUIERDA;
-        } else if (direction.equals(Constants.ARRIBA)) {
-            return Constants.ABAJO;
-        } else if (direction.equals(Constants.ABAJO)) {
-            return Constants.ARRIBA;
-        }
-        return "";
-    }
+
 }

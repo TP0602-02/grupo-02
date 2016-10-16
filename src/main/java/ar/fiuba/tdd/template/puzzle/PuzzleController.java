@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.puzzle;
 import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithBorders;
 import ar.fiuba.tdd.template.entity.BaseController;
@@ -94,11 +95,11 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     }
 
     private Play getPlayFromCellConnection(Cell cell, String valueOfConnection) {
-        CircuitVerificator circuit = new CircuitVerificatorWithBorders();
-        Cell nextCell = circuit.getNextCell(this.model.getBoard(),
+        BoardIteratorConnections iterator = new BoardIteratorConnections();
+        Cell nextCell = iterator.getNextCell(this.model.getBoard(),
                 cell, SpecialCharactersParser.getInstance().getValueOf(valueOfConnection));
 
-        String opositeDirection = circuit.getNameOppositeDirection(valueOfConnection);
+        String opositeDirection = iterator.getNameOppositeDirection(valueOfConnection);
         Play newPlay = new Play(nextCell, opositeDirection);
         newPlay.setValidPlay(nextCell != null);
         return newPlay;

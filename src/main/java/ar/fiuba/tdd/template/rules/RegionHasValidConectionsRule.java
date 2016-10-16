@@ -34,7 +34,7 @@ public class RegionHasValidConectionsRule extends RegionConectionRule {
         int conections = 0;
         for (Cell actualCell : cellsInRegion) {
             for (CellContent content : actualCell.getContents()) {
-                Cell nextCell = this.circuitVerificator.getNextCell(board, actualCell, content.getNumberValue());
+                Cell nextCell = this.iterator.getNextCell(board, actualCell, content.getNumberValue());
                 if (!region.containsCell(nextCell)) {
                     conections++;
                 }

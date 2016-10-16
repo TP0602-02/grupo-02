@@ -1,9 +1,10 @@
 package ar.fiuba.tdd.template.puzzle;
 
-import ar.fiuba.tdd.template.CircuitVerificator;
 import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
+import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithBorders;
 import ar.fiuba.tdd.template.entity.BaseController;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
@@ -53,6 +54,18 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                             runPlay(play);
                         }
                     }
+
+                    @Override
+                    public void validateUserDeletedAction(Cell cell, String valueToDelete) {
+                        getCellControllerOfCell(cell).deletedValue(valueToDelete);
+                        //TODO hay que hacerlo levantando algo del archivo Y QUE EL PARSER SE LO SETEE AL PUZZLE CONTORLLER
+                        if (addWithConnections) {
+                            Play newPLayToRun = getPlayFromCellConnection(cell, valueToDelete);
+                            if (newPLayToRun.getValidPlay()) {
+                                getCellControllerOfCell(newPLayToRun.getSelectedCell()).deletedValue(newPLayToRun.getSelectedCellValue());
+                            }
+                        }
+                    }
                 });
                 this.cellControllers.add(cellController);
             }
@@ -64,7 +77,9 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
         //TODO hay que hacerlo levantando algo del archivo Y QUE EL PARSER SE LO SETEE AL PUZZLE CONTORLLER
         if (addWithConnections) {
             Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), play.getSelectedCellValue());
-            getCellControllerOfCell(newPLayToRun.getSelectedCell()).addValue(newPLayToRun.getSelectedCellValue());
+            if (newPLayToRun.getValidPlay()) {
+                getCellControllerOfCell(newPLayToRun.getSelectedCell()).addValue(newPLayToRun.getSelectedCellValue());
+            }
         }
     }
 
@@ -78,10 +93,13 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     }
 
     private Play getPlayFromCellConnection(Cell cell, String valueOfConnection) {
-        CircuitVerificator circuit = new CircuitVerificator();
+        CircuitVerificator circuit = new CircuitVerificatorWithBorders();
         Cell nextCell = circuit.getNextCell(this.model.getBoard(),
                 cell, SpecialCharactersParser.getInstance().getValueOf(valueOfConnection));
-        String opositeDirection = circuit.getOppositeDirection(valueOfConnection);
-        return new Play(nextCell, opositeDirection);
+
+        String opositeDirection = circuit.getNameOppositeDirection(valueOfConnection);
+        Play newPlay = new Play(nextCell, opositeDirection);
+        newPlay.setValidPlay(nextCell != null);
+        return newPlay;
     }
 }

@@ -37,14 +37,16 @@ public class CellController extends BaseController<CellView, Cell> {
 
             @Override
             public void deletedValue(String text) {
-                CellController.this.deletedValue(text);
+                deletedInputed(text);
             }
         });
     }
 
-    private void deletedValue(String text) {
-        this.model.removeContentWithValue(text);
-        view.setValues(model.getValuesToString());
+    public void deletedValue(String text) {
+        if (this.model.isEditable()) {
+            this.model.removeContentWithValue(text);
+            view.setValues(model.getValuesToString());
+        }
     }
 
     private void textInputed(String text) {
@@ -54,17 +56,27 @@ public class CellController extends BaseController<CellView, Cell> {
 
     }
 
+    private void deletedInputed(String text) {
+        if (userInputListener != null) {
+            userInputListener.validateUserDeletedAction(this.model, text);
+        }
+    }
+
     public void setUserInputListener(UserInputListener userInputListener) {
         this.userInputListener = userInputListener;
     }
 
     public interface UserInputListener {
         public void validateUserTextInputed(Cell cell, String text);
+
+        public void validateUserDeletedAction(Cell cell, String valueToDelete);
     }
 
     public void addValue(String value) {
-        model.setContent(new ValueContent(value));
-        view.setValues(model.getValuesToString());
+        if (this.model.isEditable()) {
+            model.setContent(new ValueContent(value));
+            view.setValues(model.getValuesToString());
+        }
     }
 
 }

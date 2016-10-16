@@ -20,6 +20,16 @@ public abstract class Cell implements Summable, Editable {
         return contents;
     }
 
+    public ArrayList<CellContent> getSummableContents() {
+        ArrayList<CellContent> contents = new ArrayList<CellContent>();
+        for (CellContent cellContent : this.getContents()) {
+            if (cellContent.isSummable()) {
+                contents.add(cellContent);
+            }
+        }
+        return contents;
+    }
+
     public int getRow() {
         return this.coordinate.getRow();
     }

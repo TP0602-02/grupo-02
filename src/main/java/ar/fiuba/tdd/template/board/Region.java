@@ -12,7 +12,7 @@ public class Region {
     private int total;
 
     public Region(ArrayList<Cell> cells) {
-        this.total = 0;
+        this.total = -1;
         this.cells = cells;
     }
 

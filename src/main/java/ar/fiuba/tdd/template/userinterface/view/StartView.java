@@ -16,12 +16,12 @@ public class StartView extends JFrame {
     public static final int screenWidth = 1024;
 
     //***************GAMES**********************
-    public static final String SUDOKU_NAME = "SUDOKU";
-    public static final String KAKURO_NAME = "KAKURO";
-    public static final String COUNTRY_ROAD_NAME = "COUNTRY ROAD";
-    public static final String INSHI_NO_HEYA_NAME = "INSHI NO HEYA";
-    public static final String SLITHERLINK_NAME = "SLITHERLINK";
-    public static final String GOKIEN_NANAME_NAME = "GOKIEN NANAME";
+    private static final String SUDOKU_NAME = "SUDOKU";
+    private static final String KAKURO_NAME = "KAKURO";
+    private static final String COUNTRY_ROAD_NAME = "COUNTRY ROAD";
+    private static final String INSHI_NO_HEYA_NAME = "INSHI NO HEYA";
+    private static final String SLITHERLINK_NAME = "SLITHERLINK";
+    private static final String GOKIEN_NANAME_NAME = "GOKIEN NANAME";
     //**************************************************
 
     //**************GAME JSON FILES*************************

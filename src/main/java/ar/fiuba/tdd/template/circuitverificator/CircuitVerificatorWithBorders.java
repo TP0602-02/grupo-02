@@ -55,7 +55,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
                 Cell cell = board.getCell(row, col);
                 if (cell.getSummableContents().size() != 0) {
                     if (!cellHasValidValues(board, cell)) {
-                        this.isClose = true;
+                        this.isClose = false;
                         return false;
                     }
                 }

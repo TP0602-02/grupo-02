@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.template.board;
 
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.entity.Coordinate;
 
 import java.util.ArrayList;
 
@@ -21,8 +22,9 @@ public class RegionCreator {
         ArrayList<Cell> regionCells = new ArrayList<>();
         for ( int coordX = topLeft.getRow(); coordX <= bottomRight.getRow(); coordX++) {
             for ( int coordY = topLeft.getColumn(); coordY <= bottomRight.getColumn(); coordY++) {
-                if (!inExceptions(coordX, coordY, exceptions)) {
-                    regionCells.add(board.getCell(coordX, coordY)); // same cell as board
+                Coordinate coordinate = new Coordinate(coordX,coordY);
+                if (!inExceptions(coordinate,exceptions)) {
+                    regionCells.add(board.getCell(coordinate)); // same cell as board
                 }
             }
         }
@@ -30,9 +32,9 @@ public class RegionCreator {
         return new Region(regionCells);
     }
 
-    private boolean inExceptions(int coordX, int coordY, ArrayList<Cell> exceptions) {
+    private boolean inExceptions(Coordinate coordinate, ArrayList<Cell> exceptions) {
         for ( Cell exception : exceptions) {
-            if ( exception.getRow() == coordX && exception.getColumn() == coordY) {
+            if ( exception.getRow() == coordinate.getRow() && exception.getColumn() == coordinate.getColumn()) {
                 return true;
             }
         }

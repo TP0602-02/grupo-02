@@ -6,6 +6,7 @@ import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithoutBorders;
+import ar.fiuba.tdd.template.entity.Coordinate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,15 +34,15 @@ public class CircuitVerificatorTest {
         //TODO Cambiar por movimientos.
         Board board = new Board(4, 4, "");
         ArrayList<Cell> cells = new ArrayList<Cell>();
-        cells.add(board.getCell(0, 0));
-        cells.add(board.getCell(0, 1));
-        cells.add(board.getCell(0, 2));
-        cells.add(board.getCell(1, 2));
-        cells.add(board.getCell(2, 2));
-        cells.add(board.getCell(2, 1));
-        cells.add(board.getCell(2, 0));
-        cells.add(board.getCell(1, 0));
-        cells.add(board.getCell(1, 1));
+        cells.add(board.getCell(new Coordinate(0, 0)));
+        cells.add(board.getCell(new Coordinate(0, 1)));
+        cells.add(board.getCell(new Coordinate(0, 2)));
+        cells.add(board.getCell(new Coordinate(1, 2)));
+        cells.add(board.getCell(new Coordinate(2, 2)));
+        cells.add(board.getCell(new Coordinate(2, 1)));
+        cells.add(board.getCell(new Coordinate(2, 0)));
+        cells.add(board.getCell(new Coordinate(1, 0)));
+        cells.add(board.getCell(new Coordinate(1, 1)));
         Region region = new Region(cells);
         board.addRegion(region);
         setMovements(board);
@@ -50,41 +51,41 @@ public class CircuitVerificatorTest {
     }
 
     private void setMovements(Board board) {
-        board.getCell(0, 0).setContent(new ValueContent(RIGHT));
-        board.getCell(0, 1).setContent(new ValueContent(LEFT));
-        board.getCell(0, 1).setContent(new ValueContent(RIGHT));
-        board.getCell(0, 2).setContent(new ValueContent(LEFT));
-        board.getCell(0, 2).setContent(new ValueContent(DOWN));
-        board.getCell(1, 2).setContent(new ValueContent(UP));
-        board.getCell(1, 2).setContent(new ValueContent(DOWN));
-        board.getCell(2, 2).setContent(new ValueContent(UP));
-        board.getCell(2, 2).setContent(new ValueContent(LEFT));
-        board.getCell(2, 1).setContent(new ValueContent(RIGHT));
-        board.getCell(2, 1).setContent(new ValueContent(LEFT));
-        board.getCell(2, 0).setContent(new ValueContent(RIGHT));
-        board.getCell(2, 0).setContent(new ValueContent(UP));
-        board.getCell(1, 0).setContent(new ValueContent(DOWN));
-        board.getCell(1, 0).setContent(new ValueContent(UP));
-        board.getCell(0, 0).setContent(new ValueContent(DOWN));
+        board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(RIGHT));
+        board.getCell(new Coordinate(0, 1)).setContent(new ValueContent(LEFT));
+        board.getCell(new Coordinate(0, 1)).setContent(new ValueContent(RIGHT));
+        board.getCell(new Coordinate(0, 2)).setContent(new ValueContent(LEFT));
+        board.getCell(new Coordinate(0, 2)).setContent(new ValueContent(DOWN));
+        board.getCell(new Coordinate(1, 2)).setContent(new ValueContent(UP));
+        board.getCell(new Coordinate(1, 2)).setContent(new ValueContent(DOWN));
+        board.getCell(new Coordinate(2, 2)).setContent(new ValueContent(UP));
+        board.getCell(new Coordinate(2, 2)).setContent(new ValueContent(LEFT));
+        board.getCell(new Coordinate(2, 1)).setContent(new ValueContent(RIGHT));
+        board.getCell(new Coordinate(2, 1)).setContent(new ValueContent(LEFT));
+        board.getCell(new Coordinate(2, 0)).setContent(new ValueContent(RIGHT));
+        board.getCell(new Coordinate(2, 0)).setContent(new ValueContent(UP));
+        board.getCell(new Coordinate(1, 0)).setContent(new ValueContent(DOWN));
+        board.getCell(new Coordinate(1, 0)).setContent(new ValueContent(UP));
+        board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(DOWN));
     }
 
     @Test
     public void detectCircuit_ReturnFalse() {
         Board board = new Board(4, 4, "");
-        board.getCell(0, 0).setContent(new ValueContent(RIGHT));
-        board.getCell(0, 1).setContent(new ValueContent(LEFT));
-        board.getCell(0, 1).setContent(new ValueContent(RIGHT));
-        board.getCell(0, 2).setContent(new ValueContent(LEFT));
-        board.getCell(0, 2).setContent(new ValueContent(DOWN));
-        board.getCell(1, 2).setContent(new ValueContent(UP));
-        board.getCell(1, 2).setContent(new ValueContent(DOWN));
-        board.getCell(2, 2).setContent(new ValueContent(UP));
-        board.getCell(2, 2).setContent(new ValueContent(LEFT));
-        board.getCell(2, 1).setContent(new ValueContent(RIGHT));
-        board.getCell(2, 1).setContent(new ValueContent(LEFT));
-        board.getCell(2, 0).setContent(new ValueContent(RIGHT));
-        board.getCell(2, 0).setContent(new ValueContent(UP));
-        board.getCell(1, 0).setContent(new ValueContent(DOWN));
+        board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(RIGHT));
+        board.getCell(new Coordinate(0, 1)).setContent(new ValueContent(LEFT));
+        board.getCell(new Coordinate(0, 1)).setContent(new ValueContent(RIGHT));
+        board.getCell(new Coordinate(0, 2)).setContent(new ValueContent(LEFT));
+        board.getCell(new Coordinate(0, 2)).setContent(new ValueContent(DOWN));
+        board.getCell(new Coordinate(1, 2)).setContent(new ValueContent(UP));
+        board.getCell(new Coordinate(1, 2)).setContent(new ValueContent(DOWN));
+        board.getCell(new Coordinate(2, 2)).setContent(new ValueContent(UP));
+        board.getCell(new Coordinate(2, 2)).setContent(new ValueContent(LEFT));
+        board.getCell(new Coordinate(2, 1)).setContent(new ValueContent(RIGHT));
+        board.getCell(new Coordinate(2, 1)).setContent(new ValueContent(LEFT));
+        board.getCell(new Coordinate(2, 0)).setContent(new ValueContent(RIGHT));
+        board.getCell(new Coordinate(2, 0)).setContent(new ValueContent(UP));
+        board.getCell(new Coordinate(1, 0)).setContent(new ValueContent(DOWN));
         CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertFalse(verificator.isCircuitClosed(board));
     }
@@ -92,23 +93,23 @@ public class CircuitVerificatorTest {
     @Test
     public void detectCircuitWithASeparatedCell_ReturnFalse() {
         Board board = new Board(4, 4, "");
-        board.getCell(0, 0).setContent(new ValueContent(RIGHT));
-        board.getCell(0, 1).setContent(new ValueContent(LEFT));
+        board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(RIGHT));
+        board.getCell(new Coordinate(0, 1)).setContent(new ValueContent(LEFT));
 
-        board.getCell(0, 2).setContent(new ValueContent(RIGHT));
-        board.getCell(0, 3).setContent(new ValueContent(LEFT));
+        board.getCell(new Coordinate(0, 2)).setContent(new ValueContent(RIGHT));
+        board.getCell(new Coordinate(0, 3)).setContent(new ValueContent(LEFT));
 
-        board.getCell(0, 3).setContent(new ValueContent(DOWN));
-        board.getCell(1, 3).setContent(new ValueContent(UP));
-        board.getCell(1, 3).setContent(new ValueContent(DOWN));
-        board.getCell(2, 3).setContent(new ValueContent(UP));
-        board.getCell(2, 3).setContent(new ValueContent(LEFT));
-        board.getCell(2, 2).setContent(new ValueContent(RIGHT));
+        board.getCell(new Coordinate(0, 3)).setContent(new ValueContent(DOWN));
+        board.getCell(new Coordinate(1, 3)).setContent(new ValueContent(UP));
+        board.getCell(new Coordinate(1, 3)).setContent(new ValueContent(DOWN));
+        board.getCell(new Coordinate(2, 3)).setContent(new ValueContent(UP));
+        board.getCell(new Coordinate(2, 3)).setContent(new ValueContent(LEFT));
+        board.getCell(new Coordinate(2, 2)).setContent(new ValueContent(RIGHT));
 
-        board.getCell(2, 2).setContent(new ValueContent(UP));
-        board.getCell(1, 2).setContent(new ValueContent(DOWN));
-        board.getCell(1, 2).setContent(new ValueContent(UP));
-        board.getCell(0, 2).setContent(new ValueContent(DOWN));
+        board.getCell(new Coordinate(2, 2)).setContent(new ValueContent(UP));
+        board.getCell(new Coordinate(1, 2)).setContent(new ValueContent(DOWN));
+        board.getCell(new Coordinate(1, 2)).setContent(new ValueContent(UP));
+        board.getCell(new Coordinate(0, 2)).setContent(new ValueContent(DOWN));
         CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
         Assert.assertFalse(verificator.isCircuitClosed(board));
     }
@@ -117,35 +118,35 @@ public class CircuitVerificatorTest {
     public void insertValidMovement_returnTrue() {
         Board board = new Board(4, 4, "");
         CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
-        Assert.assertTrue(verificator.validateDirection(board, board.getCell(2, 2), UP));
+        Assert.assertTrue(verificator.validateDirection(board, board.getCell(new Coordinate(2, 2)), UP));
     }
 
     @Test
     public void insertRightValidMovement_returnFalse() {
         Board board = new Board(4, 4, "");
         CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
-        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(2, 3), RIGHT));
+        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(new Coordinate(2, 3)), RIGHT));
     }
 
     @Test
     public void insertLeftValidMovement_returnFalse() {
         Board board = new Board(4, 4, "");
         CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
-        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(2, 0), LEFT));
+        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(new Coordinate(2, 0)), LEFT));
     }
 
     @Test
     public void insertDownValidMovement_returnFalse() {
         Board board = new Board(4, 4, "");
         CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
-        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(3, 2), DOWN));
+        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(new Coordinate(3, 2)), DOWN));
     }
 
     @Test
     public void insertUpValidMovement_returnFalse() {
         Board board = new Board(4, 4, "");
         CircuitVerificatorWithoutBorders verificator = new CircuitVerificatorWithoutBorders();
-        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(0, 3), UP));
+        Assert.assertTrue(!verificator.validateDirection(board, board.getCell(new Coordinate(0, 3)), UP));
     }
 
 }

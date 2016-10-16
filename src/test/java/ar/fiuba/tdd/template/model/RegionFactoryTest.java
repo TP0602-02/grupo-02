@@ -51,7 +51,7 @@ public class RegionFactoryTest {
 
         Region region = regionCreator.createRegion(topLeft, bottomRight, exceptions);
 
-        if (region.getCells().contains(board.getCell(4, 4))) {
+        if (region.getCells().contains(board.getCell(new Coordinate(4, 4)))) {
             assert true;
         } else {
             assert false;

@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.*;
+import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.userinterface.view.StartView;
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class BoardTest {
         int row = 2;
         int col = 3;
 
-        if (board.getCell(row, col).isEmpty()) {
+        if (board.getCell(new Coordinate(row, col)).isEmpty()) {
             assert true;
         } else {
             assert false;
@@ -41,19 +42,19 @@ public class BoardTest {
     @Test
     public void boardWithDiferentValuesIsFull_ReturnFalse() {
         Board board = new Board(4,4,CellFactory.CELL_SINGLE_VALUE);
-        board.setValue(1,1,new BlackContent());
-        board.setValue(1,2,new ClueContent(1));
-        board.setValue(3,3,new ValueContent(1));
+        board.setValue(new Coordinate(1,1),new BlackContent());
+        board.setValue(new Coordinate(1,2),new ClueContent(1));
+        board.setValue(new Coordinate(3,3),new ValueContent(1));
         Assert.assertTrue(!board.isFull());
     }
 
     @Test
     public void boardWithDiferentValuesIsFull_ReturnTrue() {
         Board board = new Board(2,2,CellFactory.CELL_SINGLE_VALUE);
-        board.setValue(1,1,new BlackContent());
-        board.setValue(0,0,new ValueContent(1));
-        board.setValue(0,1,new ClueContent(1));
-        board.setValue(1,0,new ValueContent(1));
+        board.setValue(new Coordinate(1,1),new BlackContent());
+        board.setValue(new Coordinate(0,0),new ValueContent(1));
+        board.setValue(new Coordinate(0,1),new ClueContent(1));
+        board.setValue(new Coordinate(1,0),new ValueContent(1));
         Assert.assertTrue(board.isFull());
     }
 
@@ -62,74 +63,74 @@ public class BoardTest {
     public void getCellRegionReturnEmpty() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
         ArrayList<Cell> firstCells = new ArrayList<>();
-        firstCells.add(board.getCell(1, 1));
-        firstCells.add(board.getCell(0, 0));
-        firstCells.add(board.getCell(0, 1));
+        firstCells.add(board.getCell(new Coordinate(1, 1)));
+        firstCells.add(board.getCell(new Coordinate(0, 0)));
+        firstCells.add(board.getCell(new Coordinate(0, 1)));
         ArrayList<Cell> secondCells = new ArrayList<>();
-        secondCells.add(board.getCell(2, 1));
-        secondCells.add(board.getCell(2, 0));
-        secondCells.add(board.getCell(2, 1));
+        secondCells.add(board.getCell(new Coordinate(2, 1)));
+        secondCells.add(board.getCell(new Coordinate(2, 0)));
+        secondCells.add(board.getCell(new Coordinate(2, 1)));
         board.addRegion(new Region(firstCells));
         board.addRegion(new Region(secondCells));
-        assertTrue(board.getCellRegions(board.getCell(2, 2)).isEmpty());
+        assertTrue(board.getCellRegions(board.getCell(new Coordinate(2, 2))).isEmpty());
     }
 
     @Test
     public void getCellRegionReturnFirstRegion() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
         ArrayList<Cell> firstCells = new ArrayList<>();
-        firstCells.add(board.getCell(1, 1));
-        firstCells.add(board.getCell(0, 0));
-        firstCells.add(board.getCell(0, 1));
+        firstCells.add(board.getCell(new Coordinate(1, 1)));
+        firstCells.add(board.getCell(new Coordinate(0, 0)));
+        firstCells.add(board.getCell(new Coordinate(0, 1)));
         ArrayList<Cell> secondCells = new ArrayList<>();
-        secondCells.add(board.getCell(2, 1));
-        secondCells.add(board.getCell(2, 0));
-        secondCells.add(board.getCell(2, 1));
+        secondCells.add(board.getCell(new Coordinate(2, 1)));
+        secondCells.add(board.getCell(new Coordinate(2, 0)));
+        secondCells.add(board.getCell(new Coordinate(2, 1)));
         Region firstRegion = new Region(firstCells);
         board.addRegion(firstRegion);
         board.addRegion(new Region(secondCells));
-        assertTrue(board.getCellRegions(board.getCell(0, 0)).contains(firstRegion));
+        assertTrue(board.getCellRegions(board.getCell(new Coordinate(0, 0))).contains(firstRegion));
     }
 
     @Test
     public void getInvalidIndexReturnsNull() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
-        Assert.assertNull(board.getCell(1, 5));
+        Assert.assertNull(board.getCell(new Coordinate(1, 5)));
     }
 
     @Test
     public void getAdyacentsCellInExtremeReturnsTwoCells() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
-        Assert.assertTrue(board.getAdyacentCells(board.getCell(3, 3)).size() == 2);
+        Assert.assertTrue(board.getAdyacentCells(board.getCell(new Coordinate(3, 3))).size() == 2);
     }
 
     @Test
     public void getAdyacentsCellInMiddleReturnsFourCells() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
-        Assert.assertTrue(board.getAdyacentCells(board.getCell(1, 1)).size() == 4);
+        Assert.assertTrue(board.getAdyacentCells(board.getCell(new Coordinate(1, 1))).size() == 4);
     }
 
     @Test
     public void getAdyacentsCellInBoardReturnsThreeCells() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
-        Assert.assertTrue(board.getAdyacentCells(board.getCell(1, 3)).size() == 3);
+        Assert.assertTrue(board.getAdyacentCells(board.getCell(new Coordinate(1, 3))).size() == 3);
     }
 
     @Test
     public void getCellRegionReturnTwoRegions() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
         ArrayList<Cell> firstCells = new ArrayList<>();
-        firstCells.add(board.getCell(2, 1));
-        firstCells.add(board.getCell(0, 0));
-        firstCells.add(board.getCell(0, 1));
+        firstCells.add(board.getCell(new Coordinate(2, 1)));
+        firstCells.add(board.getCell(new Coordinate(0, 0)));
+        firstCells.add(board.getCell(new Coordinate(0, 1)));
         ArrayList<Cell> secondCells = new ArrayList<>();
-        secondCells.add(board.getCell(2, 1));
-        secondCells.add(board.getCell(2, 0));
-        secondCells.add(board.getCell(2, 1));
+        secondCells.add(board.getCell(new Coordinate(2, 1)));
+        secondCells.add(board.getCell(new Coordinate(2, 0)));
+        secondCells.add(board.getCell(new Coordinate(2, 1)));
         Region firstRegion = new Region(firstCells);
         board.addRegion(firstRegion);
         board.addRegion(new Region(secondCells));
-        assertTrue(board.getCellRegions(board.getCell(2, 1)).size() == 2);
+        assertTrue(board.getCellRegions(board.getCell(new Coordinate(2, 1))).size() == 2);
     }
 
     @Test
@@ -141,8 +142,8 @@ public class BoardTest {
         int column = 1;
         ValueContent firstValue = new ValueContent(2);
 
-        board.setValue(row, column, firstValue);
-        ArrayList<CellContent> valuesRecovered = board.getContents(row, column);
+        board.setValue(new Coordinate(row, column), firstValue);
+        ArrayList<CellContent> valuesRecovered = board.getContents(new Coordinate(row, column));
 
         if (valuesRecovered.contains(firstValue)) {
             assert true;
@@ -164,8 +165,8 @@ public class BoardTest {
         values.add(firstContent);
         values.add(secondContent);
 
-        board.setValues(row, column, values);
-        ArrayList<CellContent> valuesRecovered = board.getContents(row, column);
+        board.setValues(new Coordinate(row, column), values);
+        ArrayList<CellContent> valuesRecovered = board.getContents(new Coordinate(row, column));
         //Remueve el primer valor, y agregar el segundo. Simulacion de agregar un valor a una celda y luego
         //agregar otro a la misma celda.
         Assert.assertTrue(!(valuesRecovered.contains(firstContent) && valuesRecovered.contains(secondContent)));
@@ -179,14 +180,14 @@ public class BoardTest {
         // Creates a list of numbers
         for (int row = 0; row < height; row++) {
             for (int column = 0; column < width; column++) {
-                board.setValue(row, column, new ValueContent(row));
+                board.setValue(new Coordinate(row, column), new ValueContent(row));
             }
         }
 
-        ArrayList<Cell> rowCells = board.getRow(board.getCell(1, 0));
+        ArrayList<Cell> rowCells = board.getRow(board.getCell(new Coordinate(1, 0)));
         ArrayList<Integer> numbers = new ArrayList<>();
         for (Cell cell : rowCells) {
-            ArrayList<CellContent> cellC = board.getContents(cell.getRow(), cell.getColumn());
+            ArrayList<CellContent> cellC = board.getContents(new Coordinate(cell.getRow(), cell.getColumn()));
             numbers.add(cellC.get(0).getNumberValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }
@@ -203,14 +204,14 @@ public class BoardTest {
         // Creates a list of numbers
         for (int row = 0; row < height; row++) {
             for (int column = 0; column < width; column++) {
-                board.setValue(row, column, new ValueContent(column));
+                board.setValue(new Coordinate(row, column), new ValueContent(column));
             }
         }
 
-        ArrayList<Cell> firstColumn = board.getColumn(board.getCell(1, 0));
+        ArrayList<Cell> firstColumn = board.getColumn(board.getCell(new Coordinate(1, 0)));
         ArrayList<Integer> numbers = new ArrayList<>();
         for (Cell cell : firstColumn) {
-            ArrayList<CellContent> cellC = board.getContents(cell.getRow(), cell.getColumn());
+            ArrayList<CellContent> cellC = board.getContents(new Coordinate(cell.getRow(), cell.getColumn()));
             numbers.add(cellC.get(0).getNumberValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }

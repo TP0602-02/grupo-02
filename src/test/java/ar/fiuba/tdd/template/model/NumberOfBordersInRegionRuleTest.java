@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
+import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.rules.NumberOfBordersInRegionRule;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,8 +30,8 @@ public class NumberOfBordersInRegionRuleTest {
     public void setUp() {
         this.board = new Board(4, 4, "");
         ArrayList<Cell> cells = new ArrayList<Cell>();
-        cells.add(this.board.getCell(0, 0));
-        this.cell = this.board.getCell(0, 0);
+        cells.add(this.board.getCell(new Coordinate(0, 0)));
+        this.cell = this.board.getCell(new Coordinate(0, 0));
         this.region = new Region(cells);
         this.board.addRegion(this.region);
         this.rule = new NumberOfBordersInRegionRule();

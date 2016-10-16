@@ -6,6 +6,7 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithBorders;
 import ar.fiuba.tdd.template.entity.BaseController;
+import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 
@@ -37,7 +38,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
             for (int row = 0; row < model.getBoardHeight(); ++row) {
                 CellController cellController = new CellController();
                 cellController.attachElements(view.getCellView(row, column),
-                        model.getCell(row, column));
+                        model.getCell(new Coordinate(row, column)));
                 cellController.setUserInputListener(new CellController.UserInputListener() {
                     @Override
                     public void validateUserTextInputed(Cell cell, String text) {

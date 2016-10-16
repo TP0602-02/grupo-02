@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.entity.Constants;
+import ar.fiuba.tdd.template.entity.Coordinate;
 
 /**
  * Created by alazraqui on 15/10/2016.
@@ -19,13 +20,13 @@ public abstract class CircuitVerificator {
         if (this.validateDirection(board, previousCell, direction)) {
             switch (direction) {
                 case Constants.IZQUIERDA_VALUE:
-                    return board.getCell(previousCell.getRow(), previousCell.getColumn() - 1);
+                    return board.getCell(new Coordinate(previousCell.getRow(), previousCell.getColumn() - 1));
                 case Constants.DERECHA_VALUE:
-                    return board.getCell(previousCell.getRow(), previousCell.getColumn() + 1);
+                    return board.getCell(new Coordinate(previousCell.getRow(), previousCell.getColumn() + 1));
                 case Constants.ARRIBA_VALUE:
-                    return board.getCell(previousCell.getRow() - 1, previousCell.getColumn());
+                    return board.getCell(new Coordinate(previousCell.getRow() - 1, previousCell.getColumn()));
                 case Constants.ABAJO_VALUE:
-                    return board.getCell(previousCell.getRow() + 1, previousCell.getColumn());
+                    return board.getCell(new Coordinate(previousCell.getRow() + 1, previousCell.getColumn()));
                 default:
                     return null;
             }
@@ -36,7 +37,7 @@ public abstract class CircuitVerificator {
     public Cell getFirstCellWithValue(Board board) {
         for (int row = 0; row < board.getWidth(); ++row) {
             for (int column = 0; column < board.getHeight(); ++column) {
-                Cell cell = board.getCell(row, column);
+                Cell cell = board.getCell(new Coordinate(row, column));
                 if (cell.getContents().size() > 0) {
                     return cell;
                 }

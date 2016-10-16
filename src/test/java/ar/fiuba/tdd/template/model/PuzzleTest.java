@@ -5,6 +5,7 @@ import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
+import ar.fiuba.tdd.template.entity.Coordinate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -55,8 +56,8 @@ public class PuzzleTest {
         Parser parser = new Parser();
         ArrayList<Play> playResults = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            board.setValue(i, i, new ValueContent(2));
-            Play play = new Play(board.getCell(i, i));
+            board.setValue(new Coordinate(i, i), new ValueContent(2));
+            Play play = new Play(board.getCell(new Coordinate(i, i)));
             if (i == 2) {
                 play.setValidPlay(true);
             } else {

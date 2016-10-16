@@ -5,6 +5,7 @@ import ar.fiuba.tdd.template.board.cell.model.BlackContent;
 import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 
+import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.winverificators.FullBoardWinVerificator;
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,20 +31,20 @@ public class FullBoardWinVerificatorTest {
 
     @Test
     public void boardwithValues_ReturnFalse() {
-        this.board.setValue(0, 0, new BlackContent());
-        this.board.setValue(0, 0, new ClueContent(1));
-        this.board.setValue(1, 0, new ValueContent(1));
-        this.board.setValue(1, 1, new ValueContent(2));
+        this.board.setValue(new Coordinate(0, 0), new BlackContent());
+        this.board.setValue(new Coordinate(0, 0), new ClueContent(1));
+        this.board.setValue(new Coordinate(1, 0), new ValueContent(1));
+        this.board.setValue(new Coordinate(1, 1), new ValueContent(2));
         Assert.assertTrue(!winVerificator.wonTheGame(this.board));
     }
 
     @Test
     public void boardwithValues_ReturnTrue() {
-        this.board.setValue(0, 0, new BlackContent());
-        this.board.setValue(0, 0, new ClueContent(1));
-        this.board.setValue(1, 0, new ValueContent(1));
-        this.board.setValue(0, 1, new ValueContent(3));
-        this.board.setValue(1, 1, new ValueContent(2));
+        this.board.setValue(new Coordinate(0, 0), new BlackContent());
+        this.board.setValue(new Coordinate(0, 0), new ClueContent(1));
+        this.board.setValue(new Coordinate(1, 0), new ValueContent(1));
+        this.board.setValue(new Coordinate(0, 1), new ValueContent(3));
+        this.board.setValue(new Coordinate(1, 1), new ValueContent(2));
         Assert.assertTrue(winVerificator.wonTheGame(this.board));
     }
 }

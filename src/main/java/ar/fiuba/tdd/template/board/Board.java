@@ -35,7 +35,7 @@ public class Board {
     public boolean isFull() {
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {
-                if (this.getCell(row, col).isEmpty()) {
+                if (this.getCell(new Coordinate(row, col)).isEmpty()) {
                     return false;
                 }
             }
@@ -79,9 +79,9 @@ public class Board {
         return height;
     }
 
-    public Cell getCell(int row, int column) {
-        if (validateNumber(row, this.getHeight()) && validateNumber(column, this.getWidth())) {
-            return board.get(column).get(row);
+    public Cell getCell(Coordinate coordinate) {
+        if (validateNumber(coordinate.getRow(), this.getHeight()) && validateNumber(coordinate.getColumn(), this.getWidth())) {
+            return board.get(coordinate.getColumn()).get(coordinate.getRow());
         }
         return null;
     }
@@ -92,10 +92,10 @@ public class Board {
 
     public ArrayList<Cell> getAdyacentCells(Cell cell) {
         ArrayList<Cell> adyacents = new ArrayList<Cell>();
-        agregate(this.getCell(cell.getRow() - 1, cell.getColumn()), adyacents);
-        agregate(this.getCell(cell.getRow() + 1, cell.getColumn()), adyacents);
-        agregate(this.getCell(cell.getRow(), cell.getColumn() - 1), adyacents);
-        agregate(this.getCell(cell.getRow(), cell.getColumn() + 1), adyacents);
+        agregate(this.getCell(new Coordinate(cell.getRow() - 1, cell.getColumn())), adyacents);
+        agregate(this.getCell(new Coordinate(cell.getRow() + 1, cell.getColumn())), adyacents);
+        agregate(this.getCell(new Coordinate(cell.getRow(), cell.getColumn() - 1)), adyacents);
+        agregate(this.getCell(new Coordinate(cell.getRow(), cell.getColumn() + 1)), adyacents);
         return adyacents;
     }
 
@@ -106,18 +106,18 @@ public class Board {
         return cells;
     }
 
-    public ArrayList<CellContent> getContents(int row, int column) {
-        return getCell(row, column).getContents();
+    public ArrayList<CellContent> getContents(Coordinate coordinate) {
+        return getCell(coordinate).getContents();
     }
 
-    public void setValue(int row, int column, CellContent content) {
-        Cell cell = getCell(row, column);
+    public void setValue(Coordinate coordinate, CellContent content) {
+        Cell cell = getCell(coordinate);
         cell.setContent(content);
     }
 
-    public void setValues(int row, int column, ArrayList<CellContent> contents) {
+    public void setValues(Coordinate coordinate, ArrayList<CellContent> contents) {
         for (CellContent cellContent : contents) {
-            getCell(row, column).setContent(cellContent);
+            getCell(coordinate).setContent(cellContent);
         }
     }
 
@@ -128,7 +128,7 @@ public class Board {
         ArrayList<Cell> cellsInRow = new ArrayList<>();
         int row = cell.getRow();
         for (int column = 0; column < width; column++) {
-            cellsInRow.add(getCell(row, column));
+            cellsInRow.add(getCell(new Coordinate(row, column)));
         }
 
         return cellsInRow;
@@ -142,7 +142,7 @@ public class Board {
 
         int column = cell.getColumn();
         for (int row = 0; row < height; row++) {
-            cellsInColumn.add(getCell(row, column));
+            cellsInColumn.add(getCell(new Coordinate(row, column)));
         }
 
         return cellsInColumn;

@@ -7,6 +7,7 @@ import ar.fiuba.tdd.template.board.RegionCreator;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
+import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.rules.GenericRule;
 
@@ -59,13 +60,13 @@ public class Puzzle {
         return boardWidth;
     }
 
-    public Cell getCell(int row, int column) {
-        return this.board.getCell(row, column);
+    public Cell getCell(Coordinate coordinate) {
+        return this.board.getCell(coordinate);
     }
 
     private void setInitialCells(ArrayList<Cell> initialCells) {
         for (Cell cellToAdd : initialCells) {
-            this.board.setValues(cellToAdd.getRow(), cellToAdd.getColumn(), cellToAdd.getContents());
+            this.board.setValues(new Coordinate(cellToAdd.getRow(), cellToAdd.getColumn()), cellToAdd.getContents());
         }
     }
 

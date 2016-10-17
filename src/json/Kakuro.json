@@ -3,9 +3,12 @@
   "height": 8,
   "keys": ["1","2","3","4","5","6","7","8","9"],
   "rules": [{
-    "rule": "Doesnt repeat number in row"
+    "rule": "Sum rule"
   }, {
-    "rule": "Doesnt repeat number in column"
+    "rule": "Multiplication rule"
+  }],
+  "winVerificators": [{
+    "verificator": "Full board win verificator"
   }],
   "clues": [{
     "x": 0,

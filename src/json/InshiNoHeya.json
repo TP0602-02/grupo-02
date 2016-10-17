@@ -7,6 +7,9 @@
   }, {
     "rule": "Doesnt repeat number in column"
   }],
+  "winVerificators": [{
+    "verificator": "Full board win verificator"
+  }],
   "clues": [{
     "x": 0,
     "y": 0,

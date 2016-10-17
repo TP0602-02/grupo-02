@@ -8,10 +8,13 @@ import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.rules.RulesFactory;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 import ar.fiuba.tdd.template.userinterface.view.StartView;
+import ar.fiuba.tdd.template.winverificators.WinVerificator;
+import ar.fiuba.tdd.template.winverificators.WinVerificatorFactory;
 
 import java.util.ArrayList;
 
 public class PuzzleGenerator {
+    private Parser parser;
 
     public void runGeneration() {
         StartView startView = new StartView(new StartView.StartGameListener() {
@@ -21,7 +24,15 @@ public class PuzzleGenerator {
                 PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(),
                         puzzle.getInitialCells(), gameName);
                 puzzleView.showVisu();
-                PuzzleController puzzleController = new PuzzleController();
+
+                ArrayList<String> winVerificators = parser.getWinVerificators();
+                // Converts win verificator array of strings into WinVerificator array
+                ArrayList<WinVerificator> parsedWinVerificators = new ArrayList<>();
+                for (String verificator : winVerificators) {
+                    parsedWinVerificators.add(WinVerificatorFactory.getFactory().createVerificator(verificator));
+                }
+
+                PuzzleController puzzleController = new PuzzleController(parsedWinVerificators);
                 //TODO se debe levantar del archivo el booleano que se le pasa
                 puzzleController.setAddWithConnections(false);
                 puzzleController.attachElements(puzzleView, puzzle);
@@ -30,11 +41,11 @@ public class PuzzleGenerator {
         startView.start();
     }
 
+    public PuzzleGenerator() {
+        parser = new Parser();
+    }
 
     private Puzzle startGeneration(String fileName) {
-
-
-        Parser parser = new Parser();
         parser.decodeJson(fileName, null);
         //  parser.decodeJson(fileName,"Plays.json");
 
@@ -46,27 +57,15 @@ public class PuzzleGenerator {
             parsedRules.add(RulesFactory.getFactory().createRule(rule));
         }
 
-        initEnabledButtonsToPlay();
+        initEnabledButtonsToPlay(parser.getAcceptedKeys());
         ArrayList<Cell> clues = parser.getClues();
         ArrayList<RegionJson> regionJsons = parser.getRegionJsons();
         return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues, regionJsons);
     }
 
 
-    private void initEnabledButtonsToPlay() {
-        //TODO debe ser levantado del archivo con el parser
-        ArrayList<String> enabledValues = new ArrayList<>();
-        enabledValues.add("1");
-        enabledValues.add("2");
-        enabledValues.add("3");
-        enabledValues.add("4");
-        enabledValues.add("5");
-        enabledValues.add("6");
-        enabledValues.add("7");
-        enabledValues.add("8");
-        enabledValues.add("9");
-        enabledValues.add("-");
-        InputUserView.createView(enabledValues);
+    private void initEnabledButtonsToPlay(ArrayList<String> acceptedKeys) {
+        InputUserView.createView(acceptedKeys);
     }
 
 }

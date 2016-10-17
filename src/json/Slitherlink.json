@@ -5,6 +5,9 @@
   "rules": [{
     "rule": "Doesnt repeat number in row"
   }],
+  "winVerificators": [{
+    "verificator": "Close circuit win verificator"
+  }],
   "clues": [{
     "x": 0,
     "y": 4,

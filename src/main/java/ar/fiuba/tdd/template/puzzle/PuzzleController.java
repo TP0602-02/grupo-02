@@ -10,6 +10,8 @@ import ar.fiuba.tdd.template.entity.BaseController;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
+import ar.fiuba.tdd.template.userinterface.view.WinGameView;
+import ar.fiuba.tdd.template.winverificators.WinVerificator;
 
 import java.util.ArrayList;
 
@@ -19,10 +21,12 @@ import java.util.ArrayList;
 public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
 
     private ArrayList<CellController> cellControllers;
+    private ArrayList<WinVerificator> winVerificators;
     private boolean addWithConnections;
 
-    public PuzzleController() {
+    public PuzzleController(ArrayList<WinVerificator> winVerificators) {
         this.cellControllers = new ArrayList<>();
+        this.winVerificators = winVerificators;
     }
 
     public void setAddWithConnections(boolean addWithConnections) {
@@ -54,6 +58,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                         Play play = new Play(cell, text);
                         if (model.checkMovement(play)) {
                             runPlay(play);
+                            checkWinVerificator();
                         }
                     }
 
@@ -71,6 +76,16 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                 });
                 this.cellControllers.add(cellController);
             }
+        }
+    }
+
+    private void checkWinVerificator() {
+        boolean winGame = true;
+        for (WinVerificator verificator : this.winVerificators) {
+            winGame &= verificator.wonTheGame(this.model.getBoard());
+        }
+        if (winGame) {
+            new WinGameView().setVisible(true);
         }
     }
 

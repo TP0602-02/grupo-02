@@ -5,6 +5,9 @@
   "rules": [{
     "rule": "No repeat value rule"
   }],
+  "winVerificators": [{
+    "verificator": "Full board win verificator"
+  }],
   "clues": [{
     "x": 0,
     "y": 0,

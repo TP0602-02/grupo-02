@@ -27,6 +27,7 @@ public class Parser {
     private ArrayList<String> acceptedKeys = new ArrayList<>();
     private ArrayList<Cell> clues = new ArrayList<>();
     private ArrayList<String> rules = new ArrayList<>();
+    private ArrayList<String> winVerificators = new ArrayList<>();
     private ArrayList<RegionJson> regionJsons;
     private ArrayList<Cell> plays = new ArrayList<>();
 
@@ -63,6 +64,7 @@ public class Parser {
         readKeys((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
 
         readRules((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+        readWinVerificators((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readElements((JSONObject) this.boardFile.get(JSON_PARSED_KEY), "clues");
         readRegions((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
 
@@ -106,6 +108,10 @@ public class Parser {
         return this.rules;
     }
 
+    public ArrayList<String> getWinVerificators() {
+        return this.winVerificators;
+    }
+
     public ArrayList<RegionJson> getRegionJsons() {
         return this.regionJsons;
     }
@@ -115,6 +121,14 @@ public class Parser {
         JSONArray rulesContents = (JSONArray) jsonObject.get("rules");
         for (JSONObject rule : (Iterable<JSONObject>) rulesContents) { // for every rule
             rules.add(rule.get("rule").toString());
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void readWinVerificators(JSONObject jsonObject) {
+        JSONArray winVerificators = (JSONArray) jsonObject.get("winVerificators");
+        for (JSONObject winVerificator : (Iterable<JSONObject>) winVerificators) { // for every rule
+            this.winVerificators.add(winVerificator.get("verificator").toString());
         }
     }
 

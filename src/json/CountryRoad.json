@@ -5,6 +5,9 @@
   "rules": [{
     "rule": "Doesnt repeat line in cell"
   }],
+  "winVerificators": [{
+    "verificator": "Close circuit win verificator"
+  }],
   "clues": [{
     "x": 0,
     "y": 0,

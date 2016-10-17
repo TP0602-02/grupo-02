@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.template;
 
+import ar.fiuba.tdd.template.board.cell.ClueJson;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.*;
 import ar.fiuba.tdd.template.entity.Coordinate;
@@ -30,6 +31,8 @@ public class Parser {
     private ArrayList<String> winVerificators = new ArrayList<>();
     private ArrayList<RegionJson> regionJsons;
     private ArrayList<Cell> plays = new ArrayList<>();
+
+    //private ArrayList<ClueJson> cluesJson = new ArrayList<>();
 
     public Parser() {
         this.boardFile = new JSONObject();
@@ -132,6 +135,44 @@ public class Parser {
         }
     }
 
+    /*@SuppressWarnings("unchecked")
+    private void readCoordinates(JSONArray coordinates, ClueJson clueJson) {
+        for (JSONObject coordinate : (Iterable<JSONObject>) coordinates) {
+            Coordinate clueCoordinate = new Coordinate(((Long) coordinate.get("x")).intValue(),
+                    ((Long) coordinate.get("y")).intValue());
+            clueJson.addCoordinate(clueCoordinate);
+        }
+    }
+    */
+
+    /*
+    @SuppressWarnings("unchecked")
+    private void readClueContents(JSONArray contentData, ClueJson clueJson, String id) {
+        for (JSONObject contentsJson : (Iterable<JSONObject>) contentData) { // for every clue
+            // the first value goes below, the second value above
+            Long value = (Long) contentsJson.get("value");
+            createContent(clueJson, id, value.toString());
+        }
+    }
+    */
+
+/*
+    @SuppressWarnings("unchecked")
+    private void readElements(JSONObject jsonObject, String id) {
+        JSONArray cellContents = (JSONArray) jsonObject.get(id);
+        for (JSONObject cellClue : (Iterable<JSONObject>) cellContents) { // for every clue
+            ClueJson clueJson = new ClueJson();
+            JSONArray coordinates = (JSONArray) cellClue.get("coordinates"); // get all coordinates
+            readCoordinates(coordinates, clueJson);
+            JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the contents
+            readClueContents(contentData, clueJson, id);
+            //String cellType = getCellType(contentData.size());
+            //Cell newCell = cellFactory.createCell(cellType, new Coordinate(positionX, positionY));
+            cluesJson.add(clueJson);
+        }
+    }
+    */
+
     @SuppressWarnings("unchecked")
     private void readElements(JSONObject jsonObject, String id) {
 
@@ -172,6 +213,22 @@ public class Parser {
         return CellFactory.CELL_SINGLE_VALUE;
     }
 
+    /*
+    private ClueJson createContent(ClueJson clueJson, String id, String value) {
+        if (id.equals("clues")) {
+            // Clues are considered ClueContent or BlackContent
+            if (!value.equals(BLACK_CONTENT_VALUE)) {
+                ClueContent clue = new ClueContent(value);
+                clueJson.addContents(clue);
+            } else {
+                BlackContent black = new BlackContent();
+                clueJson.addContents(black);
+            }
+        }
+        return clueJson;
+    }
+    */
+
     private Cell createContent(Cell newCell, String id, String value) {
         if (id.equals("clues")) {
             // Clues are considered ClueContent or BlackContent
@@ -179,13 +236,6 @@ public class Parser {
                 ClueContent clue = new ClueContent(value);
                 newCell.setContent(clue);
             } else {
-                // if it's -1 we consider it a BlackContent
-               /* BlackContent black = new BlackContent(new BlackContent.DefValue<String>() {
-                    @Override
-                    public String getDefValue() {
-                        return "black";
-                    }
-                });*/
                 BlackContent black = new BlackContent();
                 newCell.setContent(black);
             }

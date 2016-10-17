@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
 
+import java.awt.*;
+
 public class ValueContent extends CellContentWithValue {
 
 
@@ -20,5 +22,10 @@ public class ValueContent extends CellContentWithValue {
     @Override
     public boolean isEditable() {
         return true;
+    }
+
+    @Override
+    public Color getColorRepresentation() {
+        return Color.WHITE;
     }
 }

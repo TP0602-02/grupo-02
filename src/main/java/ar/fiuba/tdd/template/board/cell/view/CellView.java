@@ -19,15 +19,12 @@ public class CellView extends JLabel {
         setOpaque(true);
         setBackground(Color.white);
         setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+
     }
 
     public CellView(String text) {
         this();
-        if (text.equals("black")) {
-            setBackground(Color.BLACK);
-        } else {
-            setText(text);
-        }
+        setText(text);
     }
 
     public void setValues(ArrayList<String> values) {
@@ -41,7 +38,9 @@ public class CellView extends JLabel {
     }
 
     public interface ClickCellListener {
-        public void onClick();
+        public void onClickForWrite();
+
+        public void onClickForRead();
     }
 
 
@@ -55,7 +54,11 @@ public class CellView extends JLabel {
             @Override
             public void mouseClicked(MouseEvent evemt) {
                 if (listener != null) {
-                    listener.onClick();
+                    if (SwingUtilities.isLeftMouseButton(evemt)) {
+                        listener.onClickForWrite();
+                    } else if (SwingUtilities.isRightMouseButton(evemt)) {
+                        listener.onClickForRead();
+                    }
                 }
             }
 

@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.template.board.cell.controller;
 
 import ar.fiuba.tdd.template.board.InputUserView;
+import ar.fiuba.tdd.template.board.cell.ShowCellValuesView;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
@@ -19,11 +20,20 @@ public class CellController extends BaseController<CellView, Cell> {
         if (cell.isEditable()) {
             cellView.setListener(new CellView.ClickCellListener() {
                 @Override
-                public void onClick() {
+                public void onClickForWrite() {
                     showMessageInput();
+                }
+
+                @Override
+                public void onClickForRead() {
+                    showWindowWithValues();
                 }
             });
         }
+    }
+
+    private void showWindowWithValues() {
+        ShowCellValuesView.getInstance().showValues(this.model.getValuesToString());
     }
 
     public void showMessageInput() {

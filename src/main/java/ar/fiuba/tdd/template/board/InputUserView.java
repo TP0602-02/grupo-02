@@ -38,6 +38,7 @@ public class InputUserView extends JFrame {
 
     private InputUserView(ArrayList<String> allowedValuesToInput) {
         this.allowedValuesToInput = allowedValuesToInput;
+        this.selectedValueToDelete = "";
         setLayout(null);
         textInput = new JTextField();
         textInput.setEditable(false);
@@ -65,6 +66,7 @@ public class InputUserView extends JFrame {
 
     /**
      * Firstable must call createView method.
+     *
      * @return instance of InputUserView initialized.
      */
     public static InputUserView getInstance() {
@@ -75,8 +77,15 @@ public class InputUserView extends JFrame {
     public void setCellValuesToDelete(ArrayList<String> cellValuesToDelete) {
 
         this.cellValuesToDelete = cellValuesToDelete;
+        valuesToDeleteContainer.removeAll();
         for (String value : cellValuesToDelete) {
             JButton button = new JButton(value);
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    selectedValueToDelete = button.getText();
+                }
+            });
             valuesToDeleteContainer.add(button);
         }
         JButton buttonDeleteOk = new JButton("BORRAR!");
@@ -85,12 +94,12 @@ public class InputUserView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                 //TODO ver que haya seleccionado algun valor a elminar si es que hay varios
-              /*  if(seleccionoAlgunValor) {
-                     selectedValueToDelete = valorSeleccionado;
+                if (!selectedValueToDelete.isEmpty()) {
                     deleteCellContent();
-                }else{
+                } else {
                     //mostrar mensaje que debe seleccionar primero un vaclor y luego pulsar OK
-                }*/
+                }
+                selectedValueToDelete = "";
 
             }
         });
@@ -99,6 +108,7 @@ public class InputUserView extends JFrame {
 
     public void showInputUserView() {
         setVisible(true);
+        selectedValueToDelete = "";
         valuesToDeleteContainer.setVisible(false);
     }
 

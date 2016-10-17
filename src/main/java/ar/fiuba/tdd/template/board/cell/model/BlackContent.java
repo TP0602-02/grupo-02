@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
+import java.awt.*;
+
 public class BlackContent extends CellContent {
 
   /*  public void setDef(DefValue<T> def) {
@@ -34,6 +36,11 @@ public class BlackContent extends CellContent {
     @Override
     public void setValue(String value) {
 
+    }
+
+    @Override
+    public Color getColorRepresentation() {
+        return Color.BLACK;
     }
 
     @Override

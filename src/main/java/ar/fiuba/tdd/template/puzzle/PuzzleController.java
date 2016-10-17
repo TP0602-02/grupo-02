@@ -47,18 +47,14 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                 cellController.setUserInputListener(new CellController.UserInputListener() {
                     @Override
                     public void validateUserTextInputed(Cell cell, String text) {
-                        // int textParsed = SpecialCharactersParser.getInstance().getValueOf(text);
-                       /*
+
                         //TODO esto debe ser otra RULE que valide el dominio de los numeros posibles
-                        if(textParsed > 0 && textParsed <= model.getBoardHeight()){
-                            return model.checkMovement(cell,textParsed);
-                        }else{
-                            return false;
-                        }*/
-                        Play play = new Play(cell, text);
-                        if (model.checkMovement(play)) {
-                            runPlay(play);
-                            checkWinVerificator();
+                        if (text != null && text.length() == 1) {
+                            Play play = new Play(cell, text);
+                            if (model.checkMovement(play)) {
+                                runPlay(play);
+                                checkWinVerificator();
+                            }
                         }
                     }
 

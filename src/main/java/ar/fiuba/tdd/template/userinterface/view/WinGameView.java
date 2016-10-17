@@ -15,12 +15,11 @@ public class WinGameView extends JFrame {
     private static final String WIN_GAME = "FELICITACIONES HAS GANADO!!!";
 
     public WinGameView() {
-        setLayout(null);
         setMinimumSize(new Dimension(widthWindow, heightWindow));
-        setBounds(posXWindow, posYWindow, widthWindow, heightWindow);
+        setLayout(null);
         JLabel textInput = new JLabel(WIN_GAME);
+        setBounds(posXWindow, posYWindow, widthWindow, heightWindow);
         textInput.setFont(new Font("Serif", Font.PLAIN, 15));
-        textInput.setHorizontalAlignment(JLabel.CENTER);
         textInput.setBounds(10, posYWindow / 2, widthWindow - 20, heightWindow / 3);
         add(textInput);
     }

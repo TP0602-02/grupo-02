@@ -104,11 +104,9 @@ public class PuzzleView extends JFrame {
     private void addField(CellContent cellContent, int positionPixelX, int positionPixelY, int column, int row) {
         // Cell cell = new Cell(column, row);
         //cell.setContent(cellContent);
-        CellView cellVIew = new CellView(String.valueOf(cellContent.getValue()));
-        //TODO sacarlo haciendo un visitor
-        if (cellContent instanceof ClueContent) {
-            cellVIew.setBackground(Color.RED);
-        }
+        CellView cellVIew = new CellView(cellContent.getValue());
+        //TODO sacarlo haciendo un visitor o pidiendole getColor a la cellContent
+        cellVIew.setBackground(cellContent.getColorRepresentation());
         cellVIew.setBounds(positionPixelX, positionPixelY, cellViewDimension, cellViewDimension);
         CellView previousCellView = boardView.get(column).get(row);
         if (previousCellView != null) {

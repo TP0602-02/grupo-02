@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
 
+import java.awt.*;
+
 public class ClueContent extends CellContentWithValue {
 
 
@@ -20,5 +22,10 @@ public class ClueContent extends CellContentWithValue {
     @Override
     public boolean isEditable() {
         return false;
+    }
+
+    @Override
+    public Color getColorRepresentation() {
+        return Color.RED;
     }
 }

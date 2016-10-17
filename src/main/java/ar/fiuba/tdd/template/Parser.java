@@ -32,7 +32,7 @@ public class Parser {
     private ArrayList<RegionJson> regionJsons;
     private ArrayList<Cell> plays = new ArrayList<>();
 
-    //private ArrayList<ClueJson> cluesJson = new ArrayList<>();
+    private ArrayList<ClueJson> cluesJson = new ArrayList<>();
 
     public Parser() {
         this.boardFile = new JSONObject();
@@ -135,7 +135,7 @@ public class Parser {
         }
     }
 
-    /*@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     private void readCoordinates(JSONArray coordinates, ClueJson clueJson) {
         for (JSONObject coordinate : (Iterable<JSONObject>) coordinates) {
             Coordinate clueCoordinate = new Coordinate(((Long) coordinate.get("x")).intValue(),
@@ -143,7 +143,7 @@ public class Parser {
             clueJson.addCoordinate(clueCoordinate);
         }
     }
-    */
+
 
     /*
     @SuppressWarnings("unchecked")
@@ -180,13 +180,21 @@ public class Parser {
         JSONArray cellContents = (JSONArray) jsonObject.get(id);
 
         for (JSONObject cellClue : (Iterable<JSONObject>) cellContents) { // for every cell
-            int positionX = ((Long) cellClue.get("x")).intValue();
-            int positionY = ((Long) cellClue.get("y")).intValue();
+            ClueJson clueJson = new ClueJson();
+            JSONArray coordinates = (JSONArray) cellClue.get("coordinates"); // get all coordinates
+            readCoordinates(coordinates, clueJson);
+
+            int positionX = clueJson.getCoordinates().get(0).getRow();
+            int positionY = clueJson.getCoordinates().get(0).getColumn();
+
+            //int positionX = ((Long) cellClue.get("x")).intValue();
+            //int positionY = ((Long) cellClue.get("y")).intValue();
+
+            cluesJson.add(clueJson);
 
             JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the clues
 
             String cellType = getCellType(contentData.size());
-
 
             Cell newCell = cellFactory.createCell(cellType, new Coordinate(positionX, positionY));
             // create a single cell

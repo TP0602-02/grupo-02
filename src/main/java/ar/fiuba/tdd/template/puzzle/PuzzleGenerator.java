@@ -60,7 +60,7 @@ public class PuzzleGenerator {
         initEnabledButtonsToPlay(parser.getAcceptedKeys());
         ArrayList<Cell> clues = parser.getClues();
         ArrayList<RegionJson> regionJsons = parser.getRegionJsons();
-        return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues,
+        return new Puzzle(parser.getHeight(), parser.getWidth(), parser.getBoardCellType(), parsedRules, clues,
                 regionJsons, parser.getCluesJson());
     }
 

@@ -24,18 +24,15 @@ public class Puzzle {
     private int boardWidth;
     private ArrayList<Cell> initialCells;
 
-    public Puzzle(int boardHeight, int boardWidth, ArrayList<GenericRule> rules, ArrayList<Cell> initialCells,
+    public Puzzle(int boardHeight, int boardWidth, String cellType, ArrayList<GenericRule> rules, ArrayList<Cell> initialCells,
                   ArrayList<RegionJson> regionJsons, ArrayList<ClueJson> cluesJson) {
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
 
         // primero se crea el board
-        this.board = new Board(boardHeight, boardWidth, CellFactory.CELL_SINGLE_VALUE);
-        // se setean las cells múltiples
-        setMultipleCells(initialCells);
+        this.board = new Board(boardHeight, boardWidth, cellType);
         // después se definen las regiones
         setInitialRegions(regionJsons);
-
         //setInitialCells(initialCells);
         this.initialCells = initialCells;
 
@@ -81,15 +78,6 @@ public class Puzzle {
         }
     }
 
-    private void setMultipleCells(ArrayList<Cell> initialCells) {
-        CellFactory cellFactory = new CellFactory();
-        for (Cell cellToAdd : initialCells) {
-            String cellType = getCellType(cellToAdd.getContents().size());
-            Cell newCell = cellFactory.createCell(cellType, new Coordinate(cellToAdd.getRow(), cellToAdd.getColumn()));
-            this.board.setCell(newCell);
-        }
-    }
-
     private void createInitialContents(ArrayList<ClueJson> cluesJson) {
         for (ClueJson clue : cluesJson) { // for each clue
             for (Coordinate coordinate : clue.getCoordinates()) {
@@ -98,13 +86,6 @@ public class Puzzle {
                 }
             }
         }
-    }
-
-    private String getCellType(int size) {
-        if (size > 1) {
-            return CellFactory.CELL_MULTIPLE_VALUE;
-        }
-        return CellFactory.CELL_SINGLE_VALUE;
     }
 
     public boolean checkMovement(Play play) {

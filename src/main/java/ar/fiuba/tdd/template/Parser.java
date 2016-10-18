@@ -25,6 +25,7 @@ public class Parser {
 
     private int height;
     private int width;
+    private String cellType;
     private ArrayList<String> acceptedKeys = new ArrayList<>();
     private ArrayList<Cell> clues = new ArrayList<>();
     private ArrayList<String> rules = new ArrayList<>();
@@ -63,6 +64,9 @@ public class Parser {
         // Board configuration
         this.width = readWidth((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).intValue();
         this.height = readHeight((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).intValue();
+        this.cellType = readType((JSONObject)this.boardFile.get(JSON_PARSED_KEY));
+
+        //System.out.print("\n" + this.cellType + "\n\n");
 
         readKeys((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
 
@@ -77,6 +81,10 @@ public class Parser {
             readFile(playsFileName, (JSONObject) this.playsFile.get(JSON_PARSED_KEY));
             readPlays();
         }
+    }
+
+    private static String readType(JSONObject jsonObject) {
+        return (String) jsonObject.get("type");
     }
 
     private static Long readWidth(JSONObject jsonObject) {
@@ -119,6 +127,10 @@ public class Parser {
         return this.regionJsons;
     }
 
+    public String getBoardCellType() {
+        return this.cellType;
+    }
+
     @SuppressWarnings("unchecked")
     private void readRules(JSONObject jsonObject) {
         JSONArray rulesContents = (JSONArray) jsonObject.get("rules");
@@ -144,8 +156,6 @@ public class Parser {
         }
     }
 
-
-
     @SuppressWarnings("unchecked")
     private void readClueContents(JSONArray contentData, ClueJson clueJson, String id) {
         for (JSONObject contentsJson : (Iterable<JSONObject>) contentData) { // for every clue
@@ -154,7 +164,6 @@ public class Parser {
             createContentClue(clueJson, id, value.toString());
         }
     }
-
 
 /*
     @SuppressWarnings("unchecked")

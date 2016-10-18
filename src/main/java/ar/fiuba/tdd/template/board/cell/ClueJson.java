@@ -14,6 +14,7 @@ public class ClueJson {
     public ClueJson() {
         this.coordinates = new ArrayList<>();
         this.contents = new ArrayList<>();
+        this.clueID = Integer.MIN_VALUE;
     }
 
     public void addCoordinate(Coordinate coordinate) {

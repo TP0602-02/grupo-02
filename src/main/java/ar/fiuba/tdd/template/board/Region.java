@@ -44,4 +44,5 @@ public class Region {
     public boolean containsCell(Cell cell) {
         return this.cells.contains(cell);
     }
+
 }

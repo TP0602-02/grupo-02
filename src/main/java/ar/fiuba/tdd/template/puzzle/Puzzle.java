@@ -13,7 +13,6 @@ import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.rules.GenericRule;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Puzzle {
@@ -32,12 +31,13 @@ public class Puzzle {
         // primero se crea el board
         this.board = new Board(boardHeight, boardWidth, cellType);
         // después se definen las regiones
-        setInitialRegions(regionJsons);
+        setInitialRegions(regionJsons, cluesJson);
         //setInitialCells(initialCells);
         this.initialCells = initialCells;
 
         // recién ahora habría que asignar los contenidos
         createInitialContents(cluesJson);
+
 
         this.rules = new ArrayList<>();
         for (GenericRule rule : rules) {
@@ -45,15 +45,30 @@ public class Puzzle {
         }
     }
 
-    private void setInitialRegions(ArrayList<RegionJson> regionJsons) {
+    private void setInitialRegions(ArrayList<RegionJson> regionJsons, ArrayList<ClueJson> cluesJson) {
         RegionCreator regionCreator = new RegionCreator(this.board);
         for (RegionJson regionJson : regionJsons) {
             Region region = regionCreator.createRegion(regionJson.getLeftTop(),
                     regionJson.getRightBottom(), regionJson.getExceptions());
             region.setTotal(regionJson.getTotal());
             System.out.print(regionJson.getTotal() + "\n");
+            ClueJson clueJson = getClueJsonInRegion(region.getTotal(), cluesJson);
+            if (clueJson.getClueID() == region.getTotal()) {
+                region.addCell(new CellFactory().createCell(CellFactory.CELL_MULTIPLE_VALUE, clueJson.getCoordinates().get(0)));
+            }
             board.addRegion(region);
         }
+    }
+
+    private ClueJson getClueJsonInRegion(int regionID, ArrayList<ClueJson> cluesJsons) {
+        for ( ClueJson clueJson : cluesJsons) {
+            if (clueJson.getClueID() == regionID) {
+                ClueJson clueJsonReturn = new ClueJson();
+                clueJsonReturn.setClueID(regionID);
+                return clueJsonReturn;
+            }
+        }
+        return new ClueJson();
     }
 
     public ArrayList<Cell> getInitialCells() {
@@ -109,5 +124,6 @@ public class Puzzle {
     public Board getBoard() {
         return board;
     }
+
 }
 

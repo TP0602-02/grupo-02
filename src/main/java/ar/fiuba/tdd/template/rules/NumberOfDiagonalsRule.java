@@ -22,58 +22,37 @@ public class NumberOfDiagonalsRule extends NumberRule {
 
     @Override
     public boolean validateRegion(Region region, Cell cell, int numberToAdd) {
-        return (region.getDiagonalsPartial() < region.getTotal());
+        ArrayList<Integer> corners = this.getCorners(numberToAdd);
+        ArrayList<RelativeClueContent> positions = cell.getPositionContents();
+        RelativeClueContent positionClue = matchClueWithRegion(positions, region);
+        if (!matchCorner(corners, positionClue.getCorner())) {
+            return true;
+        }
+        return (region.getDiagonalsPartial() < region.getClue().getNumberValue());
+    }
+
+    private boolean matchCorner(ArrayList<Integer> corners, int corner) {
+        for (Integer candidateCorner : corners) {
+            if (candidateCorner == corner) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private RelativeClueContent matchClueWithRegion(ArrayList<RelativeClueContent> positions, Region region) {
+        for (RelativeClueContent position : positions) {
+            if (position.getClue() == region.getClue()) {
+                return position;
+            }
+        }
+        return null;
     }
 
     @Override
     protected void initializeTotals(Region region) {
 
     }
-
-    @Override
-    public ArrayList<Region> getRegions(Board board, Cell cell, int numberToAdd) {
-        ArrayList<Region> regions = new ArrayList<Region>();
-        ArrayList<ClueContent> clues = this.getClues(cell, numberToAdd);
-        for (ClueContent clue: clues) {
-            regions.add(this.getRegion(board, clue));
-        }
-        return regions;
-    }
-
-    private Region getRegion(Board board, ClueContent clue) {
-        ArrayList<Region> regions = board.getRegions();
-        for (Region region: regions) {
-            if (region.getClue() == clue) {
-                return region;
-            }
-        }
-        return null;
-    }
-
-    private ArrayList<ClueContent> getClues(Cell cell, int numberToAdd) {
-        ArrayList<ClueContent> clues = new ArrayList<ClueContent>();
-        ArrayList<Integer> corners = this.getCorners(numberToAdd);
-        ArrayList<RelativeClueContent> relativeClueContents = cell.getPositionContents();
-        for (Integer corner: corners) {
-            for (RelativeClueContent relativeClueContent: relativeClueContents) {
-                if (relativeClueContent.getCorner() == corner) {
-                    clues.add(this.getClueContent(cell, corner));
-                    break;
-                }
-            }
-        }
-        return clues;
-    }
-
-    /*private boolean hasClueInCorner(Cell cell, Integer corner) {
-        ArrayList<RelativeClueContent> relativeClueContents = cell.getPositionContents();
-        for (RelativeClueContent relativeClueContent: relativeClueContents) {
-            if (relativeClueContent.getCorner() == corner) {
-                return true;
-            }
-        }
-        return false;
-    }*/
 
     private ClueContent getClueContent(Cell cell, Integer corner) {
         return null;
@@ -82,13 +61,16 @@ public class NumberOfDiagonalsRule extends NumberRule {
     private ArrayList<Integer> getCorners(int numberToAdd) {
         ArrayList<Integer> corners = new ArrayList<Integer>();
         switch (numberToAdd) {
-            case 1: corners.add(this.upperLeftCorner);
-                    corners.add(this.lowerRightCorner);
-                    return corners;
-            case 2: corners.add(this.upperRightCorner);
-                    corners.add(this.lowerLeftCorner);
-                    return corners;
-            default: return corners;
+            case 1:
+                corners.add(this.upperLeftCorner);
+                corners.add(this.lowerRightCorner);
+                return corners;
+            case 2:
+                corners.add(this.upperRightCorner);
+                corners.add(this.lowerLeftCorner);
+                return corners;
+            default:
+                return corners;
         }
     }
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Region {
     private final ArrayList<Cell> cells;
     private int total;
+    private ClueContent clue;
 
     public Region(ArrayList<Cell> cells) {
         this.total = -1;
@@ -49,16 +50,19 @@ public class Region {
 
     public ClueContent getClue() {
         //TODO CAMBIAR ESTO CUANDO LA REGIÓN TENGA UNA CLUE EN VEZ DE UN VALOR.
-        return new ClueContent(this.total);
+        return this.clue;
+    }
+
+    public void setClue(ClueContent clue) {
+        this.clue = clue;
     }
 
     public int getDiagonalsPartial() {
         int diagonals = 0;
-        for (Cell cell: this.cells) {
+        for (Cell cell : this.cells) {
             ArrayList<RelativeClueContent> relativeClueContents = cell.getPositionContents();
-            for (RelativeClueContent relativeClue: relativeClueContents) {
-                if (relativeClue.getClue() == this.getClue() &&
-                        cell.hasValue(this.getClue().getNumberValue())) {
+            for (RelativeClueContent relativeClue : relativeClueContents) {
+                if (relativeClue.getClue() == this.getClue() && cell.hasValue(relativeClue.getCorner())) {
                     ++diagonals;
                 }
             }

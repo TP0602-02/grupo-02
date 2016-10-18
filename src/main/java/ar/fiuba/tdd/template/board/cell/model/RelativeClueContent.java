@@ -8,8 +8,9 @@ public class RelativeClueContent extends CellContent {
     private ClueContent clue;
     private int corner;
 
-    public RelativeClueContent(ClueContent clue) {
+    public RelativeClueContent(ClueContent clue, int value) {
         this.clue = clue;
+        this.corner = value;
     }
 
     @Override

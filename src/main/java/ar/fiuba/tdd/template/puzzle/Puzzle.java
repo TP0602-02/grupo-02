@@ -13,6 +13,7 @@ import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.rules.GenericRule;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Puzzle {
@@ -24,23 +25,22 @@ public class Puzzle {
     private ArrayList<Cell> initialCells;
 
     public Puzzle(int boardHeight, int boardWidth, ArrayList<GenericRule> rules, ArrayList<Cell> initialCells,
-                  ArrayList<RegionJson> regionJsons) {
+                  ArrayList<RegionJson> regionJsons, ArrayList<ClueJson> cluesJson) {
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
 
         // primero se crea el board
         this.board = new Board(boardHeight, boardWidth, CellFactory.CELL_SINGLE_VALUE);
-
+        // se setean las cells múltiples
+        setMultipleCells(initialCells);
         // después se definen las regiones
         setInitialRegions(regionJsons);
 
-        setInitialCells(initialCells);
+        //setInitialCells(initialCells);
         this.initialCells = initialCells;
 
-        // en vez de setear los valores asi ^ primero creamos las cells múltiples
-        setMultipleCells(initialCells);
-
         // recién ahora habría que asignar los contenidos
+        createInitialContents(cluesJson);
 
         this.rules = new ArrayList<>();
         for (GenericRule rule : rules) {

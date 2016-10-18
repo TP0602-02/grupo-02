@@ -145,16 +145,16 @@ public class Parser {
     }
 
 
-    /*
+
     @SuppressWarnings("unchecked")
     private void readClueContents(JSONArray contentData, ClueJson clueJson, String id) {
         for (JSONObject contentsJson : (Iterable<JSONObject>) contentData) { // for every clue
             // the first value goes below, the second value above
             Long value = (Long) contentsJson.get("value");
-            createContent(clueJson, id, value.toString());
+            createContentClue(clueJson, id, value.toString());
         }
     }
-    */
+
 
 /*
     @SuppressWarnings("unchecked")
@@ -190,8 +190,6 @@ public class Parser {
             //int positionX = ((Long) cellClue.get("x")).intValue();
             //int positionY = ((Long) cellClue.get("y")).intValue();
 
-            cluesJson.add(clueJson);
-
             JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the clues
 
             String cellType = getCellType(contentData.size());
@@ -211,6 +209,10 @@ public class Parser {
             if (id.equals("clues")) {
                 clues.add(newCell);
             }
+
+
+            readClueContents(contentData, clueJson, id);
+            cluesJson.add(clueJson);
         }
     }
 
@@ -221,11 +223,11 @@ public class Parser {
         return CellFactory.CELL_SINGLE_VALUE;
     }
 
-    /*
-    private ClueJson createContent(ClueJson clueJson, String id, String value) {
+    private ClueJson createContentClue(ClueJson clueJson, String id, String value) {
         if (id.equals("clues")) {
             // Clues are considered ClueContent or BlackContent
             if (!value.equals(BLACK_CONTENT_VALUE)) {
+                //System.out.print(value + "\n");
                 ClueContent clue = new ClueContent(value);
                 clueJson.addContents(clue);
             } else {
@@ -235,7 +237,6 @@ public class Parser {
         }
         return clueJson;
     }
-    */
 
     private Cell createContent(Cell newCell, String id, String value) {
         if (id.equals("clues")) {

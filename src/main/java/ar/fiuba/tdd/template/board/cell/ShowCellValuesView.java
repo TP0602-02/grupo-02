@@ -1,8 +1,8 @@
 package ar.fiuba.tdd.template.board.cell;
 
 import java.awt.*;
-import javax.swing.*;
 import java.util.ArrayList;
+import javax.swing.*;
 
 /**
  * Created by Nicolas on 17/10/2016.

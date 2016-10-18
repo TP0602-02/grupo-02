@@ -21,6 +21,7 @@ public class Parser {
     private JSONParser parser;
     private JSONObject boardFile;
     private JSONObject playsFile;
+    private String cellType;
 
     private int height;
     private int width;
@@ -64,6 +65,7 @@ public class Parser {
         readKeys((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
 
         readRules((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+        readCellType((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readWinVerificators((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readElements((JSONObject) this.boardFile.get(JSON_PARSED_KEY), "clues");
         readRegions((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
@@ -74,6 +76,10 @@ public class Parser {
             readFile(playsFileName, (JSONObject) this.playsFile.get(JSON_PARSED_KEY));
             readPlays();
         }
+    }
+
+    private void readCellType(JSONObject jsonObject) {
+        this.cellType = (String) jsonObject.get("cellType");
     }
 
     private static Long readWidth(JSONObject jsonObject) {
@@ -144,10 +150,10 @@ public class Parser {
 
             JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the clues
 
-            String cellType = getCellType(contentData.size());
+            //String cellType = getCellType(contentData.size());
 
 
-            Cell newCell = cellFactory.createCell(cellType, new Coordinate(positionX, positionY));
+            Cell newCell = cellFactory.createCell("multiple_values", new Coordinate(positionX, positionY));
             // create a single cell
 
 
@@ -163,13 +169,6 @@ public class Parser {
                 clues.add(newCell);
             }
         }
-    }
-
-    private String getCellType(int size) {
-        if (size > 1) {
-            return " ";
-        }
-        return CellFactory.CELL_SINGLE_VALUE;
     }
 
     private Cell createContent(Cell newCell, String id, String value) {
@@ -247,7 +246,7 @@ public class Parser {
         CellFactory cellFactory = new CellFactory();
         ArrayList<Cell> cells = new ArrayList<>();
         for (JSONObject excep : (Iterable<JSONObject>) cellJsonArray) {
-            Cell newCell = cellFactory.createCell(CellFactory.CELL_SINGLE_VALUE,
+            Cell newCell = cellFactory.createCell("multiple_value",
                     new Coordinate(((Long) excep.get("x")).intValue(),
                     ((Long) excep.get("y")).intValue()));
             cells.add(newCell);
@@ -315,4 +314,9 @@ public class Parser {
         jsonValue.put("value", play.getSelectedCell().getContents().get(0).getValue());
         return jsonValue;
     }
+
+    public String getCellType() {
+        return cellType;
+    }
+
 }

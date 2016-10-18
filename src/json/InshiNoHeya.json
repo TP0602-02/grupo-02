@@ -1,11 +1,12 @@
 {
+  "cellType": "CELL_SINGLE",
   "width": 5,
   "height": 5,
   "keys": ["1","2","3","4","5"],
   "rules": [{
-    "rule": "Doesnt repeat number in row"
+    "rule": "Multiplication rule"
   }, {
-    "rule": "Doesnt repeat number in column"
+    "rule": "No repeat value rule"
   }],
   "winVerificators": [{
     "verificator": "Full board win verificator"

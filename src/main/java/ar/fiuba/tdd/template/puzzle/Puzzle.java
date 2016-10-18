@@ -22,12 +22,10 @@ public class Puzzle {
     private ArrayList<Cell> initialCells;
 
     public Puzzle(int boardHeight, int boardWidth, ArrayList<GenericRule> rules, ArrayList<Cell> initialCells,
-                  ArrayList<RegionJson> regionJsons) {
+                  ArrayList<RegionJson> regionJsons,String cellType) {
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
-        //TODO como ultimo parametro hay que pasarle lo que se levante del parser del archivo
-
-        this.board = new Board(boardHeight, boardWidth, CellFactory.CELL_SINGLE_VALUE);
+        this.board = new Board(boardHeight, boardWidth, cellType);
         setInitialCells(initialCells);
         this.initialCells = initialCells;
         this.rules = new ArrayList<GenericRule>();
@@ -66,7 +64,8 @@ public class Puzzle {
 
     private void setInitialCells(ArrayList<Cell> initialCells) {
         for (Cell cellToAdd : initialCells) {
-            this.board.setValues(new Coordinate(cellToAdd.getRow(), cellToAdd.getColumn()), cellToAdd.getContents());
+            this.board.setCell(cellToAdd);
+           // this.board.setValues(new Coordinate(cellToAdd.getRow(), cellToAdd.getColumn()), cellToAdd.getContents());
         }
     }
 

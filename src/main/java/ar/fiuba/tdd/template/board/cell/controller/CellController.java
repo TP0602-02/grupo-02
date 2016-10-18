@@ -17,19 +17,19 @@ public class CellController extends BaseController<CellView, Cell> {
 
     @Override
     public void elementsAttached(CellView cellView, Cell cell) {
-        if (cell.isEditable()) {
-            cellView.setListener(new CellView.ClickCellListener() {
-                @Override
-                public void onClickForWrite() {
+        cellView.setListener(new CellView.ClickCellListener() {
+            @Override
+            public void onClickForWrite() {
+                if (cell.isEditable()) {
                     showMessageInput();
                 }
+            }
 
-                @Override
-                public void onClickForRead() {
-                    showWindowWithValues();
-                }
-            });
-        }
+            @Override
+            public void onClickForRead() {
+                showWindowWithValues();
+            }
+        });
     }
 
     private void showWindowWithValues() {

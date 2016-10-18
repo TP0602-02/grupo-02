@@ -149,5 +149,8 @@ public class Board {
     }
 
 
-
+    public void setCell(Cell cellToAdd) {
+        board.get(cellToAdd.getColumn()).remove(cellToAdd.getRow());
+        board.get(cellToAdd.getColumn()).add(cellToAdd.getRow(), cellToAdd);
+    }
 }

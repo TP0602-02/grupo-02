@@ -29,7 +29,7 @@ public class Board {
             }
             board.add(inner);
         }
-        this.regions = new ArrayList<Region>();
+        this.regions = new ArrayList<>();
     }
 
     public boolean isFull() {
@@ -86,12 +86,16 @@ public class Board {
         return null;
     }
 
+    public void setCell(Cell cell) {
+        board.get(cell.getColumn()).set(cell.getRow(), cell);
+    }
+
     private boolean validateNumber(int index, int max) {
         return index >= 0 && index < max;
     }
 
     public ArrayList<Cell> getAdyacentCells(Cell cell) {
-        ArrayList<Cell> adyacents = new ArrayList<Cell>();
+        ArrayList<Cell> adyacents = new ArrayList<>();
         agregate(this.getCell(new Coordinate(cell.getRow() - 1, cell.getColumn())), adyacents);
         agregate(this.getCell(new Coordinate(cell.getRow() + 1, cell.getColumn())), adyacents);
         agregate(this.getCell(new Coordinate(cell.getRow(), cell.getColumn() - 1)), adyacents);

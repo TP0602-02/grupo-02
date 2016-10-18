@@ -197,7 +197,6 @@ public class Parser {
             Cell newCell = cellFactory.createCell(cellType, new Coordinate(positionX, positionY));
             // create a single cell
 
-
             for (JSONObject contentsJson : (Iterable<JSONObject>) contentData) { // for every clue
                 // the first value goes below, the second value above
                 Long value = (Long) contentsJson.get("value");

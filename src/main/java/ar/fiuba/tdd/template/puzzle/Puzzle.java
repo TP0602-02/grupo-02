@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.RegionCreator;
+import ar.fiuba.tdd.template.board.cell.ClueJson;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
@@ -25,16 +26,25 @@ public class Puzzle {
                   ArrayList<RegionJson> regionJsons) {
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
-        //TODO como ultimo parametro hay que pasarle lo que se levante del parser del archivo
 
+        // primero se crea el board
         this.board = new Board(boardHeight, boardWidth, CellFactory.CELL_SINGLE_VALUE);
+
+        // después se definen las regiones
+        setInitialRegions(regionJsons);
+
         setInitialCells(initialCells);
         this.initialCells = initialCells;
-        this.rules = new ArrayList<GenericRule>();
+
+        // en vez de setear los valores asi ^ primero creamos las cells múltiples
+        //setMultipleCells(initialCells);
+
+        // recién ahora habría que asignar los contenidos
+
+        this.rules = new ArrayList<>();
         for (GenericRule rule : rules) {
             this.rules.add(rule);
         }
-        setInitialRegions(regionJsons);
     }
 
     private void setInitialRegions(ArrayList<RegionJson> regionJsons) {
@@ -68,6 +78,22 @@ public class Puzzle {
         for (Cell cellToAdd : initialCells) {
             this.board.setValues(new Coordinate(cellToAdd.getRow(), cellToAdd.getColumn()), cellToAdd.getContents());
         }
+    }
+
+    private void setMultipleCells(ArrayList<Cell> initialCells) {
+        CellFactory cellFactory = new CellFactory();
+        for (Cell cellToAdd : initialCells) {
+            String cellType = getCellType(cellToAdd.getContents().size());
+            Cell newCell = cellFactory.createCell(cellType, new Coordinate(cellToAdd.getRow(), cellToAdd.getColumn()));
+            this.board.setCell(newCell);
+        }
+    }
+
+    private String getCellType(int size) {
+        if (size > 1) {
+            return " ";
+        }
+        return CellFactory.CELL_SINGLE_VALUE;
     }
 
     public boolean checkMovement(Play play) {

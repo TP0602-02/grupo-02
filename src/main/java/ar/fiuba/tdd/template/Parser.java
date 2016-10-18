@@ -215,9 +215,13 @@ public class Parser {
         }
     }
 
+    public ArrayList<ClueJson> getCluesJson() {
+        return this.cluesJson;
+    }
+
     private String getCellType(int size) {
         if (size > 1) {
-            return " ";
+            return CellFactory.CELL_MULTIPLE_VALUE;
         }
         return CellFactory.CELL_SINGLE_VALUE;
     }

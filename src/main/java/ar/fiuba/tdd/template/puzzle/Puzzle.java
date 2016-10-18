@@ -7,6 +7,7 @@ import ar.fiuba.tdd.template.board.RegionCreator;
 import ar.fiuba.tdd.template.board.cell.ClueJson;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
@@ -37,7 +38,7 @@ public class Puzzle {
         this.initialCells = initialCells;
 
         // en vez de setear los valores asi ^ primero creamos las cells múltiples
-        //setMultipleCells(initialCells);
+        setMultipleCells(initialCells);
 
         // recién ahora habría que asignar los contenidos
 
@@ -89,9 +90,19 @@ public class Puzzle {
         }
     }
 
+    private void createInitialContents(ArrayList<ClueJson> cluesJson) {
+        for (ClueJson clue : cluesJson) { // for each clue
+            for (Coordinate coordinate : clue.getCoordinates()) {
+                for (CellContent content : clue.getContents()) {
+                    this.board.getCell(coordinate).setContent(content);
+                }
+            }
+        }
+    }
+
     private String getCellType(int size) {
         if (size > 1) {
-            return " ";
+            return CellFactory.CELL_MULTIPLE_VALUE;
         }
         return CellFactory.CELL_SINGLE_VALUE;
     }

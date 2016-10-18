@@ -30,13 +30,17 @@ public abstract class OperationRule extends NumberRule {
     }
 
     private boolean validate() {
-        if (this.regionPartial > this.regionTotal) {
+        if (this.regionPartial > this.regionTotal && hasTotalRestriction()) {
             return false;
         }
         if (this.amountOfCellsInTheRegion == this.amountOfCellsWithValue && this.regionPartial < this.regionTotal) {
             return false;
         }
         return true;
+    }
+
+    private boolean hasTotalRestriction() {
+        return this.regionTotal != -1;
     }
 
     @Override

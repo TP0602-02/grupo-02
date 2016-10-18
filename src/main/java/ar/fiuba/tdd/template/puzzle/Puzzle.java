@@ -22,7 +22,7 @@ public class Puzzle {
     private ArrayList<Cell> initialCells;
 
     public Puzzle(int boardHeight, int boardWidth, ArrayList<GenericRule> rules, ArrayList<Cell> initialCells,
-                  ArrayList<RegionJson> regionJsons,String cellType) {
+                  ArrayList<RegionJson> regionJsons, String cellType) {
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
         this.board = new Board(boardHeight, boardWidth, cellType);
@@ -33,6 +33,11 @@ public class Puzzle {
             this.rules.add(rule);
         }
         setInitialRegions(regionJsons);
+        printRegions();
+    }
+
+    private void printRegions() {
+        this.board.printRegions();
     }
 
     private void setInitialRegions(ArrayList<RegionJson> regionJsons) {
@@ -41,7 +46,7 @@ public class Puzzle {
             Region region = regionCreator.createRegion(regionJson.getLeftTop(),
                     regionJson.getRightBottom(), regionJson.getExceptions());
             region.setTotal(regionJson.getTotal());
-            System.out.print(regionJson.getTotal() + "\n");
+            //System.out.print(regionJson.getTotal() + "\n");
             board.addRegion(region);
         }
     }
@@ -65,12 +70,12 @@ public class Puzzle {
     private void setInitialCells(ArrayList<Cell> initialCells) {
         for (Cell cellToAdd : initialCells) {
             this.board.setCell(cellToAdd);
-           // this.board.setValues(new Coordinate(cellToAdd.getRow(), cellToAdd.getColumn()), cellToAdd.getContents());
+            // this.board.setValues(new Coordinate(cellToAdd.getRow(), cellToAdd.getColumn()), cellToAdd.getContents());
         }
     }
 
     public boolean checkMovement(Play play) {
-        boolean validPlay = this.validateMove( play.getSelectedCell(),
+        boolean validPlay = this.validateMove(play.getSelectedCell(),
                 SpecialCharactersParser.getInstance().getValueOf(play.getSelectedCellValue()));
         play.setValidPlay(validPlay);
         return validPlay;

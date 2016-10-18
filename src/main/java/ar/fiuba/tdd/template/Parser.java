@@ -48,7 +48,7 @@ public class Parser {
                     new FileInputStream(JSON_FILES_ROOT + jsonFileName), "UTF8"));
 
             objectParsed.put(JSON_PARSED_KEY, parser.parse(jsonFile));
-            System.out.print("Object Parsed: " + objectParsed.toString());
+            //System.out.print("Object Parsed: " + objectParsed.toString());
             jsonFile.close();
         } catch (IOException | ParseException e) {
             e.printStackTrace();

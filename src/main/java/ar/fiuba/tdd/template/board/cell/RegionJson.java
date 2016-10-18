@@ -5,7 +5,6 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 import java.util.ArrayList;
 
 public class RegionJson {
-
     private Cell leftTop;
     private Cell rightBottom;
     private ArrayList<Cell> exceptions;
@@ -33,4 +32,5 @@ public class RegionJson {
     public int getTotal() {
         return total;
     }
+
 }

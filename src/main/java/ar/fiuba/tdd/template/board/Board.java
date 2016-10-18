@@ -153,4 +153,10 @@ public class Board {
         board.get(cellToAdd.getColumn()).remove(cellToAdd.getRow());
         board.get(cellToAdd.getColumn()).add(cellToAdd.getRow(), cellToAdd);
     }
+
+    public void printRegions() {
+        for (Region region : this.regions) {
+            System.out.print(region.toString());
+        }
+    }
 }

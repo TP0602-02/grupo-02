@@ -153,6 +153,9 @@ public class Parser {
             Coordinate clueCoordinate = new Coordinate(((Long) coordinate.get("x")).intValue(),
                     ((Long) coordinate.get("y")).intValue());
             clueJson.addCoordinate(clueCoordinate);
+            /*System.out.print(clueJson.getCoordinates().get(0).getRow() + " "
+                    + clueJson.getCoordinates().get(0).getColumn() + "\n");
+            */
         }
     }
 
@@ -165,31 +168,18 @@ public class Parser {
         }
     }
 
-/*
-    @SuppressWarnings("unchecked")
-    private void readElements(JSONObject jsonObject, String id) {
-        JSONArray cellContents = (JSONArray) jsonObject.get(id);
-        for (JSONObject cellClue : (Iterable<JSONObject>) cellContents) { // for every clue
-            ClueJson clueJson = new ClueJson();
-            JSONArray coordinates = (JSONArray) cellClue.get("coordinates"); // get all coordinates
-            readCoordinates(coordinates, clueJson);
-            JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the contents
-            readClueContents(contentData, clueJson, id);
-            //String cellType = getCellType(contentData.size());
-            //Cell newCell = cellFactory.createCell(cellType, new Coordinate(positionX, positionY));
-            cluesJson.add(clueJson);
-        }
-    }
-    */
-
     @SuppressWarnings("unchecked")
     private void readElements(JSONObject jsonObject, String id) {
 
         CellFactory cellFactory = new CellFactory();
         JSONArray cellContents = (JSONArray) jsonObject.get(id);
 
+        int clueIdentifier = 0;
+
         for (JSONObject cellClue : (Iterable<JSONObject>) cellContents) { // for every cell
             ClueJson clueJson = new ClueJson();
+            clueJson.setClueID(clueIdentifier);
+            clueIdentifier++;
             JSONArray coordinates = (JSONArray) cellClue.get("coordinates"); // get all coordinates
             readCoordinates(coordinates, clueJson);
 
@@ -303,6 +293,7 @@ public class Parser {
 
         for (JSONObject region : (Iterable<JSONObject>) regionContents) { // for every region
             // totals that are -1 mean there's no total to work with in that region
+            // totals > 0 have the id of the clue that belongs to that region
             int total = ((Long)region.get("total")).intValue();
             ArrayList<Cell> fromToRegion = getCellsFromArrayJsonCell((JSONArray) region.get("coord"));
             ArrayList<Cell> exceptionsRegion = getCellsFromArrayJsonCell((JSONArray) region.get("exceptions"));

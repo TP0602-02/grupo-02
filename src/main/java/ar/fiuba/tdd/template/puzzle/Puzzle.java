@@ -80,6 +80,7 @@ public class Puzzle {
 
     private void createInitialContents(ArrayList<ClueJson> cluesJson) {
         for (ClueJson clue : cluesJson) { // for each clue
+            System.out.print(clue.getClueID() + "\n");
             for (Coordinate coordinate : clue.getCoordinates()) {
                 for (CellContent content : clue.getContents()) {
                     this.board.getCell(coordinate).setContent(content);

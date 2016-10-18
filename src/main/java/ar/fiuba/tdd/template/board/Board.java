@@ -86,10 +86,6 @@ public class Board {
         return null;
     }
 
-    public void setCell(Cell cell) {
-        board.get(cell.getColumn()).set(cell.getRow(), cell);
-    }
-
     private boolean validateNumber(int index, int max) {
         return index >= 0 && index < max;
     }

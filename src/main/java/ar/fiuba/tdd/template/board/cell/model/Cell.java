@@ -30,6 +30,16 @@ public abstract class Cell implements Summable, Editable {
         return contents;
     }
 
+    public ArrayList<RelativeClueContent> getPositionContents() {
+        ArrayList<RelativeClueContent> contents = new ArrayList<RelativeClueContent>();
+        for (CellContent cellContent : this.getContents()) {
+            if (!cellContent.isSummable()) {
+                contents.add((RelativeClueContent)cellContent);
+            }
+        }
+        return contents;
+    }
+
     public int getRow() {
         return this.coordinate.getRow();
     }
@@ -112,5 +122,14 @@ public abstract class Cell implements Summable, Editable {
             }
         }
         return total;
+    }
+
+    public boolean hasValue(int numberValue) {
+        for (CellContent cellContent: this.contents) {
+            if (cellContent.isSummable() && cellContent.getNumberValue() == numberValue) {
+                return true;
+            }
+        }
+        return false;
     }
 }

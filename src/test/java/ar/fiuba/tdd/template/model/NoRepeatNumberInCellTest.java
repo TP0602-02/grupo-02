@@ -22,7 +22,6 @@ public class NoRepeatNumberInCellTest {
         this.cell = cellFactory.createCell("", new Coordinate(0, 0));
         this.rule = new NoRepeatNumberInCell();
         this.board = new Board(4, 4, "");
-
     }
 
     @Test

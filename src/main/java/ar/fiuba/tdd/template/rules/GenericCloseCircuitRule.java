@@ -21,8 +21,6 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
     protected Cell nextCell;
 
     public GenericCloseCircuitRule() {
-        //TODO CAMBIAR!
-        this.verificator = new CircuitVerificatorWithoutBorders();
         this.iterator = new BoardIteratorConnections();
         this.cell = null;
         this.nextCell = null;
@@ -30,6 +28,10 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
 
     public void setTotalRegionRule(GenericTotalRegionRule totalRegionRule) {
         this.totalRegionRule = totalRegionRule;
+    }
+
+    public void setVerificator(CircuitVerificator verificator) {
+        this.verificator = verificator;
     }
 
     @Override

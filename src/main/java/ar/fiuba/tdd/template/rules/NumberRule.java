@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public abstract class NumberRule extends GenericRule {
     public boolean validate(Board board, Cell cell, int numberToAdd) {
-        ArrayList<Region> regionsToValidate = board.getCellRegions(cell);
+        ArrayList<Region> regionsToValidate = this.getRegions(board, cell, numberToAdd);
         for (Region region : regionsToValidate) {
             this.initializeTotals(region);
             if (!this.validateRegion(region,cell,numberToAdd)) { //CAMBIAR POR CLASE
@@ -19,6 +19,10 @@ public abstract class NumberRule extends GenericRule {
             }
         }
         return true;
+    }
+
+    protected ArrayList<Region> getRegions(Board board,Cell cell, int numberToAdd) {
+        return board.getCellRegions(cell);
     }
 
     public abstract boolean validateRegion(Region region, Cell cell, int numberToAdd);

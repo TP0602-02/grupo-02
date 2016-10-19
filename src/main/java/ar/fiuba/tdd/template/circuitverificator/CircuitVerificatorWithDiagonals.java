@@ -15,9 +15,7 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
     private ArrayList<Cell> circuitCells = new ArrayList<Cell>();
     private Cell cell = null;
 
-    //Acordarse de setearle la diagonal a la celda antes de llamar al método.
-    //Acordarse que este método chequea si se cerró el circuito.
-    //Devuelve false si se encontró un circuito cerrado.
+    //Returns false if there is a closed circuit.
     @Override
     public boolean isCircuitClosed(Board board) {
         this.cleanCircuitCells();

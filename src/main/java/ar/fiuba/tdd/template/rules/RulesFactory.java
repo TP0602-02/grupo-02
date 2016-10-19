@@ -18,14 +18,7 @@ public class RulesFactory {
 
     private static void initFactory() {
         factory = new Properties();
-        factory.put(SUM_RULE, new SumRule());
-        factory.put(MULTIPLICATION_RULE, new MultiplicationRule());
-        factory.put(NO_REPEAT_VALUE_RULE, new NoRepeatValueRule());
-        factory.put(CONECTIONS_IN_CELL_RULE, new CellHasValidConectionsRule());
-        factory.put(CONECTIONS_IN_REGION_RULE, new RegionHasValidConectionsRule());
-        factory.put(CLOSE_CIRCUIT_RULE, new CloseCircuitConnectionRule());
-        factory.put(CONECTIONS_INSIDE_BOARD_RULE, new ConectionInsideBoardRule());
-        factory.put(NUMBER_CONECTIONS_IN_REGION_RULE, new NumberOfConectionsInRegionRule());
+        putRules();
     }
 
     public static RulesFactory getFactory() {
@@ -39,4 +32,16 @@ public class RulesFactory {
     public GenericRule createRule(String ruleName) {
         return (GenericRule) factory.get(ruleName);
     }
+
+    private static void putRules() {
+        factory.put(SUM_RULE, new SumRule());
+        factory.put(MULTIPLICATION_RULE, new MultiplicationRule());
+        factory.put(NO_REPEAT_VALUE_RULE, new NoRepeatValueRule());
+        factory.put(CONECTIONS_IN_CELL_RULE, new CellHasValidConectionsRule());
+        factory.put(CONECTIONS_INSIDE_BOARD_RULE, new ConectionInsideBoardRule());
+        factory.put(CONECTIONS_IN_REGION_RULE, new RegionHasValidConectionsRule());
+        factory.put(CLOSE_CIRCUIT_RULE, new CloseCircuitConnectionRule());
+        factory.put(NUMBER_CONECTIONS_IN_REGION_RULE, new NumberOfConectionsInRegionRule());
+    }
 }
+

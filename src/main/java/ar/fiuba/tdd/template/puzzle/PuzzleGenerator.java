@@ -4,6 +4,8 @@ import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.InputUserView;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.puzzle.aggregators.Aggregator;
+import ar.fiuba.tdd.template.puzzle.aggregators.AggregatorWithConnections;
 import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.rules.RulesFactory;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
@@ -30,7 +32,6 @@ public class PuzzleGenerator {
                 initParse(gameFile, playFile);
                 createGame(gameFile, "", false);
                 puzzleController.execPlays(parser.getPlays());
-
             }
         });
         startView.start();
@@ -54,10 +55,9 @@ public class PuzzleGenerator {
             parsedWinVerificators.add(WinVerificatorFactory.getFactory().createVerificator(verificator));
         }
 
-        puzzleController = new PuzzleController(parsedWinVerificators);
-        //TODO se debe levantar del archivo el booleano que se le pasa
-        puzzleController.setAddWithConnections(false);
+        puzzleController = new PuzzleController(parsedWinVerificators,new Aggregator());
         puzzleController.attachElements(puzzleView, puzzle);
+        puzzleController.aggregateCellControllers();
     }
 
     public PuzzleGenerator() {

@@ -222,7 +222,7 @@ public class BoardTest {
     @Test
     public void decodeJson() {
         Parser parser = new Parser();
-        String file = "sudoku.json";
+        String file = "Sudoku.json";
         parser.decodeJson(file, null);
         int width = parser.getWidth();
         int height = parser.getHeight();

@@ -25,7 +25,7 @@ public class NumberOfDiagonalsRule extends NumberRule {
         ArrayList<Integer> corners = this.getCorners(numberToAdd);
         ArrayList<RelativeClueContent> positions = cell.getPositionContents();
         RelativeClueContent positionClue = matchClueWithRegion(positions, region);
-        if (!matchCorner(corners, positionClue.getCorner())) {
+        if (!matchCorner(corners, positionClue.getNumberValue())) {
             return true;
         }
         return (region.getDiagonalsPartial() < region.getClue().getNumberValue());

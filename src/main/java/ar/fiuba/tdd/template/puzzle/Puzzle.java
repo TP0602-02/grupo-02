@@ -45,7 +45,7 @@ public class Puzzle {
         for (RegionJson regionJson : regionJsons) {
             Region region = regionCreator.createRegion(regionJson.getLeftTop(),
                     regionJson.getRightBottom(), regionJson.getExceptions());
-            region.setTotal(regionJson.getTotal());
+            region.setClue(regionJson.getCellContent());
             //System.out.print(regionJson.getTotal() + "\n");
             board.addRegion(region);
         }

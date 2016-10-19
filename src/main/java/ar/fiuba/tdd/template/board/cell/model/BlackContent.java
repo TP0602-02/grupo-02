@@ -30,7 +30,7 @@ public class BlackContent extends CellContent {
 
     @Override
     public int getNumberValue() {
-        return 0;
+        return -1;
     }
 
     @Override

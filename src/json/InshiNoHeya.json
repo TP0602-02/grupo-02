@@ -11,87 +11,36 @@
   "winVerificators": [{
     "verificator": "Full board win verificator"
   }],
-  "clues": [],
+  "cell_contents": [
+    {"id":0,
+      "total":-1},
+    {"id":1,
+      "total":6},
+    {"id":2,
+      "total":4},
+    {"id":3,
+      "total":5},
+    {"id":4,
+      "total":40},
+    {"id":5,
+      "total":3},
+    {"id":6,
+      "total":4},
+    {"id":7,
+      "total":15},
+    {"id":8,
+      "total":40},
+    {"id":9,
+      "total":4},
+    {"id":10,
+      "total":10},
+    {"id":11,
+      "total":6},
+    {"id":12,
+      "total":3}
+  ],
   "regions": [{
-    "total": 4,
-    "coord": [{
-      "x": 0,
-      "y": 1
-    }, {
-      "x": 0,
-      "y": 2
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 5,
-    "coord": [{
-      "x": 0,
-      "y": 3
-    }, {
-      "x": 0,
-      "y": 3
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 3,
-    "coord": [{
-      "x": 1,
-      "y": 1
-    }, {
-      "x": 1,
-      "y": 2
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 15,
-    "coord": [{
-      "x": 2,
-      "y": 0
-    }, {
-      "x": 2,
-      "y": 1
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 6,
-    "coord": [{
-      "x": 3,
-      "y": 3
-    }, {
-      "x": 3,
-      "y": 4
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 3,
-    "coord": [{
-      "x": 4,
-      "y": 3
-    }, {
-      "x": 4,
-      "y": 4
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 6,
+    "id": 1,
     "coord": [{
       "x": 0,
       "y": 0
@@ -99,203 +48,220 @@
       "x": 1,
       "y": 0
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 4,
-    "coord": [{
-      "x": 3,
-      "y": 0
-    }, {
-      "x": 4,
-      "y": 0
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 10,
-    "coord": [{
-      "x": 3,
-      "y": 1
-    }, {
-      "x": 4,
-      "y": 1
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 40,
-    "coord": [{
-      "x": 2,
-      "y": 2
-    }, {
-      "x": 4,
-      "y": 2
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 4,
-    "coord": [{
-      "x": 1,
-      "y": 3
-    }, {
-      "x": 2,
-      "y": 3
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 40,
-    "coord": [{
-      "x": 0,
-      "y": 4
-    }, {
-      "x": 2,
-      "y": 4
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  },{
-    "total": -1,
-    "coord": [{
-      "x": 0,
-      "y": 0
-    }, {
-      "x": 4,
-      "y": 0
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1}]
-  }, {
-    "total": -1,
+    "id": 2,
     "coord": [{
       "x": 0,
       "y": 1
     }, {
-      "x": 4,
-      "y": 1
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
-    "coord": [{
       "x": 0,
       "y": 2
-    }, {
-      "x": 4,
-      "y": 2
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
-    "coord": [{
-      "x": 0,
-      "y": 3
+    "exceptions": []
+  },
+    {
+      "id": 3,
+      "coord": [{
+        "x": 0,
+        "y": 3
+      }, {
+        "x": 0,
+        "y": 3
+      }],
+      "exceptions": []
     }, {
-      "x": 4,
-      "y": 3
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
-    "coord": [{
-      "x": 0,
-      "y": 4
+      "id": 4,
+      "coord": [{
+        "x": 0,
+        "y": 4
+      }, {
+        "x": 2,
+        "y": 4
+      }],
+      "exceptions": []
     }, {
-      "x": 4,
-      "y": 4
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
-    "coord": [{
-      "x": 0,
-      "y": 0
+      "id": 5,
+      "coord": [{
+        "x": 1,
+        "y": 1
+      }, {
+        "x": 1,
+        "y": 2
+      }],
+      "exceptions": []
     }, {
-      "x": 0,
-      "y": 4
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
-    "coord": [{
-      "x": 1,
-      "y": 0
+      "id": 6,
+      "coord": [{
+        "x": 1,
+        "y": 3
+      }, {
+        "x": 2,
+        "y": 3
+      }],
+      "exceptions": []
     }, {
-      "x": 1,
-      "y": 4
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
-    "coord": [{
-      "x": 2,
-      "y": 0
+      "id": 7,
+      "coord": [{
+        "x": 2,
+        "y": 0
+      }, {
+        "x": 2,
+        "y": 1
+      }],
+      "exceptions": []
     }, {
-      "x": 2,
-      "y": 4
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
-    "coord": [{
-      "x": 3,
-      "y": 0
+      "id": 8,
+      "coord": [{
+        "x": 2,
+        "y": 2
+      }, {
+        "x": 4,
+        "y": 2
+      }],
+      "exceptions": []
     }, {
-      "x": 3,
-      "y": 4
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
-    "coord": [{
-      "x": 4,
-      "y": 0
+      "id": 9,
+      "coord": [{
+        "x": 3,
+        "y": 0
+      }, {
+        "x": 4,
+        "y": 0
+      }],
+      "exceptions": []
     }, {
-      "x": 4,
-      "y": 4
+      "id": 10,
+      "coord": [{
+        "x": 3,
+        "y": 1
+      }, {
+        "x": 4,
+        "y": 1
+      }],
+      "exceptions": []
+    }, {
+      "id": 11,
+      "coord": [{
+        "x": 3,
+        "y": 3
+      }, {
+        "x": 3,
+        "y": 4
+      }],
+      "exceptions": []
+    }, {
+      "id": 12,
+      "coord": [{
+        "x": 4,
+        "y": 3
+      }, {
+        "x": 4,
+        "y": 4
+      }],
+      "exceptions": []
+    },{
+      "id": 0,
+      "coord": [{
+        "x": 0,
+        "y": 0
+      }, {
+        "x": 4,
+        "y": 0
+      }],
+      "exceptions": []
+    }, {
+      "id": 0,
+      "coord": [{
+        "x": 0,
+        "y": 1
+      }, {
+        "x": 4,
+        "y": 1
+      }],
+      "exceptions": []
+    }, {
+      "id": 0,
+      "coord": [{
+        "x": 0,
+        "y": 2
+      }, {
+        "x": 4,
+        "y": 2
+      }],
+      "exceptions": []
+    }, {
+      "id": 0,
+      "coord": [{
+        "x": 0,
+        "y": 3
+      }, {
+        "x": 4,
+        "y": 3
+      }],
+      "exceptions": []
+    }, {
+      "id": 0,
+      "coord": [{
+        "x": 0,
+        "y": 4
+      }, {
+        "x": 4,
+        "y": 4
+      }],
+      "exceptions": []
+    }, {
+      "id": 0,
+      "coord": [{
+        "x": 0,
+        "y": 0
+      }, {
+        "x": 0,
+        "y": 4
+      }],
+      "exceptions": []
+    }, {
+      "id": 0,
+      "coord": [{
+        "x": 1,
+        "y": 0
+      }, {
+        "x": 1,
+        "y": 4
+      }],
+      "exceptions": []
+    }, {
+      "id": 0,
+      "coord": [{
+        "x": 2,
+        "y": 0
+      }, {
+        "x": 2,
+        "y": 4
+      }],
+      "exceptions": []
+    }, {
+      "id": 0,
+      "coord": [{
+        "x": 3,
+        "y": 0
+      }, {
+        "x": 3,
+        "y": 4
+      }],
+      "exceptions": []
+    }, {
+      "id": 0,
+      "coord": [{
+        "x": 4,
+        "y": 0
+      }, {
+        "x": 4,
+        "y": 4
+      }],
+      "exceptions": []
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }]
+  "initial_board_content":[],
+  "special_clues":[]
+
 }

@@ -18,13 +18,19 @@ public class Parser {
     private static final int RIGHT_BOTTOM_CELL_REGION_INDEX = 1;
     private static final String JSON_FILES_ROOT = "src/json/";
     private static final String JSON_PARSED_KEY = "Response";
+    private static final String COORDINATE_X = "x";
+    private static final String COORDINATE_Y = "y";
+    private int height;
+    private int width;
+    private static final String ID = "id";
+    private static final String TOTAL = "total";
+    private static final String CORNER = "corner";
     private JSONParser parser;
     private JSONObject boardFile;
     private JSONObject playsFile;
     private String cellType;
 
-    private int height;
-    private int width;
+
     private ArrayList<String> acceptedKeys = new ArrayList<>();
     private ArrayList<Cell> clues = new ArrayList<>();
     private ArrayList<String> rules = new ArrayList<>();
@@ -32,11 +38,14 @@ public class Parser {
     private ArrayList<RegionJson> regionJsons;
     private ArrayList<Play> plays = new ArrayList<>();
 
+    private CellContentJsonFactory cellContentJsonFactory;
+
     public Parser() {
         this.boardFile = new JSONObject();
         this.playsFile = new JSONObject();
         this.regionJsons = new ArrayList<>();
         parser = new JSONParser();
+        this.cellContentJsonFactory = new CellContentJsonFactory();
     }
 
     @SuppressWarnings("unchecked")
@@ -63,18 +72,29 @@ public class Parser {
         this.height = readHeight((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).intValue();
 
         readKeys((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
-
+        readCellContentJson((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readRules((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readCellType((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readWinVerificators((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
-        readElements((JSONObject) this.boardFile.get(JSON_PARSED_KEY), "clues");
         readRegions((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+        readInitialBoardContent((JSONObject) this.boardFile.get(JSON_PARSED_KEY), "initial_board_content");
+        readSpecialClues((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
 
         // Automatic plays
         //TODO desde la interfaz de usuario debe haber un boton para en vez de jeugar cargar jugadas
         if (playsFileName != null && !playsFileName.isEmpty()) {
             readFile(playsFileName, this.playsFile);
             readPlays();
+        }
+    }
+
+    private void readCellContentJson(JSONObject jsonObject) {
+        JSONArray contentsJsonArray = (JSONArray) jsonObject.get("cell_contents");
+        for (JSONObject cellContentJson : (Iterable<JSONObject>) contentsJsonArray) {
+            int id = getIntFromJsonObject(cellContentJson, ID);
+            int value = getIntFromJsonObject(cellContentJson, TOTAL);
+            CellContentJson contentJson = new CellContentJson(id, value);
+            this.cellContentJsonFactory.createContent(contentJson);
         }
     }
 
@@ -139,35 +159,56 @@ public class Parser {
     }
 
     @SuppressWarnings("unchecked")
-    private void readElements(JSONObject jsonObject, String id) {
+    private void readInitialBoardContent(JSONObject jsonObject, String id) {
 
         CellFactory cellFactory = new CellFactory();
         JSONArray cellContents = (JSONArray) jsonObject.get(id);
 
         for (JSONObject cellClue : (Iterable<JSONObject>) cellContents) { // for every cell
-            int positionX = ((Long) cellClue.get("x")).intValue();
-            int positionY = ((Long) cellClue.get("y")).intValue();
-
             JSONArray contentData = (JSONArray) cellClue.get("content"); // start parsing the clues
 
             //String cellType = getCellType(contentData.size());
 
 
-            Cell newCell = cellFactory.createCell("multiple_values", new Coordinate(positionX, positionY));
+            Cell newCell = cellFactory.createCell("multiple_values", new Coordinate(getIntFromJsonObject(cellClue, COORDINATE_X),
+                    getIntFromJsonObject(cellClue, COORDINATE_Y)));
             // create a single cell
 
 
             for (JSONObject contentsJson : (Iterable<JSONObject>) contentData) { // for every clue
                 // the first value goes below, the second value above
-                Long value = (Long) contentsJson.get("value");
+                int idContent = getIntFromJsonObject(contentsJson, ID);
 
-                createContent(newCell, id, value.toString());
-
+                //createContent(newCell, id, value.toString());
+                newCell.setContent(this.cellContentJsonFactory.getCellContent(idContent));
             }
+            this.clues.add(newCell);
+        }
+    }
 
-            if (id.equals("clues")) {
-                clues.add(newCell);
+    private int getIntFromJsonObject(JSONObject jsonObject, String coordinateId) {
+        return ((Long) jsonObject.get(coordinateId)).intValue();
+    }
+
+    private void readSpecialClues(JSONObject jsonObject) {
+
+        CellFactory cellFactory = new CellFactory();
+        JSONArray specialClues = (JSONArray) jsonObject.get("special_clues");
+
+        for (JSONObject cellClue : (Iterable<JSONObject>) specialClues) { // for every special cluess
+            int positionX = getIntFromJsonObject(cellClue, COORDINATE_X);
+            int positionY = getIntFromJsonObject(cellClue, COORDINATE_Y);
+            JSONArray clues = (JSONArray) cellClue.get("clues");
+            Cell newCell = cellFactory.createCell("multiple_values", new Coordinate(positionX, positionY));
+            for (JSONObject clueContentJson : (Iterable<JSONObject>) clues) { // for every clue
+                // the first value goes below, the second value above
+                int idContent = getIntFromJsonObject(clueContentJson, ID);
+                int corner = getIntFromJsonObject(clueContentJson, CORNER);
+                ClueContent clueContent = (ClueContent) this.cellContentJsonFactory.getCellContent(idContent);
+                RelativeClueContent relativeClueContent = new RelativeClueContent(clueContent, corner);
+                newCell.setContent(relativeClueContent);
             }
+            this.clues.add(newCell);
         }
     }
 
@@ -235,13 +276,15 @@ public class Parser {
 
         for (JSONObject region : (Iterable<JSONObject>) regionContents) { // for every region
             // totals that are -1 mean there's no total to work with in that region
-            int total = ((Long) region.get("total")).intValue();
+            //int total = ((Long) region.get("total")).intValue();
+            int idContent = getIntFromJsonObject(region, ID);
             ArrayList<Cell> fromToRegion = getCellsFromArrayJsonCell((JSONArray) region.get("coord"));
             ArrayList<Cell> exceptionsRegion = getCellsFromArrayJsonCell((JSONArray) region.get("exceptions"));
             Cell topLeft = fromToRegion.get(TOP_LEFT_CELL_REGION_INDEX);
             Cell rightBottom = fromToRegion.get(RIGHT_BOTTOM_CELL_REGION_INDEX);
             // Regions that have no exceptions will have x and y set to -1
-            this.regionJsons.add(new RegionJson(topLeft, rightBottom, exceptionsRegion, total));
+            this.regionJsons.add(new RegionJson(topLeft, rightBottom, exceptionsRegion,
+                    this.cellContentJsonFactory.getCellContent(idContent)));
         }
     }
 
@@ -249,10 +292,9 @@ public class Parser {
     private ArrayList<Cell> getCellsFromArrayJsonCell(JSONArray cellJsonArray) {
         CellFactory cellFactory = new CellFactory();
         ArrayList<Cell> cells = new ArrayList<>();
-        for (JSONObject excep : (Iterable<JSONObject>) cellJsonArray) {
+        for (JSONObject jsonObject : (Iterable<JSONObject>) cellJsonArray) {
             Cell newCell = cellFactory.createCell("multiple_value",
-                    new Coordinate(((Long) excep.get("x")).intValue(),
-                            ((Long) excep.get("y")).intValue()));
+                    new Coordinate(getIntFromJsonObject(jsonObject, COORDINATE_X), getIntFromJsonObject(jsonObject, COORDINATE_Y)));
             cells.add(newCell);
         }
         return cells;

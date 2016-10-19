@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.model;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.rules.RegionTotalBorderRule;
@@ -29,7 +30,7 @@ public class RegionTotalConectionRuleTest {
         cells.add(this.board.getCell(new Coordinate(1, 0)));
         cells.add(this.board.getCell(new Coordinate(1, 1)));
         this.region = new Region(cells);
-        region.setTotal(2);
+        region.setClue(new ClueContent(2));
         this.board.addRegion(region);
         this.rule = new RegionTotalConnectionRule();
     }
@@ -75,7 +76,7 @@ public class RegionTotalConectionRuleTest {
         this.board.setValue(new Coordinate(0, 0), new ValueContent(2));
         this.board.setValue(new Coordinate(1, 0), new ValueContent(2));
         this.board.setValue(new Coordinate(1, 1), new ValueContent(3));
-        this.region.setTotal(-1);
+        this.region.setClue(new ClueContent(-1));
         Assert.assertTrue(this.rule.validate(this.board));
     }
 }

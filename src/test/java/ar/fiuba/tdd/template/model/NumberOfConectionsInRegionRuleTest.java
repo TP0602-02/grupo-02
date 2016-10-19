@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.model;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.rules.NumberOfConectionsInRegionRule;
@@ -40,7 +41,7 @@ public class NumberOfConectionsInRegionRuleTest {
         cells.add(this.board.getCell(new Coordinate(2, 1)));
         cells.add(this.board.getCell(new Coordinate(2, 2)));
         this.region = new Region(cells);
-        this.region.setTotal(3);
+        this.region.setClue(new ClueContent(3));
         this.board.addRegion(region);
         this.rule = new NumberOfConectionsInRegionRule();
     }

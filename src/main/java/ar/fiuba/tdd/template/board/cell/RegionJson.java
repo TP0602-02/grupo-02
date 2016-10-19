@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.template.board.cell;
 
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.CellContent;
 
 import java.util.ArrayList;
 
@@ -8,13 +9,13 @@ public class RegionJson {
     private Cell leftTop;
     private Cell rightBottom;
     private ArrayList<Cell> exceptions;
-    private int total;
+    private CellContent cellContent;
 
-    public RegionJson(Cell leftTop, Cell rightBottom, ArrayList<Cell> exceptions, int total) {
+    public RegionJson(Cell leftTop, Cell rightBottom, ArrayList<Cell> exceptions, CellContent cellContent) {
         this.leftTop = leftTop;
         this.rightBottom = rightBottom;
         this.exceptions = exceptions;
-        this.total = total;
+        this.cellContent = cellContent;
     }
 
     public Cell getLeftTop() {
@@ -29,8 +30,8 @@ public class RegionJson {
         return exceptions;
     }
 
-    public int getTotal() {
-        return total;
+    public CellContent getCellContent() {
+        return cellContent;
     }
 
 }

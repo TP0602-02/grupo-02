@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
+import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.rules.MultiplicationRule;
@@ -35,7 +36,7 @@ public class MultiplicationRuleTest {
         secondCol.add(this.board.getCell(new Coordinate(2, 1)));
         secondCol.add(this.board.getCell(new Coordinate(3, 1)));
         Region region = new Region((secondCol));
-        region.setTotal(50);
+        region.setClue(new ClueContent(50));
         this.board.addRegion(region);
     }
 
@@ -45,7 +46,7 @@ public class MultiplicationRuleTest {
         secondRow.add(this.board.getCell(new Coordinate(1, 2)));
         secondRow.add(this.board.getCell(new Coordinate(1, 3)));
         Region region = new Region((secondRow));
-        region.setTotal(36);
+        region.setClue(new ClueContent(36));
         this.board.addRegion(region);
     }
 

@@ -4,6 +4,8 @@ import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.InputUserView;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.puzzle.aggregators.Aggregator;
+import ar.fiuba.tdd.template.puzzle.aggregators.AggregatorWithConnections;
 import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.rules.RulesFactory;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
@@ -32,10 +34,10 @@ public class PuzzleGenerator {
                     parsedWinVerificators.add(WinVerificatorFactory.getFactory().createVerificator(verificator));
                 }
 
-                PuzzleController puzzleController = new PuzzleController(parsedWinVerificators);
-                //TODO se debe levantar del archivo el booleano que se le pasa
-                puzzleController.setAddWithConnections(false);
+                PuzzleController puzzleController = new PuzzleController(parsedWinVerificators,new Aggregator());
+                //TODO se debe levantar del archivo el booleano que se le pasa. CAMBIAR AGREGATOR!!!!
                 puzzleController.attachElements(puzzleView, puzzle);
+                puzzleController.aggregateCellControllers();
             }
         });
         startView.start();
@@ -60,7 +62,7 @@ public class PuzzleGenerator {
         initEnabledButtonsToPlay(parser.getAcceptedKeys());
         ArrayList<Cell> clues = parser.getClues();
         ArrayList<RegionJson> regionJsons = parser.getRegionJsons();
-        return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues, regionJsons,parser.getCellType());
+        return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues, regionJsons,"");
     }
 
 

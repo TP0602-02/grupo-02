@@ -7,27 +7,17 @@ import java.util.Properties;
  */
 public class SpecialCharactersParser {
 
-    public static final String BARRA = "/";
-    public static final String BARRA_INVERTIDA = "\\";
-    public static final String GUION_MEDIO = "-";
-    public static final String GUION_BAJO = "_";
-
-    //TODO DEFINIR VALORES!!!
-    public static final int BARRA_VALUE = 0;
-    public static final int BARRA_INVERTIDA_VALUE = 0;
-    public static final int GUION_MEDIO_VALUE = 1;
-    public static final int GUION_BAJO_VALUE = 0;
-
-
     private static Properties table;
     private static SpecialCharactersParser instance;
 
     private static void initTable() {
         table = new Properties();
-        table.put(BARRA, BARRA_VALUE);
-        table.put(BARRA_INVERTIDA, BARRA_INVERTIDA_VALUE);
-        table.put(GUION_MEDIO, GUION_MEDIO_VALUE);
-        table.put(GUION_BAJO, GUION_BAJO_VALUE);
+        table.put(Constants.DOWN, Constants.DOWN_VALUE);
+        table.put(Constants.DOWN_DIAGONAL, Constants.DOWN_DIAGONAL_VALUE);
+        table.put(Constants.UP, Constants.UP);
+        table.put(Constants.UP_DIAGONAL, Constants.UP_DIAGONAL_VALUE);
+        table.put(Constants.RIGHT, Constants.RIGHT_VALUE);
+        table.put(Constants.LEFT, Constants.LEFT_VALUE);
     }
 
     public static SpecialCharactersParser getInstance() {

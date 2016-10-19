@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.template.puzzle;
 
 import ar.fiuba.tdd.template.Play;
+import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
@@ -9,6 +10,7 @@ import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithBorders;
 import ar.fiuba.tdd.template.entity.BaseController;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
+import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 import ar.fiuba.tdd.template.userinterface.view.WinGameView;
 import ar.fiuba.tdd.template.winverificators.WinVerificator;
@@ -22,15 +24,16 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
 
     private ArrayList<CellController> cellControllers;
     private ArrayList<WinVerificator> winVerificators;
-    private boolean addWithConnections;
+    private AbstractAgreggator aggregator;
 
-    public PuzzleController(ArrayList<WinVerificator> winVerificators) {
+    public PuzzleController(ArrayList<WinVerificator> winVerificators, AbstractAgreggator aggregator) {
         this.cellControllers = new ArrayList<>();
         this.winVerificators = winVerificators;
+        this.aggregator = aggregator;
     }
 
-    public void setAddWithConnections(boolean addWithConnections) {
-        this.addWithConnections = addWithConnections;
+    public void aggregateCellControllers() {
+        this.aggregator.setCellControllers(this.cellControllers);
     }
 
     @Override
@@ -60,14 +63,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
 
                     @Override
                     public void validateUserDeletedAction(Cell cell, String valueToDelete) {
-                        getCellControllerOfCell(cell).deletedValue(valueToDelete);
-                        //TODO hay que hacerlo levantando algo del archivo Y QUE EL PARSER SE LO SETEE AL PUZZLE CONTORLLER
-                        if (addWithConnections) {
-                            Play newPLayToRun = getPlayFromCellConnection(cell, valueToDelete);
-                            if (newPLayToRun.getValidPlay()) {
-                                getCellControllerOfCell(newPLayToRun.getSelectedCell()).deletedValue(newPLayToRun.getSelectedCellValue());
-                            }
-                        }
+                        deleteAction(cell, valueToDelete);
                     }
                 });
                 this.cellControllers.add(cellController);
@@ -86,33 +82,11 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     }
 
     private void runPlay(Play play) {
-        getCellControllerOfCell(play.getSelectedCell()).addValue(play.getSelectedCellValue());
-        //TODO hay que hacerlo levantando algo del archivo Y QUE EL PARSER SE LO SETEE AL PUZZLE CONTORLLER
-        if (addWithConnections) {
-            Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), play.getSelectedCellValue());
-            if (newPLayToRun.getValidPlay()) {
-                getCellControllerOfCell(newPLayToRun.getSelectedCell()).addValue(newPLayToRun.getSelectedCellValue());
-            }
-        }
+        this.aggregator.runPlay(play, this.model.getBoard());
     }
 
-    private CellController getCellControllerOfCell(Cell cell) {
-        for (CellController cellController : this.cellControllers) {
-            if (cellController.getModel().equals(cell)) {
-                return cellController;
-            }
-        }
-        return null;
+    public void deleteAction(Cell cell, String valueToDelete) {
+        this.aggregator.deleteAction(cell, valueToDelete, this.model.getBoard());
     }
 
-    private Play getPlayFromCellConnection(Cell cell, String valueOfConnection) {
-        BoardIteratorConnections iterator = new BoardIteratorConnections();
-        Cell nextCell = iterator.getNextCell(this.model.getBoard(),
-                cell, SpecialCharactersParser.getInstance().getValueOf(valueOfConnection));
-
-        String opositeDirection = iterator.getNameOppositeDirection(valueOfConnection);
-        Play newPlay = new Play(nextCell, opositeDirection);
-        newPlay.setValidPlay(nextCell != null);
-        return newPlay;
-    }
 }

@@ -1,1 +1,0 @@
-{"plays":[{"number":1,"boardStatus":false},{"number":2,"boardStatus":false},{"number":3,"boardStatus":true},{"number":4,"boardStatus":false}],"board":{"values":[{"position":"[0 ,0]","value":"2"},{"position":"[1 ,1]","value":"2"},{"position":"[2 ,2]","value":"2"},{"position":"[3 ,3]","value":"2"}],"status":"invalid"}}

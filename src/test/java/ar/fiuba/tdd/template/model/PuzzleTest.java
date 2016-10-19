@@ -50,7 +50,7 @@ public class PuzzleTest {
 
     }
 
-    @Test
+   /* @Test
     public void writingFileTest() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
         Parser parser = new Parser();
@@ -66,7 +66,7 @@ public class PuzzleTest {
             playResults.add(play);
         }
         parser.writePlayResults(playResults, "src/json/PlayOutputTest.json");
-    }
+    }*/
 
 
 }

@@ -82,7 +82,6 @@ public class Puzzle {
     }
 
     private boolean validateMove(Cell cell, int valueToAdd) {
-        //TODO DESCOMENTAR ESTO CUANADO SE CREEN BIEN LOS NOMBRES DE LAS RULES CON LA FACTORY!!!
         for (GenericRule rule : this.rules) {
             if (!rule.validate(this.board, cell, valueToAdd)) {
                 return false;

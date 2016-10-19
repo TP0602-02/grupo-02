@@ -30,7 +30,7 @@ public class Parser {
     private ArrayList<String> rules = new ArrayList<>();
     private ArrayList<String> winVerificators = new ArrayList<>();
     private ArrayList<RegionJson> regionJsons;
-    private ArrayList<Cell> plays = new ArrayList<>();
+    private ArrayList<Play> plays = new ArrayList<>();
 
     public Parser() {
         this.boardFile = new JSONObject();
@@ -73,7 +73,7 @@ public class Parser {
         // Automatic plays
         //TODO desde la interfaz de usuario debe haber un boton para en vez de jeugar cargar jugadas
         if (playsFileName != null && !playsFileName.isEmpty()) {
-            readFile(playsFileName, (JSONObject) this.playsFile.get(JSON_PARSED_KEY));
+            readFile(playsFileName, this.playsFile);
             readPlays();
         }
     }
@@ -102,7 +102,7 @@ public class Parser {
         return this.clues;
     }
 
-    public ArrayList<Cell> getPlays() {
+    public ArrayList<Play> getPlays() {
         return this.plays;
     }
 
@@ -194,8 +194,9 @@ public class Parser {
 
     @SuppressWarnings("unchecked")
     private void readPlays() {
-        JSONArray playsContents = (JSONArray) this.playsFile.get("plays");
-
+        JSONObject playResponse = (JSONObject) this.playsFile.get(JSON_PARSED_KEY);
+        JSONArray playsContents = (JSONArray) playResponse.get("plays");
+        CellFactory cellFactory = new CellFactory();
         for (JSONObject play : (Iterable<JSONObject>) playsContents) { // for every play
 
             String delimiter = "[\\[\\], ]+";
@@ -212,15 +213,18 @@ public class Parser {
 
             System.out.print(" " + tokens.length + " is the length of the tokenarray ");
             */
-            int positionX = Integer.parseInt(tokens[1]);
-            int positionY = Integer.parseInt(tokens[2]);
+            //se resta -1 porque la primer fila y columna considerada en el file es 1, pero en java es 0.
+            int positionX = Integer.parseInt(tokens[1]) - 1;
+            int positionY = Integer.parseInt(tokens[2]) - 1;
 
-            Cell newCell = new CellSingleValue(new Coordinate(positionX, positionY)); // create a single cell
+            Cell newCell = cellFactory.createCell(CellFactory.CELL_SINGLE_VALUE,
+                    new Coordinate(positionX, positionY)); // create a single cell
 
             // Plays are considered ValueContent
-            ValueContent valueContent = new ValueContent(String.valueOf(play.get("value")));
-            newCell.setContent(valueContent);
-            plays.add(newCell);
+            //ValueContent valueContent = new ValueContent(String.valueOf(play.get("value")));
+            Play newPlay = new Play(newCell, String.valueOf(play.get("value")));
+            //newCell.setContent(valueContent);
+            plays.add(newPlay);
         }
 
     }
@@ -231,7 +235,7 @@ public class Parser {
 
         for (JSONObject region : (Iterable<JSONObject>) regionContents) { // for every region
             // totals that are -1 mean there's no total to work with in that region
-            int total = ((Long)region.get("total")).intValue();
+            int total = ((Long) region.get("total")).intValue();
             ArrayList<Cell> fromToRegion = getCellsFromArrayJsonCell((JSONArray) region.get("coord"));
             ArrayList<Cell> exceptionsRegion = getCellsFromArrayJsonCell((JSONArray) region.get("exceptions"));
             Cell topLeft = fromToRegion.get(TOP_LEFT_CELL_REGION_INDEX);
@@ -248,7 +252,7 @@ public class Parser {
         for (JSONObject excep : (Iterable<JSONObject>) cellJsonArray) {
             Cell newCell = cellFactory.createCell("multiple_value",
                     new Coordinate(((Long) excep.get("x")).intValue(),
-                    ((Long) excep.get("y")).intValue()));
+                            ((Long) excep.get("y")).intValue()));
             cells.add(newCell);
         }
         return cells;
@@ -260,59 +264,6 @@ public class Parser {
         for (String key : (Iterable<String>) keyContents) { // for each key
             this.acceptedKeys.add(key);
         }
-    }
-
-    @SuppressWarnings("unchecked")
-    public void writePlayResults(ArrayList<Play> playResult, String fileName) {
-        JSONObject objPlay = new JSONObject();
-        JSONArray jsonPlays = new JSONArray();
-        JSONArray jsonValues = new JSONArray();
-        int numberOfPlay = 1;
-
-        boolean validBoard = true;
-        // Creates JSON
-        for (Play play : playResult) {
-            jsonPlays.add(getPlayObject(play, numberOfPlay));
-            numberOfPlay++;
-            jsonValues.add(getValueObject(play));
-            validBoard = validBoard && play.getValidPlay();
-        }
-
-        objPlay.put("plays", jsonPlays);
-        JSONObject jsonBoard = new JSONObject();
-        jsonBoard.put("status", validBoard ? "valid" : "invalid");
-        jsonBoard.put("values", jsonValues);
-        objPlay.put("board", jsonBoard);
-
-        writeJsonFile(objPlay, fileName);
-    }
-
-    private void writeJsonFile(JSONObject objPlay, String fileName) {
-        try {
-            File file = new File(fileName);
-            Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
-            PrintWriter printWriter = new PrintWriter(writer);
-            printWriter.println(objPlay.toJSONString());
-            printWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    private JSONObject getPlayObject(Play play, int numberOfPlay) {
-        JSONObject jsonPlay = new JSONObject();
-        jsonPlay.put("number", numberOfPlay);
-        jsonPlay.put("boardStatus", play.getValidPlay());
-        return jsonPlay;
-    }
-
-    @SuppressWarnings("unchecked")
-    private JSONObject getValueObject(Play play) {
-        JSONObject jsonValue = new JSONObject();
-        jsonValue.put("position", "[" + play.getSelectedCell().getRow() + " ," + play.getSelectedCell().getColumn() + "]");
-        jsonValue.put("value", play.getSelectedCell().getContents().get(0).getValue());
-        return jsonValue;
     }
 
     public String getCellType() {

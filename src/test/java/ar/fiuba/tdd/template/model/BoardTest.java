@@ -222,7 +222,7 @@ public class BoardTest {
     @Test
     public void decodeJson() {
         Parser parser = new Parser();
-        String file = StartView.SUDOKU_FILE;
+        String file = "sudoku.json";
         parser.decodeJson(file, null);
         int width = parser.getWidth();
         int height = parser.getHeight();

@@ -8,6 +8,7 @@ import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithBorders;
 import ar.fiuba.tdd.template.entity.BaseController;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.FileWriter;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 import ar.fiuba.tdd.template.userinterface.view.WinGameView;
@@ -23,6 +24,8 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     private ArrayList<CellController> cellControllers;
     private ArrayList<WinVerificator> winVerificators;
     private boolean addWithConnections;
+
+    private static final String OUTPUT_FILE_ROOT = "src/json/PlayOutput.json";
 
     public PuzzleController(ArrayList<WinVerificator> winVerificators) {
         this.cellControllers = new ArrayList<>();
@@ -114,5 +117,21 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
         Play newPlay = new Play(nextCell, opositeDirection);
         newPlay.setValidPlay(nextCell != null);
         return newPlay;
+    }
+
+    public void execPlays(ArrayList<Play> plays) {
+        FileWriter fileWriter = new FileWriter();
+        ArrayList<Play> playsToWrite = new ArrayList<>();
+        for (Play play : plays) {
+            Cell cellInBoard = model.getCell(new Coordinate(play.getSelectedCell().getRow(),
+                    play.getSelectedCell().getColumn()));
+            Play newPlay = new Play(cellInBoard, play.getSelectedCellValue());
+            if (model.checkMovement(newPlay)) {
+                runPlay(newPlay);
+                //checkWinVerificator();
+            }
+            playsToWrite.add(newPlay);
+        }
+        fileWriter.writePlayResults(playsToWrite,OUTPUT_FILE_ROOT);
     }
 }

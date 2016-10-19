@@ -10,6 +10,8 @@ import javax.swing.*;
 public class StartView extends JFrame {
     public static final int screenHeight = 768;
     public static final int screenWidth = 1024;
+    private static final int WIDTH_BUTTON = 200;
+    private static final int HEIGHT_BUTTON = 50;
 
     //***************GAMES**********************
     private static final String SUDOKU_NAME = "SUDOKU";
@@ -18,23 +20,29 @@ public class StartView extends JFrame {
     private static final String INSHI_NO_HEYA_NAME = "INSHI NO HEYA";
     private static final String SLITHERLINK_NAME = "SLITHERLINK";
     private static final String GOKIEN_NANAME_NAME = "GOKIEN NANAME";
+    private static final String INSHI_NO_HEYA_PLAYS = "INSHI NO HEYA WITH PLAYS";
+
     //**************************************************
 
+    private StartGameListener listener;
+
+
     //**************GAME JSON FILES*************************
-    public static final String SUDOKU_FILE = "Sudoku.json";
-    public static final String KAKURO_FILE = "Kakuro.json";
-    public static final String COUNTRY_ROAD_FILE = "CountryRoad.json";
-    public static final String INSHI_NO_HEYA_FILE = "InshiNoHeya.json";
-    public static final String SLITHERLINK_FILE = "Slitherlink.json";
-    public static final String GOKIEN_NANAME_FILE = "GokienNaname.json";
+    private static final String SUDOKU_FILE = "Sudoku.json";
+    private static final String KAKURO_FILE = "Kakuro.json";
+    private static final String COUNTRY_ROAD_FILE = "CountryRoad.json";
+    private static final String INSHI_NO_HEYA_FILE = "InshiNoHeya.json";
+    private static final String SLITHERLINK_FILE = "Slitherlink.json";
+    private static final String GOKIEN_NANAME_FILE = "GokienNaname.json";
+    private static final String INSHI_NO_HEYA_PLAYS_FILE = "InshiNoHeyaPlays.json";
     //*************************************************
 
-    private Properties games;
-    private StartGameListener listener;
 
     public StartView(StartGameListener listener) {
         this.listener = listener;
     }
+
+    private Properties games;
 
     public void start() {
         setSize(screenWidth, screenHeight);
@@ -54,14 +62,12 @@ public class StartView extends JFrame {
         Enumeration enumeration = games.propertyNames();
         int posXButtonGame = screenWidth / 3;
         int posYButtonGame = screenWidth / 4;
-        int buttonWidth = 200;
-        int buttonHeight = 50;
         int spaceBetweenButtons = 15;
         while (enumeration.hasMoreElements()) {
             final String gameName = (String) enumeration.nextElement();
             JButton button = new JButton(gameName);
-            button.setBounds(posXButtonGame, posYButtonGame, buttonWidth, buttonHeight);
-            posYButtonGame += buttonHeight + spaceBetweenButtons;
+            button.setBounds(posXButtonGame, posYButtonGame, WIDTH_BUTTON, HEIGHT_BUTTON);
+            posYButtonGame += HEIGHT_BUTTON + spaceBetweenButtons;
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
@@ -72,7 +78,23 @@ public class StartView extends JFrame {
             });
             this.add(button);
         }
+        createInshiPlayFileButton(posXButtonGame, posYButtonGame);
     }
+
+    private void createInshiPlayFileButton(int posX, int posY) {
+        JButton buttonInshiPlaysFile = new JButton(INSHI_NO_HEYA_PLAYS);
+        buttonInshiPlaysFile.setBounds(posX, posY, WIDTH_BUTTON, HEIGHT_BUTTON);
+        buttonInshiPlaysFile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                StartView.this.setVisible(false);
+                listener.loadPlaysForGame(INSHI_NO_HEYA_PLAYS_FILE,
+                        games.getProperty(INSHI_NO_HEYA_NAME));
+            }
+        });
+        this.add(buttonInshiPlaysFile);
+    }
+
 
     private void initGames() {
         games = new Properties();
@@ -86,5 +108,7 @@ public class StartView extends JFrame {
 
     public interface StartGameListener {
         public void loadNewGame(String gameName, String gameFile);
+
+        public void loadPlaysForGame(String playFile, String gameFile);
     }
 }

@@ -116,9 +116,6 @@ public class PuzzleView extends JFrame {
         container.add(cellVIew, column * height + row);
     }
 
-    public void showVisu() {
-        this.setVisible(true);
-    }
 
  /*   public void startGame(String game) {
         menu.setVisible(false);

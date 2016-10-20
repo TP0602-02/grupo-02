@@ -11,234 +11,287 @@
   "winVerificators": [{
     "verificator": "Full board win verificator"
   }],
-  "clues": [{
+  "cell_contents": [
+    {"id":0,
+      "total":-1},
+    {"id":1,
+      "total":23},
+    {"id":2,
+      "total":30},
+    {"id":3,
+      "total":27},
+    {"id":4,
+      "total":12},
+    {"id":5,
+      "total":16},
+    {"id":6,
+      "total":16},
+    {"id":7,
+      "total":24},
+    {"id":8,
+      "total":17},
+    {"id":9,
+      "total":17},
+    {"id":10,
+      "total":29},
+    {"id":11,
+      "total":15},
+    {"id":12,
+      "total":35},
+    {"id":13,
+      "total":12},
+    {"id":14,
+      "total":7},
+    {"id":15,
+      "total":8},
+    {"id":16,
+      "total":7},
+    {"id":17,
+      "total":7},
+    {"id":18,
+      "total":11},
+    {"id":19,
+      "total":16},
+    {"id":20,
+      "total":10},
+    {"id":21,
+      "total":21},
+    {"id":22,
+      "total":5},
+    {"id":23,
+      "total":6},
+    {"id":24,
+      "total":3}
+  ],
+  "initial_board_content": [
+    {
     "x": 0,
     "y": 0,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 0,
     "y": 1,
     "content": [{
-      "value": 23
+      "id": 1
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 0,
     "y": 2,
     "content": [{
-      "value": 30
+      "id": 2
     }, {
-      "value": -1
+      "id": 0
     }]
 
   }, {
     "x": 0,
     "y": 3,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 0,
     "y": 4,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 0,
     "y": 5,
     "content": [{
-      "value": 27
+      "id": 3
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 0,
     "y": 6,
     "content": [{
-      "value": 12
+      "id": 4
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 0,
     "y": 7,
     "content": [{
-      "value": 16
+      "id": 5
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 1,
     "y": 0,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": 16
+      "id": 6
     }]
   }, {
     "x": 1,
     "y": 3,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 1,
     "y": 4,
     "content": [{
-      "value": 17
+      "id": 8
     }, {
-      "value": 24
+      "id": 7
     }]
   }, {
     "x": 2,
     "y": 0,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": 17
+      "id": 9
     }]
   }, {
     "x": 2,
     "y": 3,
     "content": [{
-      "value": 15
+      "id": 11
     }, {
-      "value": 29
+      "id": 10
     }]
   }, {
     "x": 3,
     "y": 0,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": 35
+      "id": 12
     }]
   }, {
     "x": 3,
     "y": 6,
     "content": [{
-      "value": 12
+      "id": 13
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 3,
     "y": 7,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 4,
     "y": 0,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 4,
     "y": 1,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": 7
+      "id": 14
     }]
   }, {
     "x": 4,
     "y": 4,
     "content": [{
-      "value": 7
+      "id": 16
     }, {
-      "value": 8
+      "id": 15
     }]
   }, {
     "x": 4,
     "y": 7,
     "content": [{
-      "value": 7
+      "id": 17
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 5,
     "y": 0,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 5,
     "y": 1,
     "content": [{
-      "value": 11
+      "id": 18
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 5,
     "y": 2,
     "content": [{
-      "value": 10
+      "id": 19
     }, {
-      "value": 16
+      "id": 20
     }]
   }, {
     "x": 6,
     "y": 0,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": 21
+      "id": 21
     }]
   }, {
     "x": 6,
     "y": 5,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": 5
+      "id": 22
     }]
   }, {
     "x": 7,
     "y": 0,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": 6
+      "id": 23
     }]
   }, {
     "x": 7,
     "y": 4,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": -1
+      "id": 0
     }]
   }, {
     "x": 7,
     "y": 5,
     "content": [{
-      "value": -1
+      "id": 0
     }, {
-      "value": 3
+      "id": 24
     }]
   }],
   "regions": [{
-    "total": 16,
+    "id": 5,
     "coord": [{
       "x": 1,
       "y": 1
@@ -246,12 +299,9 @@
       "x": 1,
       "y": 2
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 24,
+    "id": 7,
     "coord": [{
       "x": 1,
       "y": 5
@@ -259,12 +309,9 @@
       "x": 1,
       "y": 7
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 17,
+    "id": 8,
     "coord": [{
       "x": 2,
       "y": 1
@@ -272,12 +319,9 @@
       "x": 2,
       "y": 2
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 29,
+    "id": 10,
     "coord": [{
       "x": 2,
       "y": 4
@@ -285,12 +329,9 @@
       "x": 2,
       "y": 7
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 35,
+    "id": 12,
     "coord": [{
       "x": 3,
       "y": 1
@@ -298,12 +339,9 @@
       "x": 3,
       "y": 5
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 7,
+    "id": 14,
     "coord": [{
       "x": 4,
       "y": 2
@@ -311,12 +349,9 @@
       "x": 4,
       "y": 3
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 8,
+    "id": 15,
     "coord": [{
       "x": 4,
       "y": 5
@@ -324,12 +359,9 @@
       "x": 4,
       "y": 6
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 16,
+    "id": 19,
     "coord": [{
       "x": 5,
       "y": 3
@@ -337,12 +369,9 @@
       "x": 5,
       "y": 7
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 21,
+    "id": 21,
     "coord": [{
       "x": 6,
       "y": 1
@@ -350,12 +379,9 @@
       "x": 6,
       "y": 4
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 5,
+    "id": 22,
     "coord": [{
       "x": 6,
       "y": 6
@@ -363,12 +389,9 @@
       "x": 6,
       "y": 7
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 6,
+    "id": 23,
     "coord": [{
       "x": 7,
       "y": 1
@@ -376,12 +399,9 @@
       "x": 7,
       "y": 3
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 3,
+    "id": 24,
     "coord": [{
       "x": 7,
       "y": 6
@@ -389,167 +409,128 @@
       "x": 7,
       "y": 7
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 23,
-    "coord": [{
-      "x": 1,
-      "y": 1
+    "exceptions": []},
+    {
+      "id": 1,
+      "coord": [{
+        "x": 1,
+        "y": 1
+      }, {
+        "x": 3,
+        "y": 1
+      }],
+      "exceptions": []
     }, {
-      "x": 3,
-      "y": 1
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 11,
-    "coord": [{
-      "x": 6,
-      "y": 1
+      "id": 18,
+      "coord": [{
+        "x": 6,
+        "y": 1
+      }, {
+        "x": 7,
+        "y": 1
+      }],
+      "exceptions": []
     }, {
-      "x": 7,
-      "y": 1
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 30,
-    "coord": [{
-      "x": 1,
-      "y": 2
+      "id": 2,
+      "coord": [{
+        "x": 1,
+        "y": 2
+      }, {
+        "x": 4,
+        "y": 2
+      }],
+      "exceptions": []
     }, {
-      "x": 4,
-      "y": 2
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 10,
-    "coord": [{
-      "x": 6,
-      "y": 2
+      "id": 20,
+      "coord": [{
+        "x": 6,
+        "y": 2
+      }, {
+        "x": 7,
+        "y": 2
+      }],
+      "exceptions": []
     }, {
-      "x": 7,
-      "y": 2
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 15,
-    "coord": [{
-      "x": 3,
-      "y": 3
+      "id": 11,
+      "coord": [{
+        "x": 3,
+        "y": 3
+      }, {
+        "x": 7,
+        "y": 3
+      }],
+      "exceptions": []
     }, {
-      "x": 7,
-      "y": 3
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 17,
-    "coord": [{
-      "x": 2,
-      "y": 4
+      "id": 8,
+      "coord": [{
+        "x": 2,
+        "y": 4
+      }, {
+        "x": 3,
+        "y": 4
+      }],
+      "exceptions": []
     }, {
-      "x": 3,
-      "y": 4
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 7,
-    "coord": [{
-      "x": 5,
-      "y": 4
+      "id": 16,
+      "coord": [{
+        "x": 5,
+        "y": 4
+      }, {
+        "x": 6,
+        "y": 4
+      }],
+      "exceptions": []
     }, {
-      "x": 6,
-      "y": 4
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 27,
-    "coord": [{
-      "x": 1,
-      "y": 5
+      "id": 3,
+      "coord": [{
+        "x": 1,
+        "y": 5
+      }, {
+        "x": 5,
+        "y": 5
+      }],
+      "exceptions": []
     }, {
-      "x": 5,
-      "y": 5
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 12,
-    "coord": [{
-      "x": 1,
-      "y": 6
+      "id": 4,
+      "coord": [{
+        "x": 1,
+        "y": 6
+      }, {
+        "x": 2,
+        "y": 6
+      }],
+      "exceptions": []
     }, {
-      "x": 2,
-      "y": 6
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 12,
-    "coord": [{
-      "x": 4,
-      "y": 6
+      "id": 13,
+      "coord": [{
+        "x": 4,
+        "y": 6
+      }, {
+        "x": 7,
+        "y": 6
+      }],
+      "exceptions": []
     }, {
-      "x": 7,
-      "y": 6
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 16,
-    "coord": [{
-      "x": 1,
-      "y": 7
+      "id": 5,
+      "coord": [{
+        "x": 1,
+        "y": 7
+      }, {
+        "x": 2,
+        "y": 7
+      }],
+      "exceptions": []
     }, {
-      "x": 2,
-      "y": 7
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 7,
-    "coord": [{
-      "x": 5,
-      "y": 7
-    }, {
-      "x": 7,
-      "y": 7
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }
-
-  ]
+      "id": 17,
+      "coord": [{
+        "x": 5,
+        "y": 7
+      }, {
+        "x": 7,
+        "y": 7
+      }],
+      "exceptions": []
+    }
+  ],
+  "special_clues":[]
 }

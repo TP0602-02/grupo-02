@@ -34,7 +34,7 @@ public abstract class Cell implements Summable, Editable {
         ArrayList<RelativeClueContent> contents = new ArrayList<RelativeClueContent>();
         for (CellContent cellContent : this.getContents()) {
             if (!cellContent.isSummable()) {
-                contents.add((RelativeClueContent)cellContent);
+                contents.add((RelativeClueContent) cellContent);
             }
         }
         return contents;
@@ -125,11 +125,31 @@ public abstract class Cell implements Summable, Editable {
     }
 
     public boolean hasValue(int numberValue) {
-        for (CellContent cellContent: this.contents) {
+        for (CellContent cellContent : this.contents) {
             if (cellContent.isSummable() && cellContent.getNumberValue() == numberValue) {
                 return true;
             }
         }
         return false;
+    }
+
+    public ArrayList<String> getShowableValues() {
+        ArrayList<String> values = new ArrayList<>();
+        for (CellContent content : contents) {
+            if (content.isShowableInBoard()) {
+                values.add(content.getValue());
+            }
+        }
+        return values;
+    }
+
+    public ArrayList<String> getDeleteableValues() {
+        ArrayList<String> values = new ArrayList<>();
+        for (CellContent content : contents) {
+            if (content.isDeleteable()) {
+                values.add(content.getValue());
+            }
+        }
+        return values;
     }
 }

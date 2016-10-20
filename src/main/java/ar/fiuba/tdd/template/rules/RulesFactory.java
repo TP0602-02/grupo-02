@@ -3,7 +3,6 @@ package ar.fiuba.tdd.template.rules;
 import java.util.Properties;
 
 public class RulesFactory {
-
     private static Properties factory;
     private static RulesFactory instance;
     public static final String SUM_RULE = "Sum rule";

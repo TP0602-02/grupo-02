@@ -32,4 +32,14 @@ public class RelativeClueContent extends CellContentWithValue {
     public boolean isSummable() {
         return false;
     }
+
+    @Override
+    public boolean isShowableInBoard() {
+        return false;
+    }
+
+    @Override
+    public boolean isDeleteable() {
+        return false;
+    }
 }

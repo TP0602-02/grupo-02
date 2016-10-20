@@ -4,8 +4,10 @@ import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.InputUserView;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
 import ar.fiuba.tdd.template.puzzle.aggregators.Aggregator;
 import ar.fiuba.tdd.template.puzzle.aggregators.AggregatorWithConnections;
+import ar.fiuba.tdd.template.puzzle.aggregators.AggregatorWithDiagonals;
 import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.rules.RulesFactory;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
@@ -54,8 +56,7 @@ public class PuzzleGenerator {
         for (String verificator : winVerificators) {
             parsedWinVerificators.add(WinVerificatorFactory.getFactory().createVerificator(verificator));
         }
-
-        puzzleController = new PuzzleController(parsedWinVerificators,new AggregatorWithConnections());
+        puzzleController = new PuzzleController(parsedWinVerificators,new AggregatorWithDiagonals());
         puzzleController.attachElements(puzzleView, puzzle);
         puzzleController.aggregateCellControllers();
     }

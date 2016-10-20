@@ -56,8 +56,8 @@ public class Region {
         String saltoLinea = "\n";
         buffer.append(REGION).append(saltoLinea);
         for (Cell cell : this.cells) {
-            buffer.append(COORDENADAX).append(cell.getColumn()).append(COORDENADAY)
-                    .append(cell.getRow()).append(saltoLinea);
+            buffer.append(COORDENADAX).append(cell.getRow()).append(COORDENADAY)
+                    .append(cell.getColumn()).append(saltoLinea);
         }
         if (getTotal() != -1) {
             buffer.append(TOTAL).append(getTotal()).append(saltoLinea);

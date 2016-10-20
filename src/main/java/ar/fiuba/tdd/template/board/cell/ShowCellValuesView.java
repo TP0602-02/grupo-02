@@ -17,7 +17,7 @@ public class ShowCellValuesView extends JFrame {
     public static final int spaceBetweenButtons = 15;
     public static final int firstButtonCoordinateX = 10;
     public static final int firstButtonCoordinateY = 80;
-    private static final int maxButtons = 4;
+    private static final int maxButtons = 8;
 
     private static int posXWindow = 300;
     private static int posYWindow = 300;

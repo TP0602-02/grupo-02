@@ -33,6 +33,10 @@ public class RulesFactory {
         return instance;
     }
 
+    private RulesFactory(){
+
+    }
+
     private static void addSecondRules() {
         factory.put(CONECTIONS_IN_REGION_RULE, new RegionHasValidConectionsRule());
         factory.put(NUMBER_CONECTIONS_IN_REGION_RULE, new NumberOfConectionsInRegionRule());

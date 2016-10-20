@@ -3,6 +3,7 @@
   "width": 7,
   "height": 7,
   "keys": ["/","-"],
+  "agreggator": "Connection aggregator",
   "rules": [{
     "rule": "Doesnt repeat line in cell"
   }],

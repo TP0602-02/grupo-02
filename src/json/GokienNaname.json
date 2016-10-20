@@ -6,6 +6,7 @@
     "/",
     "\\"
   ],
+  "agreggator": "Diagonal aggregator",
   "rules": [
     {
       "rule": "Close circuit diagonal rule"

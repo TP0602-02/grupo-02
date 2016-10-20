@@ -3,6 +3,8 @@ package ar.fiuba.tdd.template;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.*;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
+import ar.fiuba.tdd.template.puzzle.aggregators.AggregatorFactory;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -29,6 +31,7 @@ public class Parser {
     private JSONObject boardFile;
     private JSONObject playsFile;
     private String cellType;
+    private AbstractAgreggator agreggator;
 
 
     private ArrayList<String> acceptedKeys = new ArrayList<>();
@@ -70,11 +73,8 @@ public class Parser {
         // Board configuration
         this.width = readWidth((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).intValue();
         this.height = readHeight((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).intValue();
+        readFirstSecions();
 
-        readKeys((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
-        readCellContentJson((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
-        readRules((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
-        readCellType((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readWinVerificators((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readRegions((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readInitialBoardContent((JSONObject) this.boardFile.get(JSON_PARSED_KEY), "initial_board_content");
@@ -86,6 +86,19 @@ public class Parser {
             readFile(playsFileName, this.playsFile);
             readPlays();
         }
+    }
+
+    private void readFirstSecions() {
+        readKeys((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+        readCellContentJson((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+        readRules((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+        readCellType((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+        readAgreggator((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+    }
+
+    private void readAgreggator(JSONObject jsonObject) {
+        String agreggator = (String) jsonObject.get("agreggator");
+        this.agreggator = AggregatorFactory.getFactory().createAggregator(agreggator);
     }
 
     private void readCellContentJson(JSONObject jsonObject) {
@@ -312,4 +325,8 @@ public class Parser {
         return cellType;
     }
 
+
+    public AbstractAgreggator getAgreggator() {
+        return agreggator;
+    }
 }

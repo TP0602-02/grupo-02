@@ -17,8 +17,8 @@ public class AggregatorFactory {
     public static final String DIAGONAL_AGGREGATOR = "Diagonal aggregator";
 
 
-    public Aggregator createAggregator(String aggregator) {
-        return (Aggregator) factory.get(aggregator);
+    public AbstractAgreggator createAggregator(String aggregator) {
+        return (AbstractAgreggator) factory.get(aggregator);
     }
 
     private static void initFactory() {
@@ -32,6 +32,9 @@ public class AggregatorFactory {
         factory.put(DIAGONAL_AGGREGATOR, new AggregatorWithDiagonals());
     }
 
+    private AggregatorFactory(){
+
+    }
 
     public static AggregatorFactory getFactory() {
         if (instance == null) {

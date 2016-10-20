@@ -56,7 +56,7 @@ public class PuzzleGenerator {
         for (String verificator : winVerificators) {
             parsedWinVerificators.add(WinVerificatorFactory.getFactory().createVerificator(verificator));
         }
-        puzzleController = new PuzzleController(parsedWinVerificators,new AggregatorWithDiagonals());
+        puzzleController = new PuzzleController(parsedWinVerificators,this.parser.getAgreggator());
         puzzleController.attachElements(puzzleView, puzzle);
         puzzleController.aggregateCellControllers();
     }

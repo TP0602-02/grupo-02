@@ -184,4 +184,8 @@ public class BoardIteratorConnections {
         }
         return limitCells;
     }
+
+    /*TODO public int getMatchingCorner(Board board, Cell previousCell, CellContent previousCorner, Cell actualCell) {
+        return 1;
+    }*/
 }

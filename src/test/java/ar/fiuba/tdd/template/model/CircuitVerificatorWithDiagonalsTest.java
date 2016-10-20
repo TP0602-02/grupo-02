@@ -42,8 +42,9 @@ public class CircuitVerificatorWithDiagonalsTest {
 
         this.board.setValue(new Coordinate(1, 1), new ValueContent(UPPER_RIGHT_CORNER));
         this.board.setValue(new Coordinate(1, 1), new ValueContent(LOWER_LEFT_CORNER));
+
         this.circuit.setCell(this.board.getCell(new Coordinate(0,1)));
-        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
+        Assert.assertTrue(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
@@ -58,6 +59,6 @@ public class CircuitVerificatorWithDiagonalsTest {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(LOWER_RIGHT_CORNER));
 
         this.circuit.setCell(this.board.getCell(new Coordinate(0,1)));
-        Assert.assertTrue(this.circuit.isCircuitClosed(this.board));
+        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
     }
 }

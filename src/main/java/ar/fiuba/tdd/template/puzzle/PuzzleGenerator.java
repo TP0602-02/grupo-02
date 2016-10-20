@@ -54,7 +54,9 @@ public class PuzzleGenerator {
         // Converts win verificator array of strings into WinVerificator array
         ArrayList<WinVerificator> parsedWinVerificators = new ArrayList<>();
         for (String verificator : winVerificators) {
-            parsedWinVerificators.add(WinVerificatorFactory.getFactory().createVerificator(verificator));
+            WinVerificator winVerificator = WinVerificatorFactory.getFactory().createVerificator(verificator);
+            winVerificator.setVerificator(this.parser.getCircuitVerificator());
+            parsedWinVerificators.add(winVerificator);
         }
         puzzleController = new PuzzleController(parsedWinVerificators,this.parser.getAgreggator());
         puzzleController.attachElements(puzzleView, puzzle);

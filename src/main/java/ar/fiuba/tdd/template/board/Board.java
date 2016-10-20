@@ -35,7 +35,8 @@ public class Board {
     public boolean isFull() {
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {
-                if (this.getCell(new Coordinate(row, col)).isEmpty()) {
+                Cell cell = this.getCell(new Coordinate(row, col));
+                if (cell.isEditable() && cell.isEmpty()) {
                     return false;
                 }
             }

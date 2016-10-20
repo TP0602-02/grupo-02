@@ -4,6 +4,7 @@
   "height": 6,
   "keys": ["U","R","L","D"],
   "agreggator": "Connection aggregator",
+  "circuit_verificator": "Circuit verificator with borders",
   "rules": [{
     "rule": "Number of borders in region rule"
   } , {

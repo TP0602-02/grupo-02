@@ -4,6 +4,7 @@
   "height": 7,
   "keys": ["L","D","R","U"],
   "agreggator": "Connection aggregator",
+  "circuit_verificator": "Circuit verificator without borders",
   "rules": [{
     "rule": "Conections inside board rule"
   }, {

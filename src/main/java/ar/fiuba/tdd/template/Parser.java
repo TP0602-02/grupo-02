@@ -2,6 +2,8 @@ package ar.fiuba.tdd.template;
 
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.*;
+import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
+import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorFactory;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
 import ar.fiuba.tdd.template.puzzle.aggregators.AggregatorFactory;
@@ -32,6 +34,7 @@ public class Parser {
     private JSONObject playsFile;
     private String cellType;
     private AbstractAgreggator agreggator;
+    private CircuitVerificator circuitVerificator;
 
 
     private ArrayList<String> acceptedKeys = new ArrayList<>();
@@ -94,11 +97,17 @@ public class Parser {
         readRules((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readCellType((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readAgreggator((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+        readCircuitVerificator((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
     }
 
     private void readAgreggator(JSONObject jsonObject) {
         String agreggator = (String) jsonObject.get("agreggator");
         this.agreggator = AggregatorFactory.getFactory().createAggregator(agreggator);
+    }
+
+    private void readCircuitVerificator(JSONObject jsonObject) {
+        String circuitVerificator = (String) jsonObject.get("circuit_verificator");
+        this.circuitVerificator = CircuitVerificatorFactory.getFactory().createVerificator(circuitVerificator);
     }
 
     private void readCellContentJson(JSONObject jsonObject) {
@@ -328,5 +337,9 @@ public class Parser {
 
     public AbstractAgreggator getAgreggator() {
         return agreggator;
+    }
+
+    public CircuitVerificator getCircuitVerificator() {
+        return circuitVerificator;
     }
 }

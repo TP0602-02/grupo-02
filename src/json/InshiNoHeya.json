@@ -4,6 +4,7 @@
   "height": 5,
   "keys": ["1","2","3","4","5"],
   "agreggator": "Simple aggregator",
+  "circuit_verificator": "",
   "rules": [{
     "rule": "Multiplication rule"
   }, {

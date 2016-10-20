@@ -3,7 +3,6 @@
   "width": 6,
   "height": 6,
   "keys": ["U","R","L","D"],
-  "agreggator": "Connection aggregator",
   "rules": [{
     "rule": "Number of borders in region rule"
   } , {

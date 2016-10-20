@@ -18,8 +18,9 @@ public class AggregatorWithConnections extends AbstractAgreggator {
 
     @Override
     public void runPlay(Play play, Board board) {
-        getCellControllerOfCell(play.getSelectedCell()).addValue(play.getSelectedCellValue());
-        Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), play.getSelectedCellValue(), board);
+        Integer valueToAdd = SpecialCharactersParser.getInstance().getValueOf(play.getSelectedCellValue());
+        getCellControllerOfCell(play.getSelectedCell()).addValue(valueToAdd.toString());
+        Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), valueToAdd, board);
         if (newPLayToRun.getValidPlay()) {
             getCellControllerOfCell(newPLayToRun.getSelectedCell()).addValue(newPLayToRun.getSelectedCellValue());
         }
@@ -28,19 +29,19 @@ public class AggregatorWithConnections extends AbstractAgreggator {
     @Override
     public void deleteAction(Cell cell, String valueToDelete, Board board) {
         getCellControllerOfCell(cell).deletedValue(valueToDelete);
-        Play newPLayToRun = getPlayFromCellConnection(cell, valueToDelete, board);
+        Play newPLayToRun = getPlayFromCellConnection(cell,Integer.parseInt(valueToDelete), board);
         if (newPLayToRun.getValidPlay()) {
             getCellControllerOfCell(newPLayToRun.getSelectedCell()).deletedValue(newPLayToRun.getSelectedCellValue());
         }
     }
 
 
-    private Play getPlayFromCellConnection(Cell cell, String valueOfConnection, Board board) {
+    private Play getPlayFromCellConnection(Cell cell, Integer valueOfConnection, Board board) {
         BoardIteratorConnections iterator = new BoardIteratorConnections();
         Cell nextCell = iterator.getNextCell(board,
-                cell, SpecialCharactersParser.getInstance().getValueOf(valueOfConnection));
-        String opositeDirection = iterator.getNameOppositeDirection(valueOfConnection);
-        Play newPlay = new Play(nextCell, opositeDirection);
+                cell, valueOfConnection);
+        Integer opositeDirection = iterator.getOppositeDirection(valueOfConnection);
+        Play newPlay = new Play(nextCell, opositeDirection.toString());
         newPlay.setValidPlay(nextCell != null);
         return newPlay;
     }

@@ -54,8 +54,8 @@ public class RulesFactory {
 
     private static void addThirdRules() {
         factory.put(NO_REPEAT_VALUE_RULE, new NoRepeatValueRule());
-        factory.put(CLOSE_DIAGONAL_CIRCUIT_RULE, new ConectionInsideBoardRule());
-        factory.put(NUMBER_DIAGONALS_RULE, new ConectionInsideBoardRule());
+        factory.put(CLOSE_DIAGONAL_CIRCUIT_RULE, new CloseCircuitDiagonalRule());
+        factory.put(NUMBER_DIAGONALS_RULE, new NumberOfDiagonalsRule());
     }
 
     public GenericRule createRule(String ruleName) {

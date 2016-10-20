@@ -31,7 +31,7 @@ public class SpecialCharactersParser {
     public int getValueOf(String text) {
         try {
             return Integer.parseInt(text);
-        } catch (NumberFormatException exception) {
+        } catch (NumberFormatException | ClassCastException exception) {
             return (int) table.getOrDefault(text, 0);
         }
     }

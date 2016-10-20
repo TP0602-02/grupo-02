@@ -14,6 +14,7 @@ public class CloseCircuitDiagonalRule extends GenericCloseCircuitRule {
     private static final int BACK_SLASH = 2;
 
     public CloseCircuitDiagonalRule() {
+        super();
         this.verificator = new CircuitVerificatorWithDiagonals();
     }
 

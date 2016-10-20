@@ -33,21 +33,10 @@ public class RegionTotalBorderRuleTest {
     }
 
     @Test
-    public void checkInEmptyBoard_ReturnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board));
-    }
-
-    @Test
-    public void checkInCellWithOneValue_ReturnFalse() {
-        this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(3));
-        Assert.assertTrue(!this.rule.validate(this.board));
-    }
-
-    @Test
-    public void checkInCellWithTwoValues_ReturnTrue() {
+    public void checkInCellWithTwoValues_ReturnFalse() {
         this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(3));
         this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(2));
-        Assert.assertTrue(this.rule.validate(this.board));
+        Assert.assertTrue(!this.rule.validate(this.board));
     }
 
     @Test

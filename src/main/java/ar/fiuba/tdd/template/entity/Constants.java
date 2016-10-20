@@ -8,10 +8,10 @@ import java.util.ArrayList;
  */
 public abstract class Constants {
 
-    public static final String UP = "AR";
-    public static final String RIGHT = "DER";
-    public static final String DOWN = "AB";
-    public static final String LEFT = "IZQ";
+    public static final String UP = "U";
+    public static final String RIGHT = "R";
+    public static final String DOWN = "D";
+    public static final String LEFT = "L";
     public static final String UP_DIAGONAL = "/";
     public static final String DOWN_DIAGONAL = "\\";
 

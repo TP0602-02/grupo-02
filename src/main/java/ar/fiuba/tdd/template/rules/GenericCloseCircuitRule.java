@@ -62,7 +62,9 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
 
     private void removeContents() {
         this.removeLastContent(this.cell);
-        this.removeLastContent(this.nextCell);
+        if (this.nextCell != null) {
+            this.removeLastContent(this.nextCell);
+        }
     }
 
     private void removeLastContent(Cell cell) {
@@ -75,6 +77,8 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
         CellContent cellContent = new ValueContent(numberToAdd);
         CellContent nextCellContent = new ValueContent(this.iterator.getOppositeDirection(numberToAdd));
         this.cell.setContent(cellContent);
-        nextCell.setContent(nextCellContent);
+        if (this.nextCell != null) {
+            this.nextCell.setContent(nextCellContent);
+        }
     }
 }

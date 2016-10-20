@@ -5,7 +5,7 @@ import ar.fiuba.tdd.template.board.Board;
 /**
  * Created by matiaskamien on 15/10/16.
  */
-public abstract class GenericTotalRegionRule {
+public abstract class GenericTotalRegionRule extends GenericRule {
 
-    public abstract boolean validate(Board board);
+    protected abstract boolean validate(Board board);
 }

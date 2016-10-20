@@ -19,6 +19,12 @@ public class CloseCircuitDiagonalRule extends GenericCloseCircuitRule {
     }
 
     @Override
+    public boolean validateTotalRegionRule(Board board) {
+        //TODO VERIFICAR QUE ANDE BIEN.
+        return true;
+    }
+
+    @Override
     public boolean validate(Board board, Cell cell, int numberToAdd) {
         this.generateMovement(cell, numberToAdd);
         if (!this.verificator.isCircuitClosed(board)) {

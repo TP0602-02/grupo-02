@@ -14,7 +14,7 @@ public class SpecialCharactersParser {
         table = new Properties();
         table.put(Constants.DOWN, Constants.DOWN_VALUE);
         table.put(Constants.DOWN_DIAGONAL, Constants.DOWN_DIAGONAL_VALUE);
-        table.put(Constants.UP, Constants.UP);
+        table.put(Constants.UP, Constants.UP_VALUE);
         table.put(Constants.UP_DIAGONAL, Constants.UP_DIAGONAL_VALUE);
         table.put(Constants.RIGHT, Constants.RIGHT_VALUE);
         table.put(Constants.LEFT, Constants.LEFT_VALUE);

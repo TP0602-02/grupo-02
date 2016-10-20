@@ -16,6 +16,7 @@ public class CloseCircuitConnectionRule extends GenericCloseCircuitRule {
     public CloseCircuitConnectionRule() {
         super();
         this.verificator = new CircuitVerificatorWithoutBorders();
+        this.totalRegionRule = new RegionTotalConnectionRule();
     }
 
     @Override

@@ -37,6 +37,9 @@ public class CircuitVerificatorWithoutBorders extends CircuitVerificator {
 
     private boolean checkCircuit(Cell cell, int direction, Board board) {
         Cell nextCell = this.iterator.getNextCell(board, cell, direction);
+        if (nextCell == null) {
+            return false;
+        }
         ++this.amountOfCellsInTheCircuit;
         if (nextCell == this.firstCell) {
             --this.amountOfCellsInTheCircuit;

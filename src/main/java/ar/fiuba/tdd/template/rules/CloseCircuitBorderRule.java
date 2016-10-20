@@ -11,6 +11,7 @@ public class CloseCircuitBorderRule extends GenericCloseCircuitRule {
     public CloseCircuitBorderRule() {
         super();
         this.verificator = new CircuitVerificatorWithBorders();
+        this.totalRegionRule = new RegionTotalBorderRule();
     }
 
     //It does not have other validations.

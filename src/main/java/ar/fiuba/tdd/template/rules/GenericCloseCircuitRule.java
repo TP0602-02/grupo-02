@@ -26,14 +26,6 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
         this.nextCell = null;
     }
 
-    public void setTotalRegionRule(GenericTotalRegionRule totalRegionRule) {
-        this.totalRegionRule = totalRegionRule;
-    }
-
-    public void setVerificator(CircuitVerificator verificator) {
-        this.verificator = verificator;
-    }
-
     @Override
     public boolean validate(Board board, Cell cell, int numberToAdd) {
         this.setCells(board, cell, numberToAdd);
@@ -46,11 +38,15 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
     }
 
     private boolean validateMovement(Board board) {
-        boolean validRegions = this.totalRegionRule.validate(board);
+        boolean validRegions = this.validateTotalRegionRule(board);
         boolean hasLinesOutOfTheCircuit = this.verificator.hasLinesOutOfTheCircuit(board);
         boolean checkOtherMethods = this.checkOtherMethods(board);
         this.removeContents();
         return (validRegions && checkOtherMethods && hasLinesOutOfTheCircuit);
+    }
+
+    protected boolean validateTotalRegionRule(Board board) {
+        return this.totalRegionRule.validate(board);
     }
 
     protected abstract boolean checkOtherMethods(Board board);

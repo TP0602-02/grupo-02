@@ -1,54 +1,41 @@
 {
-  "cellType": "CELL_MULTIPLE",
+  "cellType": " ",
   "width": 7,
   "height": 7,
-  "keys": ["/","-"],
+  "keys": ["L","D","R","U"],
   "agreggator": "Connection aggregator",
   "rules": [{
-    "rule": "Doesnt repeat line in cell"
+    "rule": "Conections inside board rule"
+  }, {
+    "rule": "Conections in cell rule"
+  }, {
+    "rule": "Conections in region rule"
+  },{
+    "rule":"Number of conections in region rule"
+  },{
+    "rule":"Close circuit Rule"
   }],
   "winVerificators": [{
     "verificator": "Close circuit win verificator"
   }],
-  "clues": [{
-    "x": 0,
-    "y": 0,
-    "content": [{
-      "value": 4
-    }]
-  }, {
-    "x": 1,
-    "y": 5,
-    "content": [{
-      "value": 1
-    }]
-  }, {
-    "x": 1,
-    "y": 6,
-    "content": [{
-      "value": 3
-    }]
-  }, {
-    "x": 2,
-    "y": 1,
-    "content": [{
-      "value": 2
-    }]
-  }, {
-    "x": 3,
-    "y": 0,
-    "content": [{
-      "value": 1
-    }]
-  }, {
-    "x": 3,
-    "y": 4,
-    "content": [{
-      "value": 4
-    }]
-  }],
+  "cell_contents": [
+    {"id":0,
+      "total":-1},
+    {"id":1,
+      "total":4},
+    {"id":2,
+      "total":1},
+    {"id":3,
+      "total":3},
+    {"id":4,
+      "total":2},
+    {"id":5,
+      "total":1},
+    {"id":6,
+      "total":4}
+  ],
   "regions": [{
-    "total": 4,
+    "id": 1,
     "coord": [{
       "x": 0,
       "y": 0
@@ -56,12 +43,9 @@
       "x": 1,
       "y": 1
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": -1,
+    "id": 0,
     "coord": [{
       "x": 0,
       "y": 2
@@ -70,26 +54,30 @@
       "y": 5
     }],
     "exceptions": [{
-      "x": 1,
-      "y": 2
-    }, {
-      "x": 1,
-      "y": 3
-    }, {
-      "x": 1,
-      "y": 5
-    }, {
-      "x": 2,
-      "y": 2
-    }, {
-      "x": 2,
-      "y": 3
-    }, {
-      "x": 2,
-      "y": 5
+      "x":1,
+      "y":2
+    },{
+      "x":1,
+      "y":3
+
+    },{
+      "x":1,
+      "y":5
+
+    },{
+      "x":2,
+      "y":2
+
+    },{
+      "x":2,
+      "y":3
+
+    },{
+      "x":2,
+      "y":5
     }]
   }, {
-    "total": -1,
+    "id": 0,
     "coord": [{
       "x": 0,
       "y": 6
@@ -97,12 +85,9 @@
       "x": 0,
       "y": 6
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": -1,
+    "id": 0,
     "coord": [{
       "x": 1,
       "y": 2
@@ -111,76 +96,21 @@
       "y": 3
     }],
     "exceptions": [{
-      "x": 2,
-      "y": 2
+      "x":2,
+      "y":2
     }]
   }, {
-    "total": 1,
+    "id": 2,
     "coord": [{
-      "x": 1,
-      "y": 5
+      "x":1,
+      "y":5
     }, {
       "x": 2,
       "y": 5
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": -1,
-    "coord": [{
-      "x": 2,
-      "y": 0
-    }, {
-      "x": 2,
-      "y": 0
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 2,
-    "coord": [{
-      "x": 2,
-      "y": 1
-    }, {
-      "x": 3,
-      "y": 2
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
-    "coord": [{
-      "x": 3,
-      "y": 3
-    }, {
-      "x": 3,
-      "y": 3
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 4,
-    "coord": [{
-      "x": 3,
-      "y": 4
-    }, {
-      "x": 4,
-      "y": 5
-    }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": 3,
+    "id": 3,
     "coord": [{
       "x": 1,
       "y": 6
@@ -188,12 +118,29 @@
       "x": 3,
       "y": 6
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
+    "exceptions": []
   }, {
-    "total": 1,
+    "id": 0,
+    "coord": [{
+      "x": 2,
+      "y": 0
+    }, {
+      "x": 2,
+      "y": 0
+    }],
+    "exceptions": []
+  }, {
+    "id": 4,
+    "coord": [{
+      "x": 2,
+      "y": 1
+    }, {
+      "x": 3,
+      "y": 2
+    }],
+    "exceptions": []
+  }, {
+    "id": 5,
     "coord": [{
       "x": 3,
       "y": 0
@@ -201,12 +148,30 @@
       "x": 5,
       "y": 0
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
+    "exceptions": []
+
+  },{
+    "id": 0,
+    "coord": [{
+      "x": 3,
+      "y": 3
+    }, {
+      "x": 3,
+      "y": 3
+    }],
+    "exceptions": []
+  },{
+    "id": 6,
+    "coord": [{
+      "x": 3,
+      "y": 4
+    }, {
+      "x": 4,
+      "y": 5
+    }],
+    "exceptions": []
+  },{
+    "id": 0,
     "coord": [{
       "x": 4,
       "y": 1
@@ -214,12 +179,47 @@
       "x": 5,
       "y": 1
     }],
+    "exceptions": []
+  },{
+    "id": 0,
+    "coord": [{
+      "x": 4,
+      "y": 0
+    }, {
+      "x": 6,
+      "y": 4
+    }],
     "exceptions": [{
-      "x": -1,
-      "y": -1
+      "x":4,
+      "y":0
+    },{
+      "x":4,
+      "y":1
+    },{
+      "x":4,
+      "y":3
+    },{
+      "x":4,
+      "y":4
+    },{
+      "x":5,
+      "y":0
+    },{
+      "x":5,
+      "y":1
+    },{
+      "x":5,
+      "y":3
+    },{
+      "x":5,
+      "y":4
+    },{
+      "x":6,
+      "y":0
     }]
-  }, {
-    "total": -1,
+
+  },{
+    "id": 0,
     "coord": [{
       "x": 4,
       "y": 3
@@ -228,11 +228,11 @@
       "y": 4
     }],
     "exceptions": [{
-      "x": 4,
-      "y": 4
+      "x":4,
+      "y":4
     }]
-  }, {
-    "total": -1,
+  },{
+    "id": 0,
     "coord": [{
       "x": 4,
       "y": 6
@@ -240,12 +240,9 @@
       "x": 4,
       "y": 6
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
+    "exceptions": []
+  },{
+    "id": 0,
     "coord": [{
       "x": 6,
       "y": 0
@@ -253,40 +250,9 @@
       "x": 6,
       "y": 0
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }, {
-    "total": -1,
-    "coord": [{
-      "x": 4,
-      "y": 1
-    }, {
-      "x": 6,
-      "y": 4
-    }],
-    "exceptions": [{
-      "x": 4,
-      "y": 1
-    }, {
-      "x": 4,
-      "y": 3
-    }, {
-      "x": 4,
-      "y": 4
-    }, {
-      "x": 5,
-      "y": 1
-    }, {
-      "x": 5,
-      "y": 3
-    }, {
-      "x": 5,
-      "y": 4
-    }]
-  }, {
-    "total": -1,
+    "exceptions": []
+  },{
+    "id": 0,
     "coord": [{
       "x": 5,
       "y": 5
@@ -294,9 +260,9 @@
       "x": 6,
       "y": 6
     }],
-    "exceptions": [{
-      "x": -1,
-      "y": -1
-    }]
-  }]
+    "exceptions": []
+  }],
+
+  "initial_board_content":[],
+  "special_clues":[]
 }

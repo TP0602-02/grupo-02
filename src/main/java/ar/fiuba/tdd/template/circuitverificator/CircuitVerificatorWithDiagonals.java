@@ -84,6 +84,7 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
         this.circuitCells.clear();
     }
 
+    @Override
     public void setCell(Cell cell) {
         this.cell = cell;
     }

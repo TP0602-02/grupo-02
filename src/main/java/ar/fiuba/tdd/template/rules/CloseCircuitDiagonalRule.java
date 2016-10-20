@@ -27,6 +27,7 @@ public class CloseCircuitDiagonalRule extends GenericCloseCircuitRule {
     @Override
     public boolean validate(Board board, Cell cell, int numberToAdd) {
         this.generateMovement(cell, numberToAdd);
+        this.verificator.setCell(cell);
         if (!this.verificator.isCircuitClosed(board)) {
             this.removeMovement(cell);
             return false;

@@ -9,10 +9,10 @@ public class CircuitVerificatorFactory {
     private static Properties factory;
     private static CircuitVerificatorFactory instance;
 
-    public static final String CIRCUIT_VERIFICATOR_WITH_BORDERS = "Circuit verificator with borders";
+   /* public static final String CIRCUIT_VERIFICATOR_WITH_BORDERS = "Circuit verificator with borders";
     public static final String CIRCUIT_VERIFICATOR_WITH_DIAGONALS = "Circuit verificator with diagonals";
     public static final String CIRCUIT_VERIFICATOR_WITHOUT_BORDERS = "Circuit verificator without borders";
-
+*/
 
     public static CircuitVerificatorFactory getFactory() {
         if (instance == null) {
@@ -24,9 +24,9 @@ public class CircuitVerificatorFactory {
 
     private static void initFactory() {
         factory = new Properties();
-        factory.put(CIRCUIT_VERIFICATOR_WITH_BORDERS, new CircuitVerificatorWithBorders());
-        factory.put(CIRCUIT_VERIFICATOR_WITH_DIAGONALS, new CircuitVerificatorWithDiagonals());
-        factory.put(CIRCUIT_VERIFICATOR_WITHOUT_BORDERS, new CircuitVerificatorWithoutBorders());
+        factory.put("Circuit verificator with borders", new CircuitVerificatorWithBorders());
+        factory.put("Circuit verificator with diagonals", new CircuitVerificatorWithDiagonals());
+        factory.put("Circuit verificator without borders", new CircuitVerificatorWithoutBorders());
     }
 
     public CircuitVerificator createVerificator(String circuitVerificator) {

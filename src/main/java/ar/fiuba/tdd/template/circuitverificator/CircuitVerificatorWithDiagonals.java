@@ -52,14 +52,14 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
     private boolean checkCellClosedCircuit(Board board, Cell limitCell, Cell cell, CellContent previousCorner) {
         ArrayList<CellContent> corners = limitCell.getSummableContents();
         for (CellContent limitCellCorner: corners) {
-           // if (limitCellCorner.getNumberValue() == this.getOppositeCorner(previousCorner)/*this.getMatchingCorner(board, cell, previousCorner, limitCell)*/) {
-                if (!this.isFirstCorner(limitCellCorner, corners)) {
-                    this.circuitCells.remove(limitCell);
-                }
-                if (!this.isCircuitOpen(board, limitCell, limitCellCorner, cell)) {
-                    return false;
-                }
-
+           // if (limitCellCorner.getNumberValue() == this.getOppositeCorner(previousCorner)/
+            // *this.getMatchingCorner(board, cell, previousCorner, limitCell)*/) {
+            if (!this.isFirstCorner(limitCellCorner, corners)) {
+                this.circuitCells.remove(limitCell);
+            }
+            if (!this.isCircuitOpen(board, limitCell, limitCellCorner, cell)) {
+                return false;
+            }
         }
         return true;
     }

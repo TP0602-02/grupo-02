@@ -22,7 +22,7 @@ public class NumberOfConectionsInRegionRule extends RegionConectionRule {
         int conections = region.getOcuppiedCells();
         conections = addConection(cell, conections);
         conections = addConection(nextCell, conections);
-        return (conections <= region.getTotal());
+        return (conections <= region.getTotal() || region.getTotal() == Constants.NO_CLUE_RESTRICTION);
     }
 
     private int addConection(Cell cell, int conections) {

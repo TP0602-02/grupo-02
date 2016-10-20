@@ -42,7 +42,7 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
         boolean hasLinesOutOfTheCircuit = this.verificator.hasLinesOutOfTheCircuit(board);
         boolean checkOtherMethods = this.checkOtherMethods(board);
         this.removeContents();
-        return (validRegions && checkOtherMethods && hasLinesOutOfTheCircuit);
+        return (validRegions && checkOtherMethods && !hasLinesOutOfTheCircuit);
     }
 
     protected boolean validateTotalRegionRule(Board board) {

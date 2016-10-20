@@ -40,7 +40,7 @@ public abstract class CircuitVerificator {
     }
 
     public boolean hasLinesOutOfTheCircuit(Board board) {
-        return (this.amountOfCellsInTheCircuit < this.getAmountOfCellsWithValueInTheBoard(board));
+        return (this.amountOfCellsInTheCircuit != this.getAmountOfCellsWithValueInTheBoard(board));
     }
 
     public int getAmountOfCellsWithValueInTheBoard(Board board) {

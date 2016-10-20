@@ -25,6 +25,7 @@ public class CircuitVerificatorWithoutBorders extends CircuitVerificator {
     }
 
     public boolean isCircuitClosed(Board board) {
+        this.amountOfCellsInTheCircuit = 0;
         this.firstCell = this.getFirstCellWithValue(board);
         if (this.firstCell != null) {
             ++this.amountOfCellsInTheCircuit;

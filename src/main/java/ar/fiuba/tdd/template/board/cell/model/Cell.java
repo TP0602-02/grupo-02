@@ -93,7 +93,7 @@ public abstract class Cell implements Summable, Editable {
 
     public void removeContentWithValue(String value) {
         for (CellContent content : contents) {
-            if (content.getValue().equals(value)) {
+            if (content.getValue().equals(value) && content.isDeleteable()) {
                 contents.remove(content);
                 return;
             }

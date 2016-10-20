@@ -13,6 +13,9 @@ public class CellMultipleValue extends Cell {
 
     @Override
     public void setContent(CellContent newContentCell) {
-        contents.add(newContentCell);
+        if(!hasValue (newContentCell.getNumberValue())){
+            contents.add(newContentCell);
+        }
     }
+
 }

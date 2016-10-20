@@ -37,10 +37,8 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
 
     private boolean checkLimitCells(Board board, Cell cell, CellContent corner, Cell previousCell) {
         ArrayList<Cell> limitCells = this.getLimitCells(board, cell, corner);
-        for (Cell limitCell: limitCells) {
-            if (limitCell == previousCell) {
-                continue;
-            } else {
+        if (!limitCells.contains(previousCell)) {
+            for (Cell limitCell: limitCells) {
                 if (!this.checkCellClosedCircuit(board, limitCell, cell, corner)) {
                     return false;
                 }
@@ -52,28 +50,24 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
     private boolean checkCellClosedCircuit(Board board, Cell limitCell, Cell cell, CellContent previousCorner) {
         ArrayList<CellContent> corners = limitCell.getSummableContents();
         for (CellContent limitCellCorner: corners) {
-           // if (limitCellCorner.getNumberValue() == this.getOppositeCorner(previousCorner)/
-            // *this.getMatchingCorner(board, cell, previousCorner, limitCell)*/) {
-            if (!this.isFirstCorner(limitCellCorner, corners)) {
-                this.circuitCells.remove(limitCell);
-            }
-            if (!this.isCircuitOpen(board, limitCell, limitCellCorner, cell)) {
-                return false;
+            if (this.cellsAreConnected(cell, limitCell)) {
+                if (!this.isFirstCorner(limitCellCorner, corners)) {
+                    this.circuitCells.remove(limitCell);
+                }
+                if (!this.isCircuitOpen(board, limitCell, limitCellCorner, cell)) {
+                    return false;
+                }
             }
         }
         return true;
     }
 
-    /*TODO private int getMatchingCorner(Board board, Cell previousCell, CellContent previousCorner, Cell actualCell) {
-        return this.iterator.getMatchingCorner(board, previousCell, previousCorner, actualCell);
-    }*/
+    private boolean cellsAreConnected(Cell limitCell, Cell cell) {
+        return this.iterator.cellsAreConnected(limitCell, cell);
+    }
 
     private boolean isFirstCorner(CellContent limitCellCorner, ArrayList<CellContent> corners) {
         return limitCellCorner == corners.get(0);
-    }
-
-    private int getOppositeCorner(CellContent corner) {
-        return this.iterator.getOppositeCorner(corner);
     }
 
     private ArrayList<Cell> getLimitCells(Board board, Cell cell, CellContent corner) {

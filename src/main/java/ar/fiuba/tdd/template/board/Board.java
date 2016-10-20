@@ -36,7 +36,7 @@ public class Board {
         for (int col = 0; col < width; col++) {
             for (int row = 0; row < height; row++) {
                 Cell cell = this.getCell(new Coordinate(row, col));
-                if (cell.isEditable() && cell.isEmpty()) {
+                if ((!cell.hasDeleteables() || cell.isEmpty()) && cell.isEditable()) {
                     return false;
                 }
             }

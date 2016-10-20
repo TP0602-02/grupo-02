@@ -7,6 +7,7 @@ import ar.fiuba.tdd.template.entity.Constants;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 /**
  * Created by alazraqui on 16/10/2016.
@@ -185,7 +186,29 @@ public class BoardIteratorConnections {
         return limitCells;
     }
 
-    /*TODO public int getMatchingCorner(Board board, Cell previousCell, CellContent previousCorner, Cell actualCell) {
-        return 1;
-    }*/
+    public boolean cellsAreConnected(Cell limitCell, Cell cell) {
+        boolean hasSameValue = cellsHasSameValue(limitCell,cell);
+        boolean areDiagonals = cellsAreDiagonals(limitCell,cell);
+        return (areDiagonals == hasSameValue);
+    }
+
+    private boolean cellsAreDiagonals(Cell limitCell, Cell cell) {
+        Coordinate coordFirstCell = new Coordinate(limitCell.getRow(),limitCell.getColumn());
+        Coordinate coordSecondCell = new Coordinate(cell.getRow(),cell.getColumn());
+        return (coordFirstCell.getRow() != coordSecondCell.getRow()
+                && coordFirstCell.getColumn() != coordSecondCell.getColumn());
+    }
+
+
+    private boolean cellsHasSameValue(Cell limitCell, Cell secondCell) {
+        //get any value of limits cell to know if is the same value in second cell
+        ArrayList<String> limitCellDeletebleValues = limitCell.getDeleteableValues();
+        ArrayList<String> secondCellDeletebleValues = secondCell.getDeleteableValues();
+        for (String value : secondCellDeletebleValues) {
+            if (value.equals(limitCellDeletebleValues.get(0))) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

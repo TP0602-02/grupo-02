@@ -152,4 +152,13 @@ public abstract class Cell implements Summable, Editable {
         }
         return values;
     }
+
+    public boolean hasDeleteables() {
+        for (CellContent cellContent: this.contents) {
+            if (cellContent.isDeleteable()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

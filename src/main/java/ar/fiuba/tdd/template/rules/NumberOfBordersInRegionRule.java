@@ -5,20 +5,27 @@ import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.entity.Constants;
 
+import java.util.ArrayList;
+
 /**
  * Created by alazraqui on 15/10/2016.
  */
-public class NumberOfBordersInRegionRule extends NumberRule {
+public class NumberOfBordersInRegionRule extends ConectionRule {
 
-    private static final int noClueRestriction = -1;
-
-    @Override
-    public boolean validateRegion(Region region, Cell cell, int numberToAdd) {
-        return (cell.getSummableContents().size() < region.getTotal()) || (region.getTotal() == Constants.NO_CLUE_RESTRICTION);
+    private boolean exceedsNumberOfBorders(Board board,Cell cell) {
+        ArrayList<Region> regionsToValidate = board.getCellRegions(cell);
+        for (Region region : regionsToValidate) {
+            int regionTotal = region.getTotal();
+            int cellAmountOfBorders = cell.getSummableContents().size();
+            if (regionTotal != Constants.NO_CLUE_RESTRICTION && cellAmountOfBorders >= regionTotal) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    protected void initializeTotals(Region region) {
-
+    public boolean validateConection(Board board, Cell cell, Cell nextCell) {
+        return !this.exceedsNumberOfBorders(board, cell) && !this.exceedsNumberOfBorders(board, nextCell);
     }
 }

@@ -36,7 +36,7 @@ public class RegionTotalBorderRuleTest {
     public void checkInCellWithTwoValues_ReturnFalse() {
         this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(3));
         this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(2));
-        Assert.assertTrue(!this.rule.validate(this.board));
+        Assert.assertTrue(this.rule.validate(this.board));
     }
 
     @Test

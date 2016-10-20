@@ -16,6 +16,7 @@ public class RulesFactory {
     public static final String TOTAL_REGION_CONNECTION_RULE = "Total region connection rule";
     public static final String CONECTIONS_INSIDE_BOARD_RULE = "Conections inside board rule";
     public static final String NUMBER_CONECTIONS_IN_REGION_RULE = "Number of conections in region rule";
+    public static final String NUMBER_BORDERS_IN_REGION_RULE = "Number of borders in region rule";
     public static final String CLOSE_DIAGONAL_CIRCUIT_RULE = "Close circuit diagonal rule";
     public static final String NUMBER_DIAGONALS_RULE = "Number of diagonals in region";
 
@@ -40,6 +41,7 @@ public class RulesFactory {
     private static void addSecondRules() {
         factory.put(CONECTIONS_IN_REGION_RULE, new RegionHasValidConectionsRule());
         factory.put(NUMBER_CONECTIONS_IN_REGION_RULE, new NumberOfConectionsInRegionRule());
+        factory.put(NUMBER_BORDERS_IN_REGION_RULE, new NumberOfBordersInRegionRule());
         factory.put(CLOSE_CIRCUIT_BORDER_RULE, new CloseCircuitBorderRule());
         factory.put(TOTAL_REGION_BORDER_RULE, new RegionTotalBorderRule());
         factory.put(TOTAL_REGION_CONNECTION_RULE, new RegionTotalConnectionRule());

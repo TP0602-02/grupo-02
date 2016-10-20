@@ -17,7 +17,7 @@ public class RegionTotalBorderRule extends GenericTotalRegionRule {
             Cell regionCell = region.getCells().get(0);
             int numberOfBorders = regionCell.getSummableContents().size();
             int regionTotal = region.getTotal();
-            if (regionTotal != Constants.NO_CLUE_RESTRICTION && numberOfBorders >= regionTotal) {
+            if (regionTotal != Constants.NO_CLUE_RESTRICTION && numberOfBorders != regionTotal) {
                 return false;
             }
         }

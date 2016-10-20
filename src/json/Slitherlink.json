@@ -5,9 +5,9 @@
   "keys": ["U","R","L","D"],
   "agreggator": "Connection aggregator",
   "rules": [{
-    "rule": "Close circuit border rule"
+    "rule": "Number of borders in region rule"
   } , {
-    "rule": "Total region border rule"
+    "rule": "Close circuit border rule"
   }],
   "winVerificators": [{
     "verificator": "Close circuit win verificator"

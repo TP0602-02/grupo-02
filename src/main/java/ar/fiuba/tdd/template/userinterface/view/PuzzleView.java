@@ -104,7 +104,7 @@ public class PuzzleView extends JFrame {
     private void addField(CellContent cellContent, int positionPixelX, int positionPixelY, int column, int row) {
         // Cell cell = new Cell(column, row);
         //cell.setContent(cellContent);
-        CellView cellVIew = new CellView(cellContent.getValue());
+        CellView cellVIew = new CellView(cellContent.isShowableInBoard() ? cellContent.getValue() : "");
         //TODO sacarlo haciendo un visitor o pidiendole getColor a la cellContent
         cellVIew.setBackground(cellContent.getColorRepresentation());
         cellVIew.setBounds(positionPixelX, positionPixelY, cellViewDimension, cellViewDimension);

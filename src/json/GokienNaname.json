@@ -1,0 +1,453 @@
+{
+  "cellType": "MULTIPLE_SINGLE",
+  "width": 5,
+  "height": 5,
+  "keys": [
+    "/",
+    "\\"
+  ],
+  "rules": [
+    {
+      "rule": "Close circuit diagonal rule"
+    },
+    {
+      "rule": "Number of diagonals in region"
+    }
+  ],
+  "winVerificators": [
+    {
+      "verificator": "Full board win verificator"
+    }
+  ],
+  "cell_contents": [
+    {
+      "id": 0,
+      "total": -1
+    },
+    {
+      "id": 1,
+      "total": 2
+    },
+    {
+      "id": 2,
+      "total": 1
+    },
+    {
+      "id": 3,
+      "total": 3
+    },
+    {
+      "id": 4,
+      "total": 3
+    },
+    {
+      "id": 5,
+      "total": 0
+    },
+    {
+      "id": 6,
+      "total": 3
+    },
+    {
+      "id": 7,
+      "total": 3
+    },
+    {
+      "id": 8,
+      "total": 0
+    },
+    {
+      "id": 9,
+      "total": 3
+    },
+    {
+      "id": 10,
+      "total": 3
+    },
+    {
+      "id": 11,
+      "total": 1
+    },
+    {
+      "id": 12,
+      "total": 1
+    }
+  ],
+  "regions": [
+    {
+      "id": 1,
+      "coord": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "y": 1
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "id": 2,
+      "coord": [
+        {
+          "x": 0,
+          "y": 1
+        },
+        {
+          "x": 0,
+          "y": 2
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "id": 3,
+      "coord": [
+        {
+          "x": 0,
+          "y": 1
+        },
+        {
+          "x": 1,
+          "y": 2
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "id": 4,
+      "coord": [
+        {
+          "x": 0,
+          "y": 2
+        },
+        {
+          "x": 1,
+          "y": 3
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "id": 5,
+      "coord": [
+        {
+          "x": 0,
+          "y": 4
+        },
+        {
+          "x": 1,
+          "y": 4
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "id": 6,
+      "coord": [
+        {
+          "x": 2,
+          "y": 1
+        },
+        {
+          "x": 3,
+          "y": 2
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "id": 7,
+      "coord": [
+        {
+          "x": 2,
+          "y": 2
+        },
+        {
+          "x": 3,
+          "y": 3
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "id": 8,
+      "coord": [
+        {
+          "x": 3,
+          "y": 0
+        },
+        {
+          "x": 4,
+          "y": 0
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "id": 9,
+      "coord": [
+        {
+          "x": 3,
+          "y": 2
+        },
+        {
+          "x": 4,
+          "y": 3
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "id": 10,
+      "coord": [
+        {
+          "x": 3,
+          "y": 3
+        },
+        {
+          "x": 4,
+          "y": 4
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "id": 11,
+      "coord": [
+        {
+          "x": 4,
+          "y": 3
+        },
+        {
+          "x": 4,
+          "y": 4
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "id": 12,
+      "coord": [
+        {
+          "x": 4,
+          "y": 4
+        },
+        {
+          "x": 4,
+          "y": 4
+        }
+      ],
+      "exceptions": []
+    }],
+    "initial_board_content":[],
+    "special_clues":[
+    {"x": 0,
+    "y": 0,
+    "clues": [
+    {"id": 1,
+    "corner": 2}
+    ]
+    },
+    {"x": 0,
+    "y": 1,
+    "clues": [
+    {"id": 1,
+    "corner": 1},
+    {"id": 2,
+    "corner": 2},
+    {"id": 3,
+    "corner": 4}
+    ]
+    },
+    {"x": 0,
+    "y": 2,
+    "clues": [
+    {"id": 2,
+    "corner": 1},
+    {"id": 3,
+    "corner": 3},
+    {"id": 4,
+    "corner": 4}
+    ]
+    },
+    {"x": 0,
+    "y": 3,
+    "clues": [
+    {"id": 4,
+    "corner": 3}
+    ]
+    },
+    {"x": 0,
+    "y": 4,
+    "clues": [
+    {"id": 5,
+    "corner": 4}
+    ]
+    },
+    {"x": 1,
+    "y": 1,
+    "clues": [
+    {"id": 3,
+    "corner": 2}
+    ]
+    },
+    {"x": 1,
+    "y": 2,
+    "clues": [
+    {"id": 3,
+    "corner": 1},
+    {"id": 4,
+    "corner": 2}
+    ]
+    },
+    {"x": 1,
+    "y": 3,
+    "clues": [
+    {"id": 4,
+    "corner": 1}
+    ]
+    },
+    {"x": 1,
+    "y": 4,
+    "clues": [
+    {"id": 5,
+    "corner": 2}
+    ]
+    },
+    {"x": 2,
+    "y": 1,
+    "clues": [
+    {"id": 6,
+    "corner": 4}
+    ]
+    },
+    {"x": 2,
+    "y": 2,
+    "clues": [
+    {"id": 6,
+    "corner": 3},
+    {"id": 7,
+    "corner": 4}
+    ]
+    },
+    {"x": 2,
+    "y": 3,
+    "clues": [
+    {"id": 7,
+    "corner": 3}
+    ]
+    },
+    {"x": 3,
+    "y": 0,
+    "clues": [
+    {"id": 8,
+    "corner": 3}
+    ]
+    },
+    {"x": 3,
+    "y": 1,
+    "clues": [
+    {"id": 6,
+    "corner": 2}
+    ]
+    },
+    {"x": 3,
+    "y": 2,
+    "clues": [
+    {"id": 6,
+    "corner": 1},
+    {"id": 7,
+    "corner": 2},
+    {"id": 9,
+    "corner": 4}
+    ]
+    },
+    {
+    "x": 3,
+    "y": 3,
+    "clues": [
+    {
+    "id": 7,
+    "corner": 1
+    },
+    {
+    "id": 9,
+    "corner": 3
+    },
+    {
+    "id": 10,
+    "corner": 4
+    }
+    ]
+    },
+    {
+    "x": 3,
+    "y": 4,
+    "clues": [
+    {
+    "id": 10,
+    "corner": 3
+    }
+    ]
+    },
+    {
+    "x": 4,
+    "y": 0,
+    "clues": [
+    {
+    "id": 8,
+    "corner": 1
+    }
+    ]
+    },
+    {
+    "x": 4,
+    "y": 2,
+    "clues": [
+    {
+    "id": 9,
+    "corner": 2
+    }
+    ]
+    },
+    {
+    "x": 4,
+    "y": 3,
+    "clues": [
+    {
+    "id": 9,
+    "corner": 1
+    },
+    {
+    "id": 10,
+    "corner": 2
+    },
+    {
+    "id": 11,
+    "corner": 4
+    }
+    ]
+    },
+    {
+    "x": 4,
+    "y": 4,
+    "clues": [
+    {
+    "id": 10,
+    "corner": 1
+    },
+    {
+    "id": 11,
+    "corner": 3
+    },
+    {
+    "id": 12,
+    "corner": 4
+    }
+    ]
+    }
+    ]
+  }

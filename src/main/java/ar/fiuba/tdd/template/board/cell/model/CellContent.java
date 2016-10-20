@@ -2,7 +2,7 @@ package ar.fiuba.tdd.template.board.cell.model;
 
 import java.awt.*;
 
-public abstract class CellContent implements Summable, Editable {
+public abstract class CellContent implements Summable, Editable,ShowableInBoard,Deleteable {
 
     protected String value;
 

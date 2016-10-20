@@ -33,12 +33,12 @@ public class CellController extends BaseController<CellView, Cell> {
     }
 
     private void showWindowWithValues() {
-        ShowCellValuesView.getInstance().showValues(this.model.getValuesToString());
+        ShowCellValuesView.getInstance().showValues(this.model.getContents());
     }
 
     public void showMessageInput() {
         InputUserView.getInstance().showInputUserView();
-        InputUserView.getInstance().setCellValuesToDelete(this.model.getValuesToString());
+        InputUserView.getInstance().setCellValuesToDelete(this.model.getDeleteableValues());
         InputUserView.getInstance().setListener(new InputUserView.UserInputListener() {
             @Override
             public void inputedText(String text) {
@@ -55,7 +55,7 @@ public class CellController extends BaseController<CellView, Cell> {
     public void deletedValue(String text) {
         if (this.model.isEditable()) {
             this.model.removeContentWithValue(text);
-            view.setValues(model.getValuesToString());
+            view.setValues(model.getShowableValues());
         }
     }
 
@@ -85,7 +85,7 @@ public class CellController extends BaseController<CellView, Cell> {
     public void addValue(String value) {
         if (this.model.isEditable()) {
             model.setContent(new ValueContent(value));
-            view.setValues(model.getValuesToString());
+            view.setValues(model.getShowableValues());
         }
     }
 

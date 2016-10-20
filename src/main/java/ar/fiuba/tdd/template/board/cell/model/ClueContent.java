@@ -28,4 +28,14 @@ public class ClueContent extends CellContentWithValue {
     public Color getColorRepresentation() {
         return Color.RED;
     }
+
+    @Override
+    public boolean isShowableInBoard() {
+        return true;
+    }
+
+    @Override
+    public boolean isDeleteable() {
+        return false;
+    }
 }

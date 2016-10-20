@@ -28,4 +28,14 @@ public class ValueContent extends CellContentWithValue {
     public Color getColorRepresentation() {
         return Color.WHITE;
     }
+
+    @Override
+    public boolean isShowableInBoard() {
+        return true;
+    }
+
+    @Override
+    public boolean isDeleteable() {
+        return true;
+    }
 }

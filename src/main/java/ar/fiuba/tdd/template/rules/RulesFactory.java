@@ -14,6 +14,8 @@ public class RulesFactory {
     public static final String CLOSE_CIRCUIT_RULE = "Close circuit Rule";
     public static final String CONECTIONS_INSIDE_BOARD_RULE = "Conections inside board rule";
     public static final String NUMBER_CONECTIONS_IN_REGION_RULE = "Number of conections in region rule";
+    public static final String CLOSE_DIAGONAL_CIRCUIT_RULE = "Close circuit diagonal rule";
+    public static final String NUMBER_DIAGONALS_RULE = "Number of diagonals in region";
 
 
     private static void initFactory() {
@@ -42,6 +44,8 @@ public class RulesFactory {
         factory.put(CONECTIONS_IN_REGION_RULE, new RegionHasValidConectionsRule());
         factory.put(CLOSE_CIRCUIT_RULE, new CloseCircuitConnectionRule());
         factory.put(NUMBER_CONECTIONS_IN_REGION_RULE, new NumberOfConectionsInRegionRule());
+        factory.put(CLOSE_DIAGONAL_CIRCUIT_RULE, new CloseCircuitDiagonalRule());
+        factory.put(NUMBER_DIAGONALS_RULE, new NumberOfDiagonalsRule());
     }
 }
 

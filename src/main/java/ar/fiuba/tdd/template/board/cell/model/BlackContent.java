@@ -52,6 +52,16 @@ public class BlackContent extends CellContent {
     public boolean isEditable() {
         return false;
     }
+
+    @Override
+    public boolean isShowableInBoard() {
+        return true;
+    }
+
+    @Override
+    public boolean isDeleteable() {
+        return false;
+    }
 /*
     public interface DefValue<T> {
         public T getDefValue();

@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.template.board.cell;
 
+import ar.fiuba.tdd.template.board.cell.model.CellContent;
+
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -59,17 +61,21 @@ public class ShowCellValuesView extends JFrame {
         return instance;
     }
 
-    public void showValues(ArrayList<String> values) {
+    public void showValues(ArrayList<CellContent> values) {
         setVisible(true);
         hideAllButons();
-        for (int button = 0; button < values.size(); ++button) {
-            this.buttons.get(button).setText(values.get(button));
-            this.buttons.get(button).setVisible(true);
+        for (int content = 0; content < values.size(); ++content) {
+            this.buttons.get(content).setText(values.get(content).getValue());
+            this.buttons.get(content).setVisible(true);
+            if (!values.get(content).isEditable()) {
+                this.buttons.get(content).setBackground(Color.pink);
+            }
         }
     }
 
     private void hideAllButons() {
         for (JButton button : this.buttons) {
+            button.setBackground(Color.white);
             button.setVisible(false);
         }
     }

@@ -54,7 +54,6 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                     @Override
                     public void validateUserTextInputed(Cell cell, String text) {
 
-                        //TODO esto debe ser otra RULE que valide el dominio de los numeros posibles
                         if (text != null && text.length() == 1) {
                             Play play = new Play(cell, text);
                             if (model.checkMovement(play)) {

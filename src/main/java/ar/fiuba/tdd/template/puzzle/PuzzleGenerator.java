@@ -73,9 +73,6 @@ public class PuzzleGenerator {
     }
 
     private Puzzle startGeneration(String fileName) {
-        //parser.decodeJson(fileName, null);
-        //  parser.decodeJson(fileName,"Plays.json");
-
         ArrayList<String> rules = parser.getRules();
 
         // Converts rules array of strings into GenericRule array

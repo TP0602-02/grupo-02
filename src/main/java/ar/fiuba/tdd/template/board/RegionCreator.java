@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 public class RegionCreator {
     private Board board;
-   // public static final String GENERIC_REGION = "GENERIC REGION";
-
 
     public RegionCreator(Board board) {
         this.board = board;

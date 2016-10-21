@@ -14,7 +14,7 @@ public abstract class NumberRule extends GenericRule {
         ArrayList<Region> regionsToValidate = this.getRegions(board, cell, numberToAdd);
         for (Region region : regionsToValidate) {
             this.initializeTotals(region);
-            if (!this.validateRegion(region,cell,numberToAdd)) { //CAMBIAR POR CLASE
+            if (!this.validateRegion(region,cell,numberToAdd)) {
                 return false;
             }
         }

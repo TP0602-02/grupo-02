@@ -49,23 +49,6 @@ public abstract class Cell implements Summable, Editable {
     }
 
     public abstract void setContent(CellContent newContentCell);
-  /*  public void setContent(CellContent newContentCell) {
-        if (!refreshEditableContent(newContentCell)) {
-            contents.add(newContentCell);
-        }
-    }*/
-
-   /* private boolean refreshEditableContent(CellContent newContentCell) {
-        for (int index = 0; index < this.contents.size(); ++index) {
-            if (this.contents.get(index).isEditable()) {
-                //TODO caundo sea posible ingresar varios ValuesCell en una celda, hay que cambiarlo
-                this.contents.remove(index);
-                this.contents.add(index, newContentCell);
-                return true;
-            }
-        }
-        return false;
-    }*/
 
     public boolean isEmpty() {
         return contents.size() == 0;

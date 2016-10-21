@@ -93,11 +93,10 @@ public class InputUserView extends JFrame {
         buttonDeleteOk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                //TODO ver que haya seleccionado algun valor a elminar si es que hay varios
                 if (!selectedValueToDelete.isEmpty()) {
                     deleteCellContent();
                 } else {
-                    //mostrar mensaje que debe seleccionar primero un vaclor y luego pulsar OK
+                    //TODO mostrar mensaje que debe seleccionar primero un vaclor y luego pulsar OK
                 }
                 selectedValueToDelete = "";
 

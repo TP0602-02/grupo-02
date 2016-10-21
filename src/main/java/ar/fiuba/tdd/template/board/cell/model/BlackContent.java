@@ -4,12 +4,6 @@ import java.awt.*;
 
 public class BlackContent extends CellContent {
 
-  /*  public void setDef(DefValue<T> def) {
-        this.def = def;
-    }*/
-
-    // private DefValue<T> def;
-
     public BlackContent() {
     }
 
@@ -17,16 +11,6 @@ public class BlackContent extends CellContent {
     public String getValue() {
         return "";
     }
-
-   /* public BlackContent(DefValue defValue) {
-        this.def = defValue;
-    }*/
-
-   /* public T getValue() throws AssertionError {
-        // throw new AssertionError("Cannot get value");
-        return def.getDefValue();
-
-    }*/
 
     @Override
     public int getNumberValue() {
@@ -62,8 +46,5 @@ public class BlackContent extends CellContent {
     public boolean isDeleteable() {
         return false;
     }
-/*
-    public interface DefValue<T> {
-        public T getDefValue();
-    }*/
+
 }

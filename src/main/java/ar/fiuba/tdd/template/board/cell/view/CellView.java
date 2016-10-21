@@ -28,11 +28,9 @@ public class CellView extends JLabel {
     }
 
     public void setValues(ArrayList<String> values) {
-        //TODO VER LA FORMA DE DIBUJAR VARIOS VALORES EN UNA CELL VIEW
         removeAll();
         setText("");
         for (String value : values) {
-            //TODO no sera un simple setText caundo haya que dibujar varios valores en la misma celda
             setText(value);
         }
     }

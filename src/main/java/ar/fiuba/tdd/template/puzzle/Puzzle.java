@@ -70,7 +70,6 @@ public class Puzzle {
     private void setInitialCells(ArrayList<Cell> initialCells) {
         for (Cell cellToAdd : initialCells) {
             this.board.setCell(cellToAdd);
-            // this.board.setValues(new Coordinate(cellToAdd.getRow(), cellToAdd.getColumn()), cellToAdd.getContents());
         }
     }
 

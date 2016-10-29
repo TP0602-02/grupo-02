@@ -2,20 +2,16 @@ package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithoutBorders;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by alazraqui on 16/10/2016.
- */
 public class BoardIteratorConnectionsTest {
-    public static final int LEFT = 1;
-    public static final int RIGHT = 2;
-    public static final int UP = 3;
-    public static final int DOWN = 4;
+    private static final int LEFT = 1;
+    private static final int RIGHT = 2;
+    private static final int UP = 3;
+    private static final int DOWN = 4;
 
     private BoardIteratorConnections iterator;
     private Board board;

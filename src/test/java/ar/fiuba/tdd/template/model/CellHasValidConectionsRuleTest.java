@@ -8,9 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by alazraqui on 13/10/2016.
- */
 public class CellHasValidConectionsRuleTest {
     private Board board;
     private CellHasValidConectionsRule rule;
@@ -30,7 +27,7 @@ public class CellHasValidConectionsRuleTest {
     }
 
     @Test
-    public void conectTwoCellsWithNoConections_ReturnTrue() {
+    public void connectTwoCellsWithNoConections_ReturnTrue() {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(5, 5)), RIGHT));
     }
 

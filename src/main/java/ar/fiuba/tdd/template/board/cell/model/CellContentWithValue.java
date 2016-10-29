@@ -2,9 +2,6 @@ package ar.fiuba.tdd.template.board.cell.model;
 
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 
-/**
- * Created by Nicolas on 9/10/2016.
- */
 public abstract class CellContentWithValue extends CellContent {
 
     public CellContentWithValue(String value) {

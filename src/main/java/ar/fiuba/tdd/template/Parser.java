@@ -110,6 +110,7 @@ public class Parser {
         this.circuitVerificator = CircuitVerificatorFactory.getFactory().createVerificator(circuitVerificator);
     }
 
+    @SuppressWarnings("unchecked")
     private void readCellContentJson(JSONObject jsonObject) {
         JSONArray contentsJsonArray = (JSONArray) jsonObject.get("cell_contents");
         for (JSONObject cellContentJson : (Iterable<JSONObject>) contentsJsonArray) {
@@ -212,6 +213,7 @@ public class Parser {
         return ((Long) jsonObject.get(coordinateId)).intValue();
     }
 
+    @SuppressWarnings("unchecked")
     private void readSpecialClues(JSONObject jsonObject) {
 
         CellFactory cellFactory = new CellFactory();
@@ -232,27 +234,6 @@ public class Parser {
             }
             this.clues.add(newCell);
         }
-    }
-
-    private Cell createContent(Cell newCell, String id, String value) {
-        if (id.equals("clues")) {
-            // Clues are considered ClueContent or BlackContent
-            if (!value.equals(BLACK_CONTENT_VALUE)) {
-                ClueContent clue = new ClueContent(value);
-                newCell.setContent(clue);
-            } else {
-                // if it's -1 we consider it a BlackContent
-               /* BlackContent black = new BlackContent(new BlackContent.DefValue<String>() {
-                    @Override
-                    public String getDefValue() {
-                        return "black";
-                    }
-                });*/
-                BlackContent black = new BlackContent();
-                newCell.setContent(black);
-            }
-        }
-        return newCell;
     }
 
     @SuppressWarnings("unchecked")

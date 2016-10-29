@@ -7,11 +7,9 @@ import org.json.simple.JSONObject;
 import java.io.*;
 import java.util.ArrayList;
 
-/**
- * Created by Nicolas on 18/10/2016.
- */
 public class FileWriter {
 
+    @SuppressWarnings("unchecked")
     public void writePlayResults(ArrayList<Play> playResult, String fileName) {
         JSONObject objPlay = new JSONObject();
         JSONArray jsonPlays = new JSONArray();

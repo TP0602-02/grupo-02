@@ -6,7 +6,6 @@ import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.RegionCreator;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.rules.GenericRule;
@@ -46,7 +45,6 @@ public class Puzzle {
             Region region = regionCreator.createRegion(regionJson.getLeftTop(),
                     regionJson.getRightBottom(), regionJson.getExceptions());
             region.setClue(regionJson.getCellContent());
-            //System.out.print(regionJson.getTotal() + "\n");
             board.addRegion(region);
         }
     }

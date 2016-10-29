@@ -26,13 +26,13 @@ public class PuzzleGenerator {
             @Override
             public void loadNewGame(String gameName, String gameFile) {
                 initParse(gameFile, null);
-                createGame(gameFile, gameName, true);
+                createGame(gameName, true);
             }
 
             @Override
             public void loadPlaysForGame(String playFile, String gameFile) {
                 initParse(gameFile, playFile);
-                createGame(gameFile, "", false);
+                createGame("", false);
                 puzzleController.execPlays(parser.getPlays());
             }
         });
@@ -44,8 +44,8 @@ public class PuzzleGenerator {
      *
      * @return .
      */
-    private void createGame(String gameFile, String gameName, boolean showPuzzleToPlay) {
-        Puzzle puzzle = startGeneration(gameFile);
+    public void createGame(String gameName, boolean showPuzzleToPlay) {
+        Puzzle puzzle = startGeneration();
         PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(),
                 puzzle.getInitialCells(), gameName);
         puzzleView.setVisible(showPuzzleToPlay);
@@ -67,12 +67,20 @@ public class PuzzleGenerator {
         parser = new Parser();
     }
 
+    public Parser getParser() {
+        return this.parser;
+    }
+
+    public PuzzleController getPuzzleController() {
+        return this.puzzleController;
+    }
+
     private void initParse(String fileName, String playsFileName) {
         parser.decodeJson(fileName, playsFileName);
 
     }
 
-    private Puzzle startGeneration(String fileName) {
+    private Puzzle startGeneration() {
         ArrayList<String> rules = parser.getRules();
 
         // Converts rules array of strings into GenericRule array

@@ -3,7 +3,6 @@ package ar.fiuba.tdd.template.model;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.RegionCreator;
-import ar.fiuba.tdd.template.board.RegionFactory;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.cell.model.CellSingleValue;

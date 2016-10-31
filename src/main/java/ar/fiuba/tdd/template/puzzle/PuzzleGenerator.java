@@ -30,10 +30,10 @@ public class PuzzleGenerator {
             }
 
             @Override
-            public void loadPlaysForGame(String playFile, String gameFile) {
+            public void loadPlaysForGame(String playFile, String gameFile, String gameName) {
                 initParse(gameFile, playFile);
-                createGame("", false);
-                puzzleController.execPlays(parser.getPlays());
+                createGame(gameName, false);
+                puzzleController.execPlays(parser.getPlays(), gameName);
             }
         });
         startView.start();

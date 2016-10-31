@@ -27,7 +27,8 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     private ArrayList<WinVerificator> winVerificators;
     private AbstractAgreggator aggregator;
 
-    private static final String OUTPUT_FILE_ROOT = "src/json/PlayOutput.json";
+    private static final String OUTPUT_FILE_ROOT = "src/json/";
+    private static final String OUTPUT_FILE_FORMAT = "Output.json";
 
     public PuzzleController(ArrayList<WinVerificator> winVerificators, AbstractAgreggator aggregator) {
         this.cellControllers = new ArrayList<>();
@@ -91,7 +92,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
         this.aggregator.deleteAction(cell, valueToDelete, this.model.getBoard());
     }
 
-    public void execPlays(ArrayList<Play> plays) {
+    public void execPlays(ArrayList<Play> plays, String gameName) {
         FileWriter fileWriter = new FileWriter();
         ArrayList<Play> playsToWrite = new ArrayList<>();
         for (Play play : plays) {
@@ -104,6 +105,6 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
             }
             playsToWrite.add(newPlay);
         }
-        fileWriter.writePlayResults(playsToWrite,OUTPUT_FILE_ROOT);
+        fileWriter.writePlayResults(playsToWrite, OUTPUT_FILE_ROOT + gameName.toLowerCase().replaceAll("\\s+","") + OUTPUT_FILE_FORMAT);
     }
 }

@@ -1,47 +1,38 @@
 package ar.fiuba.tdd.template.games;
 
-import ar.fiuba.tdd.template.board.cell.model.CellContent;
-import ar.fiuba.tdd.template.entity.Coordinate;
-import ar.fiuba.tdd.template.puzzle.Puzzle;
-
-import ar.fiuba.tdd.template.puzzle.PuzzleGenerator;
-
-import org.junit.Assert;
-import org.junit.Before;
+import ar.fiuba.tdd.template.Parser;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class InshiNoHeyaTest {
 
-    private static final String INSHI_FILE = "InshiNoHeya.json";
-    private static final String INSHI_PLAYS_FILE = "InshiNoHeyaPlaysAc2.json";
-
-    private Puzzle puzzle;
-
-    @Before
-    public void setUp() {
-        PuzzleGenerator puzzleGenerator = new PuzzleGenerator();
-        puzzleGenerator.getParser().decodeJson(INSHI_FILE, INSHI_PLAYS_FILE);
-        puzzleGenerator.createGame("Inshi", false);
-
-        puzzleGenerator.getPuzzleController().execPlays(puzzleGenerator.getParser().getPlays());
-        this.puzzle = puzzleGenerator.getPuzzleController().getModel();
-    }
+    private static final String INSHI_OUTPUT_FILE = "/inshinoheyaOutput.json";
+    private static final String OUTPUT_ROOT = "src/json";
 
     @Test
-    public void boardIsFull() {
-        Assert.assertTrue(puzzle.getBoard().isFull());
-    }
+    public void everyPlayIsValid() {
+        File file = new File(OUTPUT_ROOT + INSHI_OUTPUT_FILE);
+        if (file.exists()) {
+            Parser parser = new Parser();
+            ArrayList<String> playsBoardStatus = parser.decodeJsonOutput(INSHI_OUTPUT_FILE);
+            boolean valid = true;
+            for (String playValidity : playsBoardStatus) {
+                if (playValidity.equals("invalid")) {
+                    valid = false;
+                    break;
+                }
+            }
 
-    @Test
-    public void boardHasCorrectPlayValues() {
-        ArrayList<CellContent> valuesRecovered = puzzle.getBoard().getContents(new Coordinate(0, 0));
-        Assert.assertEquals(3, valuesRecovered.get(0).getNumberValue());
-        valuesRecovered = puzzle.getBoard().getContents(new Coordinate(3, 2));
-        Assert.assertEquals(4, valuesRecovered.get(0).getNumberValue());
-        valuesRecovered = puzzle.getBoard().getContents(new Coordinate(4, 4));
-        Assert.assertEquals(1, valuesRecovered.get(0).getNumberValue());
+            if (valid) {
+                assert true;
+            } else {
+                assert false;
+            }
+        } else {
+            System.out.print(OUTPUT_ROOT + INSHI_OUTPUT_FILE + " does not exist\n");
+        }
     }
 
 }

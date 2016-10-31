@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Parser {
@@ -89,6 +90,22 @@ public class Parser {
             readFile(playsFileName, this.playsFile);
             readPlays();
         }
+    }
+
+    public ArrayList<String> decodeJsonOutput(String outputFileName) {
+        JSONObject file = new JSONObject();
+        readFile(outputFileName, file);
+        return readOutputPlays((JSONObject) file.get(JSON_PARSED_KEY));
+    }
+
+    @SuppressWarnings("unchecked")
+    private ArrayList<String> readOutputPlays(JSONObject jsonObject) {
+        ArrayList<String> playsBoardStatus = new ArrayList<>();
+        JSONArray playContents = (JSONArray) jsonObject.get("plays");
+        for (JSONObject play : (Iterable<JSONObject>) playContents) { // for every play
+            playsBoardStatus.add(play.get("boardStatus").toString());
+        }
+        return playsBoardStatus;
     }
 
     private void readFirstSecions() {

@@ -2,7 +2,6 @@ package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithoutBorders;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import org.junit.Assert;
 import org.junit.Before;

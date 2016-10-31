@@ -19,7 +19,7 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
     public boolean isCircuitClosed(Board board) {
         this.cleanCircuitCells();
         ArrayList<CellContent> corners = this.cell.getSummableContents();
-        for (CellContent corner: corners) {
+        for (CellContent corner : corners) {
             this.cleanCircuitCells();
             if (!this.isCircuitOpen(board, this.cell, corner, null)) {
                 return true;
@@ -38,7 +38,7 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
     private boolean checkLimitCells(Board board, Cell cell, CellContent corner, Cell previousCell) {
         ArrayList<Cell> limitCells = this.getLimitCells(board, cell, corner);
         if (!limitCells.contains(previousCell)) {
-            for (Cell limitCell: limitCells) {
+            for (Cell limitCell : limitCells) {
                 if (!this.checkCellClosedCircuit(board, limitCell, cell, corner)) {
                     return false;
                 }
@@ -49,7 +49,7 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
 
     private boolean checkCellClosedCircuit(Board board, Cell limitCell, Cell cell, CellContent previousCorner) {
         ArrayList<CellContent> corners = limitCell.getSummableContents();
-        for (CellContent limitCellCorner: corners) {
+        for (CellContent limitCellCorner : corners) {
             if (this.cellsAreConnected(cell, limitCell)) {
                 if (!this.isFirstCorner(limitCellCorner, corners)) {
                     this.circuitCells.remove(limitCell);

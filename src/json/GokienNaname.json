@@ -243,213 +243,275 @@
         }
       ],
       "exceptions": []
-    }],
-    "initial_board_content":[],
-    "special_clues":[
-    {"x": 0,
-    "y": 0,
-    "clues": [
-    {"id": 1,
-    "corner": 2}
-    ]
-    },
-    {"x": 0,
-    "y": 1,
-    "clues": [
-    {"id": 1,
-    "corner": 1},
-    {"id": 2,
-    "corner": 2},
-    {"id": 3,
-    "corner": 4}
-    ]
-    },
-    {"x": 0,
-    "y": 2,
-    "clues": [
-    {"id": 2,
-    "corner": 1},
-    {"id": 3,
-    "corner": 3},
-    {"id": 4,
-    "corner": 4}
-    ]
-    },
-    {"x": 0,
-    "y": 3,
-    "clues": [
-    {"id": 4,
-    "corner": 3}
-    ]
-    },
-    {"x": 0,
-    "y": 4,
-    "clues": [
-    {"id": 5,
-    "corner": 4}
-    ]
-    },
-    {"x": 1,
-    "y": 1,
-    "clues": [
-    {"id": 3,
-    "corner": 2}
-    ]
-    },
-    {"x": 1,
-    "y": 2,
-    "clues": [
-    {"id": 3,
-    "corner": 1},
-    {"id": 4,
-    "corner": 2}
-    ]
-    },
-    {"x": 1,
-    "y": 3,
-    "clues": [
-    {"id": 4,
-    "corner": 1}
-    ]
-    },
-    {"x": 1,
-    "y": 4,
-    "clues": [
-    {"id": 5,
-    "corner": 2}
-    ]
-    },
-    {"x": 2,
-    "y": 1,
-    "clues": [
-    {"id": 6,
-    "corner": 4}
-    ]
-    },
-    {"x": 2,
-    "y": 2,
-    "clues": [
-    {"id": 6,
-    "corner": 3},
-    {"id": 7,
-    "corner": 4}
-    ]
-    },
-    {"x": 2,
-    "y": 3,
-    "clues": [
-    {"id": 7,
-    "corner": 3}
-    ]
-    },
-    {"x": 3,
-    "y": 0,
-    "clues": [
-    {"id": 8,
-    "corner": 3}
-    ]
-    },
-    {"x": 3,
-    "y": 1,
-    "clues": [
-    {"id": 6,
-    "corner": 2}
-    ]
-    },
-    {"x": 3,
-    "y": 2,
-    "clues": [
-    {"id": 6,
-    "corner": 1},
-    {"id": 7,
-    "corner": 2},
-    {"id": 9,
-    "corner": 4}
-    ]
-    },
-    {
-    "x": 3,
-    "y": 3,
-    "clues": [
-    {
-    "id": 7,
-    "corner": 1
-    },
-    {
-    "id": 9,
-    "corner": 3
-    },
-    {
-    "id": 10,
-    "corner": 4
     }
-    ]
+  ],
+  "initial_board_content": [],
+  "special_clues": [
+    {
+      "x": 0,
+      "y": 0,
+      "clues": [
+        {
+          "id": 1,
+          "corner": 2
+        }
+      ]
     },
     {
-    "x": 3,
-    "y": 4,
-    "clues": [
+      "x": 0,
+      "y": 1,
+      "clues": [
+        {
+          "id": 1,
+          "corner": 1
+        },
+        {
+          "id": 2,
+          "corner": 2
+        },
+        {
+          "id": 3,
+          "corner": 4
+        }
+      ]
+    },
     {
-    "id": 10,
-    "corner": 3
+      "x": 0,
+      "y": 2,
+      "clues": [
+        {
+          "id": 2,
+          "corner": 1
+        },
+        {
+          "id": 3,
+          "corner": 3
+        },
+        {
+          "id": 4,
+          "corner": 4
+        }
+      ]
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "clues": [
+        {
+          "id": 4,
+          "corner": 3
+        }
+      ]
+    },
+    {
+      "x": 0,
+      "y": 4,
+      "clues": [
+        {
+          "id": 5,
+          "corner": 4
+        }
+      ]
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "clues": [
+        {
+          "id": 3,
+          "corner": 2
+        }
+      ]
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "clues": [
+        {
+          "id": 3,
+          "corner": 1
+        },
+        {
+          "id": 4,
+          "corner": 2
+        }
+      ]
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "clues": [
+        {
+          "id": 4,
+          "corner": 1
+        }
+      ]
+    },
+    {
+      "x": 1,
+      "y": 4,
+      "clues": [
+        {
+          "id": 5,
+          "corner": 2
+        }
+      ]
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "clues": [
+        {
+          "id": 6,
+          "corner": 4
+        }
+      ]
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "clues": [
+        {
+          "id": 6,
+          "corner": 3
+        },
+        {
+          "id": 7,
+          "corner": 4
+        }
+      ]
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "clues": [
+        {
+          "id": 7,
+          "corner": 3
+        }
+      ]
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "clues": [
+        {
+          "id": 8,
+          "corner": 3
+        }
+      ]
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "clues": [
+        {
+          "id": 6,
+          "corner": 2
+        }
+      ]
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "clues": [
+        {
+          "id": 6,
+          "corner": 1
+        },
+        {
+          "id": 7,
+          "corner": 2
+        },
+        {
+          "id": 9,
+          "corner": 4
+        }
+      ]
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "clues": [
+        {
+          "id": 7,
+          "corner": 1
+        },
+        {
+          "id": 9,
+          "corner": 3
+        },
+        {
+          "id": 10,
+          "corner": 4
+        }
+      ]
+    },
+    {
+      "x": 3,
+      "y": 4,
+      "clues": [
+        {
+          "id": 10,
+          "corner": 3
+        }
+      ]
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "clues": [
+        {
+          "id": 8,
+          "corner": 1
+        }
+      ]
+    },
+    {
+      "x": 4,
+      "y": 2,
+      "clues": [
+        {
+          "id": 9,
+          "corner": 2
+        }
+      ]
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "clues": [
+        {
+          "id": 9,
+          "corner": 1
+        },
+        {
+          "id": 10,
+          "corner": 2
+        },
+        {
+          "id": 11,
+          "corner": 4
+        }
+      ]
+    },
+    {
+      "x": 4,
+      "y": 4,
+      "clues": [
+        {
+          "id": 10,
+          "corner": 1
+        },
+        {
+          "id": 11,
+          "corner": 3
+        },
+        {
+          "id": 12,
+          "corner": 4
+        }
+      ]
     }
-    ]
-    },
-    {
-    "x": 4,
-    "y": 0,
-    "clues": [
-    {
-    "id": 8,
-    "corner": 1
-    }
-    ]
-    },
-    {
-    "x": 4,
-    "y": 2,
-    "clues": [
-    {
-    "id": 9,
-    "corner": 2
-    }
-    ]
-    },
-    {
-    "x": 4,
-    "y": 3,
-    "clues": [
-    {
-    "id": 9,
-    "corner": 1
-    },
-    {
-    "id": 10,
-    "corner": 2
-    },
-    {
-    "id": 11,
-    "corner": 4
-    }
-    ]
-    },
-    {
-    "x": 4,
-    "y": 4,
-    "clues": [
-    {
-    "id": 10,
-    "corner": 1
-    },
-    {
-    "id": 11,
-    "corner": 3
-    },
-    {
-    "id": 12,
-    "corner": 4
-    }
-    ]
-    }
-    ]
-  }
+  ]
+}

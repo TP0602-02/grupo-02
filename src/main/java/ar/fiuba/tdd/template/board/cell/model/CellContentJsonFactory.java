@@ -1,14 +1,13 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
-import java.util.ArrayList;
 import java.util.Properties;
 
 /**
  * Created by Nicolas on 19/10/2016.
  */
 public class CellContentJsonFactory {
-    private Properties contents;
     private static final int NO_VALUE = -1;
+    private Properties contents;
 
     public CellContentJsonFactory() {
         this.contents = new Properties();

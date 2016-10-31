@@ -76,17 +76,17 @@ public class CellController extends BaseController<CellView, Cell> {
         this.userInputListener = userInputListener;
     }
 
-    public interface UserInputListener {
-        public void validateUserTextInputed(Cell cell, String text);
-
-        public void validateUserDeletedAction(Cell cell, String valueToDelete);
-    }
-
     public void addValue(String value) {
         if (this.model.isEditable()) {
             model.setContent(new ValueContent(value));
             view.setValues(model.getShowableValues());
         }
+    }
+
+    public interface UserInputListener {
+        public void validateUserTextInputed(Cell cell, String text);
+
+        public void validateUserDeletedAction(Cell cell, String valueToDelete);
     }
 
 }

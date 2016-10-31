@@ -2,8 +2,6 @@ package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithBorders;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithDiagonals;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import org.junit.Assert;
@@ -43,7 +41,7 @@ public class CircuitVerificatorWithDiagonalsTest {
         this.board.setValue(new Coordinate(1, 1), new ValueContent(UPPER_RIGHT_CORNER));
         this.board.setValue(new Coordinate(1, 1), new ValueContent(LOWER_LEFT_CORNER));
 
-        this.circuit.setCell(this.board.getCell(new Coordinate(0,1)));
+        this.circuit.setCell(this.board.getCell(new Coordinate(0, 1)));
         Assert.assertTrue(this.circuit.isCircuitClosed(this.board));
     }
 
@@ -58,7 +56,7 @@ public class CircuitVerificatorWithDiagonalsTest {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(UPPER_LEFT_CORNER));
         this.board.setValue(new Coordinate(1, 0), new ValueContent(LOWER_RIGHT_CORNER));
 
-        this.circuit.setCell(this.board.getCell(new Coordinate(0,1)));
+        this.circuit.setCell(this.board.getCell(new Coordinate(0, 1)));
         Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
     }
 }

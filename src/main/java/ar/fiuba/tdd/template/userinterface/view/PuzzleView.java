@@ -1,13 +1,14 @@
 package ar.fiuba.tdd.template.userinterface.view;
 
 
-import ar.fiuba.tdd.template.board.cell.model.*;
+import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.CellContent;
+import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
-import ar.fiuba.tdd.template.userinterface.controller.Facade;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.*;
 
 /**
  * Created by Colo on 23/09/2016.
@@ -49,6 +50,7 @@ public class PuzzleView extends JFrame {
         initBoardDimensions();
         setInitialsCells();
         this.addTitle(game);
+        this.addUndo();
         for (int column = 0; column < width; ++column) {
             for (int row = 0; row < height; ++row) {
                 int positionCellInitialPixelX = column * cellViewDimension + boardInitialPositionPixelX;
@@ -57,6 +59,12 @@ public class PuzzleView extends JFrame {
         }
         JLabel label = new JLabel("");
         container.add(label);
+    }
+
+    private void addUndo() {
+        JButton undo = Undo.getUndoButtom();
+        undo.setBounds(350, 500, cellViewDimension * 2, cellViewDimension);
+        container.add(undo);
     }
 
     private void setInitialsCells() {

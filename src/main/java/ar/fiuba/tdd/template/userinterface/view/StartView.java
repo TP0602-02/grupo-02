@@ -7,6 +7,8 @@ import java.util.Enumeration;
 import java.util.Properties;
 import javax.swing.*;
 
+
+
 public class StartView extends JFrame {
     public static final int screenHeight = 768;
     public static final int screenWidth = 1024;
@@ -23,10 +25,6 @@ public class StartView extends JFrame {
     private static final String INSHI_NO_HEYA_PLAYS = "INSHI NO HEYA WITH PLAYS";
 
     //**************************************************
-
-    private StartGameListener listener;
-
-
     //**************GAME JSON FILES*************************
     private static final String SUDOKU_FILE = "Sudoku.json";
     private static final String KAKURO_FILE = "Kakuro.json";
@@ -35,14 +33,13 @@ public class StartView extends JFrame {
     private static final String SLITHERLINK_FILE = "Slitherlink.json";
     private static final String GOKIEN_NANAME_FILE = "GokienNaname.json";
     private static final String INSHI_NO_HEYA_PLAYS_FILE = "InshiNoHeyaPlays.json";
+    private StartGameListener listener;
     //*************************************************
-
+    private Properties games;
 
     public StartView(StartGameListener listener) {
         this.listener = listener;
     }
-
-    private Properties games;
 
     public void start() {
         setSize(screenWidth, screenHeight);

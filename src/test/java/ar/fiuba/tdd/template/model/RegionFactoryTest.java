@@ -6,9 +6,7 @@ import ar.fiuba.tdd.template.board.RegionCreator;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.cell.model.CellSingleValue;
-
 import ar.fiuba.tdd.template.entity.Coordinate;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -20,10 +18,10 @@ public class RegionFactoryTest {
 
         Board board = new Board(10, 10, CellFactory.CELL_SINGLE_VALUE);
         RegionCreator regionCreator = new RegionCreator(board);
-        Cell topLeft = new CellSingleValue(new Coordinate(0,0));
-        Cell bottomRight = new CellSingleValue(new Coordinate(5,5));
+        Cell topLeft = new CellSingleValue(new Coordinate(0, 0));
+        Cell bottomRight = new CellSingleValue(new Coordinate(5, 5));
         ArrayList<Cell> exceptions = new ArrayList<>();
-        Cell exceptionCell = new CellSingleValue(new Coordinate(1,1));
+        Cell exceptionCell = new CellSingleValue(new Coordinate(1, 1));
         exceptions.add(exceptionCell);
 
         Region region = regionCreator.createRegion(topLeft, bottomRight, exceptions);
@@ -42,10 +40,10 @@ public class RegionFactoryTest {
 
         Board board = new Board(10, 10, CellFactory.CELL_SINGLE_VALUE);
         RegionCreator regionCreator = new RegionCreator(board);
-        Cell topLeft = new CellSingleValue(new Coordinate(0,0));
-        Cell bottomRight = new CellSingleValue(new Coordinate(5,5));
+        Cell topLeft = new CellSingleValue(new Coordinate(0, 0));
+        Cell bottomRight = new CellSingleValue(new Coordinate(5, 5));
         ArrayList<Cell> exceptions = new ArrayList<>();
-        Cell exceptionCell = new CellSingleValue(new Coordinate(1,1));
+        Cell exceptionCell = new CellSingleValue(new Coordinate(1, 1));
         exceptions.add(exceptionCell);
 
         Region region = regionCreator.createRegion(topLeft, bottomRight, exceptions);

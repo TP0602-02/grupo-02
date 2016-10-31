@@ -12,7 +12,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Parser {
@@ -24,11 +27,11 @@ public class Parser {
     private static final String JSON_PARSED_KEY = "Response";
     private static final String COORDINATE_X = "x";
     private static final String COORDINATE_Y = "y";
-    private int height;
-    private int width;
     private static final String ID = "id";
     private static final String TOTAL = "total";
     private static final String CORNER = "corner";
+    private int height;
+    private int width;
     private JSONParser parser;
     private JSONObject boardFile;
     private JSONObject playsFile;
@@ -52,6 +55,14 @@ public class Parser {
         this.regionJsons = new ArrayList<>();
         parser = new JSONParser();
         this.cellContentJsonFactory = new CellContentJsonFactory();
+    }
+
+    private static Long readWidth(JSONObject jsonObject) {
+        return (Long) jsonObject.get("width");
+    }
+
+    private static Long readHeight(JSONObject jsonObject) {
+        return (Long) jsonObject.get("height");
     }
 
     @SuppressWarnings("unchecked")
@@ -122,14 +133,6 @@ public class Parser {
 
     private void readCellType(JSONObject jsonObject) {
         this.cellType = (String) jsonObject.get("cellType");
-    }
-
-    private static Long readWidth(JSONObject jsonObject) {
-        return (Long) jsonObject.get("width");
-    }
-
-    private static Long readHeight(JSONObject jsonObject) {
-        return (Long) jsonObject.get("height");
     }
 
     public int getWidth() {

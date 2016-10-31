@@ -4,10 +4,6 @@ import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.InputUserView;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
-import ar.fiuba.tdd.template.puzzle.aggregators.Aggregator;
-import ar.fiuba.tdd.template.puzzle.aggregators.AggregatorWithConnections;
-import ar.fiuba.tdd.template.puzzle.aggregators.AggregatorWithDiagonals;
 import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.rules.RulesFactory;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
@@ -20,6 +16,10 @@ import java.util.ArrayList;
 public class PuzzleGenerator {
     private Parser parser;
     private PuzzleController puzzleController;
+
+    public PuzzleGenerator() {
+        parser = new Parser();
+    }
 
     public void runGeneration() {
         StartView startView = new StartView(new StartView.StartGameListener() {
@@ -58,13 +58,9 @@ public class PuzzleGenerator {
             winVerificator.setVerificator(this.parser.getCircuitVerificator());
             parsedWinVerificators.add(winVerificator);
         }
-        puzzleController = new PuzzleController(parsedWinVerificators,this.parser.getAgreggator());
+        puzzleController = new PuzzleController(parsedWinVerificators, this.parser.getAgreggator());
         puzzleController.attachElements(puzzleView, puzzle);
         puzzleController.aggregateCellControllers();
-    }
-
-    public PuzzleGenerator() {
-        parser = new Parser();
     }
 
     private void initParse(String fileName, String playsFileName) {
@@ -91,5 +87,6 @@ public class PuzzleGenerator {
     private void initEnabledButtonsToPlay(ArrayList<String> acceptedKeys) {
         InputUserView.createView(acceptedKeys);
     }
+
 
 }

@@ -30,7 +30,7 @@ public class CircuitVerificatorFactory {
     }
 
     public CircuitVerificator createVerificator(String circuitVerificator) {
-        return (CircuitVerificator) factory.getOrDefault(circuitVerificator,null);
+        return (CircuitVerificator) factory.getOrDefault(circuitVerificator, null);
     }
 
 }

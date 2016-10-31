@@ -3,8 +3,6 @@ package ar.fiuba.tdd.template.rules;
 import java.util.Properties;
 
 public class RulesFactory {
-    private static Properties factory;
-    private static RulesFactory instance;
     public static final String SUM_RULE = "Sum rule";
     public static final String MULTIPLICATION_RULE = "Multiplication rule";
     public static final String NO_REPEAT_VALUE_RULE = "No repeat value rule";
@@ -19,7 +17,13 @@ public class RulesFactory {
     public static final String NUMBER_BORDERS_IN_REGION_RULE = "Number of borders in region rule";
     public static final String CLOSE_DIAGONAL_CIRCUIT_RULE = "Close circuit diagonal rule";
     public static final String NUMBER_DIAGONALS_RULE = "Number of diagonals in region";
+    private static Properties factory;
+    private static RulesFactory instance;
 
+
+    private RulesFactory() {
+
+    }
 
     private static void initFactory() {
         factory = new Properties();
@@ -32,10 +36,6 @@ public class RulesFactory {
             initFactory();
         }
         return instance;
-    }
-
-    private RulesFactory(){
-
     }
 
     private static void addSecondRules() {
@@ -58,10 +58,6 @@ public class RulesFactory {
         factory.put(NUMBER_DIAGONALS_RULE, new NumberOfDiagonalsRule());
     }
 
-    public GenericRule createRule(String ruleName) {
-        return (GenericRule) factory.get(ruleName);
-    }
-
     private static void putRules() {
         addFirstRules();
         addSecondRules();
@@ -71,6 +67,10 @@ public class RulesFactory {
         factory.put(CONECTIONS_IN_CELL_RULE, new CellHasValidConectionsRule());
         factory.put(CONECTIONS_INSIDE_BOARD_RULE, new ConectionInsideBoardRule());
 
+    }
+
+    public GenericRule createRule(String ruleName) {
+        return (GenericRule) factory.get(ruleName);
     }
 }
 

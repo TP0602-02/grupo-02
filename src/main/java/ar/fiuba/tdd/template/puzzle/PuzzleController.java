@@ -1,38 +1,39 @@
 package ar.fiuba.tdd.template.puzzle;
 
 import ar.fiuba.tdd.template.Play;
-import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithBorders;
+import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.entity.BaseController;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.FileWriter;
-import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
+import ar.fiuba.tdd.template.userinterface.view.Undo;
 import ar.fiuba.tdd.template.userinterface.view.WinGameView;
 import ar.fiuba.tdd.template.winverificators.WinVerificator;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by matiaskamien on 27/09/16.
  */
 public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
 
+    private static final String OUTPUT_FILE_ROOT = "src/json/PlayOutput.json";
     private ArrayList<CellController> cellControllers;
     private ArrayList<WinVerificator> winVerificators;
     private AbstractAgreggator aggregator;
-
-    private static final String OUTPUT_FILE_ROOT = "src/json/PlayOutput.json";
+    private ArrayList<Play> playStack;
 
     public PuzzleController(ArrayList<WinVerificator> winVerificators, AbstractAgreggator aggregator) {
         this.cellControllers = new ArrayList<>();
         this.winVerificators = winVerificators;
         this.aggregator = aggregator;
+        playStack = new ArrayList<Play>();
     }
 
     public void aggregateCellControllers() {
@@ -42,6 +43,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     @Override
     public void elementsAttached(PuzzleView view, Puzzle model) {
         createCellControllers(view, model);
+        undoConfig();
     }
 
     private void createCellControllers(PuzzleView view, Puzzle model) {
@@ -53,12 +55,11 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                 cellController.setUserInputListener(new CellController.UserInputListener() {
                     @Override
                     public void validateUserTextInputed(Cell cell, String text) {
-
                         if (text != null && text.length() == 1) {
                             Play play = new Play(cell, text);
-                            if (model.checkMovement(play)) {
-                                runPlay(play);
-                                checkWinVerificator();
+                            boolean itsPlayed = playThePlay(play);
+                            if (itsPlayed) {
+                                playStack.add(0, play);
                             }
                         }
                     }
@@ -71,6 +72,15 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                 this.cellControllers.add(cellController);
             }
         }
+    }
+
+    private boolean playThePlay(Play play) {
+        boolean itsPlayed = model.checkMovement(play);
+        if (itsPlayed) {
+            runPlay(play);
+            checkWinVerificator();
+        }
+        return itsPlayed;
     }
 
     private void checkWinVerificator() {
@@ -104,6 +114,43 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
             }
             playsToWrite.add(newPlay);
         }
-        fileWriter.writePlayResults(playsToWrite,OUTPUT_FILE_ROOT);
+        fileWriter.writePlayResults(playsToWrite, OUTPUT_FILE_ROOT);
+    }
+
+    private void undoConfig() {
+        Undo.getUndoButtom().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                if (!playStack.isEmpty()) {
+                    Play playToUndo = playStack.get(0);
+                    playStack.remove(0);
+                    Cell cellToUndo = playToUndo.getSelectedCell();
+                    ArrayList<CellContent> contents = cellToUndo.getContents();
+                    int counterOfNonDeleteable = 0;
+                    while (contents.size() != counterOfNonDeleteable) {
+                        CellContent cellContentToUndo = contents.get(contents.size() - 1);
+                        if (cellContentToUndo.isDeleteable()) {
+                            deleteAction(cellToUndo, cellContentToUndo.getValue());
+                        } else {
+                            counterOfNonDeleteable++;
+                        }
+                    }
+                    Play priorPlay = getPriorPlayValue(playToUndo);
+                    if (priorPlay != null && !Objects.equals(priorPlay.getSelectedCellValue(), playToUndo.getSelectedCellValue())) {
+                        playThePlay(priorPlay);
+                    }
+                }
+            }
+        });
+    }
+
+    private Play getPriorPlayValue(Play playToUndo) {
+        Play priorPlay = null;
+        for (Play oldPlay : playStack) {
+            if (playToUndo.getSelectedCell() == oldPlay.getSelectedCell()) {
+                priorPlay = oldPlay;
+            }
+        }
+        return priorPlay;
     }
 }

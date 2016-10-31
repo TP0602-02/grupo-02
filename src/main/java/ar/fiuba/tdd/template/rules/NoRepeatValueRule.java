@@ -19,5 +19,6 @@ public class NoRepeatValueRule extends NumberRule {
     }
 
     @Override
-    protected void initializeTotals(Region region) {}
+    protected void initializeTotals(Region region) {
+    }
 }

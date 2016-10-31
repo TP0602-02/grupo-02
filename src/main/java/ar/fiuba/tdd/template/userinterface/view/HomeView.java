@@ -1,12 +1,6 @@
 package ar.fiuba.tdd.template.userinterface.view;
 
-import ar.fiuba.tdd.template.userinterface.controller.Facade;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.LinkedList;
-import javax.swing.*;
 
 /**
  * Created by Colo on 25/09/2016.

@@ -7,6 +7,11 @@ public class CellContentJson {
     private int id;
     private int value;
 
+    public CellContentJson(int id, int value) {
+        this.id = id;
+        this.value = value;
+    }
+
     public int getId() {
         return id;
     }
@@ -14,12 +19,6 @@ public class CellContentJson {
     public int getValue() {
         return value;
     }
-
-    public CellContentJson(int id, int value) {
-        this.id = id;
-        this.value = value;
-    }
-
 
 
 }

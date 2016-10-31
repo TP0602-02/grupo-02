@@ -22,16 +22,16 @@ public class ValidNumberTest {
 
     @Test
     public void addZero_ReturnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board,this.board.getCell(new Coordinate(0,0)),0));
+        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 0));
     }
 
     @Test
     public void addValidNumber_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board,this.board.getCell(new Coordinate(0,0)),3));
+        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 3));
     }
 
     @Test
     public void addHighNumber_ReturnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board,this.board.getCell(new Coordinate(0,0)),5));
+        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 5));
     }
 }

@@ -2,7 +2,9 @@ package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
-import ar.fiuba.tdd.template.board.cell.model.*;
+import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.CellFactory;
+import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.rules.NoRepeatValueRule;
 import org.junit.Assert;

@@ -1,10 +1,8 @@
 package ar.fiuba.tdd.template.board.cell.model;
 
-import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public abstract class Cell implements Summable, Editable {
 
@@ -137,7 +135,7 @@ public abstract class Cell implements Summable, Editable {
     }
 
     public boolean hasDeleteables() {
-        for (CellContent cellContent: this.contents) {
+        for (CellContent cellContent : this.contents) {
             if (cellContent.isDeleteable()) {
                 return true;
             }

@@ -7,12 +7,10 @@ import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.entity.Coordinate;
-import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.rules.SumRule;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 
 import java.util.ArrayList;
 import java.util.Arrays;

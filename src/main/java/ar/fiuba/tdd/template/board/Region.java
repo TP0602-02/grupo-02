@@ -1,6 +1,9 @@
 package ar.fiuba.tdd.template.board;
 
-import ar.fiuba.tdd.template.board.cell.model.*;
+import ar.fiuba.tdd.template.board.cell.model.BlackContent;
+import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.cell.model.CellContent;
+import ar.fiuba.tdd.template.board.cell.model.RelativeClueContent;
 
 import java.util.ArrayList;
 
@@ -21,6 +24,10 @@ public class Region {
         return clue;
     }
 
+    public void setClue(CellContent clue) {
+        this.clue = clue;
+    }
+
     public int getOcuppiedCells() {
         int total = 0;
         for (Cell cell : this.cells) {
@@ -30,7 +37,6 @@ public class Region {
         }
         return total;
     }
-
 
     public int getTotal() {
         return this.clue.getNumberValue();
@@ -63,10 +69,6 @@ public class Region {
             buffer.append(TOTAL).append(getTotal()).append(saltoLinea);
         }
         return buffer.toString();
-    }
-
-    public void setClue(CellContent clue) {
-        this.clue = clue;
     }
 
     public int getDiagonalsPartial() {

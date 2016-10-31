@@ -3,11 +3,11 @@ package ar.fiuba.tdd.template.userinterface.controller;
 
 import ar.fiuba.tdd.template.userinterface.model.TextBox;
 
-
 import java.awt.event.KeyEvent;
-
 import java.awt.event.KeyListener;
 import javax.swing.*;
+
+
 
 /**
  * Created by Colo on 23/09/2016.
@@ -27,8 +27,7 @@ public class TextBoxListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent event) {
-        if (!(event.getKeyChar() == 27 || event.getKeyChar() == 65535))//Cuando se cambie un valor va a saltar
-        {
+        if (!(event.getKeyChar() == 27 || event.getKeyChar() == 65535))/*Cuando se cambie un valor va a saltar*/ {
             System.out.println("Controller Esta comprobando el movimiento si es valido");
             try {
                 Facade.getInstance().comprobarJugada();

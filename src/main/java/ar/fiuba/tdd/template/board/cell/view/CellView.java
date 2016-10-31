@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
+
+
 /**
  * Created by Nicolas on 27/9/2016.
  */
@@ -34,13 +36,6 @@ public class CellView extends JLabel {
             setText(value);
         }
     }
-
-    public interface ClickCellListener {
-        public void onClickForWrite();
-
-        public void onClickForRead();
-    }
-
 
     public void setListener(ClickCellListener listener) {
         this.listener = listener;
@@ -76,5 +71,11 @@ public class CellView extends JLabel {
             public void mouseExited(MouseEvent evemt) {
             }
         });
+    }
+
+    public interface ClickCellListener {
+        public void onClickForWrite();
+
+        public void onClickForRead();
     }
 }

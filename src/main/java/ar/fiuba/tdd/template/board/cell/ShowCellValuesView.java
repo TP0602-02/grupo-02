@@ -6,25 +6,24 @@ import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
+
+
 /**
  * Created by Nicolas on 17/10/2016.
  */
 public class ShowCellValuesView extends JFrame {
-
-    private static ShowCellValuesView instance;
 
     public static final int buttonValuesWidth = 50;
     public static final int spaceBetweenButtons = 15;
     public static final int firstButtonCoordinateX = 10;
     public static final int firstButtonCoordinateY = 80;
     private static final int maxButtons = 12;
-
+    private static final String TITLE_VALUES = "VALORES ACTUALES:";
+    private static ShowCellValuesView instance;
     private static int posXWindow = 300;
     private static int posYWindow = 300;
     private static int widthWindow = 500;
     private static int heightWindow = 300;
-    private static final String TITLE_VALUES = "VALORES ACTUALES:";
-
     private ArrayList<JButton> buttons;
 
     private ShowCellValuesView() {
@@ -40,6 +39,13 @@ public class ShowCellValuesView extends JFrame {
         prepareButtons();
     }
 
+    public static ShowCellValuesView getInstance() {
+        if (instance == null) {
+            instance = new ShowCellValuesView();
+        }
+        return instance;
+    }
+
     private void prepareButtons() {
         int posX = firstButtonCoordinateX;
         for (int index = 0; index < maxButtons; ++index) {
@@ -51,14 +57,6 @@ public class ShowCellValuesView extends JFrame {
             this.buttons.add(button);
             button.setVisible(false);
         }
-    }
-
-
-    public static ShowCellValuesView getInstance() {
-        if (instance == null) {
-            instance = new ShowCellValuesView();
-        }
-        return instance;
     }
 
     public void showValues(ArrayList<CellContent> values) {

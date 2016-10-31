@@ -1,24 +1,20 @@
 package ar.fiuba.tdd.template.puzzle.aggregators;
 
-import ar.fiuba.tdd.template.board.cell.controller.CellController;
-
-import java.util.ArrayList;
 import java.util.Properties;
 
 /**
  * Created by alazraqui on 18/10/2016.
  */
 public class AggregatorFactory {
-    private static Properties factory;
-    private static AggregatorFactory instance;
-
     public static final String SIMPLE_AGGREGATOR = "Simple aggregator";
     public static final String CONNECTION_AGGREGATOR = "Connection aggregator";
     public static final String DIAGONAL_AGGREGATOR = "Diagonal aggregator";
+    private static Properties factory;
+    private static AggregatorFactory instance;
 
 
-    public AbstractAgreggator createAggregator(String aggregator) {
-        return (AbstractAgreggator) factory.get(aggregator);
+    private AggregatorFactory() {
+
     }
 
     private static void initFactory() {
@@ -32,16 +28,16 @@ public class AggregatorFactory {
         factory.put(DIAGONAL_AGGREGATOR, new AggregatorWithDiagonals());
     }
 
-    private AggregatorFactory(){
-
-    }
-
     public static AggregatorFactory getFactory() {
         if (instance == null) {
             instance = new AggregatorFactory();
             initFactory();
         }
         return instance;
+    }
+
+    public AbstractAgreggator createAggregator(String aggregator) {
+        return (AbstractAgreggator) factory.get(aggregator);
     }
 
 }

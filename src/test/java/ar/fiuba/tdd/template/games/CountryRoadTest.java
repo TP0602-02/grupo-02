@@ -6,6 +6,8 @@ import ar.fiuba.tdd.template.puzzle.Puzzle;
 
 import ar.fiuba.tdd.template.puzzle.PuzzleGenerator;
 
+import ar.fiuba.tdd.template.winverificators.CloseCircuitVerificator;
+import ar.fiuba.tdd.template.winverificators.WinVerificator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +28,7 @@ public class CountryRoadTest {
 
     @Before
     public void setUp() {
+        System.setProperty("java.awt.headless", "false");
         PuzzleGenerator puzzleGenerator = new PuzzleGenerator();
         puzzleGenerator.getParser().decodeJson(COUNTRYROAD_FILE, COUNTRYROAD_PLAYS_FILE);
         puzzleGenerator.createGame("Country Road", false);
@@ -41,11 +44,21 @@ public class CountryRoadTest {
         for (CellContent cellContent : valuesRecovered) {
             integerContents.add(cellContent.getNumberValue());
         }
+
         // According to COUNTRYROAD_PLAYS_FILE, 1-1 (2-2 in the file) must contain UP and LEFT
         Assert.assertTrue(integerContents.contains(UP));
         Assert.assertTrue(integerContents.contains(LEFT));
         Assert.assertFalse(integerContents.contains(RIGHT));
         Assert.assertFalse(integerContents.contains(DOWN));
+
+    }
+
+
+    @Test
+    public void winVerificatorWinsGame() {
+        WinVerificator winVerificator = new CloseCircuitVerificator();
+
+        Assert.assertTrue(winVerificator.wonTheGame(puzzle.getBoard()));
 
     }
 

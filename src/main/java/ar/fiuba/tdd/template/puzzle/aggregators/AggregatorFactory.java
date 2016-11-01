@@ -6,6 +6,7 @@ import java.util.Properties;
  * Created by alazraqui on 18/10/2016.
  */
 public class AggregatorFactory {
+    @SuppressWarnings("CPD-START")
     public static final String SIMPLE_AGGREGATOR = "Simple aggregator";
     public static final String CONNECTION_AGGREGATOR = "Connection aggregator";
     public static final String DIAGONAL_AGGREGATOR = "Diagonal aggregator";
@@ -35,6 +36,8 @@ public class AggregatorFactory {
         }
         return instance;
     }
+
+    @SuppressWarnings("CPD-END")
 
     public AbstractAgreggator createAggregator(String aggregator) {
         return (AbstractAgreggator) factory.get(aggregator);

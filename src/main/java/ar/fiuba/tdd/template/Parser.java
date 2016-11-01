@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Parser {
-
+    @SuppressWarnings("CPD-START")
     private static final String BLACK_CONTENT_VALUE = "-1";
     private static final int TOP_LEFT_CELL_REGION_INDEX = 0;
     private static final int RIGHT_BOTTOM_CELL_REGION_INDEX = 1;
@@ -48,6 +48,8 @@ public class Parser {
     private ArrayList<Play> plays = new ArrayList<>();
 
     private CellContentJsonFactory cellContentJsonFactory;
+
+    @SuppressWarnings("CPD-END")
 
     public Parser() {
         this.boardFile = new JSONObject();

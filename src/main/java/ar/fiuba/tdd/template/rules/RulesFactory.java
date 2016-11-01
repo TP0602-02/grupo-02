@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.rules;
 import java.util.Properties;
 
 public class RulesFactory {
+    @SuppressWarnings("CPD-START")
     public static final String SUM_RULE = "Sum rule";
     public static final String MULTIPLICATION_RULE = "Multiplication rule";
     public static final String NO_REPEAT_VALUE_RULE = "No repeat value rule";
@@ -68,6 +69,8 @@ public class RulesFactory {
         factory.put(CONECTIONS_INSIDE_BOARD_RULE, new ConectionInsideBoardRule());
 
     }
+
+    @SuppressWarnings("CPD-END")
 
     public GenericRule createRule(String ruleName) {
         return (GenericRule) factory.get(ruleName);

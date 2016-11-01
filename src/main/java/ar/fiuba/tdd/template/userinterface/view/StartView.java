@@ -10,6 +10,7 @@ import javax.swing.*;
 
 
 public class StartView extends JFrame {
+    @SuppressWarnings("CPD-START")
     public static final int screenHeight = 768;
     public static final int screenWidth = 1024;
     private static final int WIDTH_BUTTON = 200;
@@ -34,6 +35,7 @@ public class StartView extends JFrame {
     private static final String GOKIEN_NANAME_FILE = "GokienNaname.json";
     private static final String INSHI_NO_HEYA_PLAYS_FILE = "InshiNoHeyaPlays.json";
     private StartGameListener listener;
+    @SuppressWarnings("CPD-END")
     //*************************************************
     private Properties games;
 

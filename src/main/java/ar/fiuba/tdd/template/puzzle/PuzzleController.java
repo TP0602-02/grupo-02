@@ -28,6 +28,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     private ArrayList<WinVerificator> winVerificators;
     private AbstractAgreggator aggregator;
     private ArrayList<Play> playStack;
+    private static final String BORRADO = "Borrado";
 
     public PuzzleController(ArrayList<WinVerificator> winVerificators, AbstractAgreggator aggregator) {
         this.cellControllers = new ArrayList<>();
@@ -66,6 +67,9 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
 
                     @Override
                     public void validateUserDeletedAction(Cell cell, String valueToDelete) {
+                        if (cell.hasDeleteables()) {
+                            playStack.add(0, new Play(cell,BORRADO));
+                        }
                         deleteAction(cell, valueToDelete);
                     }
                 });
@@ -118,7 +122,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     }
 
     private void undoConfig() {
-        Undo.getUndoButtom().addActionListener(new ActionListener() {
+        Undo.setActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
                 if (!playStack.isEmpty()) {
@@ -126,29 +130,39 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                     playStack.remove(0);
                     Cell cellToUndo = playToUndo.getSelectedCell();
                     ArrayList<CellContent> contents = cellToUndo.getContents();
-                    int counterOfNonDeleteable = 0;
-                    while (contents.size() != counterOfNonDeleteable) {
-                        CellContent cellContentToUndo = contents.get(contents.size() - 1);
-                        if (cellContentToUndo.isDeleteable()) {
-                            deleteAction(cellToUndo, cellContentToUndo.getValue());
-                        } else {
-                            counterOfNonDeleteable++;
-                        }
-                    }
-                    Play priorPlay = getPriorPlayValue(playToUndo);
-                    if (priorPlay != null && !Objects.equals(priorPlay.getSelectedCellValue(), playToUndo.getSelectedCellValue())) {
-                        playThePlay(priorPlay);
-                    }
+                    eraseTheLastPlay(contents,cellToUndo);
+                    addThePriorPlay(playToUndo);
                 }
             }
         });
+    }
+
+    private void eraseTheLastPlay(ArrayList<CellContent> contents, Cell cellToUndo) {
+        int counterOfNonDeleteable = 0;
+        while (contents.size() != counterOfNonDeleteable) {
+            CellContent cellContentToUndo = contents.get(contents.size() - 1);
+            if (cellContentToUndo.isDeleteable()) {
+                deleteAction(cellToUndo, cellContentToUndo.getValue());
+            } else {
+                counterOfNonDeleteable++;
+            }
+        }
+    }
+
+    private void addThePriorPlay(Play playToUndo) {
+        Play priorPlay = getPriorPlayValue(playToUndo);
+        if (priorPlay != null && !Objects.equals(priorPlay.getSelectedCellValue(), playToUndo.getSelectedCellValue())) {
+            if (!priorPlay.getSelectedCellValue().equals(BORRADO)) {
+                playThePlay(priorPlay);
+            }
+        }
     }
 
     private Play getPriorPlayValue(Play playToUndo) {
         Play priorPlay = null;
         for (Play oldPlay : playStack) {
             if (playToUndo.getSelectedCell() == oldPlay.getSelectedCell()) {
-                priorPlay = oldPlay;
+                return oldPlay;
             }
         }
         return priorPlay;

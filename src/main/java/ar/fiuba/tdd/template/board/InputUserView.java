@@ -1,12 +1,13 @@
 package ar.fiuba.tdd.template.board;
 
+import ar.fiuba.tdd.template.board.cell.view.CellView;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 
 
 /**
@@ -79,11 +80,13 @@ public class InputUserView extends JFrame {
         this.cellValuesToDelete = cellValuesToDelete;
         valuesToDeleteContainer.removeAll();
         for (String value : cellValuesToDelete) {
-            JButton button = new JButton(value);
+            CellView button = new CellView(value);
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
-                    selectedValueToDelete = button.getText();
+                    selectedValueToDelete = button.getValue();
+                    cleanAnySelectedValueToDelete();
+                    button.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.RED, Color.RED));
                 }
             });
             valuesToDeleteContainer.add(button);
@@ -103,6 +106,13 @@ public class InputUserView extends JFrame {
             }
         });
         valuesToDeleteContainer.add(buttonDeleteOk);
+    }
+
+    private void cleanAnySelectedValueToDelete() {
+        for (int i = 0; i < valuesToDeleteContainer.getComponentCount(); i++) {
+            ((JButton) valuesToDeleteContainer.getComponents()[i])
+                    .setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+        }
     }
 
     public void showInputUserView() {
@@ -137,7 +147,7 @@ public class InputUserView extends JFrame {
         int buttonPosX = firstButtonCoordinateX;
         int buttonPosY = firstButtonCoordinateY;
         for (int index = 0; index < this.allowedValuesToInput.size(); ++index) {
-            JButton button = new JButton(this.allowedValuesToInput.get(index));
+            CellView button = new CellView(this.allowedValuesToInput.get(index));
             button.setBounds(buttonPosX, buttonPosY,
                     buttonValuesWidth, buttonValuesWidth);
             add(button);
@@ -151,7 +161,7 @@ public class InputUserView extends JFrame {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
-                    textInput.setText(textInput.getText() + ((JButton) event.getSource()).getText());
+                    textInput.setText(textInput.getText() + ((CellView) event.getSource()).getValue());
                 }
             });
         }

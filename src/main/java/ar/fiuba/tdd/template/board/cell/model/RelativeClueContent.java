@@ -16,7 +16,7 @@ public class RelativeClueContent extends CellContentWithValue {
 
     @Override
     public Color getColorRepresentation() {
-        return Color.WHITE;
+        return Color.YELLOW;
     }
 
     public ClueContent getClue() {

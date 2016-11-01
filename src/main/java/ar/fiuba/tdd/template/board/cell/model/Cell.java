@@ -10,6 +10,7 @@ public abstract class Cell implements Summable, Editable {
 
     protected ArrayList<CellContent> contents;
     protected Coordinate coordinate;
+    protected boolean isEditable;
 
     public Cell(Coordinate coordinate) {
         this.coordinate = coordinate;
@@ -18,6 +19,11 @@ public abstract class Cell implements Summable, Editable {
 
     public ArrayList<CellContent> getContents() {
         return contents;
+    }
+
+
+    public void setEditable(boolean editable) {
+        isEditable = editable;
     }
 
     public ArrayList<CellContent> getSummableContents() {
@@ -54,14 +60,18 @@ public abstract class Cell implements Summable, Editable {
         return contents.size() == 0;
     }
 
-    //Deben ser todos los contents posibles de editar para que la celda lo sea
     @Override
     public boolean isEditable() {
-        boolean isEditable = true;
-        for (CellContent cellContent : contents) {
-            isEditable &= cellContent.isEditable();
+        if (!isEditable) {
+            //Deben ser todos los contents posibles de editar para que la celda lo sea.
+            boolean isEditable = true;
+            for (CellContent cellContent : contents) {
+                isEditable &= cellContent.isEditable();
+            }
+            return isEditable;
+        } else {
+            return true;
         }
-        return isEditable;
     }
 
     //Deben ser al menos uno de los contents posible de sumar para que la celda lo sea
@@ -117,13 +127,24 @@ public abstract class Cell implements Summable, Editable {
     }
 
     public ArrayList<String> getShowableValues() {
-        ArrayList<String> values = new ArrayList<>();
+        //lo comento porque ahora las CluesContent si son son showables y cuando borras un contenido apareceria el valor de la clue
+       /* ArrayList<String> values = new ArrayList<>();
         for (CellContent content : contents) {
             if (content.isShowableInBoard()) {
                 values.add(content.getValue());
             }
         }
-        return values;
+        return values;*/
+        return getDeleteableValues();
+    }
+
+    public CellContent getFirstEditableContent() {
+        for (CellContent content : contents) {
+            if (content.isEditable()) {
+                return content;
+            }
+        }
+        return null;
     }
 
     public ArrayList<String> getDeleteableValues() {
@@ -137,7 +158,7 @@ public abstract class Cell implements Summable, Editable {
     }
 
     public boolean hasDeleteables() {
-        for (CellContent cellContent: this.contents) {
+        for (CellContent cellContent : this.contents) {
             if (cellContent.isDeleteable()) {
                 return true;
             }

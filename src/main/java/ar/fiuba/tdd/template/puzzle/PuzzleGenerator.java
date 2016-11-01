@@ -47,7 +47,7 @@ public class PuzzleGenerator {
     private void createGame(String gameFile, String gameName, boolean showPuzzleToPlay) {
         Puzzle puzzle = startGeneration(gameFile);
         PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(),
-                puzzle.getInitialCells(), gameName);
+                puzzle.getInitialCells(), gameName,parser.getGraphicsInitialClues());
         puzzleView.setVisible(showPuzzleToPlay);
 
         ArrayList<String> winVerificators = parser.getWinVerificators();

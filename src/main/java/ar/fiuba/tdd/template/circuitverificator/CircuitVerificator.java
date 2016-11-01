@@ -31,7 +31,7 @@ public abstract class CircuitVerificator {
         for (int row = 0; row < board.getWidth(); ++row) {
             for (int column = 0; column < board.getHeight(); ++column) {
                 Cell cell = board.getCell(new Coordinate(row, column));
-                if (cell.getContents().size() > 0) {
+                if (cell.getFirstEditableContent() != null) {
                     return cell;
                 }
             }

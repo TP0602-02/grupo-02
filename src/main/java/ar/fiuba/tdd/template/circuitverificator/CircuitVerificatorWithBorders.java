@@ -153,6 +153,6 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
                 return cell;
             }
         }
-        return this.iterator.getNextCell(board, cell, contents.get(0).getNumberValue()); //es lo mismo cual le paso
+        return this.iterator.getNextCell(board, cell, cell.getFirstEditableContent().getNumberValue()); //es lo mismo cual le paso
     }
 }

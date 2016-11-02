@@ -7,6 +7,8 @@ public class CellContentJson {
     private int id;
     private int value;
 
+    @SuppressWarnings("CPD-START")
+
     public CellContentJson(int id, int value) {
         this.id = id;
         this.value = value;
@@ -16,9 +18,13 @@ public class CellContentJson {
         return id;
     }
 
+    @SuppressWarnings("CPD-END")
+
     public int getValue() {
         return value;
     }
+
+
 
 
 }

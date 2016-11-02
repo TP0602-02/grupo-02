@@ -35,6 +35,7 @@ public class StartView extends JFrame {
     private static final String SLITHERLINK_FILE = "Slitherlink.json";
     private static final String GOKIEN_NANAME_FILE = "GokienNaname.json";
     private static final String INSHI_NO_HEYA_PLAYS_FILE = "InshiNoHeyaPlays.json";
+    private static final int TITLE_POS_Y = 10;
     //*************************************************
 
 
@@ -47,9 +48,8 @@ public class StartView extends JFrame {
     public void start() {
         setSize(screenWidth, screenHeight);
         JLabel title = new JLabel("NIKOLI GAMES");
-        title.setBounds(screenWidth / 3, 10, 300, 40);
+        title.setBounds(screenWidth / 3, TITLE_POS_Y, 300, 40);
         title.setFont(new Font("Serif", Font.PLAIN, 30));
-        title.setHorizontalAlignment(JLabel.CENTER);
         add(title);
         initGames();
         createButtons();
@@ -61,7 +61,7 @@ public class StartView extends JFrame {
     private void createButtons() {
         Enumeration enumeration = games.propertyNames();
         int posXButtonGame = screenWidth / 3;
-        int posYButtonGame = screenWidth / 4;
+        int posYButtonGame = TITLE_POS_Y + 60;
         int spaceBetweenButtons = 15;
         while (enumeration.hasMoreElements()) {
             final String gameName = (String) enumeration.nextElement();

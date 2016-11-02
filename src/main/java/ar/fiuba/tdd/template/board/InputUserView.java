@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.template.board;
 
 import ar.fiuba.tdd.template.board.cell.view.CellView;
+import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,7 +24,7 @@ public class InputUserView extends JFrame {
     public static final int spaceBetweenButtons = 15;
     public static final int firstButtonCoordinateX = 10;
     public static final int firstButtonCoordinateY = 80;
-    public static final int inputUserViewWidth = 450;
+    public static final int inputUserViewWidth = 435;
     public static final int inputUserViewHeight = 600;
 
     private JTextField textInput;

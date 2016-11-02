@@ -14,10 +14,10 @@ import javax.swing.border.BevelBorder;
  * Created by Colo on 23/09/2016.
  */
 public class PuzzleView extends JFrame {
-    public static final int cellViewDimension = 60;
-    public static final int screenHeight = 1024;
-    public static final int screenWidth = 1600;
-    public static final int boardInitialPositionPixelX = screenWidth / 2;
+    public static final int cellViewDimension = 55;
+    public static final int screenHeight = 900;
+    public static final int screenWidth = 1300;
+    public static final int boardInitialPositionPixelX = screenWidth / 3;
     public static final int boardInitialPositionPixelY = screenHeight / 3;
     private int width;
     private int height;

@@ -120,7 +120,7 @@ public class PuzzleView extends JFrame {
     }
 
     private void createInstructionGameButton() {
-        JButton buttonInstruction = new JButton("¿Como jugar?");
+        JButton buttonInstruction = new JButton("Instrucciones");
         buttonInstruction.setBounds(screenWidth - 200, 5, 150, 30);
         buttonInstruction.addActionListener(new ActionListener() {
             @Override

@@ -41,14 +41,13 @@ public class RulesFactory {
         return instance;
     }
 
-    private RulesFactory() {
+    public GenericRule createRule(String ruleName) {
+        return (GenericRule) factory.get(ruleName);
     }
 
-    private static void addSecondRules() {
-
+    private static void putRules() {
         factory.put(SUM_RULE, new SumRule());
         factory.put(MULTIPLICATION_RULE, new MultiplicationRule());
-        addThirdRules();
         factory.put(CONECTIONS_IN_REGION_RULE, new RegionHasValidConectionsRule());
         factory.put(NUMBER_CONECTIONS_IN_REGION_RULE, new NumberOfConectionsInRegionRule());
         factory.put(NUMBER_BORDERS_IN_REGION_RULE, new NumberOfBordersInRegionRule());
@@ -56,35 +55,27 @@ public class RulesFactory {
         factory.put(TOTAL_REGION_BORDER_RULE, new RegionTotalBorderRule());
         factory.put(TOTAL_REGION_CONNECTION_RULE, new RegionTotalConnectionRule());
         factory.put(CLOSE_CIRCUIT_RULE, new CloseCircuitConnectionRule());
-
-
-    }
-
-    private static void addThirdRules() {
         factory.put(NO_REPEAT_VALUE_RULE, new NoRepeatValueRule());
         factory.put(CLOSE_DIAGONAL_CIRCUIT_RULE, new CloseCircuitDiagonalRule());
         factory.put(NUMBER_DIAGONALS_RULE, new NumberOfDiagonalsRule());
         factory.put(DISTANCE_RULE, new NoRepeatValueInDistanceRule());
         factory.put(VALID_REGION_RANGE_RULE, new ValidRegionRangeRule());
+        factory.put(CONECTIONS_IN_CELL_RULE, new CellHasValidConectionsRule());
+        factory.put(CONECTIONS_INSIDE_BOARD_RULE, new ConectionInsideBoardRule());
+        factory.put(NO_REPEAT_VALUE_RULE, new NoRepeatValueRule());
+        factory.put(CLOSE_DIAGONAL_CIRCUIT_RULE, new CloseCircuitDiagonalRule());
     }
 
-    public GenericRule createRule(String ruleName) {
-        return (GenericRule) factory.get(ruleName);
-    }
-
-    private static void putRules() {
-        addFirstRules();
-        addSecondRules();
+    private void secondRules() {
+        factory.put(DISTANCE_RULE, new NoRepeatValueInDistanceRule());
+        factory.put(VALID_REGION_RANGE_RULE, new ValidRegionRangeRule());
+        factory.put(NUMBER_DIAGONALS_RULE, new NumberOfDiagonalsRule());
     }
 
     @SuppressWarnings("CPD-END")
 
-    private static void addFirstRules() {
-        factory.put(CONECTIONS_IN_CELL_RULE, new CellHasValidConectionsRule());
-        factory.put(CONECTIONS_INSIDE_BOARD_RULE, new ConectionInsideBoardRule());
-
+    private RulesFactory() {
     }
-
 
 }
 

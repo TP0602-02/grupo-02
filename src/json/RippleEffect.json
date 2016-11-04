@@ -9,7 +9,7 @@
     "rule": "Valid region range rule"
   }, {
     "rule": "Distance rule"
-  }],
+  },{"rule": "No repeat value rule"}],
   "winVerificators": [{
     "verificator": "Full board win verificator"
   }],

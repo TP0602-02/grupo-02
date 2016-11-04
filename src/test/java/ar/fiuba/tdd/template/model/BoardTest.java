@@ -5,7 +5,6 @@ import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.*;
 import ar.fiuba.tdd.template.entity.Coordinate;
-import ar.fiuba.tdd.template.userinterface.view.StartView;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -35,26 +34,26 @@ public class BoardTest {
 
     @Test
     public void emptyBoardIsFull_ReturnFalse() {
-        Board board = new Board(4,4,CellFactory.CELL_SINGLE_VALUE);
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
         Assert.assertTrue(!board.isFull());
     }
 
     @Test
     public void boardWithDiferentValuesIsFull_ReturnFalse() {
-        Board board = new Board(4,4,CellFactory.CELL_SINGLE_VALUE);
-        board.setValue(new Coordinate(1,1),new BlackContent());
-        board.setValue(new Coordinate(1,2),new ClueContent(1));
-        board.setValue(new Coordinate(3,3),new ValueContent(1));
+        Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        board.setValue(new Coordinate(1, 1), new BlackContent());
+        board.setValue(new Coordinate(1, 2), new ClueContent(1));
+        board.setValue(new Coordinate(3, 3), new ValueContent(1));
         Assert.assertTrue(!board.isFull());
     }
 
     @Test
     public void boardWithDiferentValuesIsFull_ReturnTrue() {
-        Board board = new Board(2,2,CellFactory.CELL_SINGLE_VALUE);
-        board.setValue(new Coordinate(1,1),new BlackContent());
-        board.setValue(new Coordinate(0,0),new ValueContent(1));
-        board.setValue(new Coordinate(0,1),new ClueContent(1));
-        board.setValue(new Coordinate(1,0),new ValueContent(1));
+        Board board = new Board(2, 2, CellFactory.CELL_SINGLE_VALUE);
+        board.setValue(new Coordinate(1, 1), new BlackContent());
+        board.setValue(new Coordinate(0, 0), new ValueContent(1));
+        board.setValue(new Coordinate(0, 1), new ClueContent(1));
+        board.setValue(new Coordinate(1, 0), new ValueContent(1));
         Assert.assertTrue(board.isFull());
     }
 
@@ -192,7 +191,7 @@ public class BoardTest {
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // row of cell wanted is 1
-        assertEquals(numbers,(Arrays.asList(1, 1, 1, 1, 1)));
+        assertEquals(numbers, (Arrays.asList(1, 1, 1, 1, 1)));
     }
 
     @Test
@@ -216,7 +215,7 @@ public class BoardTest {
             //System.out.print(cellC.get(0).getValue() + " ");
         }
         // column of cell wanted is 0
-        assertEquals(numbers,(Arrays.asList(0, 0, 0, 0, 0)));
+        assertEquals(numbers, (Arrays.asList(0, 0, 0, 0, 0)));
     }
 
     @Test

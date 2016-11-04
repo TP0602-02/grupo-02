@@ -15,6 +15,6 @@ public class CellHasValidConectionsRule extends ConectionRule {
     }
 
     private boolean validateConectionsInCell(Cell cell) {
-        return cell.getQuantityOfValues() < 2 ;
+        return cell.getQuantityOfValues() < 2;
     }
 }

@@ -4,7 +4,6 @@ import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.BlackContent;
 import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
-
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.winverificators.FullBoardWinVerificator;
 import org.junit.Assert;

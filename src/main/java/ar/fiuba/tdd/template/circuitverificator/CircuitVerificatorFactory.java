@@ -6,6 +6,7 @@ import java.util.Properties;
  * Created by matiaskamien on 20/10/16.
  */
 public class CircuitVerificatorFactory {
+    @SuppressWarnings("CPD-START")
     private static Properties factory;
     private static CircuitVerificatorFactory instance;
 
@@ -29,8 +30,11 @@ public class CircuitVerificatorFactory {
         factory.put("Circuit verificator without borders", new CircuitVerificatorWithoutBorders());
     }
 
+
+    @SuppressWarnings("CPD-END")
     public CircuitVerificator createVerificator(String circuitVerificator) {
-        return (CircuitVerificator) factory.getOrDefault(circuitVerificator,null);
+        return (CircuitVerificator) factory.getOrDefault(circuitVerificator, null);
     }
+
 
 }

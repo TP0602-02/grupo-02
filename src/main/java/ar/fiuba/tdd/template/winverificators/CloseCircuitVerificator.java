@@ -1,8 +1,6 @@
 package ar.fiuba.tdd.template.winverificators;
 
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithBorders;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithoutBorders;
 
 /**
@@ -10,12 +8,12 @@ import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithoutBorders
  */
 public class CloseCircuitVerificator extends WinVerificator {
 
+    public CloseCircuitVerificator() {
+        this.verificator = new CircuitVerificatorWithoutBorders();
+    }
+
     @Override
     public boolean wonTheGame(Board board) {
         return this.verificator.isCircuitClosed(board);
-    }
-
-    public CloseCircuitVerificator() {
-        this.verificator = new CircuitVerificatorWithoutBorders();
     }
 }

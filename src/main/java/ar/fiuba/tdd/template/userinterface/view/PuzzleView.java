@@ -6,12 +6,14 @@ import ar.fiuba.tdd.template.board.cell.model.*;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+
 
 /**
  * Created by Colo on 23/09/2016.
@@ -107,6 +109,7 @@ public class PuzzleView extends JFrame {
         setColumnsAndRowsNumbers();
         setInitialsCellsWithClues(this.graphicsInitialClues);
         this.addTitle(game);
+        this.addUndo();
         for (int column = 0; column < width; ++column) {
             for (int row = 0; row < height; ++row) {
                 int positionCellInitialPixelX = column * cellViewDimension + boardInitialPositionPixelX;
@@ -135,6 +138,13 @@ public class PuzzleView extends JFrame {
             container.add(label);
         }
     }
+
+    private void addUndo() {
+        JButton undo = Undo.getUndoButtom();
+        undo.setBounds(screenWidth - 200, 85, 150, 30);
+        container.add(undo);
+    }
+
 
     private void createInstructionGameButton() {
         JButton buttonInstruction = new JButton("INSTRUCCIONES");

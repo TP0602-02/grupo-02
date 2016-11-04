@@ -14,13 +14,13 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
 
+
+
 /**
  * Created by Nicolas on 28/9/2016.
  */
 
 public class InputUserView extends JFrame {
-
-    private static InputUserView instance;
 
     public static final int buttonPerRow = 3;
     public static final int buttonValuesWidth = 50;
@@ -29,11 +29,11 @@ public class InputUserView extends JFrame {
     public static final int firstButtonCoordinateY = 80;
     public static final int inputUserViewWidth = 435;
     public static final int inputUserViewHeight = 600;
-
-    private JTextField textInput;
-    private JButton botonOk;
+    private static InputUserView instance;
     JButton backspaceButton;
     JButton deleteContentButton;
+    private JTextField textInput;
+    private JButton botonOk;
     private UserInputListener listener;
     private ArrayList<String> allowedValuesToInput;
     private ArrayList<String> cellValuesToDelete;

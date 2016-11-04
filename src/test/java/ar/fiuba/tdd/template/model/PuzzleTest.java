@@ -1,15 +1,6 @@
 package ar.fiuba.tdd.template.model;
 
-import ar.fiuba.tdd.template.Parser;
-import ar.fiuba.tdd.template.Play;
-import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.cell.model.CellFactory;
-import ar.fiuba.tdd.template.board.cell.model.ValueContent;
-import ar.fiuba.tdd.template.entity.Coordinate;
-import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 public class PuzzleTest {
 

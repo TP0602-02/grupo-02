@@ -1,12 +1,12 @@
 package ar.fiuba.tdd.template.rules;
 
-import ar.fiuba.tdd.template.board.Region;
-import ar.fiuba.tdd.template.board.cell.model.Cell;
-
 /**
  * Created by matiaskamien on 08/10/16.
  */
 public class SumRule extends OperationRule {
+
+    public SumRule() {
+    }
 
     @Override
     protected int getNeutralNumberForOperation() {
@@ -17,6 +17,4 @@ public class SumRule extends OperationRule {
     protected void updateTotals(int value) {
         this.regionPartial += value;
     }
-
-    public SumRule() {}
 }

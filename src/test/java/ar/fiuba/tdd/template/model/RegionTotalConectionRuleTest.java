@@ -6,7 +6,6 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.entity.Coordinate;
-import ar.fiuba.tdd.template.rules.RegionTotalBorderRule;
 import ar.fiuba.tdd.template.rules.RegionTotalConnectionRule;
 import org.junit.Assert;
 import org.junit.Before;

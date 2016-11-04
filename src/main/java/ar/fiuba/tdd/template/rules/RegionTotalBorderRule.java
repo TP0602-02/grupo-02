@@ -13,7 +13,7 @@ public class RegionTotalBorderRule extends GenericTotalRegionRule {
     //Each region has only one cell.
     @Override
     public boolean validate(Board board) {
-        for (Region region: board.getRegions()) {
+        for (Region region : board.getRegions()) {
             Cell regionCell = region.getCells().get(0);
             int numberOfBorders = regionCell.getSummableContents().size();
             int regionTotal = region.getTotal();

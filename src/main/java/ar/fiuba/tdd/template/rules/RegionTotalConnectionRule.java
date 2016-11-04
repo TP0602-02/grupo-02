@@ -8,7 +8,7 @@ import ar.fiuba.tdd.template.entity.Constants;
 /**
  * Created by matiaskamien on 15/10/16.
  */
-public class RegionTotalConnectionRule extends GenericTotalRegionRule{
+public class RegionTotalConnectionRule extends GenericTotalRegionRule {
     @Override
     public boolean validate(Board board) {
         for (Region region : board.getRegions()) {

@@ -7,6 +7,8 @@ import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -43,10 +45,7 @@ public class InputUserView extends JFrame {
         this.allowedValuesToInput = allowedValuesToInput;
         this.selectedValueToDelete = "";
         setLayout(null);
-        textInput = new JTextField();
-        textInput.setEditable(false);
-        textInput.setBounds(firstButtonCoordinateX, firstButtonCoordinateY - 50, 150, 20);
-        add(textInput);
+        initTextInput();
         valuesToDeleteContainer = new JPanel();
         valuesToDeleteContainer.setBounds(inputUserViewWidth / 2, 10, inputUserViewWidth / 2, inputUserViewHeight / 2);
         add(valuesToDeleteContainer);
@@ -58,6 +57,42 @@ public class InputUserView extends JFrame {
             }
         });
         setMinimumSize(new Dimension(inputUserViewWidth, inputUserViewHeight));
+    }
+
+    private void initTextInput() {
+        JLabel label = new JLabel("Ingrese valor con teclado o presione los botones disponibles");
+        label.setBounds(firstButtonCoordinateX, 1, inputUserViewWidth - 10, 30);
+        label.setVisible(true);
+        add(label);
+        textInput = new JTextField();
+        textInput.setEditable(true);
+        textInput.setBounds(firstButtonCoordinateX, firstButtonCoordinateY - 50, 150, 20);
+        add(textInput);
+        initKeyListener();
+    }
+
+    private void initKeyListener() {
+        textInput.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent event) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent event) {
+                if (event.getKeyCode() == KeyEvent.VK_ENTER) {
+                    inputTextIsReady();
+                }
+                if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    setVisible(false);
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent event) {
+
+            }
+        });
     }
 
     public static InputUserView createView(ArrayList<String> allowedValuesToInput) {
@@ -211,6 +246,7 @@ public class InputUserView extends JFrame {
     public void setVisible(boolean visible) {
         super.setVisible(visible);
         textInput.setText("");
+        textInput.requestFocus();
     }
 
     public void setListener(UserInputListener listener) {
@@ -221,17 +257,11 @@ public class InputUserView extends JFrame {
         String text = textInput.getText();
         setVisible(false);
         valuesToDeleteContainer.setVisible(false);
-        if (listener != null && !text.isEmpty()) {
+        if (listener != null && allowedValuesToInput.contains(text)) {
             listener.inputedText(text);
         }
     }
 
-    /*@Override
-    public void keyReleased(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.VK_ENTER) {
-            inputTextIsReady();
-        }
-    }*/
 
     public interface UserInputListener {
         public void inputedText(String text);

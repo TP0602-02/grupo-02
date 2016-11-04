@@ -22,6 +22,7 @@ public class PuzzleView extends JFrame {
     public static final int screenWidth = 1300;
     public static final int boardInitialPositionPixelX = screenWidth / 3;
     public static final int boardInitialPositionPixelY = screenHeight / 3;
+    private BackPressed backListener;
     private int width;
     private int height;
     //private final HomeView menu;
@@ -47,6 +48,22 @@ public class PuzzleView extends JFrame {
         this.pack();
         createBoardView(gameName);
         paintRegions(regions);
+        createBackButton();
+    }
+
+    private void createBackButton() {
+        JButton backButton = new JButton("VOLVER AL MENU");
+        backButton.setBounds(screenWidth - 200, screenHeight - 50, 150, 30);
+        backButton.setVisible(true);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(backListener != null) {
+                    backListener.onBackClick();
+                }
+            }
+        });
+        container.add(backButton);
     }
 
     private void paintRegions(ArrayList<Region> regions) {
@@ -55,7 +72,7 @@ public class PuzzleView extends JFrame {
         for (Region region : regions) {
             if (region.isGraficable()) {
                 Color color = colours.get(index);
-                index = getNextIndexColour(colours,index);
+                index = getNextIndexColour(colours, index);
                 for (Cell cell : region.getCells()) {
                     getCellView(cell.getRow(), cell.getColumn()).setBackground(color);
                 }
@@ -65,7 +82,7 @@ public class PuzzleView extends JFrame {
 
     private int getNextIndexColour(ArrayList<Color> colours, Integer index) {
         ++index;
-        return  (index >= colours.size()) ? 0 : index;
+        return (index >= colours.size()) ? 0 : index;
 
     }
 
@@ -245,5 +262,13 @@ public class PuzzleView extends JFrame {
         return this.boardView.get(column).get(row);
     }
 
+
+    public void setBackListener(BackPressed backListener) {
+        this.backListener = backListener;
+    }
+
+    public interface BackPressed {
+        public void onBackClick();
+    }
 
 }

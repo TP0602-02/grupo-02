@@ -21,9 +21,10 @@ import java.util.ArrayList;
 public class PuzzleGenerator {
     private Parser parser;
     private PuzzleController puzzleController;
+    private StartView startView;
 
     public void runGeneration() {
-        StartView startView = new StartView(new StartView.StartGameListener() {
+            startView = new StartView(new StartView.StartGameListener() {
             @Override
             public void loadNewGame(String gameName, String gameFile) {
                 initParse(gameFile, null);
@@ -52,6 +53,7 @@ public class PuzzleGenerator {
         PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(),
                 gameName, graphicsInitialCells, parser.getInstructionGame(),puzzle.getRegions());
         puzzleView.setVisible(showPuzzleToPlay);
+        initBackListener(puzzleView);
 
         ArrayList<String> winVerificators = parser.getWinVerificators();
         // Converts win verificator array of strings into WinVerificator array
@@ -66,11 +68,18 @@ public class PuzzleGenerator {
         puzzleController.aggregateCellControllers();
     }
 
-    public PuzzleGenerator() {
-        parser = new Parser();
+    private void initBackListener(PuzzleView puzzleView) {
+        puzzleView.setBackListener(new PuzzleView.BackPressed() {
+            @Override
+            public void onBackClick() {
+                puzzleView.setVisible(false);
+                startView.setVisible(true);
+            }
+        });
     }
 
     private void initParse(String fileName, String playsFileName) {
+        parser = new Parser();
         parser.decodeJson(fileName, playsFileName);
 
     }

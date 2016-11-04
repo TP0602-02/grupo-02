@@ -53,7 +53,7 @@ public class PuzzleView extends JFrame {
 
     private void createBackButton() {
         JButton backButton = new JButton("VOLVER AL MENU");
-        backButton.setBounds(screenWidth - 200, screenHeight - 50, 150, 30);
+        backButton.setBounds(screenWidth - 200, 45, 150, 30);
         backButton.setVisible(true);
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -137,7 +137,7 @@ public class PuzzleView extends JFrame {
     }
 
     private void createInstructionGameButton() {
-        JButton buttonInstruction = new JButton("Instrucciones");
+        JButton buttonInstruction = new JButton("INSTRUCCIONES");
         buttonInstruction.setBounds(screenWidth - 200, 5, 150, 30);
         buttonInstruction.addActionListener(new ActionListener() {
             @Override

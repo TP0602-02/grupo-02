@@ -32,12 +32,14 @@ public class PuzzleView extends JFrame {
     private JLayeredPane container;
     private ArrayList<Cell> graphicsInitialClues;
     private String instructionGame;
+    private ArrayList<Region> regionsToPaint;
 
     public PuzzleView(int height, int width, String gameName, ArrayList<Cell> graphicsInitialClues,
                       String instructionGame, ArrayList<Region> regions) {
         this.width = width;
         this.height = height;
         this.instructionGame = instructionGame;
+        this.regionsToPaint = regions;
         this.graphicsInitialClues = graphicsInitialClues;
         setBackground(Color.gray);
         setBackground(Color.gray);
@@ -49,7 +51,6 @@ public class PuzzleView extends JFrame {
         this.add(container);
         this.pack();
         createBoardView(gameName);
-        paintRegions(regions);
         createBackButton();
     }
 
@@ -92,6 +93,7 @@ public class PuzzleView extends JFrame {
         ArrayList<Color> colours = new ArrayList<>();
         colours.add(Color.RED);
         colours.add(Color.WHITE);
+        colours.add(Color.green);
         colours.add(Color.YELLOW);
         colours.add(Color.ORANGE);
         colours.add(Color.GRAY);
@@ -107,6 +109,7 @@ public class PuzzleView extends JFrame {
     private void createBoardView(String game) {
         initBoardDimensions();
         setColumnsAndRowsNumbers();
+        paintRegions(this.regionsToPaint);
         setInitialsCellsWithClues(this.graphicsInitialClues);
         this.addTitle(game);
         this.addUndo();
@@ -228,6 +231,9 @@ public class PuzzleView extends JFrame {
             initLabelPropertiesToShowClues(label, cellContent.getColorRepresentation());
             if (!cellContent.isEditable()) {
                 label.setText(cellContent.isShowableInBoard() ? cellContent.getValue() : "");
+                if (cellIsInAGraficableRegion(cell)) {
+                    label.setBackground(getCellView(cell.getRow(), cell.getColumn()).getBackground());
+                }
                 calculateBoundsForCluesNotInCorners(label, cell.isEditable(), positionPixelX, positionPixelY, clueWidht);
                 positionPixelX += clueWidht;
             } else {
@@ -240,8 +246,19 @@ public class PuzzleView extends JFrame {
         }
     }
 
+    private boolean cellIsInAGraficableRegion(Cell cell) {
+        for (Region region : this.regionsToPaint) {
+            if (region.containsCell(cell) && region.isGraficable()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void calculateBoundsForCluesNotInCorners(JLabel label, boolean cellEditable,
                                                      int positionPixelX, int positionPixelY, int clueWidht) {
+
+
         label.setBounds(positionPixelX, positionPixelY, ((cellEditable) ? clueWidht / 3 : clueWidht),
                 ((cellEditable) ? clueWidht / 2 : cellViewDimension));
     }

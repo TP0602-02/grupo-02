@@ -14,7 +14,7 @@ public class StartView extends JFrame {
     public static final int screenWidth = 1024;
     private static final int WIDTH_BUTTON = 200;
     private static final int HEIGHT_BUTTON = 50;
-
+    @SuppressWarnings("CPD-START")
     //***************GAMES**********************
     private static final String SUDOKU_NAME = "SUDOKU";
     private static final String KAKURO_NAME = "KAKURO";
@@ -23,6 +23,7 @@ public class StartView extends JFrame {
     private static final String SLITHERLINK_NAME = "SLITHERLINK";
     private static final String GOKIEN_NANAME_NAME = "GOKIEN NANAME";
     private static final String INSHI_NO_HEYA_PLAYS = "INSHI NO HEYA WITH PLAYS";
+    private static final String RIPPLE_EFFECT = "RIPPLE EFFECT";
 
     //**************************************************
 
@@ -39,6 +40,9 @@ public class StartView extends JFrame {
     private static final String INSHI_NO_HEYA_PLAYS_FILE = "InshiNoHeyaPlays.json";
     private static final int TITLE_POS_Y = 10;
     //*************************************************
+    private static final String RIPPLE_EFFECT_FILE = "RippleEffect.json";
+    //*************************************************
+    @SuppressWarnings("CPD-END")
 
     public StartView(StartGameListener listener) {
         this.listener = listener;
@@ -97,6 +101,7 @@ public class StartView extends JFrame {
         this.add(buttonInshiPlaysFile);
     }
 
+    @SuppressWarnings("CPD-START")
 
     private void initGames() {
         games = new Properties();
@@ -106,7 +111,10 @@ public class StartView extends JFrame {
         games.put(INSHI_NO_HEYA_NAME, INSHI_NO_HEYA_FILE);
         games.put(SLITHERLINK_NAME, SLITHERLINK_FILE);
         games.put(GOKIEN_NANAME_NAME, GOKIEN_NANAME_FILE);
+        games.put(RIPPLE_EFFECT,RIPPLE_EFFECT_FILE);
     }
+
+    @SuppressWarnings("CPD-END")
 
     public interface StartGameListener {
         public void loadNewGame(String gameName, String gameFile);

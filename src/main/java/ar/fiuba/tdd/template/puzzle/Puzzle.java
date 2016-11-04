@@ -43,12 +43,15 @@ public class Puzzle {
     private void setInitialRegions(ArrayList<RegionJson> regionJsons) {
         RegionCreator regionCreator = new RegionCreator(this.board);
         for (RegionJson regionJson : regionJsons) {
-            Region region = regionCreator.createRegion(regionJson.getLeftTop(),
-                    regionJson.getRightBottom(), regionJson.getExceptions());
+            Region region = regionCreator.createRegion(regionJson);
             region.setClue(regionJson.getCellContent());
             //System.out.print(regionJson.getTotal() + "\n");
             board.addRegion(region);
         }
+    }
+
+    public ArrayList<Region> getRegions() {
+        return board.getRegions();
     }
 
     public ArrayList<Cell> getInitialCells() {

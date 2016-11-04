@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.InputUserView;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.drawers.DrawerFactory;
 import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
 import ar.fiuba.tdd.template.puzzle.aggregators.Aggregator;
 import ar.fiuba.tdd.template.puzzle.aggregators.AggregatorWithConnections;
@@ -46,8 +47,10 @@ public class PuzzleGenerator {
      */
     private void createGame(String gameFile, String gameName, boolean showPuzzleToPlay) {
         Puzzle puzzle = startGeneration(gameFile);
+        ArrayList<Cell> graphicsInitialCells = parser.getGraphicsInitialClues();
+        graphicsInitialCells.addAll(puzzle.getInitialCells());
         PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(),
-                puzzle.getInitialCells(), gameName,parser.getGraphicsInitialClues());
+                gameName, graphicsInitialCells, parser.getInstructionGame(),puzzle.getRegions());
         puzzleView.setVisible(showPuzzleToPlay);
 
         ArrayList<String> winVerificators = parser.getWinVerificators();
@@ -58,7 +61,7 @@ public class PuzzleGenerator {
             winVerificator.setVerificator(this.parser.getCircuitVerificator());
             parsedWinVerificators.add(winVerificator);
         }
-        puzzleController = new PuzzleController(parsedWinVerificators,this.parser.getAgreggator());
+        puzzleController = new PuzzleController(parsedWinVerificators, this.parser.getAgreggator());
         puzzleController.attachElements(puzzleView, puzzle);
         puzzleController.aggregateCellControllers();
     }
@@ -81,6 +84,7 @@ public class PuzzleGenerator {
             parsedRules.add(RulesFactory.getFactory().createRule(rule));
         }
 
+        DrawerFactory.createDrawer(parser.getDrawerName());
         initEnabledButtonsToPlay(parser.getAcceptedKeys());
         ArrayList<Cell> clues = parser.getClues();
         ArrayList<RegionJson> regionJsons = parser.getRegionJsons();

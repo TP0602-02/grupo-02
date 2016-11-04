@@ -45,6 +45,7 @@
       "x": 1,
       "y": 1
     }],
+    "graficable" : true,
     "exceptions": []
   }, {
     "id": 0,
@@ -55,6 +56,7 @@
       "x": 2,
       "y": 5
     }],
+    "graficable" : true,
     "exceptions": [{
       "x":1,
       "y":2
@@ -87,6 +89,7 @@
       "x": 0,
       "y": 6
     }],
+    "graficable" : true,
     "exceptions": []
   }, {
     "id": 0,
@@ -97,6 +100,7 @@
       "x": 2,
       "y": 3
     }],
+    "graficable" : true,
     "exceptions": [{
       "x":2,
       "y":2
@@ -110,6 +114,7 @@
       "x": 2,
       "y": 5
     }],
+    "graficable" : true,
     "exceptions": []
   }, {
     "id": 3,
@@ -120,6 +125,7 @@
       "x": 3,
       "y": 6
     }],
+    "graficable" : true,
     "exceptions": []
   }, {
     "id": 0,
@@ -130,6 +136,7 @@
       "x": 2,
       "y": 0
     }],
+    "graficable" : true,
     "exceptions": []
   }, {
     "id": 4,
@@ -140,6 +147,7 @@
       "x": 3,
       "y": 2
     }],
+    "graficable" : true,
     "exceptions": []
   }, {
     "id": 5,
@@ -150,6 +158,7 @@
       "x": 5,
       "y": 0
     }],
+    "graficable" : true,
     "exceptions": []
 
   },{
@@ -161,6 +170,7 @@
       "x": 3,
       "y": 3
     }],
+    "graficable" : true,
     "exceptions": []
   },{
     "id": 6,
@@ -171,6 +181,7 @@
       "x": 4,
       "y": 5
     }],
+    "graficable" : true,
     "exceptions": []
   },{
     "id": 0,
@@ -181,6 +192,7 @@
       "x": 5,
       "y": 1
     }],
+    "graficable" : true,
     "exceptions": []
   },{
     "id": 0,
@@ -191,6 +203,7 @@
       "x": 6,
       "y": 4
     }],
+    "graficable" : true,
     "exceptions": [{
       "x":4,
       "y":0
@@ -229,6 +242,7 @@
       "x": 5,
       "y": 4
     }],
+    "graficable" : true,
     "exceptions": [{
       "x":4,
       "y":4
@@ -242,6 +256,7 @@
       "x": 4,
       "y": 6
     }],
+    "graficable" : true,
     "exceptions": []
   },{
     "id": 0,
@@ -252,6 +267,7 @@
       "x": 6,
       "y": 0
     }],
+    "graficable" : true,
     "exceptions": []
   },{
     "id": 0,
@@ -262,6 +278,7 @@
       "x": 6,
       "y": 6
     }],
+    "graficable" : true,
     "exceptions": []
   }],
 

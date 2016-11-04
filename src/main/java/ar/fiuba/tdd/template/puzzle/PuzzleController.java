@@ -1,22 +1,17 @@
 package ar.fiuba.tdd.template.puzzle;
 
 import ar.fiuba.tdd.template.Play;
-import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithBorders;
 import ar.fiuba.tdd.template.entity.BaseController;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.FileWriter;
-import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
-import ar.fiuba.tdd.template.userinterface.view.WinGameView;
 import ar.fiuba.tdd.template.winverificators.WinVerificator;
 
 import java.util.ArrayList;
+import javax.swing.*;
 
 /**
  * Created by matiaskamien on 27/09/16.
@@ -79,7 +74,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
             winGame &= verificator.wonTheGame(this.model.getBoard());
         }
         if (winGame) {
-            new WinGameView().setVisible(true);
+            JOptionPane.showMessageDialog(null, "Felicitaciones has ganado!");
         }
     }
 
@@ -104,6 +99,6 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
             }
             playsToWrite.add(newPlay);
         }
-        fileWriter.writePlayResults(playsToWrite,OUTPUT_FILE_ROOT);
+        fileWriter.writePlayResults(playsToWrite, OUTPUT_FILE_ROOT);
     }
 }

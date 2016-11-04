@@ -7,7 +7,9 @@ import java.util.Enumeration;
 import java.util.Properties;
 import javax.swing.*;
 
+@SuppressWarnings("cpdCheck")
 public class StartView extends JFrame {
+
     public static final int screenHeight = 768;
     public static final int screenWidth = 1024;
     private static final int WIDTH_BUTTON = 200;
@@ -28,7 +30,7 @@ public class StartView extends JFrame {
 
 
     //**************GAME JSON FILES*************************
-    private static final String SUDOKU_FILE = "Sudoku.json";
+    public static final String SUDOKU_FILE = "Sudoku.json";
     private static final String KAKURO_FILE = "Kakuro.json";
     private static final String COUNTRY_ROAD_FILE = "CountryRoad.json";
     private static final String INSHI_NO_HEYA_FILE = "InshiNoHeya.json";
@@ -37,7 +39,6 @@ public class StartView extends JFrame {
     private static final String INSHI_NO_HEYA_PLAYS_FILE = "InshiNoHeyaPlays.json";
     private static final int TITLE_POS_Y = 10;
     //*************************************************
-
 
     public StartView(StartGameListener listener) {
         this.listener = listener;
@@ -79,6 +80,7 @@ public class StartView extends JFrame {
             this.add(button);
         }
         createInshiPlayFileButton(posXButtonGame, posYButtonGame);
+
     }
 
     private void createInshiPlayFileButton(int posX, int posY) {

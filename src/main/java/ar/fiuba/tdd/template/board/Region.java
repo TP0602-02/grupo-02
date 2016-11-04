@@ -11,10 +11,20 @@ public class Region {
     private static final String TOTAL = "TOTAL: ";
     private final ArrayList<Cell> cells;
     private CellContent clue;
+    private boolean graficable;
 
     public Region(ArrayList<Cell> cells) {
         this.clue = new BlackContent();
         this.cells = cells;
+    }
+
+    public boolean isGraficable() {
+        return this.graficable;
+
+    }
+
+    public void setGraficable(boolean graficable) {
+        this.graficable = graficable;
     }
 
     public CellContent getClue() {

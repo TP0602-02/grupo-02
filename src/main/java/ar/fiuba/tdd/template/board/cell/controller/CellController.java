@@ -5,6 +5,7 @@ import ar.fiuba.tdd.template.board.cell.ShowCellValuesView;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
+import ar.fiuba.tdd.template.drawers.DrawerFactory;
 import ar.fiuba.tdd.template.entity.BaseController;
 
 
@@ -55,7 +56,8 @@ public class CellController extends BaseController<CellView, Cell> {
     public void deletedValue(String text) {
         if (this.model.isEditable()) {
             this.model.removeContentWithValue(text);
-            view.setValues(model.getShowableValues());
+            DrawerFactory.getInstance().getDrawer().draw(view,model.getShowableValues());
+            //view.setValues(model.getShowableValues());
         }
     }
 
@@ -85,7 +87,9 @@ public class CellController extends BaseController<CellView, Cell> {
     public void addValue(String value) {
         if (this.model.isEditable()) {
             model.setContent(new ValueContent(value));
-            view.setValues(model.getShowableValues());
+            DrawerFactory.getInstance().getDrawer().draw(view,model.getShowableValues());
+
+            // view.setValues(model.getShowableValues());
         }
     }
 

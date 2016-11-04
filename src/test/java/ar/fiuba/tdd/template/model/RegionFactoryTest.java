@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.model;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.RegionCreator;
+import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.cell.model.CellSingleValue;
@@ -25,8 +26,8 @@ public class RegionFactoryTest {
         ArrayList<Cell> exceptions = new ArrayList<>();
         Cell exceptionCell = new CellSingleValue(new Coordinate(1,1));
         exceptions.add(exceptionCell);
-
-        Region region = regionCreator.createRegion(topLeft, bottomRight, exceptions);
+        RegionJson regionJson = new RegionJson(topLeft,bottomRight,exceptions,false);
+        Region region = regionCreator.createRegion(regionJson);
 
         //System.out.print("Number of cells should be 35: (6 * 6 - 1) " + region.getCells().size());
         if (region.getCells().contains(exceptionCell)) {
@@ -47,8 +48,8 @@ public class RegionFactoryTest {
         ArrayList<Cell> exceptions = new ArrayList<>();
         Cell exceptionCell = new CellSingleValue(new Coordinate(1,1));
         exceptions.add(exceptionCell);
-
-        Region region = regionCreator.createRegion(topLeft, bottomRight, exceptions);
+        RegionJson regionJson = new RegionJson(topLeft,bottomRight,exceptions,false);
+        Region region = regionCreator.createRegion(regionJson);
 
         if (region.getCells().contains(board.getCell(new Coordinate(4, 4)))) {
             assert true;

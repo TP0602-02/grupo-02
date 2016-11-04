@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.template.board;
 
 import ar.fiuba.tdd.template.board.cell.view.CellView;
+import ar.fiuba.tdd.template.drawers.DrawerFactory;
 import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 
 import java.awt.*;
@@ -77,11 +78,11 @@ public class InputUserView extends JFrame {
 
 
     public void setCellValuesToDelete(ArrayList<String> cellValuesToDelete) {
-
         this.cellValuesToDelete = cellValuesToDelete;
         valuesToDeleteContainer.removeAll();
         for (String value : cellValuesToDelete) {
-            CellView button = new CellView(value);
+            CellView button = new CellView();
+            DrawerFactory.getInstance().getDrawer().draw(button, value);
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
@@ -92,6 +93,10 @@ public class InputUserView extends JFrame {
             });
             valuesToDeleteContainer.add(button);
         }
+        createDeleteButton();
+    }
+
+    private void createDeleteButton() {
         JButton buttonDeleteOk = new JButton("BORRAR!");
         buttonDeleteOk.setBackground(Color.white);
         buttonDeleteOk.addActionListener(new ActionListener() {
@@ -100,10 +105,9 @@ public class InputUserView extends JFrame {
                 if (!selectedValueToDelete.isEmpty()) {
                     deleteCellContent();
                 } else {
-                    //TODO mostrar mensaje que debe seleccionar primero un vaclor y luego pulsar OK
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un valor para eliminar.");
                 }
                 selectedValueToDelete = "";
-
             }
         });
         valuesToDeleteContainer.add(buttonDeleteOk);
@@ -148,7 +152,8 @@ public class InputUserView extends JFrame {
         int buttonPosX = firstButtonCoordinateX;
         int buttonPosY = firstButtonCoordinateY;
         for (int index = 0; index < this.allowedValuesToInput.size(); ++index) {
-            CellView button = new CellView(this.allowedValuesToInput.get(index));
+            CellView button = new CellView();
+            DrawerFactory.getInstance().getDrawer().draw(button, this.allowedValuesToInput.get(index));
             button.setBounds(buttonPosX, buttonPosY,
                     buttonValuesWidth, buttonValuesWidth);
             add(button);

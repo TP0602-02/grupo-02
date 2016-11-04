@@ -1,6 +1,7 @@
 {
   "cellType": "CELL_MULTIPLE",
   "clueCellsEditables": true,
+  "drawer": "complex_drawer",
   "width": 6,
   "height": 6,
   "keys": ["U","R","L","D"],

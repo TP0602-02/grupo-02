@@ -2,6 +2,7 @@ package ar.fiuba.tdd.template.board.cell;
 
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
+import ar.fiuba.tdd.template.drawers.DrawerFactory;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -66,10 +67,11 @@ public class ShowCellValuesView extends JFrame {
         setVisible(true);
         hideAllButons();
         for (int content = 0; content < values.size(); ++content) {
-            this.buttons.get(content).setValue(values.get(content).getValue());
+            DrawerFactory.getInstance().getDrawer().draw(this.buttons.get(content),
+                    values.get(content).getValue());
             this.buttons.get(content).setVisible(true);
             if (!values.get(content).isDeleteable()) {
-                this.buttons.get(content).setBackground(Color.pink);
+                this.buttons.get(content).setBackground(values.get(content).getColorRepresentation());
             }
         }
     }

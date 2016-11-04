@@ -82,9 +82,9 @@ public class Parser {
 
         readWinVerificators((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readRegions((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
-        readInitialBoardContent((JSONObject) this.boardFile.get(JSON_PARSED_KEY), "initial_board_content",this.clues);
+        readInitialBoardContent((JSONObject) this.boardFile.get(JSON_PARSED_KEY), "initial_board_content", this.clues);
         readInitialBoardContent((JSONObject) this.boardFile.get(JSON_PARSED_KEY),
-                "initial_board_grapshic_content",this.graphicsInitialClues);
+                "initial_board_grapshic_content", this.graphicsInitialClues);
         readSpecialClues((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
 
         // Automatic plays
@@ -103,6 +103,10 @@ public class Parser {
         readCellEditable((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readAgreggator((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readCircuitVerificator((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+    }
+
+    public String getDrawerName() {
+        return (String) ((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).getOrDefault("drawer", "");
     }
 
     private void readAgreggator(JSONObject jsonObject) {
@@ -190,7 +194,7 @@ public class Parser {
     }
 
     @SuppressWarnings("unchecked")
-    private void readInitialBoardContent(JSONObject jsonObject, String id,ArrayList<Cell> cells) {
+    private void readInitialBoardContent(JSONObject jsonObject, String id, ArrayList<Cell> cells) {
 
         CellFactory cellFactory = new CellFactory();
         JSONArray cellContents = (JSONArray) jsonObject.get(id);
@@ -315,9 +319,12 @@ public class Parser {
             ArrayList<Cell> exceptionsRegion = getCellsFromArrayJsonCell((JSONArray) region.get("exceptions"));
             Cell topLeft = fromToRegion.get(TOP_LEFT_CELL_REGION_INDEX);
             Cell rightBottom = fromToRegion.get(RIGHT_BOTTOM_CELL_REGION_INDEX);
+            boolean graficable = (boolean) region.getOrDefault("graficable",false);
             // Regions that have no exceptions will have x and y set to -1
-            this.regionJsons.add(new RegionJson(topLeft, rightBottom, exceptionsRegion,
-                    this.cellContentJsonFactory.getCellContent(idContent)));
+            RegionJson regionJson = new RegionJson(topLeft, rightBottom, exceptionsRegion, graficable);
+            regionJson.setCellContent(this.cellContentJsonFactory.getCellContent(idContent));
+            this.regionJsons.add(regionJson);
+
         }
     }
 
@@ -364,4 +371,7 @@ public class Parser {
         return graphicsInitialClues;
     }
 
+    public String getInstructionGame() {
+        return (String) ((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).getOrDefault("instruction", "");
+    }
 }

@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.template.board;
 
+import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
@@ -12,27 +13,28 @@ public class RegionCreator {
         this.board = board;
     }
 
-    public Region createRegion(Cell topLeft, Cell bottomRight, ArrayList<Cell> exceptions) {
-        return getRegion(topLeft,bottomRight,exceptions);
+    public Region createRegion(RegionJson regionJson) {
+        return getRegion(regionJson);
     }
 
-    private Region getRegion(Cell topLeft, Cell bottomRight, ArrayList<Cell> exceptions) {
+    private Region getRegion(RegionJson regionJson) {
         ArrayList<Cell> regionCells = new ArrayList<>();
-        for ( int coordX = topLeft.getRow(); coordX <= bottomRight.getRow(); coordX++) {
-            for ( int coordY = topLeft.getColumn(); coordY <= bottomRight.getColumn(); coordY++) {
-                Coordinate coordinate = new Coordinate(coordX,coordY);
-                if (!inExceptions(coordinate,exceptions)) {
+        for (int coordX = regionJson.getLeftTop().getRow(); coordX <= regionJson.getRightBottom().getRow(); coordX++) {
+            for (int coordY = regionJson.getLeftTop().getColumn(); coordY <= regionJson.getRightBottom().getColumn(); coordY++) {
+                Coordinate coordinate = new Coordinate(coordX, coordY);
+                if (!inExceptions(coordinate, regionJson.getExceptions())) {
                     regionCells.add(board.getCell(coordinate)); // same cell as board
                 }
             }
         }
-
-        return new Region(regionCells);
+        Region newRegion = new Region(regionCells);
+        newRegion.setGraficable(regionJson.isGraficable());
+        return newRegion;
     }
 
     private boolean inExceptions(Coordinate coordinate, ArrayList<Cell> exceptions) {
-        for ( Cell exception : exceptions) {
-            if ( exception.getRow() == coordinate.getRow() && exception.getColumn() == coordinate.getColumn()) {
+        for (Cell exception : exceptions) {
+            if (exception.getRow() == coordinate.getRow() && exception.getColumn() == coordinate.getColumn()) {
                 return true;
             }
         }

@@ -24,7 +24,7 @@ public class PuzzleGenerator {
     private StartView startView;
 
     public void runGeneration() {
-            startView = new StartView(new StartView.StartGameListener() {
+        startView = new StartView(new StartView.StartGameListener() {
             @Override
             public void loadNewGame(String gameName, String gameFile) {
                 initParse(gameFile, null);
@@ -51,7 +51,7 @@ public class PuzzleGenerator {
         ArrayList<Cell> graphicsInitialCells = parser.getGraphicsInitialClues();
         graphicsInitialCells.addAll(puzzle.getInitialCells());
         PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(),
-                gameName, graphicsInitialCells, parser.getInstructionGame(),puzzle.getRegions());
+                gameName, graphicsInitialCells, parser.getInstructionGame(), puzzle.getRegions());
         puzzleView.setVisible(showPuzzleToPlay);
         initBackListener(puzzleView);
 

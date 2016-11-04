@@ -57,8 +57,8 @@ public class PuzzleView extends JFrame {
         backButton.setVisible(true);
         backButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if(backListener != null) {
+            public void actionPerformed(ActionEvent event) {
+                if (backListener != null) {
                     backListener.onBackClick();
                 }
             }
@@ -187,7 +187,7 @@ public class PuzzleView extends JFrame {
 
     private void addTitle(String game) {
         JLabel titleLabel = new JLabel(game);
-        titleLabel.setBounds(boardInitialPositionPixelX, boardInitialPositionPixelY - 200, 300, 100);
+        titleLabel.setBounds(boardInitialPositionPixelX - 125, boardInitialPositionPixelY - 200, 600, 100);
         titleLabel.setFont(new Font("Serif", Font.PLAIN, 70));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         container.add(titleLabel);

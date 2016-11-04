@@ -61,9 +61,7 @@ public class InputUserView extends JFrame {
     }
 
     public static InputUserView createView(ArrayList<String> allowedValuesToInput) {
-        if (instance == null) {
-            instance = new InputUserView(allowedValuesToInput);
-        }
+        instance = new InputUserView(allowedValuesToInput);
         return instance;
     }
 

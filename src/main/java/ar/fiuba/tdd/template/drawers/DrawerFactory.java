@@ -20,10 +20,9 @@ public class DrawerFactory {
 
 
     public static DrawerFactory createDrawer(String drawerName) {
-        if (instance == null) {
-            instance = new DrawerFactory();
-            initDrawer(drawerName);
-        }
+        instance = new DrawerFactory();
+        initDrawer(drawerName);
+
         return instance;
     }
 
@@ -44,9 +43,7 @@ public class DrawerFactory {
     }
 
     private static void initDrawer(String drawerName) {
-        if (drawer == null) {
-            drawer = (AbstractDrawer) drawersTable.getOrDefault(drawerName, drawersTable.get(CLASSIC_DRAWER));
-        }
+        drawer = (AbstractDrawer) drawersTable.getOrDefault(drawerName, drawersTable.get(CLASSIC_DRAWER));
     }
 
     private static void initTable() {

@@ -2,10 +2,13 @@ package ar.fiuba.tdd.template.rules;
 
 import java.util.Properties;
 
+@SuppressWarnings("CPD-START")
+
 public class RulesFactory {
     private static Properties factory;
     private static RulesFactory instance;
     public static final String SUM_RULE = "Sum rule";
+    public static final String AMOUNT_CONNECTIONS_RULE = "amount connection rule";
     public static final String MULTIPLICATION_RULE = "Multiplication rule";
     public static final String NO_REPEAT_VALUE_RULE = "No repeat value rule";
     public static final String CONECTIONS_IN_CELL_RULE = "Conections in cell rule";
@@ -57,7 +60,11 @@ public class RulesFactory {
         factory.put(NO_REPEAT_VALUE_RULE, new NoRepeatValueRule());
         factory.put(CLOSE_DIAGONAL_CIRCUIT_RULE, new CloseCircuitDiagonalRule());
         factory.put(NUMBER_DIAGONALS_RULE, new NumberOfDiagonalsRule());
+        factory.put(SAME_CLUE_CONNECTION_RULE, new SameClueConnectionRule());
+        factory.put(AMOUNT_CONNECTIONS_RULE,new AmountOfConnectionsRule());
     }
+
+    @SuppressWarnings("CPD-END")
 
     public GenericRule createRule(String ruleName) {
         return (GenericRule) factory.get(ruleName);

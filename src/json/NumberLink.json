@@ -14,6 +14,9 @@
     },
     {
       "rule": "Same clue connection rule"
+    },
+    {
+      "rule": "amount connection rule"
     }
   ],
   "winVerificators": [

@@ -9,6 +9,7 @@ public class RulesFactory {
     public static final String MULTIPLICATION_RULE = "Multiplication rule";
     public static final String NO_REPEAT_VALUE_RULE = "No repeat value rule";
     public static final String CONECTIONS_IN_CELL_RULE = "Conections in cell rule";
+    public static final String SAME_CLUE_CONNECTION_RULE = "Same clue connection rule";
     public static final String CONECTIONS_IN_REGION_RULE = "Conections in region rule";
     public static final String CLOSE_CIRCUIT_RULE = "Close circuit Rule";
     public static final String CLOSE_CIRCUIT_BORDER_RULE = "Close circuit border rule";
@@ -34,7 +35,7 @@ public class RulesFactory {
         return instance;
     }
 
-    private RulesFactory(){
+    private RulesFactory() {
 
     }
 

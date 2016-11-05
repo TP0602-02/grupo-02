@@ -14,11 +14,13 @@ public class StartView extends JFrame {
     private static final int HEIGHT_BUTTON = 50;
 
     //***************GAMES**********************
+    @SuppressWarnings("CPD-START")
     private static final String SUDOKU_NAME = "SUDOKU";
     private static final String KAKURO_NAME = "KAKURO";
     private static final String COUNTRY_ROAD_NAME = "COUNTRY ROAD";
     private static final String INSHI_NO_HEYA_NAME = "INSHI NO HEYA";
     private static final String SLITHERLINK_NAME = "SLITHERLINK";
+    private static final String NUMBERLINK_NAME = "NUMBERLINK";
     private static final String GOKIEN_NANAME_NAME = "GOKIEN NANAME";
     private static final String INSHI_NO_HEYA_PLAYS = "INSHI NO HEYA WITH PLAYS";
 
@@ -33,10 +35,12 @@ public class StartView extends JFrame {
     private static final String COUNTRY_ROAD_FILE = "CountryRoad.json";
     private static final String INSHI_NO_HEYA_FILE = "InshiNoHeya.json";
     private static final String SLITHERLINK_FILE = "Slitherlink.json";
+    private static final String NUMBERLINK_FILE = "Numberlink.json";
     private static final String GOKIEN_NANAME_FILE = "GokienNaname.json";
     private static final String INSHI_NO_HEYA_PLAYS_FILE = "InshiNoHeyaPlays.json";
-    //*************************************************
 
+    //*************************************************
+    @SuppressWarnings("CPD-START")
 
     public StartView(StartGameListener listener) {
         this.listener = listener;
@@ -104,6 +108,7 @@ public class StartView extends JFrame {
         games.put(INSHI_NO_HEYA_NAME, INSHI_NO_HEYA_FILE);
         games.put(SLITHERLINK_NAME, SLITHERLINK_FILE);
         games.put(GOKIEN_NANAME_NAME, GOKIEN_NANAME_FILE);
+        games.put(NUMBERLINK_NAME, NUMBERLINK_FILE);
     }
 
     public interface StartGameListener {

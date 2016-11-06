@@ -44,13 +44,16 @@ public class CloseCircuitDiagonalRule extends GenericCloseCircuitRule {
 
     public void generateMovement(Cell cell, int numberToAdd) {
         switch (numberToAdd) {
-            case SLASH: cell.getContents().add(new ValueContent(1));
-                        cell.getContents().add(new ValueContent(4));
-                        break;
-            case BACK_SLASH: cell.getContents().add(new ValueContent(2));
-                             cell.getContents().add(new ValueContent(3));
-                             break;
-            default: break;
+            case SLASH:
+                cell.getContents().add(new ValueContent(1));
+                cell.getContents().add(new ValueContent(4));
+                break;
+            case BACK_SLASH:
+                cell.getContents().add(new ValueContent(2));
+                cell.getContents().add(new ValueContent(3));
+                break;
+            default:
+                break;
         }
     }
 

@@ -63,6 +63,6 @@ public class AmountOfConnectionsRuleTest {
         cell.getContents().add(new ClueContent(2));
         Cell otherCell = this.board.getCell(new Coordinate(0, 1));
         otherCell.getContents().add(new ValueContent(DOWN));
-        Assert.assertTrue(!this.rule.validate(board, otherCell, LEFT));
+        Assert.assertTrue(this.rule.validate(board, otherCell, LEFT));
     }
 }

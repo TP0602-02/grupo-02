@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class NumberOfBordersInRegionRule extends ConectionRule {
 
-    private boolean exceedsNumberOfBorders(Board board,Cell cell) {
+    private boolean exceedsNumberOfBorders(Board board, Cell cell) {
         ArrayList<Region> regionsToValidate = board.getCellRegions(cell);
         for (Region region : regionsToValidate) {
             int regionTotal = region.getTotal();

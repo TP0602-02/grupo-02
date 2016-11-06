@@ -54,6 +54,9 @@ public class SameClueConnectionRule extends GenericRule {
 
     private boolean validConnection(Board board, Cell cell, int previousDirection) {
         Cell nextCell = this.iterator.getNextCell(board, cell, previousDirection);
+        if (nextCell == null) {
+            return true;
+        }
         if (this.hasClue(nextCell) && this.isSameValue(nextCell)) {
             return true;
         } else if (this.hasClue(nextCell) && !this.isSameValue(nextCell)) {

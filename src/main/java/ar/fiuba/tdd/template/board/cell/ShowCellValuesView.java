@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.template.board.cell;
 
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
+import ar.fiuba.tdd.template.board.cell.view.CellView;
+import ar.fiuba.tdd.template.drawers.DrawerFactory;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class ShowCellValuesView extends JFrame {
     private static int heightWindow = 300;
     private static final String TITLE_VALUES = "VALORES ACTUALES:";
 
-    private ArrayList<JButton> buttons;
+    private ArrayList<CellView> buttons;
 
     private ShowCellValuesView() {
         this.buttons = new ArrayList<>();
@@ -43,7 +45,7 @@ public class ShowCellValuesView extends JFrame {
     private void prepareButtons() {
         int posX = firstButtonCoordinateX;
         for (int index = 0; index < maxButtons; ++index) {
-            JButton button = new JButton();
+            CellView button = new CellView();
             button.setEnabled(false);
             button.setBounds(posX, firstButtonCoordinateY, buttonValuesWidth, buttonValuesWidth);
             posX += spaceBetweenButtons + buttonValuesWidth;
@@ -65,10 +67,11 @@ public class ShowCellValuesView extends JFrame {
         setVisible(true);
         hideAllButons();
         for (int content = 0; content < values.size(); ++content) {
-            this.buttons.get(content).setText(values.get(content).getValue());
+            DrawerFactory.getInstance().getDrawer().draw(this.buttons.get(content),
+                    values.get(content).getValue());
             this.buttons.get(content).setVisible(true);
             if (!values.get(content).isDeleteable()) {
-                this.buttons.get(content).setBackground(Color.pink);
+                this.buttons.get(content).setBackground(values.get(content).getColorRepresentation());
             }
         }
     }

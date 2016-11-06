@@ -3,7 +3,6 @@ package ar.fiuba.tdd.template.circuitverificator;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
-import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.entity.Constants;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
@@ -153,6 +152,6 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
                 return cell;
             }
         }
-        return this.iterator.getNextCell(board, cell, contents.get(0).getNumberValue()); //es lo mismo cual le paso
+        return this.iterator.getNextCell(board, cell, cell.getFirstEditableContent().getNumberValue()); //es lo mismo cual le paso
     }
 }

@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.InputUserView;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.drawers.DrawerFactory;
 import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
 import ar.fiuba.tdd.template.puzzle.aggregators.Aggregator;
 import ar.fiuba.tdd.template.puzzle.aggregators.AggregatorWithConnections;
@@ -20,9 +21,10 @@ import java.util.ArrayList;
 public class PuzzleGenerator {
     private Parser parser;
     private PuzzleController puzzleController;
+    private StartView startView;
 
     public void runGeneration() {
-        StartView startView = new StartView(new StartView.StartGameListener() {
+        startView = new StartView(new StartView.StartGameListener() {
             @Override
             public void loadNewGame(String gameName, String gameFile) {
                 initParse(gameFile, null);
@@ -46,9 +48,12 @@ public class PuzzleGenerator {
      */
     private void createGame(String gameFile, String gameName, boolean showPuzzleToPlay) {
         Puzzle puzzle = startGeneration(gameFile);
+        ArrayList<Cell> graphicsInitialCells = parser.getGraphicsInitialClues();
+        graphicsInitialCells.addAll(puzzle.getInitialCells());
         PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(),
-                puzzle.getInitialCells(), gameName);
+                gameName, graphicsInitialCells, parser.getInstructionGame(), puzzle.getRegions());
         puzzleView.setVisible(showPuzzleToPlay);
+        initBackListener(puzzleView);
 
         ArrayList<String> winVerificators = parser.getWinVerificators();
         // Converts win verificator array of strings into WinVerificator array
@@ -58,16 +63,23 @@ public class PuzzleGenerator {
             winVerificator.setVerificator(this.parser.getCircuitVerificator());
             parsedWinVerificators.add(winVerificator);
         }
-        puzzleController = new PuzzleController(parsedWinVerificators,this.parser.getAgreggator());
+        puzzleController = new PuzzleController(parsedWinVerificators, this.parser.getAgreggator());
         puzzleController.attachElements(puzzleView, puzzle);
         puzzleController.aggregateCellControllers();
     }
 
-    public PuzzleGenerator() {
-        parser = new Parser();
+    private void initBackListener(PuzzleView puzzleView) {
+        puzzleView.setBackListener(new PuzzleView.BackPressed() {
+            @Override
+            public void onBackClick() {
+                puzzleView.setVisible(false);
+                startView.setVisible(true);
+            }
+        });
     }
 
     private void initParse(String fileName, String playsFileName) {
+        parser = new Parser();
         parser.decodeJson(fileName, playsFileName);
 
     }
@@ -81,6 +93,7 @@ public class PuzzleGenerator {
             parsedRules.add(RulesFactory.getFactory().createRule(rule));
         }
 
+        DrawerFactory.createDrawer(parser.getDrawerName());
         initEnabledButtonsToPlay(parser.getAcceptedKeys());
         ArrayList<Cell> clues = parser.getClues();
         ArrayList<RegionJson> regionJsons = parser.getRegionJsons();

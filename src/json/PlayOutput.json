@@ -1,1 +1,41 @@
-{"plays":[{"number":1,"boardStatus":"valid"},{"number":2,"boardStatus":"valid"},{"number":3,"boardStatus":"valid"},{"number":4,"boardStatus":"invalid"}],"board":{"values":[{"position":"[1 ,1]","value":"3"},{"position":"[1 ,2]","value":"4"},{"position":"[1 ,3]","value":"1"},{"position":"[1 ,3]","value":"1"}],"status":"invalid"}}
+{
+  "plays": [
+    {
+      "number": 1,
+      "boardStatus": "valid"
+    },
+    {
+      "number": 2,
+      "boardStatus": "valid"
+    },
+    {
+      "number": 3,
+      "boardStatus": "valid"
+    },
+    {
+      "number": 4,
+      "boardStatus": "invalid"
+    }
+  ],
+  "board": {
+    "values": [
+      {
+        "position": "[1 ,1]",
+        "value": "3"
+      },
+      {
+        "position": "[1 ,2]",
+        "value": "4"
+      },
+      {
+        "position": "[1 ,3]",
+        "value": "1"
+      },
+      {
+        "position": "[1 ,3]",
+        "value": "1"
+      }
+    ],
+    "status": "invalid"
+  }
+}

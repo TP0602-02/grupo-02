@@ -14,14 +14,14 @@ public abstract class NumberRule extends GenericRule {
         ArrayList<Region> regionsToValidate = this.getRegions(board, cell, numberToAdd);
         for (Region region : regionsToValidate) {
             this.initializeTotals(region);
-            if (!this.validateRegion(region,cell,numberToAdd)) {
+            if (!this.validateRegion(region, cell, numberToAdd)) {
                 return false;
             }
         }
         return true;
     }
 
-    protected ArrayList<Region> getRegions(Board board,Cell cell, int numberToAdd) {
+    protected ArrayList<Region> getRegions(Board board, Cell cell, int numberToAdd) {
         return board.getCellRegions(cell);
     }
 

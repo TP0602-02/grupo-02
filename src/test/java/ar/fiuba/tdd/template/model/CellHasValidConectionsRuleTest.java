@@ -12,12 +12,12 @@ import org.junit.Test;
  * Created by alazraqui on 13/10/2016.
  */
 public class CellHasValidConectionsRuleTest {
-    private Board board;
-    private CellHasValidConectionsRule rule;
     private static final int LEFT = 1;
     private static final int RIGHT = 2;
     private static final int UP = 3;
     private static final int DOWN = 4;
+    private Board board;
+    private CellHasValidConectionsRule rule;
 
     @Before
     public void setUp() {

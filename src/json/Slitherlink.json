@@ -1,5 +1,7 @@
 {
   "cellType": "CELL_MULTIPLE",
+  "clueCellsEditables": true,
+  "drawer": "complex_drawer",
   "width": 6,
   "height": 6,
   "keys": ["U","R","L","D"],
@@ -404,5 +406,91 @@
   }
   ],
   "initial_board_content":[],
+  "initial_board_grapshic_content":[
+    {
+      "x": 0,
+      "y": 4,
+      "content": [{
+        "id": 1
+      }]
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "content": [{
+        "id": 2
+      }]
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "content": [{
+        "id": 3
+      }]
+    },
+    {
+      "x": 1,
+      "y": 4,
+      "content": [{
+        "id": 4
+      }]
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "content": [{
+        "id": 5
+      }]
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "content": [{
+        "id": 6
+      }]
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "content": [{
+        "id": 7
+      }]
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "content": [{
+        "id": 8
+      }]
+    },
+    {
+      "x": 4,
+      "y": 1,
+      "content": [{
+        "id": 9
+      }]
+    },
+    {
+      "x": 4,
+      "y": 4,
+      "content": [{
+        "id": 10
+      }]
+    },
+    {
+      "x": 4,
+      "y": 5,
+      "content": [{
+        "id": 11
+      }]
+    },
+    {
+      "x": 5,
+      "y": 1,
+      "content": [{
+        "id": 12
+      }]
+    }
+  ],
   "special_clues":[]
 }

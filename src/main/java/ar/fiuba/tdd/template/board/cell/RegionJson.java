@@ -10,11 +10,21 @@ public class RegionJson {
     private Cell rightBottom;
     private ArrayList<Cell> exceptions;
     private CellContent cellContent;
+    private boolean graficable;
 
-    public RegionJson(Cell leftTop, Cell rightBottom, ArrayList<Cell> exceptions, CellContent cellContent) {
+
+    public RegionJson(Cell leftTop, Cell rightBottom, ArrayList<Cell> exceptions, boolean graficable) {
         this.leftTop = leftTop;
         this.rightBottom = rightBottom;
         this.exceptions = exceptions;
+        this.graficable = graficable;
+    }
+
+    public boolean isGraficable() {
+        return graficable;
+    }
+
+    public void setCellContent(CellContent cellContent) {
         this.cellContent = cellContent;
     }
 

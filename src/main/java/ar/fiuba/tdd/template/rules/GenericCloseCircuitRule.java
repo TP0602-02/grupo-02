@@ -6,8 +6,6 @@ import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithBorders;
-import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithoutBorders;
 
 /**
  * Created by matiaskamien on 15/10/16.

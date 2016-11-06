@@ -18,9 +18,11 @@ public class AggregatorWithConnections extends AbstractAgreggator {
 
     @Override
     public void runPlay(Play play, Board board) {
-        Integer valueToAdd = SpecialCharactersParser.getInstance().getValueOf(play.getSelectedCellValue());
-        getCellControllerOfCell(play.getSelectedCell()).addValue(valueToAdd.toString());
-        Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), valueToAdd, board);
+        //Integer valueToAdd = SpecialCharactersParser.getInstance().getValueOf(play.getSelectedCellValue());
+        //getCellControllerOfCell(play.getSelectedCell()).addValue(valueToAdd.toString());
+        getCellControllerOfCell(play.getSelectedCell()).addValue(play.getSelectedCellValue());
+        // Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), valueToAdd, board);
+        Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), play.getSelectedCellValue(), board);
         if (newPLayToRun.getValidPlay()) {
             getCellControllerOfCell(newPLayToRun.getSelectedCell()).addValue(newPLayToRun.getSelectedCellValue());
         }
@@ -29,19 +31,22 @@ public class AggregatorWithConnections extends AbstractAgreggator {
     @Override
     public void deleteAction(Cell cell, String valueToDelete, Board board) {
         getCellControllerOfCell(cell).deletedValue(valueToDelete);
-        Play newPLayToRun = getPlayFromCellConnection(cell,Integer.parseInt(valueToDelete), board);
+        Play newPLayToRun = getPlayFromCellConnection(cell, valueToDelete, board);
         if (newPLayToRun.getValidPlay()) {
             getCellControllerOfCell(newPLayToRun.getSelectedCell()).deletedValue(newPLayToRun.getSelectedCellValue());
         }
     }
 
 
-    private Play getPlayFromCellConnection(Cell cell, Integer valueOfConnection, Board board) {
+    private Play getPlayFromCellConnection(Cell cell, String valueOfConnection, Board board) {
         BoardIteratorConnections iterator = new BoardIteratorConnections();
+        Integer valueToAdd = SpecialCharactersParser.getInstance().getValueOf(valueOfConnection);
+
         Cell nextCell = iterator.getNextCell(board,
-                cell, valueOfConnection);
-        Integer opositeDirection = iterator.getOppositeDirection(valueOfConnection);
-        Play newPlay = new Play(nextCell, opositeDirection.toString());
+                cell, valueToAdd);
+        //Integer opositeDirection = iterator.getOppositeDirection(valueToAdd);
+        String opositeDirectionString = iterator.getNameOppositeDirection(valueOfConnection);
+        Play newPlay = new Play(nextCell, opositeDirectionString);
         newPlay.setValidPlay(nextCell != null);
         return newPlay;
     }

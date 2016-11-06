@@ -1,7 +1,6 @@
 package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.rules.ConectionInsideBoardRule;
 import org.junit.Assert;
@@ -12,12 +11,12 @@ import org.junit.Test;
  * Created by alazraqui on 13/10/2016.
  */
 public class ConectionInsideBoardRuleTest {
-    private Board board;
-    private ConectionInsideBoardRule rule;
     private static final int LEFT = 1;
     private static final int RIGHT = 2;
     private static final int UP = 3;
     private static final int DOWN = 4;
+    private Board board;
+    private ConectionInsideBoardRule rule;
 
     @Before
     public void setUp() {

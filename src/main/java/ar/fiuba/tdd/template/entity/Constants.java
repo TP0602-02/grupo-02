@@ -1,8 +1,5 @@
 package ar.fiuba.tdd.template.entity;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 /**
  * Created by Nicolas on 15/10/2016.
  */

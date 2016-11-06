@@ -26,7 +26,7 @@ public class ClueContent extends CellContentWithValue {
 
     @Override
     public Color getColorRepresentation() {
-        return Color.RED;
+        return Color.PINK;
     }
 
     @Override

@@ -33,12 +33,14 @@ public class Parser {
     private JSONObject boardFile;
     private JSONObject playsFile;
     private String cellType;
+    private boolean clueCellsEditables;
     private AbstractAgreggator agreggator;
     private CircuitVerificator circuitVerificator;
 
 
     private ArrayList<String> acceptedKeys = new ArrayList<>();
     private ArrayList<Cell> clues = new ArrayList<>();
+    private ArrayList<Cell> graphicsInitialClues = new ArrayList<>();
     private ArrayList<String> rules = new ArrayList<>();
     private ArrayList<String> winVerificators = new ArrayList<>();
     private ArrayList<RegionJson> regionJsons;
@@ -80,7 +82,9 @@ public class Parser {
 
         readWinVerificators((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readRegions((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
-        readInitialBoardContent((JSONObject) this.boardFile.get(JSON_PARSED_KEY), "initial_board_content");
+        readInitialBoardContent((JSONObject) this.boardFile.get(JSON_PARSED_KEY), "initial_board_content", this.clues);
+        readInitialBoardContent((JSONObject) this.boardFile.get(JSON_PARSED_KEY),
+                "initial_board_grapshic_content", this.graphicsInitialClues);
         readSpecialClues((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
 
         // Automatic plays
@@ -96,8 +100,13 @@ public class Parser {
         readCellContentJson((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readRules((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readCellType((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+        readCellEditable((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readAgreggator((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readCircuitVerificator((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
+    }
+
+    public String getDrawerName() {
+        return (String) ((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).getOrDefault("drawer", "");
     }
 
     private void readAgreggator(JSONObject jsonObject) {
@@ -122,6 +131,10 @@ public class Parser {
 
     private void readCellType(JSONObject jsonObject) {
         this.cellType = (String) jsonObject.get("cellType");
+    }
+
+    private void readCellEditable(JSONObject jsonObject) {
+        this.clueCellsEditables = (Boolean) jsonObject.getOrDefault("clueCellsEditables", false);
     }
 
     private static Long readWidth(JSONObject jsonObject) {
@@ -181,7 +194,7 @@ public class Parser {
     }
 
     @SuppressWarnings("unchecked")
-    private void readInitialBoardContent(JSONObject jsonObject, String id) {
+    private void readInitialBoardContent(JSONObject jsonObject, String id, ArrayList<Cell> cells) {
 
         CellFactory cellFactory = new CellFactory();
         JSONArray cellContents = (JSONArray) jsonObject.get(id);
@@ -203,8 +216,9 @@ public class Parser {
 
                 //createContent(newCell, id, value.toString());
                 newCell.setContent(this.cellContentJsonFactory.getCellContent(idContent));
+                newCell.setEditable(this.clueCellsEditables);
             }
-            this.clues.add(newCell);
+            cells.add(newCell);
         }
     }
 
@@ -222,6 +236,7 @@ public class Parser {
             int positionY = getIntFromJsonObject(cellClue, COORDINATE_Y);
             JSONArray clues = (JSONArray) cellClue.get("clues");
             Cell newCell = cellFactory.createCell("multiple_values", new Coordinate(positionX, positionY));
+            newCell.setEditable(this.isClueCellsEditables());
             for (JSONObject clueContentJson : (Iterable<JSONObject>) clues) { // for every clue
                 // the first value goes below, the second value above
                 int idContent = getIntFromJsonObject(clueContentJson, ID);
@@ -282,7 +297,7 @@ public class Parser {
 
             Cell newCell = cellFactory.createCell(CellFactory.CELL_SINGLE_VALUE,
                     new Coordinate(positionX, positionY)); // create a single cell
-
+            newCell.setEditable(this.isClueCellsEditables());
             // Plays are considered ValueContent
             //ValueContent valueContent = new ValueContent(String.valueOf(play.get("value")));
             Play newPlay = new Play(newCell, String.valueOf(play.get("value")));
@@ -304,9 +319,12 @@ public class Parser {
             ArrayList<Cell> exceptionsRegion = getCellsFromArrayJsonCell((JSONArray) region.get("exceptions"));
             Cell topLeft = fromToRegion.get(TOP_LEFT_CELL_REGION_INDEX);
             Cell rightBottom = fromToRegion.get(RIGHT_BOTTOM_CELL_REGION_INDEX);
+            boolean graficable = (boolean) region.getOrDefault("graficable",false);
             // Regions that have no exceptions will have x and y set to -1
-            this.regionJsons.add(new RegionJson(topLeft, rightBottom, exceptionsRegion,
-                    this.cellContentJsonFactory.getCellContent(idContent)));
+            RegionJson regionJson = new RegionJson(topLeft, rightBottom, exceptionsRegion, graficable);
+            regionJson.setCellContent(this.cellContentJsonFactory.getCellContent(idContent));
+            this.regionJsons.add(regionJson);
+
         }
     }
 
@@ -317,6 +335,7 @@ public class Parser {
         for (JSONObject jsonObject : (Iterable<JSONObject>) cellJsonArray) {
             Cell newCell = cellFactory.createCell("multiple_value",
                     new Coordinate(getIntFromJsonObject(jsonObject, COORDINATE_X), getIntFromJsonObject(jsonObject, COORDINATE_Y)));
+            newCell.setEditable(this.isClueCellsEditables());
             cells.add(newCell);
         }
         return cells;
@@ -341,5 +360,18 @@ public class Parser {
 
     public CircuitVerificator getCircuitVerificator() {
         return circuitVerificator;
+    }
+
+
+    public boolean isClueCellsEditables() {
+        return clueCellsEditables;
+    }
+
+    public ArrayList<Cell> getGraphicsInitialClues() {
+        return graphicsInitialClues;
+    }
+
+    public String getInstructionGame() {
+        return (String) ((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).getOrDefault("instruction", "");
     }
 }

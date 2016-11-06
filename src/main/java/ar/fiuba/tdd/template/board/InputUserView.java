@@ -1,5 +1,9 @@
 package ar.fiuba.tdd.template.board;
 
+import ar.fiuba.tdd.template.board.cell.view.CellView;
+import ar.fiuba.tdd.template.drawers.DrawerFactory;
+import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +11,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+
+
 
 
 /**
@@ -15,20 +22,18 @@ import javax.swing.*;
 
 public class InputUserView extends JFrame {
 
-    private static InputUserView instance;
-
     public static final int buttonPerRow = 3;
     public static final int buttonValuesWidth = 50;
     public static final int spaceBetweenButtons = 15;
     public static final int firstButtonCoordinateX = 10;
     public static final int firstButtonCoordinateY = 80;
-    public static final int inputUserViewWidth = 450;
+    public static final int inputUserViewWidth = 435;
     public static final int inputUserViewHeight = 600;
-
-    private JTextField textInput;
-    private JButton botonOk;
+    private static InputUserView instance;
     JButton backspaceButton;
     JButton deleteContentButton;
+    private JTextField textInput;
+    private JButton botonOk;
     private UserInputListener listener;
     private ArrayList<String> allowedValuesToInput;
     private ArrayList<String> cellValuesToDelete;
@@ -40,10 +45,7 @@ public class InputUserView extends JFrame {
         this.allowedValuesToInput = allowedValuesToInput;
         this.selectedValueToDelete = "";
         setLayout(null);
-        textInput = new JTextField();
-        textInput.setEditable(false);
-        textInput.setBounds(firstButtonCoordinateX, firstButtonCoordinateY - 50, 150, 20);
-        add(textInput);
+        initTextInput();
         valuesToDeleteContainer = new JPanel();
         valuesToDeleteContainer.setBounds(inputUserViewWidth / 2, 10, inputUserViewWidth / 2, inputUserViewHeight / 2);
         add(valuesToDeleteContainer);
@@ -57,10 +59,44 @@ public class InputUserView extends JFrame {
         setMinimumSize(new Dimension(inputUserViewWidth, inputUserViewHeight));
     }
 
+    private void initTextInput() {
+        JLabel label = new JLabel("Ingrese valor con teclado o presione los botones disponibles");
+        label.setBounds(firstButtonCoordinateX, 1, inputUserViewWidth - 10, 30);
+        label.setVisible(true);
+        add(label);
+        textInput = new JTextField();
+        textInput.setEditable(true);
+        textInput.setBounds(firstButtonCoordinateX, firstButtonCoordinateY - 50, 150, 20);
+        add(textInput);
+        initKeyListener();
+    }
+
+    private void initKeyListener() {
+        textInput.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent event) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent event) {
+                if (event.getKeyCode() == KeyEvent.VK_ENTER) {
+                    inputTextIsReady();
+                }
+                if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    setVisible(false);
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent event) {
+
+            }
+        });
+    }
+
     public static InputUserView createView(ArrayList<String> allowedValuesToInput) {
-        if (instance == null) {
-            instance = new InputUserView(allowedValuesToInput);
-        }
+        instance = new InputUserView(allowedValuesToInput);
         return instance;
     }
 
@@ -75,19 +111,25 @@ public class InputUserView extends JFrame {
 
 
     public void setCellValuesToDelete(ArrayList<String> cellValuesToDelete) {
-
         this.cellValuesToDelete = cellValuesToDelete;
         valuesToDeleteContainer.removeAll();
         for (String value : cellValuesToDelete) {
-            JButton button = new JButton(value);
+            CellView button = new CellView();
+            DrawerFactory.getInstance().getDrawer().draw(button, value);
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
-                    selectedValueToDelete = button.getText();
+                    selectedValueToDelete = button.getValue();
+                    cleanAnySelectedValueToDelete();
+                    button.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.RED, Color.RED));
                 }
             });
             valuesToDeleteContainer.add(button);
         }
+        createDeleteButton();
+    }
+
+    private void createDeleteButton() {
         JButton buttonDeleteOk = new JButton("BORRAR!");
         buttonDeleteOk.setBackground(Color.white);
         buttonDeleteOk.addActionListener(new ActionListener() {
@@ -96,13 +138,19 @@ public class InputUserView extends JFrame {
                 if (!selectedValueToDelete.isEmpty()) {
                     deleteCellContent();
                 } else {
-                    //TODO mostrar mensaje que debe seleccionar primero un vaclor y luego pulsar OK
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un valor para eliminar.");
                 }
                 selectedValueToDelete = "";
-
             }
         });
         valuesToDeleteContainer.add(buttonDeleteOk);
+    }
+
+    private void cleanAnySelectedValueToDelete() {
+        for (int i = 0; i < valuesToDeleteContainer.getComponentCount(); i++) {
+            ((JButton) valuesToDeleteContainer.getComponents()[i])
+                    .setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+        }
     }
 
     public void showInputUserView() {
@@ -137,7 +185,8 @@ public class InputUserView extends JFrame {
         int buttonPosX = firstButtonCoordinateX;
         int buttonPosY = firstButtonCoordinateY;
         for (int index = 0; index < this.allowedValuesToInput.size(); ++index) {
-            JButton button = new JButton(this.allowedValuesToInput.get(index));
+            CellView button = new CellView();
+            DrawerFactory.getInstance().getDrawer().draw(button, this.allowedValuesToInput.get(index));
             button.setBounds(buttonPosX, buttonPosY,
                     buttonValuesWidth, buttonValuesWidth);
             add(button);
@@ -151,7 +200,7 @@ public class InputUserView extends JFrame {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
-                    textInput.setText(textInput.getText() + ((JButton) event.getSource()).getText());
+                    textInput.setText(textInput.getText() + ((CellView) event.getSource()).getValue());
                 }
             });
         }
@@ -197,6 +246,7 @@ public class InputUserView extends JFrame {
     public void setVisible(boolean visible) {
         super.setVisible(visible);
         textInput.setText("");
+        textInput.requestFocus();
     }
 
     public void setListener(UserInputListener listener) {
@@ -207,17 +257,11 @@ public class InputUserView extends JFrame {
         String text = textInput.getText();
         setVisible(false);
         valuesToDeleteContainer.setVisible(false);
-        if (listener != null && !text.isEmpty()) {
+        if (listener != null && allowedValuesToInput.contains(text)) {
             listener.inputedText(text);
         }
     }
 
-    /*@Override
-    public void keyReleased(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.VK_ENTER) {
-            inputTextIsReady();
-        }
-    }*/
 
     public interface UserInputListener {
         public void inputedText(String text);

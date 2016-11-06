@@ -23,6 +23,7 @@ public class StartView extends JFrame {
     private static final String NUMBERLINK_NAME = "NUMBERLINK";
     private static final String GOKIEN_NANAME_NAME = "GOKIEN NANAME";
     private static final String INSHI_NO_HEYA_PLAYS = "INSHI NO HEYA WITH PLAYS";
+    private static final String RIPPLE_EFFECT = "RIPPLE EFFECT";
 
     //**************************************************
 
@@ -38,9 +39,11 @@ public class StartView extends JFrame {
     private static final String NUMBERLINK_FILE = "Numberlink.json";
     private static final String GOKIEN_NANAME_FILE = "GokienNaname.json";
     private static final String INSHI_NO_HEYA_PLAYS_FILE = "InshiNoHeyaPlays.json";
-
+    private static final int TITLE_POS_Y = 10;
     //*************************************************
-    @SuppressWarnings("CPD-START")
+    private static final String RIPPLE_EFFECT_FILE = "RippleEffect.json";
+    //*************************************************
+    @SuppressWarnings("CPD-END")
 
     public StartView(StartGameListener listener) {
         this.listener = listener;
@@ -51,9 +54,8 @@ public class StartView extends JFrame {
     public void start() {
         setSize(screenWidth, screenHeight);
         JLabel title = new JLabel("NIKOLI GAMES");
-        title.setBounds(screenWidth / 3, 10, 300, 40);
+        title.setBounds(screenWidth / 3, TITLE_POS_Y, 300, 40);
         title.setFont(new Font("Serif", Font.PLAIN, 30));
-        title.setHorizontalAlignment(JLabel.CENTER);
         add(title);
         initGames();
         createButtons();
@@ -65,7 +67,7 @@ public class StartView extends JFrame {
     private void createButtons() {
         Enumeration enumeration = games.propertyNames();
         int posXButtonGame = screenWidth / 3;
-        int posYButtonGame = screenWidth / 4;
+        int posYButtonGame = TITLE_POS_Y + 60;
         int spaceBetweenButtons = 15;
         while (enumeration.hasMoreElements()) {
             final String gameName = (String) enumeration.nextElement();
@@ -99,6 +101,7 @@ public class StartView extends JFrame {
         this.add(buttonInshiPlaysFile);
     }
 
+    @SuppressWarnings("CPD-START")
 
     private void initGames() {
         games = new Properties();
@@ -108,8 +111,11 @@ public class StartView extends JFrame {
         games.put(INSHI_NO_HEYA_NAME, INSHI_NO_HEYA_FILE);
         games.put(SLITHERLINK_NAME, SLITHERLINK_FILE);
         games.put(GOKIEN_NANAME_NAME, GOKIEN_NANAME_FILE);
+        games.put(RIPPLE_EFFECT,RIPPLE_EFFECT_FILE);
         games.put(NUMBERLINK_NAME, NUMBERLINK_FILE);
     }
+
+    @SuppressWarnings("CPD-END")
 
     public interface StartGameListener {
         public void loadNewGame(String gameName, String gameFile);

@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.template.rules;
 
+import ar.fiuba.tdd.template.winverificators.WinVerificator;
+
 import java.util.Properties;
 
 @SuppressWarnings("CPD-START")
@@ -23,7 +25,8 @@ public class RulesFactory {
     public static final String NUMBER_BORDERS_IN_REGION_RULE = "Number of borders in region rule";
     public static final String CLOSE_DIAGONAL_CIRCUIT_RULE = "Close circuit diagonal rule";
     public static final String NUMBER_DIAGONALS_RULE = "Number of diagonals in region";
-
+    public static final String VALID_REGION_RANGE_RULE = "Valid region range rule";
+    public static final String DISTANCE_RULE = "Distance rule";
 
     private static void initFactory() {
         factory = new Properties();
@@ -36,10 +39,6 @@ public class RulesFactory {
             initFactory();
         }
         return instance;
-    }
-
-    private RulesFactory() {
-
     }
 
     private static void addSecondRules() {
@@ -60,14 +59,12 @@ public class RulesFactory {
         factory.put(NO_REPEAT_VALUE_RULE, new NoRepeatValueRule());
         factory.put(CLOSE_DIAGONAL_CIRCUIT_RULE, new CloseCircuitDiagonalRule());
         factory.put(NUMBER_DIAGONALS_RULE, new NumberOfDiagonalsRule());
+        factory.put(DISTANCE_RULE, new NoRepeatValueInDistanceRule());
+        factory.put(VALID_REGION_RANGE_RULE, new ValidRegionRangeRule());
+        factory.put(NO_REPEAT_VALUE_RULE, new NoRepeatValueRule());
+        factory.put(CLOSE_DIAGONAL_CIRCUIT_RULE, new CloseCircuitDiagonalRule());
         factory.put(SAME_CLUE_CONNECTION_RULE, new SameClueConnectionRule());
-        factory.put(AMOUNT_CONNECTIONS_RULE,new AmountOfConnectionsRule());
-    }
-
-    @SuppressWarnings("CPD-END")
-
-    public GenericRule createRule(String ruleName) {
-        return (GenericRule) factory.get(ruleName);
+        factory.put(AMOUNT_CONNECTIONS_RULE, new AmountOfConnectionsRule());
     }
 
     private static void putRules() {
@@ -78,7 +75,16 @@ public class RulesFactory {
     private static void addFirstRules() {
         factory.put(CONECTIONS_IN_CELL_RULE, new CellHasValidConectionsRule());
         factory.put(CONECTIONS_INSIDE_BOARD_RULE, new ConectionInsideBoardRule());
-
     }
+
+    @SuppressWarnings("CPD-END")
+
+    private RulesFactory() {
+    }
+
+    public GenericRule createRule(String rule) {
+        return (GenericRule) factory.get(rule);
+    }
+
 }
 

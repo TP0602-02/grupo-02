@@ -3,37 +3,32 @@ package ar.fiuba.tdd.template.board.cell.view;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
 /**
  * Created by Nicolas on 27/9/2016.
  */
-public class CellView extends JLabel {
+public class CellView extends JButton {
 
     private ClickCellListener listener;
+    private String value;
 
     public CellView() {
-        super("", SwingConstants.CENTER);
         setOpaque(true);
         setBackground(Color.white);
         setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.black, Color.black));
 
     }
 
-    public CellView(String text) {
-        this();
-        setText(text);
+    public String getValue() {
+        return value;
     }
 
-    public void setValues(ArrayList<String> values) {
-        removeAll();
-        setText("");
-        for (String value : values) {
-            setText(value);
-        }
+    public void setValue(String value) {
+        this.value = value;
     }
+
 
     public interface ClickCellListener {
         public void onClickForWrite();

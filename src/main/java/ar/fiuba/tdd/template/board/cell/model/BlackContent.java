@@ -13,13 +13,13 @@ public class BlackContent extends CellContent {
     }
 
     @Override
-    public int getNumberValue() {
-        return -1;
+    public void setValue(String value) {
+
     }
 
     @Override
-    public void setValue(String value) {
-
+    public int getNumberValue() {
+        return -1;
     }
 
     @Override

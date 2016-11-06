@@ -7,17 +7,22 @@ import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
 /**
  * Created by matiaskamien on 02/11/16.
  */
-public class AmountOfConnectionsRule extends GenericRule {
-    BoardIteratorConnections iterator = new BoardIteratorConnections();
+public class AmountOfConnectionsRule extends ConectionRule {
 
     @Override
-    public boolean validate(Board board, Cell cell, int numberToAdd) {
-        Cell nextCell = this.iterator.getNextCell(board, cell, numberToAdd);
-        return ((this.clueWithoutConnections(cell) && this.clueWithoutConnections(nextCell)));
+    public boolean validateConection(Board board, Cell cell, Cell nextCell) {
+        return validClueConnections(cell) && validClueConnections(nextCell);
     }
 
 
-    private boolean clueWithoutConnections(Cell cell) {
-        return (!cell.isSummable() && cell.getSummableContents().size() == 0);
+    private boolean validClueConnections(Cell cell) {
+        if (hasClue(cell)) {
+            return (cell.getSummableContents().size() == 0);
+        }
+        return true;
+    }
+
+    private boolean hasClue(Cell cell) {
+        return (cell.getContents().size() - cell.getSummableContents().size() > 0);
     }
 }

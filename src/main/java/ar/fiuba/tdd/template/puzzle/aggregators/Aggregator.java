@@ -2,10 +2,8 @@ package ar.fiuba.tdd.template.puzzle.aggregators;
 
 import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
-
-import java.util.ArrayList;
+import ar.fiuba.tdd.template.board.cell.model.CellContent;
 
 /**
  * Created by alazraqui on 18/10/2016.

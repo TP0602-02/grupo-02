@@ -7,7 +7,6 @@ import ar.fiuba.tdd.template.entity.Constants;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 /**
  * Created by alazraqui on 16/10/2016.
@@ -72,7 +71,8 @@ public class BoardIteratorConnections {
                 return board.getCell(new Coordinate(previousCell.getRow() + 1, previousCell.getColumn() - 1));
             case Constants.DOWN_RIGHT_VALUE:
                 return board.getCell(new Coordinate(previousCell.getRow() + 1, previousCell.getColumn() + 1));
-            default: return null;
+            default:
+                return null;
         }
     }
 
@@ -145,11 +145,16 @@ public class BoardIteratorConnections {
 
     public int getOppositeCorner(CellContent corner) {
         switch (corner.getNumberValue()) {
-            case Constants.UPPER_LEFT_CORNER: return Constants.LOWER_RIGHT_CORNER;
-            case Constants.UPPER_RIGHT_CORNER: return Constants.LOWER_LEFT_CORNER;
-            case Constants.LOWER_LEFT_CORNER: return Constants.UPPER_RIGHT_CORNER;
-            case Constants.LOWER_RIGHT_CORNER: return Constants.UPPER_LEFT_CORNER;
-            default: return -1;
+            case Constants.UPPER_LEFT_CORNER:
+                return Constants.LOWER_RIGHT_CORNER;
+            case Constants.UPPER_RIGHT_CORNER:
+                return Constants.LOWER_LEFT_CORNER;
+            case Constants.LOWER_LEFT_CORNER:
+                return Constants.UPPER_RIGHT_CORNER;
+            case Constants.LOWER_RIGHT_CORNER:
+                return Constants.UPPER_LEFT_CORNER;
+            default:
+                return -1;
         }
     }
 
@@ -163,13 +168,14 @@ public class BoardIteratorConnections {
                 return this.getLimitNotNullCells(board, cell, this.lowerLeftValues);
             case Constants.LOWER_RIGHT_CORNER:
                 return this.getLimitNotNullCells(board, cell, this.lowerRightValues);
-            default: return null;
+            default:
+                return null;
         }
     }
 
     private ArrayList<Cell> getLimitNotNullCells(Board board, Cell cell, ArrayList<Integer> values) {
         ArrayList<Cell> cells = new ArrayList<Cell>();
-        for (Integer value: values) {
+        for (Integer value : values) {
             cells.add(this.getNextCell(board, cell, value));
         }
         return this.getNotNullCells(cells);
@@ -178,7 +184,7 @@ public class BoardIteratorConnections {
 
     private ArrayList<Cell> getNotNullCells(ArrayList<Cell> possibleCells) {
         ArrayList<Cell> limitCells = new ArrayList<Cell>();
-        for (Cell possibleCell:possibleCells) {
+        for (Cell possibleCell : possibleCells) {
             if (possibleCell != null) {
                 limitCells.add(possibleCell);
             }
@@ -187,14 +193,14 @@ public class BoardIteratorConnections {
     }
 
     public boolean cellsAreConnected(Cell limitCell, Cell cell) {
-        boolean hasSameValue = cellsHasSameValue(limitCell,cell);
-        boolean areDiagonals = cellsAreDiagonals(limitCell,cell);
+        boolean hasSameValue = cellsHasSameValue(limitCell, cell);
+        boolean areDiagonals = cellsAreDiagonals(limitCell, cell);
         return (areDiagonals == hasSameValue);
     }
 
     private boolean cellsAreDiagonals(Cell limitCell, Cell cell) {
-        Coordinate coordFirstCell = new Coordinate(limitCell.getRow(),limitCell.getColumn());
-        Coordinate coordSecondCell = new Coordinate(cell.getRow(),cell.getColumn());
+        Coordinate coordFirstCell = new Coordinate(limitCell.getRow(), limitCell.getColumn());
+        Coordinate coordSecondCell = new Coordinate(cell.getRow(), cell.getColumn());
         return (coordFirstCell.getRow() != coordSecondCell.getRow()
                 && coordFirstCell.getColumn() != coordSecondCell.getColumn());
     }

@@ -346,6 +346,7 @@
     }],
     "exceptions": []
   }],
+  "initial_board_grapshic_content":[],
   "initial_board_content":[
     {"x":0,
       "y":1,
@@ -498,5 +499,6 @@
         {"id":30}
       ]}
   ],
-  "special_clues":[]
+  "special_clues":[],
+  "instruction": "No se pueden repetir valores en una misma fila.\nNo se pueden repetir valores en una misma columna.\nNo se pueden repetir valores en una misma region.\n"
 }

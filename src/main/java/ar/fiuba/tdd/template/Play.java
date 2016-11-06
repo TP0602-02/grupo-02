@@ -20,12 +20,12 @@ public class Play {
         this.selectedValue = selectedValue;
     }
 
-    public void setValidPlay(boolean validPlay) {
-        this.validPlay = validPlay;
-    }
-
     public boolean getValidPlay() {
         return this.validPlay;
+    }
+
+    public void setValidPlay(boolean validPlay) {
+        this.validPlay = validPlay;
     }
 
     public Cell getSelectedCell() {

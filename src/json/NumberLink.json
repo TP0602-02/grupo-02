@@ -1,5 +1,6 @@
 {
   "cellType": "CELL_MULTIPLE",
+  "clueCellsEditables": true,
   "width": 10,
   "height": 10,
   "keys": ["U","R","L","D"],
@@ -99,7 +100,9 @@
       ],
       "exceptions": []
     }
-  ], "initial_board_content":[
+  ],
+  "initial_board_grapshic_content":[],
+  "initial_board_content":[
   {"x":0,
     "y":0,
     "content": [

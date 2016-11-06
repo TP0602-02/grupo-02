@@ -14,36 +14,11 @@ import java.util.ArrayList;
 public class AggregatorWithDiagonals extends AbstractAgreggator {
     @Override
     public void runPlay(Play play, Board board) {
-        int validNumber = SpecialCharactersParser.getInstance().getValueOf(play.getSelectedCellValue());
-        ArrayList<Integer> numbersToAdd = transformValueToCorners(validNumber);
-        for (Integer number : numbersToAdd) {
-            getCellControllerOfCell(play.getSelectedCell()).addValue(number.toString());
-        }
-    }
-
-    private ArrayList<Integer> transformValueToCorners(int validNumber) {
-        ArrayList<Integer> corners = new ArrayList<Integer>();
-        switch (validNumber) {
-            case 1:
-            case 4:
-                corners.add(Constants.UPPER_LEFT_CORNER);
-                corners.add(Constants.LOWER_RIGHT_CORNER);
-                return corners;
-            case 2:
-            case 3:
-                corners.add(Constants.LOWER_LEFT_CORNER);
-                corners.add(Constants.UPPER_RIGHT_CORNER);
-                return corners;
-            default:
-                return corners;
-        }
+        getCellControllerOfCell(play.getSelectedCell()).addValue(play.getSelectedCellValue());
     }
 
     @Override
     public void deleteAction(Cell cell, String valueToDelete, Board board) {
-        ArrayList<Integer> numbersToAdd = transformValueToCorners(Integer.parseInt(valueToDelete));
-        for (Integer number : numbersToAdd) {
-            getCellControllerOfCell(cell).deletedValue(number.toString());
-        }
+        getCellControllerOfCell(cell).deletedValue(valueToDelete);
     }
 }

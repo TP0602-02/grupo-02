@@ -202,8 +202,8 @@ public class BoardIteratorConnections {
 
     private boolean cellsHasSameValue(Cell limitCell, Cell secondCell) {
         //get any value of limits cell to know if is the same value in second cell
-        ArrayList<String> limitCellDeletebleValues = limitCell.getDeleteableValues();
-        ArrayList<String> secondCellDeletebleValues = secondCell.getDeleteableValues();
+        ArrayList<String> limitCellDeletebleValues = this.transformToCorners(limitCell.getDeleteableValues());
+        ArrayList<String> secondCellDeletebleValues = this.transformToCorners(secondCell.getDeleteableValues());
         for (String value : secondCellDeletebleValues) {
             if (value.equals(limitCellDeletebleValues.get(0))) {
                 return true;
@@ -211,4 +211,15 @@ public class BoardIteratorConnections {
         }
         return false;
     }
+
+    private ArrayList<String> transformToCorners(ArrayList<String> deleteableValues) {
+        ArrayList<String> numberValues = new ArrayList<String>();
+        String value = deleteableValues.get(0);
+        switch (value) {
+            case "/": numberValues.add("2"); numberValues.add("3"); return numberValues;
+            case "\\": numberValues.add("1"); numberValues.add("4"); return numberValues;
+            default: return deleteableValues;
+        }
+    }
+
 }

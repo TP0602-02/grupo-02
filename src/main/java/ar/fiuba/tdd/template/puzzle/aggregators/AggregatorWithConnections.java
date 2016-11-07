@@ -21,22 +21,33 @@ public class AggregatorWithConnections extends AbstractAgreggator {
         //Integer valueToAdd = SpecialCharactersParser.getInstance().getValueOf(play.getSelectedCellValue());
         //getCellControllerOfCell(play.getSelectedCell()).addValue(valueToAdd.toString());
         getCellControllerOfCell(play.getSelectedCell()).addValue(play.getSelectedCellValue());
+        addPlayToStack(play);
         // Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), valueToAdd, board);
         Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), play.getSelectedCellValue(), board);
         if (newPLayToRun.getValidPlay()) {
+            addPlayToStack(newPLayToRun);
             getCellControllerOfCell(newPLayToRun.getSelectedCell()).addValue(newPLayToRun.getSelectedCellValue());
         }
+    }
+
+    @Override
+    public void undo(Board board) {
+        Play play = playStack.get(0);
+        deleteAction(play.getSelectedCell(),play.getSelectedCellValue(),board);
+        removePlayOfStack();
+        removePlayOfStack();
     }
 
     @Override
     public void deleteAction(Cell cell, String valueToDelete, Board board) {
         getCellControllerOfCell(cell).deletedValue(valueToDelete);
         Play newPLayToRun = getPlayFromCellConnection(cell, valueToDelete, board);
+        removeEspecificPlayOfStack(cell,valueToDelete);
         if (newPLayToRun.getValidPlay()) {
             getCellControllerOfCell(newPLayToRun.getSelectedCell()).deletedValue(newPLayToRun.getSelectedCellValue());
+            removeEspecificPlayOfStack(newPLayToRun.getSelectedCell(),newPLayToRun.getSelectedCellValue());
         }
     }
-
 
     private Play getPlayFromCellConnection(Cell cell, String valueOfConnection, Board board) {
         BoardIteratorConnections iterator = new BoardIteratorConnections();

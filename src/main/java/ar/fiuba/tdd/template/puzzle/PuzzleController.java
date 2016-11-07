@@ -30,14 +30,13 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     private ArrayList<CellController> cellControllers;
     private ArrayList<WinVerificator> winVerificators;
     private AbstractAgreggator aggregator;
-    private ArrayList<Play> playStack;
-    private static final String BORRADO = "Borrado";
+
+    private static final String DELETED = "Deleted";
 
     public PuzzleController(ArrayList<WinVerificator> winVerificators, AbstractAgreggator aggregator) {
         this.cellControllers = new ArrayList<>();
         this.winVerificators = winVerificators;
         this.aggregator = aggregator;
-        playStack = new ArrayList<Play>();
     }
 
     public void aggregateCellControllers() {
@@ -61,33 +60,22 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                     public void validateUserTextInputed(Cell cell, String text) {
                         if (text != null && text.length() == 1) {
                             Play play = new Play(cell, text);
-                            boolean itsPlayed = playThePlay(play);
+                            boolean itsPlayed = model.checkMovement(play);
                             if (itsPlayed) {
-                                playStack.add(0, play);
+                                runPlay(play);
+                                checkWinVerificator();
                             }
                         }
                     }
 
                     @Override
                     public void validateUserDeletedAction(Cell cell, String valueToDelete) {
-                        if (cell.hasDeleteables()) {
-                            playStack.add(0, new Play(cell,BORRADO));
-                        }
                         deleteAction(cell, valueToDelete);
                     }
                 });
                 this.cellControllers.add(cellController);
             }
         }
-    }
-
-    private boolean playThePlay(Play play) {
-        boolean itsPlayed = model.checkMovement(play);
-        if (itsPlayed) {
-            runPlay(play);
-            checkWinVerificator();
-        }
-        return itsPlayed;
     }
 
     private void checkWinVerificator() {
@@ -117,7 +105,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
             Play newPlay = new Play(cellInBoard, play.getSelectedCellValue());
             if (model.checkMovement(newPlay)) {
                 runPlay(newPlay);
-                //checkWinVerificator();
+                checkWinVerificator();
             }
             playsToWrite.add(newPlay);
         }
@@ -128,46 +116,10 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
         Undo.setActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                if (!playStack.isEmpty()) {
-                    Play playToUndo = playStack.get(0);
-                    playStack.remove(0);
-                    Cell cellToUndo = playToUndo.getSelectedCell();
-                    ArrayList<CellContent> contents = cellToUndo.getContents();
-                    eraseTheLastPlay(contents,cellToUndo);
-                    addThePriorPlay(playToUndo);
+                if (!aggregator.stackHasNoPlays()) {
+                    aggregator.undo(model.getBoard());
                 }
             }
         });
-    }
-
-    private void eraseTheLastPlay(ArrayList<CellContent> contents, Cell cellToUndo) {
-        int counterOfNonDeleteable = 0;
-        while (contents.size() != counterOfNonDeleteable) {
-            CellContent cellContentToUndo = contents.get(contents.size() - 1);
-            if (cellContentToUndo.isDeleteable()) {
-                deleteAction(cellToUndo, cellContentToUndo.getValue());
-            } else {
-                counterOfNonDeleteable++;
-            }
-        }
-    }
-
-    private void addThePriorPlay(Play playToUndo) {
-        Play priorPlay = getPriorPlayValue(playToUndo);
-        if (priorPlay != null && !(priorPlay.getSelectedCellValue()).equals(playToUndo.getSelectedCellValue())) {
-            if (!priorPlay.getSelectedCellValue().equals(BORRADO)) {
-                playThePlay(priorPlay);
-            }
-        }
-    }
-
-    private Play getPriorPlayValue(Play playToUndo) {
-        Play priorPlay = null;
-        for (Play oldPlay : playStack) {
-            if (playToUndo.getSelectedCell() == oldPlay.getSelectedCell()) {
-                return oldPlay;
-            }
-        }
-        return priorPlay;
     }
 }

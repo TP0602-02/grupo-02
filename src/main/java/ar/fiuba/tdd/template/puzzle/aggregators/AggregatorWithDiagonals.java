@@ -21,6 +21,11 @@ public class AggregatorWithDiagonals extends AbstractAgreggator {
         }
     }
 
+    @Override
+    public void undo(Board board) {
+
+    }
+
     private ArrayList<Integer> transformValueToCorners(int validNumber) {
         ArrayList<Integer> corners = new ArrayList<Integer>();
         switch (validNumber) {
@@ -45,5 +50,10 @@ public class AggregatorWithDiagonals extends AbstractAgreggator {
         for (Integer number : numbersToAdd) {
             getCellControllerOfCell(cell).deletedValue(number.toString());
         }
+    }
+
+    @Override
+    public void addPlayToStack(Play play) {
+
     }
 }

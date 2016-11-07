@@ -15,10 +15,19 @@ public class Aggregator extends AbstractAgreggator {
 
     public void runPlay(Play play, Board board) {
         getCellControllerOfCell(play.getSelectedCell()).addValue(play.getSelectedCellValue());
+        addPlayToStack(play);
+    }
+
+    @Override
+    public void undo(Board board) {
+        Play play = this.playStack.get(0);
+        this.deleteAction(play.getSelectedCell(),play.getSelectedCellValue(),board);
+
     }
 
     @Override
     public void deleteAction(Cell cell, String valueToDelete, Board board) {
         getCellControllerOfCell(cell).deletedValue(valueToDelete);
+        removeEspecificPlayOfStack(cell, valueToDelete);
     }
 }

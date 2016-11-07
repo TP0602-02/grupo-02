@@ -24,7 +24,7 @@ public class PuzzleView extends JFrame {
     public static final int screenHeight = 900;
     public static final int screenWidth = 1300;
     public static final int boardInitialPositionPixelX = screenWidth / 3;
-    public static final int boardInitialPositionPixelY = screenHeight / 3;
+    public static final int boardInitialPositionPixelY = screenHeight / 7;
     private BackPressed backListener;
     private int width;
     private int height;
@@ -201,8 +201,8 @@ public class PuzzleView extends JFrame {
 
     private void addTitle(String game) {
         JLabel titleLabel = new JLabel(game);
-        titleLabel.setBounds(boardInitialPositionPixelX - 125, boardInitialPositionPixelY - 200, 600, 100);
-        titleLabel.setFont(new Font("Serif", Font.PLAIN, 70));
+        titleLabel.setBounds(boardInitialPositionPixelX - 125, boardInitialPositionPixelY - 80, 600, 40);
+        titleLabel.setFont(new Font("Serif", Font.PLAIN, 30));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         container.add(titleLabel);
     }

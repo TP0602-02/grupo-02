@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class FileWriter {
 
+    @SuppressWarnings("unchecked")
     public void writePlayResults(ArrayList<Play> playResult, String fileName) {
         JSONObject objPlay = new JSONObject();
         JSONArray jsonPlays = new JSONArray();

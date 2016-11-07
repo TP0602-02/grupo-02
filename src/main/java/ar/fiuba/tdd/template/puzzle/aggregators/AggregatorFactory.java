@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.template.puzzle.aggregators;
 
+import java.util.HashMap;
 import java.util.Properties;
 
 /**

@@ -63,6 +63,7 @@ public class StartView extends JFrame {
 
     }
 
+    @SuppressWarnings("unchecked")
     private void createButtons() {
         Enumeration enumeration = games.propertyNames();
         int posXButtonGame = screenWidth / 3;

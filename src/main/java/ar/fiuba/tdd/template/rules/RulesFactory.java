@@ -1,14 +1,10 @@
 package ar.fiuba.tdd.template.rules;
 
-import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.cell.model.Cell;
-
-import java.util.HashMap;
 import java.util.Properties;
 
 @SuppressWarnings("CPD-START")
 public class RulesFactory {
-    private static HashMap<String,GenericRule> factory;
+    private static Properties factory;
     private static RulesFactory instance;
     public static final String CLOSE_CIRCUIT_RULE = "Close circuit Rule";
     public static final String CLOSE_CIRCUIT_BORDER_RULE = "Close circuit border rule";
@@ -30,7 +26,7 @@ public class RulesFactory {
     public static final String DISTANCE_RULE = "Distance rule";
 
     private static void initFactory() {
-        factory = new HashMap<>();
+        factory = new Properties();
         putRules();
     }
 
@@ -43,7 +39,7 @@ public class RulesFactory {
     }
 
     public GenericRule createRule(String ruleName) {
-        return factory.get(ruleName);
+        return (GenericRule) factory.get(ruleName);
     }
 
     private static void putRules() {

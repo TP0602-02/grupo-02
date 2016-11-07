@@ -72,6 +72,7 @@ public class Parser {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void decodeJson(String fileGame, String playsFileName) {
         readFile(fileGame, this.boardFile);
 
@@ -95,6 +96,7 @@ public class Parser {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void readFirstSecions() {
         readKeys((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
         readCellContentJson((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
@@ -105,20 +107,24 @@ public class Parser {
         readCircuitVerificator((JSONObject) this.boardFile.get(JSON_PARSED_KEY));
     }
 
+    @SuppressWarnings("unchecked")
     public String getDrawerName() {
         return (String) ((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).getOrDefault("drawer", "");
     }
 
+    @SuppressWarnings("unchecked")
     private void readAgreggator(JSONObject jsonObject) {
         String agreggator = (String) jsonObject.get("agreggator");
         this.agreggator = AggregatorFactory.getFactory().createAggregator(agreggator);
     }
 
+    @SuppressWarnings("unchecked")
     private void readCircuitVerificator(JSONObject jsonObject) {
         String circuitVerificator = (String) jsonObject.get("circuit_verificator");
         this.circuitVerificator = CircuitVerificatorFactory.getFactory().createVerificator(circuitVerificator);
     }
 
+    @SuppressWarnings("unchecked")
     private void readCellContentJson(JSONObject jsonObject) {
         JSONArray contentsJsonArray = (JSONArray) jsonObject.get("cell_contents");
         for (JSONObject cellContentJson : (Iterable<JSONObject>) contentsJsonArray) {
@@ -129,21 +135,26 @@ public class Parser {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void readCellType(JSONObject jsonObject) {
         this.cellType = (String) jsonObject.get("cellType");
     }
 
+    @SuppressWarnings("unchecked")
     private void readCellEditable(JSONObject jsonObject) {
         this.clueCellsEditables = (Boolean) jsonObject.getOrDefault("clueCellsEditables", false);
     }
 
+    @SuppressWarnings("unchecked")
     private static Long readWidth(JSONObject jsonObject) {
         return (Long) jsonObject.get("width");
     }
 
+    @SuppressWarnings("unchecked")
     private static Long readHeight(JSONObject jsonObject) {
         return (Long) jsonObject.get("height");
     }
+
 
     public int getWidth() {
         return this.width;
@@ -222,10 +233,12 @@ public class Parser {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private int getIntFromJsonObject(JSONObject jsonObject, String coordinateId) {
         return ((Long) jsonObject.get(coordinateId)).intValue();
     }
 
+    @SuppressWarnings("unchecked")
     private void readSpecialClues(JSONObject jsonObject) {
 
         CellFactory cellFactory = new CellFactory();
@@ -247,27 +260,6 @@ public class Parser {
             }
             this.clues.add(newCell);
         }
-    }
-
-    private Cell createContent(Cell newCell, String id, String value) {
-        if (id.equals("clues")) {
-            // Clues are considered ClueContent or BlackContent
-            if (!value.equals(BLACK_CONTENT_VALUE)) {
-                ClueContent clue = new ClueContent(value);
-                newCell.setContent(clue);
-            } else {
-                // if it's -1 we consider it a BlackContent
-               /* BlackContent black = new BlackContent(new BlackContent.DefValue<String>() {
-                    @Override
-                    public String getDefValue() {
-                        return "black";
-                    }
-                });*/
-                BlackContent black = new BlackContent();
-                newCell.setContent(black);
-            }
-        }
-        return newCell;
     }
 
     @SuppressWarnings("unchecked")
@@ -371,6 +363,7 @@ public class Parser {
         return graphicsInitialClues;
     }
 
+    @SuppressWarnings("unchecked")
     public String getInstructionGame() {
         return (String) ((JSONObject) this.boardFile.get(JSON_PARSED_KEY)).getOrDefault("instruction", "");
     }

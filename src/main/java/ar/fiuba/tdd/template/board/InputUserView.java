@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
@@ -212,22 +213,14 @@ public class InputUserView extends JFrame {
         int backSpaceButtonPosX = firstButtonCoordinateX;
         int backSpaceButtonPosY = buttonPosY + buttonValuesWidth + 20;
         int backSpaceButtonWidth = buttonValuesWidth + 50;
-        backspaceButton.setBounds(backSpaceButtonPosX, backSpaceButtonPosY,
-                backSpaceButtonWidth, buttonValuesWidth);
-        backspaceButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                textInput.setText(textInput.getText().substring(0, textInput.getText().length() - 1));
-            }
-        });
-        add(backspaceButton);
-
+        addBackSpaceButtom(backSpaceButtonPosX, backSpaceButtonPosY, backSpaceButtonWidth);
         botonOk = new JButton("OK");
-        botonOk.setBackground(Color.white);
-        botonOk.setBounds(backSpaceButtonPosX + backSpaceButtonWidth + spaceBetweenButtons,
-                backSpaceButtonPosY, buttonValuesWidth + 20, buttonValuesWidth);
-        add(botonOk);
+        addOKButtom(backSpaceButtonPosX, backSpaceButtonPosY, backSpaceButtonWidth);
         deleteContentButton = new JButton("delete value");
+        addDeleteContentButton(backSpaceButtonPosX, backSpaceButtonPosY, backSpaceButtonWidth);
+    }
+
+    private void addDeleteContentButton(int backSpaceButtonPosX, int backSpaceButtonPosY, int backSpaceButtonWidth) {
         deleteContentButton.setBounds(backSpaceButtonPosX, backSpaceButtonPosY + buttonValuesWidth + spaceBetweenButtons,
                 buttonValuesWidth * 4, buttonValuesWidth);
         deleteContentButton.addActionListener(new ActionListener() {
@@ -237,6 +230,27 @@ public class InputUserView extends JFrame {
             }
         });
         add(deleteContentButton);
+    }
+
+    private void addOKButtom(int backSpaceButtonPosX, int backSpaceButtonPosY, int backSpaceButtonWidth) {
+        botonOk.setBackground(Color.white);
+        botonOk.setBounds(backSpaceButtonPosX + backSpaceButtonWidth + spaceBetweenButtons,
+                backSpaceButtonPosY, buttonValuesWidth + 20, buttonValuesWidth);
+        add(botonOk);
+    }
+
+    private void addBackSpaceButtom(int backSpaceButtonPosX, int backSpaceButtonPosY, int backSpaceButtonWidth) {
+        backspaceButton.setBounds(backSpaceButtonPosX, backSpaceButtonPosY,
+                backSpaceButtonWidth, buttonValuesWidth);
+        backspaceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                if (!Objects.equals(textInput.getText(),"")) {
+                    textInput.setText(textInput.getText().substring(0, textInput.getText().length() - 1));
+                }
+            }
+        });
+        add(backspaceButton);
     }
 
     private boolean rowIsCompleted(int index) {

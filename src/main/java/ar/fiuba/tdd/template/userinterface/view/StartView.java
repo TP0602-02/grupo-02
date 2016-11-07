@@ -42,6 +42,7 @@ public class StartView extends JFrame {
     //*************************************************
     private static final String RIPPLE_EFFECT_FILE = "RippleEffect.json";
     //*************************************************
+
     @SuppressWarnings("CPD-END")
 
     public StartView(StartGameListener listener) {

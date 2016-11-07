@@ -17,6 +17,7 @@ import ar.fiuba.tdd.template.winverificators.WinVerificator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.swing.*;
 
 
@@ -59,24 +60,32 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                 cellController.setUserInputListener(new CellController.UserInputListener() {
                     @Override
                     public void validateUserTextInputed(Cell cell, String text) {
-                        if (text != null && text.length() == 1) {
-                            Play play = new Play(cell, text);
-                            boolean itsPlayed = playThePlay(play);
-                            if (itsPlayed) {
-                                playStack.add(0, play);
-                            }
-                        }
+                        validateAndPlay(cell,text);
                     }
 
                     @Override
                     public void validateUserDeletedAction(Cell cell, String valueToDelete) {
-                        if (cell.hasDeleteables()) {
-                            playStack.add(0, new Play(cell,BORRADO));
-                        }
-                        deleteAction(cell, valueToDelete);
+                        validateAndDelete(cell, valueToDelete);
                     }
                 });
                 this.cellControllers.add(cellController);
+            }
+        }
+    }
+
+    public void validateAndDelete(Cell cell, String valueToDelete) {
+        if (cell.hasDeleteables()) {
+            playStack.add(0, new Play(cell,BORRADO));
+        }
+        deleteAction(cell, valueToDelete);
+    }
+
+    public void validateAndPlay(Cell cell, String text) {
+        if (text != null && text.length() == 1) {
+            Play play = new Play(cell, text);
+            boolean itsPlayed = playThePlay(play);
+            if (itsPlayed) {
+                playStack.add(0, play);
             }
         }
     }
@@ -128,23 +137,27 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
         Undo.setActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                if (!playStack.isEmpty()) {
-                    Play playToUndo = playStack.get(0);
-                    playStack.remove(0);
-                    Cell cellToUndo = playToUndo.getSelectedCell();
-                    ArrayList<CellContent> contents = cellToUndo.getContents();
-                    eraseTheLastPlay(contents,cellToUndo);
-                    addThePriorPlay(playToUndo);
-                }
+                undoPlay();
             }
         });
     }
 
-    private void eraseTheLastPlay(ArrayList<CellContent> contents, Cell cellToUndo) {
+    public void undoPlay() {
+        if (!playStack.isEmpty()) {
+            Play playToUndo = playStack.get(0);
+            playStack.remove(0);
+            Cell cellToUndo = playToUndo.getSelectedCell();
+            ArrayList<CellContent> contents = cellToUndo.getContents();
+            eraseTheLastPlay(contents,cellToUndo,playToUndo.getSelectedCellValue());
+            addThePriorPlay(playToUndo);
+        }
+    }
+
+    private void eraseTheLastPlay(ArrayList<CellContent> contents, Cell cellToUndo, String selectedCellValue) {
         int counterOfNonDeleteable = 0;
         while (contents.size() != counterOfNonDeleteable) {
             CellContent cellContentToUndo = contents.get(contents.size() - 1);
-            if (cellContentToUndo.isDeleteable()) {
+            if (cellContentToUndo.isDeleteable() && Objects.equals(cellContentToUndo.getValue(),selectedCellValue)) {
                 deleteAction(cellToUndo, cellContentToUndo.getValue());
             } else {
                 counterOfNonDeleteable++;

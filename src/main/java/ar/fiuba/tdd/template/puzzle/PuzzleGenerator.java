@@ -27,18 +27,21 @@ public class PuzzleGenerator {
         startView = new StartView(new StartView.StartGameListener() {
             @Override
             public void loadNewGame(String gameName, String gameFile) {
-                initParse(gameFile, null);
-                createGame(gameFile, gameName, true);
+                generatePuzzle(gameFile,gameName,null,true);
             }
 
             @Override
             public void loadPlaysForGame(String playFile, String gameFile) {
-                initParse(gameFile, playFile);
-                createGame(gameFile, "", false);
+                generatePuzzle(gameFile, "", playFile,false);
                 puzzleController.execPlays(parser.getPlays());
             }
         });
         startView.start();
+    }
+
+    public void generatePuzzle(String gameFile, String gameName, String playFile, boolean visualizate) {
+        initParse(gameFile, playFile);
+        createGame(gameFile, gameName, visualizate);
     }
 
     /**
@@ -105,4 +108,7 @@ public class PuzzleGenerator {
         InputUserView.createView(acceptedKeys);
     }
 
+    public PuzzleController getPuzzleController() {
+        return puzzleController;
+    }
 }

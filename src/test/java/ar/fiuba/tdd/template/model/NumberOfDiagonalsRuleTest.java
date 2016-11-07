@@ -93,44 +93,34 @@ public class NumberOfDiagonalsRuleTest {
 
     @Test
     public void addDiagonalinCellWithOneRegionsTouchCluewithOneValue_ReturnTrue() {
-        this.board.setValue(new Coordinate(0, 1), new ValueContent(1));
-        this.board.setValue(new Coordinate(0, 1), new ValueContent(3));
+        this.board.setValue(new Coordinate(0, 1), new ValueContent("\\"));
+        this.board.setValue(new Coordinate(0, 1), new ValueContent("/"));
 
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 2));
     }
 
     @Test
     public void addDiagonalinCellTouchCluewithThreevalues_ReturnFalse() {
-        this.board.setValue(new Coordinate(0, 1), new ValueContent(1));
-        this.board.setValue(new Coordinate(0, 1), new ValueContent(4));
-        this.board.setValue(new Coordinate(1, 1), new ValueContent(3));
-        this.board.setValue(new Coordinate(1, 1), new ValueContent(2));
-        this.board.setValue(new Coordinate(1, 2), new ValueContent(1));
-        this.board.setValue(new Coordinate(1, 2), new ValueContent(4));
+        this.board.setValue(new Coordinate(0, 1), new ValueContent("\\"));
+        this.board.setValue(new Coordinate(1, 1), new ValueContent("/"));
+        this.board.setValue(new Coordinate(1, 2), new ValueContent("\\"));
         Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), 2));
     }
 
     @Test
     public void addDiagonalinCellTouchTwoClues_ReturnTrue() {
-        this.board.setValue(new Coordinate(0, 0), new ValueContent(2));
-        this.board.setValue(new Coordinate(0, 0), new ValueContent(3));
-        this.board.setValue(new Coordinate(1, 1), new ValueContent(3));
-        this.board.setValue(new Coordinate(1, 1), new ValueContent(2));
-        this.board.setValue(new Coordinate(1, 2), new ValueContent(1));
-        this.board.setValue(new Coordinate(1, 2), new ValueContent(4));
+        this.board.setValue(new Coordinate(0, 0), new ValueContent("/"));
+        this.board.setValue(new Coordinate(1, 1), new ValueContent("/"));
+        this.board.setValue(new Coordinate(1, 2), new ValueContent("\\"));
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), 1));
     }
 
     @Test
     public void addDiagonalinCellTouchTwoCluesOneFull_ReturnFalse() {
-        this.board.setValue(new Coordinate(0, 0), new ValueContent(2));
-        this.board.setValue(new Coordinate(0, 0), new ValueContent(3));
-        this.board.setValue(new Coordinate(1, 1), new ValueContent(3));
-        this.board.setValue(new Coordinate(1, 1), new ValueContent(2));
-        this.board.setValue(new Coordinate(1, 2), new ValueContent(1));
-        this.board.setValue(new Coordinate(1, 2), new ValueContent(4));
-        this.board.setValue(new Coordinate(0, 2), new ValueContent(3));
-        this.board.setValue(new Coordinate(0, 2), new ValueContent(2));
+        this.board.setValue(new Coordinate(0, 0), new ValueContent("/"));
+        this.board.setValue(new Coordinate(1, 1), new ValueContent("/"));
+        this.board.setValue(new Coordinate(1, 2), new ValueContent("\\"));
+        this.board.setValue(new Coordinate(0, 2), new ValueContent("/"));
         Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), 1));
     }
 

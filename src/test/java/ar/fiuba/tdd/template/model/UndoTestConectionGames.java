@@ -8,6 +8,7 @@ import ar.fiuba.tdd.template.puzzle.PuzzleGenerator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.Objects;
 
 /**
@@ -23,6 +24,7 @@ public class UndoTestConectionGames {
         puzzleGenerator.generatePuzzle("CountryRoad.json","COUNTRY ROAD",null,false);
         controller = puzzleGenerator.getPuzzleController();
         model = controller.getModel();
+        System.setProperty("java.awt.headless", "true");
     }
 
     @Test
@@ -32,6 +34,7 @@ public class UndoTestConectionGames {
         controller.undoPlay();
         Assert.assertTrue(cellToPlay.getContents().isEmpty());
     }
+
     @Test
     public void addThreeValueAndUndoThem() {
         Cell cellToPlay = model.getCell(new Coordinate(1,1));
@@ -45,7 +48,7 @@ public class UndoTestConectionGames {
     }
 
     @Test
-    public void addAValueEraseItAndUndoIt(){
+    public void addAValueEraseItAndUndoIt() {
         Cell cellToPlay = model.getCell(new Coordinate(1,1));
         controller.validateAndPlay(cellToPlay,"5");
         controller.validateAndDelete(cellToPlay,"5");
@@ -55,7 +58,7 @@ public class UndoTestConectionGames {
     }
 
     @Test
-    public void addMultipleValuesInDifferentCellsAndUndoThem(){
+    public void addMultipleValuesInDifferentCellsAndUndoThem() {
         Cell cellToPlay = model.getCell(new Coordinate(1,2));
         controller.validateAndPlay(cellToPlay,"U");
         cellToPlay = model.getCell(new Coordinate(2,1));
@@ -68,7 +71,7 @@ public class UndoTestConectionGames {
     }
 
     @Test
-    public void addMultipleValuesInDifferentCellsDeleteAndUndoThem(){
+    public void addMultipleValuesInDifferentCellsDeleteAndUndoThem() {
         Cell cellToPlay = model.getCell(new Coordinate(1,2));
         controller.validateAndPlay(cellToPlay,"U");
         cellToPlay = model.getCell(new Coordinate(2,1));

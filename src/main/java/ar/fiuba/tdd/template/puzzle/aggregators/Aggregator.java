@@ -21,7 +21,6 @@ public class Aggregator extends AbstractAgreggator {
     @Override
     public void undo(Board board) {
         Play play = this.playStack.get(0);
-        this.removePlayOfStack();
         this.deleteAction(play.getSelectedCell(),play.getSelectedCellValue(),board);
 
     }

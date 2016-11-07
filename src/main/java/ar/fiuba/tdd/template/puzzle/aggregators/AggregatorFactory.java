@@ -14,8 +14,6 @@ public class AggregatorFactory {
 
     public static final String SIMPLE_AGGREGATOR = "Simple aggregator";
     public static final String CONNECTION_AGGREGATOR = "Connection aggregator";
-    public static final String DIAGONAL_AGGREGATOR = "Diagonal aggregator";
-
 
     public AbstractAgreggator createAggregator(String aggregator) {
         return (AbstractAgreggator) factory.get(aggregator);
@@ -29,7 +27,6 @@ public class AggregatorFactory {
     private static void putConstants() {
         factory.put(SIMPLE_AGGREGATOR, new Aggregator());
         factory.put(CONNECTION_AGGREGATOR, new AggregatorWithConnections());
-        factory.put(DIAGONAL_AGGREGATOR, new AggregatorWithDiagonals());
     }
 
     private AggregatorFactory(){

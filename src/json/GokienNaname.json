@@ -7,7 +7,7 @@
     "/",
     "\\"
   ],
-  "agreggator": "Diagonal aggregator",
+  "agreggator": "Simple aggregator",
   "circuit_verificator": "Circuit verificator with diagonals",
   "rules": [
     {

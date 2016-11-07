@@ -14,8 +14,6 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
 
-
-
 /**
  * Created by Nicolas on 28/9/2016.
  */
@@ -47,7 +45,8 @@ public class InputUserView extends JFrame {
         setLayout(null);
         initTextInput();
         valuesToDeleteContainer = new JPanel();
-        valuesToDeleteContainer.setBounds(inputUserViewWidth / 2, 10, inputUserViewWidth / 2, inputUserViewHeight / 2);
+        valuesToDeleteContainer.setLayout(null);
+        valuesToDeleteContainer.setBounds(inputUserViewWidth / 2, 50, inputUserViewWidth / 2, inputUserViewHeight / 2);
         add(valuesToDeleteContainer);
         initButtonsView();
         botonOk.addActionListener(new ActionListener() {
@@ -113,24 +112,29 @@ public class InputUserView extends JFrame {
     public void setCellValuesToDelete(ArrayList<String> cellValuesToDelete) {
         this.cellValuesToDelete = cellValuesToDelete;
         valuesToDeleteContainer.removeAll();
+        int posY = 10;
+        int height = 60;
         for (String value : cellValuesToDelete) {
             CellView button = new CellView();
+            button.setBounds(10, posY, height, height);
+            posY += 10 + height;
             DrawerFactory.getInstance().getDrawer().draw(button, value);
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
                     selectedValueToDelete = button.getValue();
                     cleanAnySelectedValueToDelete();
-                    button.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.RED, Color.RED));
+                    button.setBackground(Color.GREEN);
                 }
             });
             valuesToDeleteContainer.add(button);
         }
-        createDeleteButton();
+        createDeleteButton(posY);
     }
 
-    private void createDeleteButton() {
+    private void createDeleteButton(int posY) {
         JButton buttonDeleteOk = new JButton("BORRAR!");
+        buttonDeleteOk.setBounds(20, posY, 150, 30);
         buttonDeleteOk.setBackground(Color.white);
         buttonDeleteOk.addActionListener(new ActionListener() {
             @Override
@@ -148,8 +152,7 @@ public class InputUserView extends JFrame {
 
     private void cleanAnySelectedValueToDelete() {
         for (int i = 0; i < valuesToDeleteContainer.getComponentCount(); i++) {
-            ((JButton) valuesToDeleteContainer.getComponents()[i])
-                    .setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+            ((JButton) valuesToDeleteContainer.getComponents()[i]).setBackground(Color.white);
         }
     }
 

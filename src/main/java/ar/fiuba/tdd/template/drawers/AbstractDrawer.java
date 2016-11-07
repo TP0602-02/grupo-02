@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.template.drawers;
 
 import ar.fiuba.tdd.template.board.cell.view.CellView;
+import ar.fiuba.tdd.template.entity.Constants;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,13 +15,15 @@ import javax.swing.*;
 public abstract class AbstractDrawer {
 
     protected CellView cellViewToDraw;
+    private static final String BARRA = "barra";
+    private static final String CONTRABARRA = "contrabarra";
 
     public void draw(CellView cellToDraw, String valueToDraw) {
         this.cellViewToDraw = cellToDraw;
         cleanCellView();
         this.cellViewToDraw.setValue(valueToDraw);
         setView(getImageOf(valueToDraw), valueToDraw);
-        decorateCell(this.cellViewToDraw);
+        decorateCell(this.cellViewToDraw,valueToDraw);
 
     }
 
@@ -36,11 +39,22 @@ public abstract class AbstractDrawer {
     }
 
     private ImageIcon getImageOf(String valueToDraw) {
+        valueToDraw = isSpecialValue(valueToDraw);
         ImageIcon imageIcon = new ImageIcon(getImagePackage() + valueToDraw + ".png");
         return (imageIcon.getImageLoadStatus() == MediaTracker.COMPLETE) ? imageIcon : null;
     }
 
-    private void cleanCellView() {
+    private String isSpecialValue(String valueToDraw) {
+        String value = valueToDraw;
+        if(valueToDraw.equals(Constants.UP_DIAGONAL)) {
+            value = BARRA;
+        }else if (valueToDraw.equals(Constants.DOWN_DIAGONAL)) {
+            value = CONTRABARRA;
+        }
+        return value;
+    }
+
+    protected void cleanCellView() {
         this.cellViewToDraw.removeAll();
         this.cellViewToDraw.setText("");
         this.cellViewToDraw.setIcon(null);
@@ -51,7 +65,7 @@ public abstract class AbstractDrawer {
      *
      * @param cellViewToDraw cell to decorate.
      */
-    protected abstract void decorateCell(CellView cellViewToDraw);
+    protected abstract void decorateCell(CellView cellViewToDraw,String valueToDraw);
 
     protected abstract String getImagePackage();
 
@@ -62,4 +76,6 @@ public abstract class AbstractDrawer {
             this.cellViewToDraw.setText(value);
         }
     }
+
+
 }

@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.circuitverificator;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
+import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
     public boolean isCircuitClosed(Board board) {
         this.cleanCircuitCells();
         ArrayList<CellContent> corners = this.cell.getSummableContents();
-        for (CellContent corner : corners) {
+        for (CellContent corner: corners) {
             this.cleanCircuitCells();
             if (!this.isCircuitOpen(board, this.cell, corner, null)) {
                 return true;
@@ -38,7 +39,7 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
     private boolean checkLimitCells(Board board, Cell cell, CellContent corner, Cell previousCell) {
         ArrayList<Cell> limitCells = this.getLimitCells(board, cell, corner);
         if (!limitCells.contains(previousCell)) {
-            for (Cell limitCell : limitCells) {
+            for (Cell limitCell: limitCells) {
                 if (!this.checkCellClosedCircuit(board, limitCell, cell, corner)) {
                     return false;
                 }
@@ -48,8 +49,8 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
     }
 
     private boolean checkCellClosedCircuit(Board board, Cell limitCell, Cell cell, CellContent previousCorner) {
-        ArrayList<CellContent> corners = limitCell.getSummableContents();
-        for (CellContent limitCellCorner : corners) {
+        ArrayList<CellContent> corners = this.getCorners(limitCell);
+        for (CellContent limitCellCorner: corners) {
             if (this.cellsAreConnected(cell, limitCell)) {
                 if (!this.isFirstCorner(limitCellCorner, corners)) {
                     this.circuitCells.remove(limitCell);
@@ -60,6 +61,23 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
             }
         }
         return true;
+    }
+
+    private ArrayList<CellContent> getCorners(Cell limitCell) {
+        ArrayList<CellContent> corners = new ArrayList<CellContent>();
+        ArrayList<CellContent> values = limitCell.getSummableContents();
+        if (values.size() == 0) {
+            return corners;
+        }
+        switch (values.get(0).getValue()) {
+            case "/": corners.add(new ValueContent("2"));
+                      corners.add(new ValueContent("3"));
+                      return corners;
+            case "\\": corners.add(new ValueContent("1"));
+                       corners.add(new ValueContent("4"));
+                       return corners;
+            default: return values;
+        }
     }
 
     private boolean cellsAreConnected(Cell limitCell, Cell cell) {

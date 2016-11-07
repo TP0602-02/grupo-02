@@ -17,7 +17,7 @@ public class CellView extends JButton {
     public CellView() {
         setOpaque(true);
         setBackground(Color.white);
-        setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+        setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.white, Color.lightGray));
 
     }
 

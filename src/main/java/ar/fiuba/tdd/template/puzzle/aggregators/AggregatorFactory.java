@@ -10,7 +10,7 @@ public class AggregatorFactory {
     @SuppressWarnings("CPD-START")
     public static final String SIMPLE_AGGREGATOR = "Simple aggregator";
     public static final String CONNECTION_AGGREGATOR = "Connection aggregator";
-    public static final String DIAGONAL_AGGREGATOR = "Diagonal aggregator";
+
     private static Properties factory;
     private static AggregatorFactory instance;
 
@@ -27,7 +27,6 @@ public class AggregatorFactory {
     private static void putConstants() {
         factory.put(SIMPLE_AGGREGATOR, new Aggregator());
         factory.put(CONNECTION_AGGREGATOR, new AggregatorWithConnections());
-        factory.put(DIAGONAL_AGGREGATOR, new AggregatorWithDiagonals());
     }
 
     public static AggregatorFactory getFactory() {

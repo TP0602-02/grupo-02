@@ -86,11 +86,36 @@ public class Region {
         for (Cell cell : this.cells) {
             ArrayList<RelativeClueContent> relativeClueContents = cell.getPositionContents();
             for (RelativeClueContent relativeClue : relativeClueContents) {
-                if (relativeClue.getClue() == this.clue && cell.hasValue(relativeClue.getNumberValue())) {
+                if (relativeClue.getClue() == this.clue && this.cellHasValue(cell, relativeClue)) {
                     ++diagonals;
                 }
             }
         }
         return diagonals;
+    }
+
+    private boolean cellHasValue(Cell cell, RelativeClueContent relativeClue) {
+        ArrayList<CellContent> summableContents = cell.getSummableContents();
+        if (summableContents.size() == 0) {
+            return false;
+        }
+        ArrayList<Integer> values = this.getCellValues(summableContents);
+        if (values.contains(relativeClue.getNumberValue())) {
+            return true;
+        }
+        return false;
+    }
+
+    private ArrayList<Integer> getCellValues(ArrayList<CellContent> summableContents) {
+        ArrayList<Integer> values = new ArrayList<Integer>();
+        switch (summableContents.get(0).getValue()) {
+            case "/": values.add(2);
+                      values.add(3);
+                      return values;
+            case "\\": values.add(1);
+                       values.add(4);
+                       return values;
+            default: return values;
+        }
     }
 }

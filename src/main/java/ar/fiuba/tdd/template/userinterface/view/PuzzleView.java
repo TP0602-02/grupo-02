@@ -4,6 +4,7 @@ package ar.fiuba.tdd.template.userinterface.view;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.*;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
+import ar.fiuba.tdd.template.drawers.DrawerFactory;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
 
@@ -208,6 +209,7 @@ public class PuzzleView extends JFrame {
 
     private void addDefaultCell(Cell cell, int positionPixelX, int positionPixelY) {
         CellView cellVIew = new CellView();
+        DrawerFactory.getInstance().getDrawer().draw(cellVIew,"");
         cellVIew.setBounds(positionPixelX, positionPixelY, cellViewDimension, cellViewDimension);
         CellView previousCellView = boardView.get(cell.getColumn()).get(cell.getRow());
         if (previousCellView != null) {

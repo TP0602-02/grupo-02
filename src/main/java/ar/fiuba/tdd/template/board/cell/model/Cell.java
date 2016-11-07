@@ -15,7 +15,8 @@ public abstract class Cell implements Summable, Editable {
         contents = new ArrayList<>();
     }
 
-    //FIXME: encapsulate cell contents and use 'addCell' . If you want to share content, make it immutable:  protected final ArrayList<CellContent> contents;
+    //FIXME: encapsulate cell contents and use 'addCell' .
+    //FIXME If you want to share content, make it immutable:  protected final ArrayList<CellContent> contents;
     public ArrayList<CellContent> getContents() {
         return contents;
     }

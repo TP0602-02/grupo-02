@@ -216,8 +216,12 @@ public class BoardIteratorConnections {
         ArrayList<String> numberValues = new ArrayList<String>();
         String value = deleteableValues.get(0);
         switch (value) {
-            case "/": numberValues.add("2"); numberValues.add("3"); return numberValues;
-            case "\\": numberValues.add("1"); numberValues.add("4"); return numberValues;
+            case "/": numberValues.add("2");
+                      numberValues.add("3");
+                      return numberValues;
+            case "\\": numberValues.add("1");
+                       numberValues.add("4");
+                       return numberValues;
             default: return deleteableValues;
         }
     }

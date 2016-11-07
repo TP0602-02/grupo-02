@@ -93,18 +93,27 @@ public class Region {
     }
 
     private boolean cellHasValue(Cell cell, RelativeClueContent relativeClue) {
-        ArrayList<Integer> values = new ArrayList<Integer>();
-        ArrayList<CellContent> value = cell.getSummableContents();
-        if (value.size() == 0) {
+        ArrayList<CellContent> summableContents = cell.getSummableContents();
+        if (summableContents.size() == 0) {
             return false;
         }
-        switch (value.get(0).getValue()) {
-            case "/": values.add(2); values.add(3);
-            case "\\": values.add(1); values.add(4);
-        }
+        ArrayList<Integer> values = this.getCellValues(summableContents);
         if (values.contains(relativeClue.getNumberValue())) {
             return true;
         }
         return false;
+    }
+
+    private ArrayList<Integer> getCellValues(ArrayList<CellContent> summableContents) {
+        ArrayList<Integer> values = new ArrayList<Integer>();
+        switch (summableContents.get(0).getValue()) {
+            case "/": values.add(2);
+                      values.add(3);
+                      return values;
+            case "\\": values.add(1);
+                       values.add(4);
+                       return values;
+            default: return values;
+        }
     }
 }

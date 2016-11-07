@@ -34,8 +34,6 @@ public class AggregatorWithConnections extends AbstractAgreggator {
     public void undo(Board board) {
         Play play = playStack.get(0);
         deleteAction(play.getSelectedCell(),play.getSelectedCellValue(),board);
-        removePlayOfStack();
-        removePlayOfStack();
     }
 
     @Override

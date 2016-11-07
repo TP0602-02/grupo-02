@@ -2,6 +2,7 @@ package ar.fiuba.tdd.template.model;
 
 import org.junit.Test;
 
+//FIXME: Remove all!
 public class PuzzleTest {
 
     @Test

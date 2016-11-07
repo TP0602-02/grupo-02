@@ -42,6 +42,7 @@ public class CloseCircuitDiagonalRule extends GenericCloseCircuitRule {
         cell.getContents().remove(lastContentPosition - 1);
     }
 
+
     public void generateMovement(Cell cell, int numberToAdd) {
         switch (numberToAdd) {
             case SLASH:

@@ -15,6 +15,7 @@ public abstract class Cell implements Summable, Editable {
         contents = new ArrayList<>();
     }
 
+    //FIXME: encapsulate cell contents and use 'addCell' . If you want to share content, make it immutable:  protected final ArrayList<CellContent> contents;
     public ArrayList<CellContent> getContents() {
         return contents;
     }
@@ -57,6 +58,7 @@ public abstract class Cell implements Summable, Editable {
     public boolean isEmpty() {
         return contents.size() == 0;
     }
+
 
     @Override
     public boolean isEditable() {
@@ -125,6 +127,7 @@ public abstract class Cell implements Summable, Editable {
     }
 
     public ArrayList<String> getShowableValues() {
+        //FIXME: dead code
         //lo comento porque ahora las CluesContent si son son showables y cuando borras un contenido apareceria el valor de la clue
        /* ArrayList<String> values = new ArrayList<>();
         for (CellContent content : contents) {

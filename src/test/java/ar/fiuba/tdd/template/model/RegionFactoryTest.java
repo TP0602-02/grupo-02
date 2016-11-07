@@ -10,6 +10,7 @@ import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.cell.model.CellSingleValue;
 
 import ar.fiuba.tdd.template.entity.Coordinate;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,6 +32,7 @@ public class RegionFactoryTest {
         Region region = regionCreator.createRegion(regionJson);
 
         //System.out.print("Number of cells should be 35: (6 * 6 - 1) " + region.getCells().size());
+        //FIXME: use Assert.assertTrue!
         if (region.getCells().contains(exceptionCell)) {
             assert false;
         } else {
@@ -52,6 +54,8 @@ public class RegionFactoryTest {
         RegionJson regionJson = new RegionJson(topLeft, bottomRight, exceptions, false);
         Region region = regionCreator.createRegion(regionJson);
 
+
+        //FIXME: use Assert.assertTrue!
         if (region.getCells().contains(board.getCell(new Coordinate(4, 4)))) {
             assert true;
         } else {

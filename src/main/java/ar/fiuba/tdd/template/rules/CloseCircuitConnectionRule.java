@@ -36,6 +36,7 @@ public class CloseCircuitConnectionRule extends GenericCloseCircuitRule {
         return true;
     }
 
+    // TODO: ojo, para qué están las interfaces si luego usan un método como 'isSummable' para chequear el tipo de celda?
     private boolean verificate(Board board, Cell cell) {
         for (Cell actualCell : board.getAdyacentCells(cell)) {
             if (actualCell.isSummable() || board.cellsInSameRegion(cell, actualCell)) {

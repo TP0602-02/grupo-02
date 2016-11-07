@@ -35,6 +35,7 @@ public class BoardTest {
     @Test
     public void emptyBoardIsFull_ReturnFalse() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
+        // TODO: use assertFalse [Flor]
         Assert.assertTrue(!board.isFull());
     }
 

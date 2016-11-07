@@ -28,6 +28,8 @@ public class Puzzle {
         setInitialCells(initialCells);
         this.initialCells = initialCells;
         this.rules = new ArrayList<GenericRule>();
+
+        //FIXME: use this.rules.addAll(rules);
         for (GenericRule rule : rules) {
             this.rules.add(rule);
         }

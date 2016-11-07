@@ -56,6 +56,7 @@ public class PuzzleGenerator {
         initBackListener(puzzleView);
 
         ArrayList<String> winVerificators = parser.getWinVerificators();
+        //FIXME: refactor: move to method 'createWinVerificators'
         // Converts win verificator array of strings into WinVerificator array
         ArrayList<WinVerificator> parsedWinVerificators = new ArrayList<>();
         for (String verificator : winVerificators) {
@@ -84,9 +85,11 @@ public class PuzzleGenerator {
 
     }
 
+    //FIXME: not used parameter 'fileName', remove it
     private Puzzle startGeneration(String fileName) {
         ArrayList<String> rules = parser.getRules();
 
+        //FIXME: refactor, extract method 'createRules'
         // Converts rules array of strings into GenericRule array
         ArrayList<GenericRule> parsedRules = new ArrayList<>();
         for (String rule : rules) {

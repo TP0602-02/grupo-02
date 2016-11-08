@@ -8,9 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by alazraqui on 03/11/2016.
- */
 public class BoardIteratorTest {
     private Board board;
     private BoardIterator iterator;

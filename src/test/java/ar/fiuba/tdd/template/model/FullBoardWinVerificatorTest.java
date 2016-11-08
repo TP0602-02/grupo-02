@@ -10,9 +10,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by alazraqui on 13/10/2016.
- */
 public class FullBoardWinVerificatorTest {
     private Board board;
     private FullBoardWinVerificator winVerificator;
@@ -25,20 +22,20 @@ public class FullBoardWinVerificatorTest {
 
     @Test
     public void emptyBoard_ReturnFalse() {
-        Assert.assertTrue(!winVerificator.wonTheGame(this.board));
+        Assert.assertFalse(winVerificator.wonTheGame(this.board));
     }
 
     @Test
-    public void boardwithValues_ReturnFalse() {
+    public void boardWithValues_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 0), new BlackContent());
         this.board.setValue(new Coordinate(0, 0), new ClueContent(1));
         this.board.setValue(new Coordinate(1, 0), new ValueContent(1));
         this.board.setValue(new Coordinate(1, 1), new ValueContent(2));
-        Assert.assertTrue(!winVerificator.wonTheGame(this.board));
+        Assert.assertFalse(winVerificator.wonTheGame(this.board));
     }
 
     @Test
-    public void boardwithValues_ReturnTrue() {
+    public void boardWithValues_ReturnTrue() {
         this.board.setValue(new Coordinate(0, 0), new BlackContent());
         this.board.setValue(new Coordinate(0, 0), new ClueContent(1));
         this.board.setValue(new Coordinate(1, 0), new ValueContent(1));

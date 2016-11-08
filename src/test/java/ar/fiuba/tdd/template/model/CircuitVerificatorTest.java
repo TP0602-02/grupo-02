@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.template.model;
 
-
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
@@ -12,16 +11,12 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-/**
- * Created by matiaskamien on 09/10/16.
- */
 public class CircuitVerificatorTest {
 
-    public static final int LEFT = 1;
-    public static final int RIGHT = 2;
-    public static final int UP = 3;
-    public static final int DOWN = 4;
-
+    private static final int LEFT = 1;
+    private static final int RIGHT = 2;
+    private static final int UP = 3;
+    private static final int DOWN = 4;
 
     @Test
     public void createCircuitVerificatorWithCountersInZero() {
@@ -33,7 +28,7 @@ public class CircuitVerificatorTest {
     public void detectCircuit_ReturnTrue() {
         //TODO Cambiar por movimientos.
         Board board = new Board(4, 4, "");
-        ArrayList<Cell> cells = new ArrayList<Cell>();
+        ArrayList<Cell> cells = new ArrayList<>();
         cells.add(board.getCell(new Coordinate(0, 0)));
         cells.add(board.getCell(new Coordinate(0, 1)));
         cells.add(board.getCell(new Coordinate(0, 2)));

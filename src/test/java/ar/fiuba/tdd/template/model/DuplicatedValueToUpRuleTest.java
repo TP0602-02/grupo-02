@@ -8,9 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by alazraqui on 02/11/2016.
- */
 public class DuplicatedValueToUpRuleTest {
     private Board board;
     private DuplicatedValueUpRule rule;
@@ -26,14 +23,10 @@ public class DuplicatedValueToUpRuleTest {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 3)), 2));
     }
 
-    ;
-
     @Test
     public void insertValueInEmptyBoard_ReturnTrue() {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(3, 1)), 2));
     }
-
-    ;
 
     @Test
     public void insertValuewithSameValueOutsideRange_ReturnTrue() {
@@ -41,30 +34,22 @@ public class DuplicatedValueToUpRuleTest {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(3, 4)), 2));
     }
 
-    ;
-
     @Test
-    public void insertValuewithSameValueinsideRange_ReturnFalse() {
+    public void insertValuewithSameValueInsideRange_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 1), new ValueContent(2));
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 1)), 2));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 1)), 2));
     }
 
-    ;
-
     @Test
-    public void insertValuewithOtherValueinsideRange_ReturnTrue() {
+    public void insertValuewithOtherValueInsideRange_ReturnTrue() {
         this.board.setValue(new Coordinate(0, 2), new ValueContent(1));
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 2)), 2));
     }
 
-    ;
-
     @Test
-    public void insertValuewithMultipleValuesinsideRange_ReturnFalse() {
+    public void insertValuewithMultipleValuesInsideRange_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 3), new ValueContent(2));
         this.board.setValue(new Coordinate(1, 3), new ValueContent(1));
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 3)), 2));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 3)), 2));
     }
-
-    ;
 }

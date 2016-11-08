@@ -20,32 +20,25 @@ public class BoardTest {
     public void createEmptyBoard() {
         int height = 3;
         int width = 5;
-        Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE); // TODO: should we only accept n x n boards?
+        Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
         int row = 2;
         int col = 3;
-
-        if (board.getCell(new Coordinate(row, col)).isEmpty()) {
-            assert true;
-        } else {
-            assert false;
-        }
-
+        Assert.assertTrue(board.getCell(new Coordinate(row, col)).isEmpty());
     }
 
     @Test
     public void emptyBoardIsFull_ReturnFalse() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
-        // TODO: use assertFalse [Flor]
-        Assert.assertTrue(!board.isFull());
+        Assert.assertFalse(board.isFull());
     }
 
     @Test
-    public void boardWithDiferentValuesIsFull_ReturnFalse() {
+    public void boardWithDifferentValuesIsFull_ReturnFalse() {
         Board board = new Board(4, 4, CellFactory.CELL_SINGLE_VALUE);
         board.setValue(new Coordinate(1, 1), new BlackContent());
         board.setValue(new Coordinate(1, 2), new ClueContent(1));
         board.setValue(new Coordinate(3, 3), new ValueContent(1));
-        Assert.assertTrue(!board.isFull());
+        Assert.assertFalse(board.isFull());
     }
 
     @Test
@@ -141,15 +134,9 @@ public class BoardTest {
         int row = 1;
         int column = 1;
         ValueContent firstValue = new ValueContent(2);
-
         board.setValue(new Coordinate(row, column), firstValue);
         ArrayList<CellContent> valuesRecovered = board.getContents(new Coordinate(row, column));
-
-        if (valuesRecovered.contains(firstValue)) {
-            assert true;
-        } else {
-            assert false;
-        }
+        Assert.assertTrue(valuesRecovered.contains(firstValue));
     }
 
     @Test
@@ -189,7 +176,6 @@ public class BoardTest {
         for (Cell cell : rowCells) {
             ArrayList<CellContent> cellC = board.getContents(new Coordinate(cell.getRow(), cell.getColumn()));
             numbers.add(cellC.get(0).getNumberValue());
-            //System.out.print(cellC.get(0).getValue() + " ");
         }
         // row of cell wanted is 1
         assertEquals(numbers, (Arrays.asList(1, 1, 1, 1, 1)));
@@ -213,7 +199,6 @@ public class BoardTest {
         for (Cell cell : firstColumn) {
             ArrayList<CellContent> cellC = board.getContents(new Coordinate(cell.getRow(), cell.getColumn()));
             numbers.add(cellC.get(0).getNumberValue());
-            //System.out.print(cellC.get(0).getValue() + " ");
         }
         // column of cell wanted is 0
         assertEquals(numbers, (Arrays.asList(0, 0, 0, 0, 0)));
@@ -227,43 +212,8 @@ public class BoardTest {
         int width = parser.getWidth();
         int height = parser.getHeight();
         Board board = new Board(height, width, CellFactory.CELL_SINGLE_VALUE);
-
-        /*
-        ArrayList<GenericRule> parsedRules = new ArrayList<>();
-        for (String rule : parser.getRules()) {
-            parsedRules.add(RulesFactory.getFactory().createRule(rule));
-        }
-        Puzzle puzzle = new Puzzle(height, width, parsedRules, parser.getClues(), parser.getRegionJsons());
-
-        */
         assertEquals(board.getHeight(), height);
         assertEquals(board.getWidth(), width);
-
-        /*
-        ArrayList<String> rules = parser.getRules();
-        for (String rule : rules) {
-            System.out.print(rule + "\n");
-        }
-
-        ArrayList<Cell> clues = parser.getClues();
-        System.out.print("\tTemporary test. Only works with Board.json\n");
-        System.out.print("The number of clues is : " + clues.size() + "\n");
-        System.out.print("The number of contents\n");
-        for (int i = 0; i < clues.size(); i++) {
-            ArrayList<CellContent> content = clues.get(i).getContents();
-            System.out.print(" in clue " + clues.get(i).getRow() + " " + clues.get(i).getColumn()
-                    + " is " + content.size() + "\n");
-        }
-
-        ArrayList<Cell> solution = parser.getSolution();
-        System.out.print("The number of solutions is : " + solution.size() + "\n");
-        System.out.print("The number of contents\n");
-        for (int i = 0; i < solution.size(); i++) {
-            ArrayList<CellContent> content = solution.get(i).getContents();
-            System.out.print(" in solution " + solution.get(i).getRow() + " " + solution.get(i).getColumn()
-                    + " is " + content.size() + " with value " + content.get(0).getValue() + "\n");
-        }
-*/
     }
 
 }

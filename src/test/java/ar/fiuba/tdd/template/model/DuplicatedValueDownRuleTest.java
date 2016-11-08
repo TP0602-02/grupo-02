@@ -8,9 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by alazraqui on 02/11/2016.
- */
 public class DuplicatedValueDownRuleTest {
     private Board board;
     private DuplicatedValueDownRule rule;
@@ -26,14 +23,10 @@ public class DuplicatedValueDownRuleTest {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(4, 3)), 2));
     }
 
-    ;
-
     @Test
     public void insertValueInEmptyBoard_ReturnTrue() {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 2));
     }
-
-    ;
 
     @Test
     public void insertValuewithSameValueOutsideRange_ReturnTrue() {
@@ -41,15 +34,11 @@ public class DuplicatedValueDownRuleTest {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 4)), 2));
     }
 
-    ;
-
     @Test
     public void insertValuewithSameValueinsideRange_ReturnFalse() {
         this.board.setValue(new Coordinate(3, 1), new ValueContent(2));
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 2));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 2));
     }
-
-    ;
 
     @Test
     public void insertValuewithOtherValueinsideRange_ReturnTrue() {
@@ -57,14 +46,10 @@ public class DuplicatedValueDownRuleTest {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), 2));
     }
 
-    ;
-
     @Test
     public void insertValuewithMultipleValuesinsideRange_ReturnFalse() {
         this.board.setValue(new Coordinate(2, 3), new ValueContent(2));
         this.board.setValue(new Coordinate(1, 3), new ValueContent(1));
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 3)), 2));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 3)), 2));
     }
-
-    ;
 }

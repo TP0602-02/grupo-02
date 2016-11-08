@@ -1,7 +1,6 @@
 package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
@@ -11,15 +10,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
-/**
- * Created by matiaskamien on 02/11/16.
- */
 public class AmountOfConnectionsRuleTest {
     public static final int LEFT = 1;
-    public static final int RIGHT = 2;
-    public static final int UP = 3;
     public static final int DOWN = 4;
     private Board board;
     private AmountOfConnectionsRule rule;
@@ -36,7 +28,7 @@ public class AmountOfConnectionsRuleTest {
         cell.getContents().add(new ClueContent(2));
         cell.getContents().add(new ValueContent(DOWN));
         Cell otherCell = this.board.getCell(new Coordinate(0, 1));
-        Assert.assertTrue(!this.rule.validate(board, otherCell, LEFT));
+        Assert.assertFalse(this.rule.validate(board, otherCell, LEFT));
     }
 
     @Test
@@ -46,7 +38,7 @@ public class AmountOfConnectionsRuleTest {
         cell.getContents().add(new ValueContent(DOWN));
         Cell otherCell = this.board.getCell(new Coordinate(0, 1));
         otherCell.getContents().add(new ValueContent(DOWN));
-        Assert.assertTrue(!this.rule.validate(board, otherCell, LEFT));
+        Assert.assertFalse(this.rule.validate(board, otherCell, LEFT));
     }
 
     @Test

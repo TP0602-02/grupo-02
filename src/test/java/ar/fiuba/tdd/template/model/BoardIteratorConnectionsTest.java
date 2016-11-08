@@ -29,21 +29,21 @@ public class BoardIteratorConnectionsTest {
 
     @Test
     public void insertRightValidMovement_returnFalse() {
-        Assert.assertTrue(!iterator.validateDirection(board, board.getCell(new Coordinate(2, 3)), RIGHT));
+        Assert.assertFalse(iterator.validateDirection(board, board.getCell(new Coordinate(2, 3)), RIGHT));
     }
 
     @Test
     public void insertLeftValidMovement_returnFalse() {
-        Assert.assertTrue(!iterator.validateDirection(board, board.getCell(new Coordinate(2, 0)), LEFT));
+        Assert.assertFalse(iterator.validateDirection(board, board.getCell(new Coordinate(2, 0)), LEFT));
     }
 
     @Test
     public void insertDownValidMovement_returnFalse() {
-        Assert.assertTrue(!iterator.validateDirection(board, board.getCell(new Coordinate(3, 2)), DOWN));
+        Assert.assertFalse(iterator.validateDirection(board, board.getCell(new Coordinate(3, 2)), DOWN));
     }
 
     @Test
     public void insertUpValidMovement_returnFalse() {
-        Assert.assertTrue(!iterator.validateDirection(board, board.getCell(new Coordinate(0, 3)), UP));
+        Assert.assertFalse(iterator.validateDirection(board, board.getCell(new Coordinate(0, 3)), UP));
     }
 }

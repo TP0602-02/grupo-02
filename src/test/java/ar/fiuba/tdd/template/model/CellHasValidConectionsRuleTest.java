@@ -27,7 +27,7 @@ public class CellHasValidConectionsRuleTest {
     }
 
     @Test
-    public void connectTwoCellsWithNoConections_ReturnTrue() {
+    public void connectTwoCellsWithNoConnections_ReturnTrue() {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(5, 5)), RIGHT));
     }
 
@@ -49,24 +49,24 @@ public class CellHasValidConectionsRuleTest {
 
     @Test
     public void connectCellWithNoValuesWithCellWithTwoValues_ReturnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), LEFT));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), LEFT));
     }
 
     @Test
     public void connectCellWithTwoValuesWithCellWithNoValue_ReturnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), RIGHT));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), RIGHT));
     }
 
     @Test
     public void connectCellWithOneValuesWithCellWithTwoValues_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 2), new ValueContent(RIGHT));
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), LEFT));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), LEFT));
     }
 
     @Test
     public void connectCellWithTwoValuesWithCellWithTwoValues_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 2), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(0, 2), new ValueContent(DOWN));
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), LEFT));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), LEFT));
     }
 }

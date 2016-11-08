@@ -7,9 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by alazraqui on 13/10/2016.
- */
 public class ConectionInsideBoardRuleTest {
     private static final int LEFT = 1;
     private static final int RIGHT = 2;
@@ -25,37 +22,37 @@ public class ConectionInsideBoardRuleTest {
     }
 
     @Test
-    public void insertInvalidConectionToLeft_returnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 0)), LEFT));
+    public void insertInvalidConnectionToLeft_ReturnFalse() {
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 0)), LEFT));
     }
 
     @Test
-    public void insertInvalidConectionToRight_returnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 3)), RIGHT));
+    public void insertInvalidConnectionToRight_ReturnFalse() {
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 3)), RIGHT));
     }
 
     @Test
-    public void insertInvalidConectionDown_returnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(3, 2)), DOWN));
+    public void insertInvalidConnectionDown_ReturnFalse() {
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(3, 2)), DOWN));
     }
 
     @Test
-    public void insertInvalidConectionUp_returnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), UP));
+    public void insertInvalidConnectionUp_ReturnFalse() {
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), UP));
     }
 
     @Test
-    public void insertValidConectionInMiddle_ReturnTrue() {
+    public void insertValidConnectionInMiddle_ReturnTrue() {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), DOWN));
     }
 
     @Test
-    public void insertValidConectionInBoard_ReturnTrue() {
+    public void insertValidConnectionInBoard_ReturnTrue() {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), RIGHT));
     }
 
     @Test
-    public void insertValidConectionInBoardLine_ReturnTrue() {
+    public void insertValidConnectionInBoardLine_ReturnTrue() {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), DOWN));
     }
 

@@ -6,9 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by Nicolas on 7/10/2016.
- */
 public class CellTest {
 
     private CellFactory cellFactory;
@@ -57,7 +54,6 @@ public class CellTest {
         Assert.assertEquals(cell.getContents().size(), 2);
         Assert.assertEquals(cell.getContents().get(0).getNumberValue(), firstValueToAdd);
         Assert.assertEquals(cell.getContents().get(1).getNumberValue(), secondValueToAdd);
-
     }
 
     @Test

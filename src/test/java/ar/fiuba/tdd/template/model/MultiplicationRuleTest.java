@@ -15,9 +15,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by alazraqui on 09/10/2016.
- */
 public class MultiplicationRuleTest {
     private Board board;
     private MultiplicationRule rule;
@@ -31,7 +28,7 @@ public class MultiplicationRuleTest {
     }
 
     private void setCol() {
-        ArrayList<Cell> secondCol = new ArrayList<Cell>(Arrays.asList(this.board.getCell(new Coordinate(0, 1)),
+        ArrayList<Cell> secondCol = new ArrayList<>(Arrays.asList(this.board.getCell(new Coordinate(0, 1)),
                 this.board.getCell(new Coordinate(1, 1))));
         secondCol.add(this.board.getCell(new Coordinate(2, 1)));
         secondCol.add(this.board.getCell(new Coordinate(3, 1)));
@@ -41,7 +38,7 @@ public class MultiplicationRuleTest {
     }
 
     private void setRow() {
-        ArrayList<Cell> secondRow = new ArrayList<Cell>(Arrays.asList(this.board.getCell(
+        ArrayList<Cell> secondRow = new ArrayList<>(Arrays.asList(this.board.getCell(
                 new Coordinate(1, 0)), this.board.getCell(new Coordinate(1, 1))));
         secondRow.add(this.board.getCell(new Coordinate(1, 2)));
         secondRow.add(this.board.getCell(new Coordinate(1, 3)));
@@ -51,37 +48,37 @@ public class MultiplicationRuleTest {
     }
 
     @Test
-    public void addInEmptyBoardReturnTrue() {
+    public void addInEmptyBoard_ReturnTrue() {
         Assert.assertTrue(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 5));
     }
 
     @Test
-    public void addInEmptyBoardExcedsValueReturnFalse() {
-        Assert.assertTrue(!rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 37));
+    public void addInEmptyBoardExcedsValue_ReturnFalse() {
+        Assert.assertFalse(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 37));
     }
 
     @Test
-    public void addInRowWithValuesReturnTrue() {
+    public void addInRowWithValues_ReturnTrue() {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(2));
         Assert.assertTrue(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 2));
     }
 
     @Test
-    public void addInRowWithValuesExcedReturnFalse() {
+    public void addInRowWithValuesExced_ReturnFalse() {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(5));
-        Assert.assertTrue(!rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 10));
+        Assert.assertFalse(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 10));
     }
 
     @Test
-    public void addInCompleteRowIsLowerThanTotalReturnFalse() {
+    public void addInCompleteRowIsLowerThanTotal_ReturnFalse() {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(2));
         this.board.setValue(new Coordinate(1, 2), new ValueContent(3));
         this.board.setValue(new Coordinate(1, 3), new ValueContent(2));
-        Assert.assertTrue(!rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 1));
+        Assert.assertFalse(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 1));
     }
 
     @Test
-    public void addInCompleteRowReturnTrue() {
+    public void addInCompleteRow_ReturnTrue() {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(2));
         this.board.setValue(new Coordinate(1, 2), new ValueContent(1));
         this.board.setValue(new Coordinate(1, 3), new ValueContent(3));
@@ -89,7 +86,7 @@ public class MultiplicationRuleTest {
     }
 
     @Test
-    public void addInCompleteRowAndColumnReturnTrue() {
+    public void addInCompleteRowAndColumn_ReturnTrue() {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(2));
         this.board.setValue(new Coordinate(1, 2), new ValueContent(1));
         this.board.setValue(new Coordinate(1, 3), new ValueContent(9));
@@ -100,14 +97,14 @@ public class MultiplicationRuleTest {
     }
 
     @Test
-    public void addInCompleteRowAndColumnReturnFalseForColumn() {
+    public void addInCompleteRowAndColumn_ReturnFalseForColumn() {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(2));
         this.board.setValue(new Coordinate(1, 2), new ValueContent(1));
         this.board.setValue(new Coordinate(1, 3), new ValueContent(9));
         this.board.setValue(new Coordinate(0, 1), new ValueContent(1));
         this.board.setValue(new Coordinate(2, 1), new ValueContent(1));
         this.board.setValue(new Coordinate(3, 1), new ValueContent(1));
-        Assert.assertTrue(!rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 2));
+        Assert.assertFalse(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 2));
     }
 
 }

@@ -8,14 +8,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by alazraqui on 14/10/2016.
- */
 public class CircuitVerificatorWithBordersTest {
-    public static final int LEFT = 1;
-    public static final int RIGHT = 2;
-    public static final int UP = 3;
-    public static final int DOWN = 4;
+    private static final int LEFT = 1;
+    private static final int RIGHT = 2;
+    private static final int UP = 3;
+    private static final int DOWN = 4;
     private CircuitVerificatorWithBorders circuit;
     private Board board;
 
@@ -26,55 +23,55 @@ public class CircuitVerificatorWithBordersTest {
     }
 
     @Test
-    public void firstCellInBoardReturnFalse() {
+    public void firstCellInBoard_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 0), new ValueContent(LEFT));
-        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
+        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
-    public void firstCellInMiddleBoardReturnFalse() {
+    public void firstCellInMiddleBoard_ReturnFalse() {
         this.board.setValue(new Coordinate(3, 4), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(3, 3), new ValueContent(RIGHT));
-        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
+        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
-    public void squareInBoardReturnTrue() {
+    public void squareInBoard_ReturnTrue() {
         this.setVertical();
         this.setHorizontal();
         Assert.assertTrue(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
-    public void setVerticalLinesInBoardReturnFalse() {
+    public void setVerticalLinesInBoard_ReturnFalse() {
         this.setVertical();
-        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
+        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
-    public void setHorizontalLinesInBoardReturnFalse() {
+    public void setHorizontalLinesInBoard_ReturnFalse() {
         this.setHorizontal();
-        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
+        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
-    public void setSquareWithLineOutsideCircuiteReturnFalse() {
+    public void setSquareWithLineOutsideCircuit_ReturnFalse() {
         this.setHorizontal();
         this.setVertical();
         this.board.setValue(new Coordinate(5, 5), new ValueContent(RIGHT));
-        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
+        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
-    public void setSquareWithLineBeforeOutsideCircuiteReturnFalse() {
+    public void setSquareWithLineBeforeOutsideCircuit_ReturnFalse() {
         this.setHorizontal();
         this.setVertical();
         this.board.setValue(new Coordinate(0, 0), new ValueContent(RIGHT));
-        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
+        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
-    public void setTwoSquaresReturnFalse() {
+    public void setTwoSquares_ReturnFalse() {
         this.board.setValue(new Coordinate(2, 0), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(3, 0), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(2, 0), new ValueContent(RIGHT));
@@ -92,26 +89,26 @@ public class CircuitVerificatorWithBordersTest {
         this.board.setValue(new Coordinate(5, 0), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(4, 1), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(5, 1), new ValueContent(LEFT));
-        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
+        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
-    public void setSquareWithOneVerticalHoleInBoardReturnFalse() {
+    public void setSquareWithOneVerticalHoleInBoard_ReturnFalse() {
         this.setHorizontal();
-        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
+        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
-    public void setSquarewithLineInsideReturnFalse() {
+    public void setSquarewithLineInside_ReturnFalse() {
         setVertical();
         setHorizontal();
         this.board.setValue(new Coordinate(2, 2), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(2, 3), new ValueContent(LEFT));
-        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
+        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
-    public void setCloseCircuitInOneBorderReturnTrue() {
+    public void setCloseCircuitInOneBorder_ReturnTrue() {
         this.board.setValue(new Coordinate(2, 0), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(3, 0), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(2, 0), new ValueContent(RIGHT));
@@ -126,7 +123,7 @@ public class CircuitVerificatorWithBordersTest {
     }
 
     @Test
-    public void setCloseCircuitInTwoBordersReturnTrue() {
+    public void setCloseCircuitInTwoBorders_ReturnTrue() {
         this.board.setValue(new Coordinate(4, 0), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(4, 0), new ValueContent(UP));
         this.board.setValue(new Coordinate(4, 0), new ValueContent(RIGHT));
@@ -136,11 +133,10 @@ public class CircuitVerificatorWithBordersTest {
         this.board.setValue(new Coordinate(5, 0), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(4, 1), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(5, 1), new ValueContent(LEFT));
-
         Assert.assertTrue(this.circuit.isCircuitClosed(this.board));
     }
 
-    public void setVertical() {
+    private void setVertical() {
         this.board.setValue(new Coordinate(1, 1), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(2, 1), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(3, 1), new ValueContent(RIGHT));
@@ -155,7 +151,7 @@ public class CircuitVerificatorWithBordersTest {
         this.board.setValue(new Coordinate(3, 5), new ValueContent(LEFT));
     }
 
-    public void setVerticalWithHole() {
+    private void setVerticalWithHole() {
         this.board.setValue(new Coordinate(1, 1), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(2, 1), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(1, 2), new ValueContent(LEFT));

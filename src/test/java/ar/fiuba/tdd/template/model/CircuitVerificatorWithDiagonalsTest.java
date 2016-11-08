@@ -8,9 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by matiaskamien on 18/10/16.
- */
 public class CircuitVerificatorWithDiagonalsTest {
 
     private static final int UPPER_LEFT_CORNER = 1;
@@ -57,6 +54,6 @@ public class CircuitVerificatorWithDiagonalsTest {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(LOWER_RIGHT_CORNER));
 
         this.circuit.setCell(this.board.getCell(new Coordinate(0, 1)));
-        Assert.assertTrue(!this.circuit.isCircuitClosed(this.board));
+        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
     }
 }

@@ -13,15 +13,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-
-/**
- * Created by alazraqui on 15/10/2016.
- */
 public class NumberOfBordersInRegionRuleTest {
-    public static final int LEFT = 1;
-    public static final int RIGHT = 2;
-    public static final int UP = 3;
-    public static final int DOWN = 4;
+    private static final int LEFT = 1;
+    private static final int UP = 3;
     private Board board;
     private Region region;
     private Cell cell;
@@ -30,7 +24,7 @@ public class NumberOfBordersInRegionRuleTest {
     @Before
     public void setUp() {
         this.board = new Board(4, 4, "");
-        ArrayList<Cell> cells = new ArrayList<Cell>();
+        ArrayList<Cell> cells = new ArrayList<>();
         cells.add(this.board.getCell(new Coordinate(0, 0)));
         this.cell = this.board.getCell(new Coordinate(0, 0));
         this.region = new Region(cells);

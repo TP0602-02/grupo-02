@@ -13,9 +13,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-/**
- * Created by alazraqui on 15/10/2016.
- */
 public class RegionTotalBorderRuleTest {
     private Board board;
     private Region region;
@@ -24,7 +21,7 @@ public class RegionTotalBorderRuleTest {
     @Before
     public void setUp() {
         this.board = new Board(4, 4, "");
-        ArrayList<Cell> cell = new ArrayList<Cell>();
+        ArrayList<Cell> cell = new ArrayList<>();
         cell.add(this.board.getCell(new Coordinate(0, 0)));
         this.region = new Region(cell);
         region.setClue(new ClueContent(2));
@@ -44,7 +41,7 @@ public class RegionTotalBorderRuleTest {
         this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(3));
         this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(2));
         this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(1));
-        Assert.assertTrue(!this.rule.validate(this.board));
+        Assert.assertFalse(this.rule.validate(this.board));
     }
 
     @Test

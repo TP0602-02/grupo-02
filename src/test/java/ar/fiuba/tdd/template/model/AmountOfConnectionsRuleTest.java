@@ -11,8 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AmountOfConnectionsRuleTest {
-    public static final int LEFT = 1;
-    public static final int DOWN = 4;
+    private static final int LEFT = 1;
+    private static final int DOWN = 4;
     private Board board;
     private AmountOfConnectionsRule rule;
 

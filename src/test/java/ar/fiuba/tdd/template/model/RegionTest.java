@@ -9,9 +9,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-/**
- * Created by matiaskamien on 07/10/16.
- */
 public class RegionTest {
 
     private Region region;
@@ -19,7 +16,7 @@ public class RegionTest {
     @Before
     public void setUp() {
         int total = 10;
-        ArrayList<Cell> cells = new ArrayList<Cell>();
+        ArrayList<Cell> cells = new ArrayList<>();
         this.region = new Region(cells);
         region.setClue(new ClueContent(total));
     }
@@ -92,6 +89,5 @@ public class RegionTest {
         region.addCell(cell3);
         Assert.assertTrue(region.getOcuppiedCells() == 2);
     }
-
 
 }

@@ -4,13 +4,10 @@ import ar.fiuba.tdd.template.rules.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Created by Nicolas on 27/9/2016.
- */
 public class RuleFactoryTest {
 
     @Test
-    public void testCreateCellHasValidConectionsRule() {
+    public void testCreateCellHasValidConnectionsRule() {
         GenericRule rule =
                 RulesFactory.getFactory().createRule(RulesFactory.CONECTIONS_IN_CELL_RULE);
         Assert.assertTrue(rule instanceof CellHasValidConectionsRule);
@@ -24,14 +21,14 @@ public class RuleFactoryTest {
     }
 
     @Test
-    public void testCreateConectionsInsideBoardRule() {
+    public void testCreateConnectionsInsideBoardRule() {
         GenericRule rule =
                 RulesFactory.getFactory().createRule(RulesFactory.CONECTIONS_INSIDE_BOARD_RULE);
         Assert.assertTrue(rule instanceof ConectionInsideBoardRule);
     }
 
     @Test
-    public void testCreateRegionHasValidConections() {
+    public void testCreateRegionHasValidConnections() {
         GenericRule rule =
                 RulesFactory.getFactory().createRule(RulesFactory.CONECTIONS_IN_REGION_RULE);
         Assert.assertTrue(rule instanceof RegionHasValidConectionsRule);
@@ -59,7 +56,7 @@ public class RuleFactoryTest {
     }
 
     @Test
-    public void testCreateNumberOfConectionsInRegionRule() {
+    public void testCreateNumberOfConnectionsInRegionRule() {
         GenericRule rule =
                 RulesFactory.getFactory().createRule(RulesFactory.NUMBER_CONECTIONS_IN_REGION_RULE);
         Assert.assertTrue(rule instanceof NumberOfConectionsInRegionRule);

@@ -11,9 +11,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by alazraqui on 15/10/2016.
- */
 public class NoRepeatNumberInCellTest {
     private Cell cell;
     private NoRepeatNumberInCell rule;
@@ -41,14 +38,14 @@ public class NoRepeatNumberInCellTest {
     }
 
     @Test
-    public void addValueEqualClue_returnTrue() {
+    public void addValueEqualClue_ReturnTrue() {
         this.cell.setContent(new ClueContent(1));
         Assert.assertTrue(this.rule.validate(board, cell, 1));
     }
 
     @Test
-    public void repeatValue_returnFalse() {
+    public void repeatValue_ReturnFalse() {
         this.cell.setContent(new ValueContent(1));
-        Assert.assertTrue(!this.rule.validate(board, cell, 1));
+        Assert.assertFalse(this.rule.validate(board, cell, 1));
     }
 }

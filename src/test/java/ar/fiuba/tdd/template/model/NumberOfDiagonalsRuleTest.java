@@ -14,9 +14,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-/**
- * Created by alazraqui on 17/10/2016.
- */
 public class NumberOfDiagonalsRuleTest {
 
     private static final int upperLeftCorner = 1;
@@ -31,10 +28,10 @@ public class NumberOfDiagonalsRuleTest {
     @Before
     public void setUp() {
         this.board = new Board(6, 6, "");
-        ArrayList<Cell> cells1 = new ArrayList<Cell>();
+        ArrayList<Cell> cells1 = new ArrayList<>();
         cells1.add(this.board.getCell(new Coordinate(0, 0)));
         cells1.add(this.board.getCell(new Coordinate(0, 1)));
-        ArrayList<Cell> cells2 = new ArrayList<Cell>();
+        ArrayList<Cell> cells2 = new ArrayList<>();
         cells2.add(this.board.getCell(new Coordinate(0, 1)));
         cells2.add(this.board.getCell(new Coordinate(0, 2)));
         cells2.add(this.board.getCell(new Coordinate(1, 1)));
@@ -43,11 +40,11 @@ public class NumberOfDiagonalsRuleTest {
         this.region2 = new Region(cells2);
         this.board.addRegion(region1);
         this.board.addRegion(region2);
-        setclues();
+        setClues();
         this.rule = new NumberOfDiagonalsRule();
     }
 
-    private void setclues() {
+    private void setClues() {
         ClueContent firstclue = new ClueContent(2);
         ClueContent thirdclue = new ClueContent(3);
         this.region1.setClue(firstclue);
@@ -104,7 +101,7 @@ public class NumberOfDiagonalsRuleTest {
         this.board.setValue(new Coordinate(0, 1), new ValueContent("\\"));
         this.board.setValue(new Coordinate(1, 1), new ValueContent("/"));
         this.board.setValue(new Coordinate(1, 2), new ValueContent("\\"));
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), 2));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), 2));
     }
 
     @Test
@@ -121,7 +118,7 @@ public class NumberOfDiagonalsRuleTest {
         this.board.setValue(new Coordinate(1, 1), new ValueContent("/"));
         this.board.setValue(new Coordinate(1, 2), new ValueContent("\\"));
         this.board.setValue(new Coordinate(0, 2), new ValueContent("/"));
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), 1));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), 1));
     }
 
 }

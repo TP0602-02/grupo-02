@@ -14,9 +14,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by alazraqui on 08/10/2016.
- */
 public class NoRepeatValueRuleTest {
     private Board board;
     private NoRepeatValueRule rule;
@@ -30,19 +27,19 @@ public class NoRepeatValueRuleTest {
     }
 
     private void setCols() {
-        ArrayList<Cell> firstCol = new ArrayList<Cell>(Arrays.asList(this.board.getCell(new Coordinate(0, 0)),
+        ArrayList<Cell> firstCol = new ArrayList<>(Arrays.asList(this.board.getCell(new Coordinate(0, 0)),
                 this.board.getCell(new Coordinate(1, 0))));
         firstCol.add(board.getCell(new Coordinate(2, 0)));
         firstCol.add(this.board.getCell(new Coordinate(3, 0)));
-        ArrayList<Cell> secondCol = new ArrayList<Cell>(Arrays.asList(this.board.getCell(
+        ArrayList<Cell> secondCol = new ArrayList<>(Arrays.asList(this.board.getCell(
                 new Coordinate(0, 1)), this.board.getCell(new Coordinate(1, 1))));
         secondCol.add(this.board.getCell(new Coordinate(2, 1)));
         secondCol.add(this.board.getCell(new Coordinate(3, 1)));
-        ArrayList<Cell> thirdCol = new ArrayList<Cell>(Arrays.asList(this.board.getCell(
+        ArrayList<Cell> thirdCol = new ArrayList<>(Arrays.asList(this.board.getCell(
                 new Coordinate(0, 2)), this.board.getCell(new Coordinate(1, 2))));
         thirdCol.add(this.board.getCell(new Coordinate(2, 2)));
         thirdCol.add(board.getCell(new Coordinate(3, 2)));
-        ArrayList<Cell> fourthCol = new ArrayList<Cell>(Arrays.asList(this.board.getCell(
+        ArrayList<Cell> fourthCol = new ArrayList<>(Arrays.asList(this.board.getCell(
                 new Coordinate(0, 3)), this.board.getCell(new Coordinate(1, 3))));
         fourthCol.add(this.board.getCell(new Coordinate(2, 3)));
         fourthCol.add(this.board.getCell(new Coordinate(3, 3)));
@@ -53,19 +50,19 @@ public class NoRepeatValueRuleTest {
     }
 
     private void setRows() {
-        ArrayList<Cell> firstRow = new ArrayList<Cell>(Arrays.asList(this.board.getCell(
+        ArrayList<Cell> firstRow = new ArrayList<>(Arrays.asList(this.board.getCell(
                 new Coordinate(0, 0)), this.board.getCell(new Coordinate(0, 1))));
         firstRow.add(this.board.getCell(new Coordinate(0, 2)));
         firstRow.add(this.board.getCell(new Coordinate(0, 3)));
-        ArrayList<Cell> secondRow = new ArrayList<Cell>(Arrays.asList(this.board.getCell(
+        ArrayList<Cell> secondRow = new ArrayList<>(Arrays.asList(this.board.getCell(
                 new Coordinate(1, 0)), this.board.getCell(new Coordinate(1, 1))));
         secondRow.add(this.board.getCell(new Coordinate(1, 2)));
         secondRow.add(this.board.getCell(new Coordinate(1, 3)));
-        ArrayList<Cell> thirdRow = new ArrayList<Cell>(Arrays.asList(this.board.getCell(
+        ArrayList<Cell> thirdRow = new ArrayList<>(Arrays.asList(this.board.getCell(
                 new Coordinate(2, 0)), this.board.getCell(new Coordinate(2, 1))));
         thirdRow.add(board.getCell(new Coordinate(2, 2)));
         thirdRow.add(this.board.getCell(new Coordinate(2, 3)));
-        ArrayList<Cell> fourthRow = new ArrayList<Cell>(Arrays.asList(this.board.getCell(
+        ArrayList<Cell> fourthRow = new ArrayList<>(Arrays.asList(this.board.getCell(
                 new Coordinate(3, 0)), this.board.getCell(new Coordinate(3, 1))));
         fourthRow.add(this.board.getCell(new Coordinate(3, 2)));
         fourthRow.add(this.board.getCell(new Coordinate(3, 3)));
@@ -77,18 +74,18 @@ public class NoRepeatValueRuleTest {
     }
 
     @Test
-    public void addInEmptyBoardReturnTrue() {
+    public void addInEmptyBoard_ReturnTrue() {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 3));
     }
 
     @Test
-    public void addInTheSameCellReturnTrue() {
+    public void addInTheSameCell_ReturnTrue() {
         this.board.setValue(new Coordinate(0, 0), new ValueContent(1));
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 1));
     }
 
     @Test
-    public void addNumberInRowReturnFalse() {
+    public void addNumberInRow_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 0), new ValueContent(1));
         this.board.setValue(new Coordinate(0, 3), new ValueContent(2));
         Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), 1));
@@ -113,6 +110,5 @@ public class NoRepeatValueRuleTest {
         this.board.setValue(new Coordinate(3, 0), new ValueContent(3));
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 4));
     }
-
 
 }

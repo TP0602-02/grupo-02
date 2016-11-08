@@ -7,9 +7,6 @@ import ar.fiuba.tdd.template.winverificators.WinVerificatorFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Created by alazraqui on 16/10/2016.
- */
 public class WinVerificatorFactoryTest {
 
     @Test

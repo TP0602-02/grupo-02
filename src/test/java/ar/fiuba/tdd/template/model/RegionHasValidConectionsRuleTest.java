@@ -12,9 +12,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-/**
- * Created by alazraqui on 13/10/2016.
- */
 public class RegionHasValidConectionsRuleTest {
     private static final int LEFT = 1;
     private static final int RIGHT = 2;
@@ -27,18 +24,18 @@ public class RegionHasValidConectionsRuleTest {
     @Before
     public void setUp() {
         this.board = new Board(9, 9, "");
-        ArrayList<Cell> cellsOne = new ArrayList<Cell>();
+        ArrayList<Cell> cellsOne = new ArrayList<>();
         cellsOne.add(this.board.getCell(new Coordinate(0, 0)));
         cellsOne.add(this.board.getCell(new Coordinate(0, 1)));
         cellsOne.add(this.board.getCell(new Coordinate(0, 2)));
         cellsOne.add(this.board.getCell(new Coordinate(1, 0)));
-        ArrayList<Cell> cellsTwo = new ArrayList<Cell>();
+        ArrayList<Cell> cellsTwo = new ArrayList<>();
         cellsTwo.add(this.board.getCell(new Coordinate(1, 1)));
         cellsTwo.add(this.board.getCell(new Coordinate(2, 0)));
         cellsTwo.add(this.board.getCell(new Coordinate(2, 1)));
         cellsTwo.add(this.board.getCell(new Coordinate(2, 2)));
         cellsTwo.add(this.board.getCell(new Coordinate(2, 3)));
-        ArrayList<Cell> cellsThree = new ArrayList<Cell>();
+        ArrayList<Cell> cellsThree = new ArrayList<>();
         cellsThree.add(this.board.getCell(new Coordinate(3, 3)));
         cellsThree.add(this.board.getCell(new Coordinate(3, 2)));
         this.board.addRegion(new Region(cellsOne));
@@ -48,37 +45,37 @@ public class RegionHasValidConectionsRuleTest {
     }
 
     @Test
-    public void insertFirstConectionInRegion_ReturnTrue() {
+    public void insertFirstConnectionInRegion_ReturnTrue() {
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), RIGHT));
     }
 
     @Test
-    public void insertInRegionWithTwoConections_ReturnFalse() {
+    public void insertInRegionWithTwoConnections_ReturnFalse() {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(1, 1), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(2, 2), new ValueContent(DOWN));
         this.board.setValue(new Coordinate(3, 2), new ValueContent(UP));
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 0)), UP));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 0)), UP));
     }
 
     @Test
-    public void insertInSameRegionWithOneConection_ReturnTrue() {
+    public void insertInSameRegionWithOneConnection_ReturnTrue() {
         this.board.setValue(new Coordinate(1, 1), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(1, 0), new ValueContent(RIGHT));
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), RIGHT));
     }
 
     @Test
-    public void insertInRegionWithFullConectionsReturnFalse() {
+    public void insertInRegionWithFullConnections_ReturnFalse() {
         this.board.setValue(new Coordinate(3, 3), new ValueContent(UP));
         this.board.setValue(new Coordinate(2, 3), new ValueContent(DOWN));
         this.board.setValue(new Coordinate(3, 2), new ValueContent(UP));
         this.board.setValue(new Coordinate(2, 2), new ValueContent(DOWN));
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 0)), RIGHT));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 0)), RIGHT));
     }
 
     @Test
-    public void insertInSameRegionWithFullConectionsReturnTrue() {
+    public void insertInSameRegionWithFullConnections_ReturnTrue() {
         this.board.setValue(new Coordinate(3, 3), new ValueContent(UP));
         this.board.setValue(new Coordinate(2, 3), new ValueContent(DOWN));
         this.board.setValue(new Coordinate(3, 2), new ValueContent(UP));
@@ -87,18 +84,17 @@ public class RegionHasValidConectionsRuleTest {
     }
 
     @Test
-    public void insertRegionWithNoConectionWithRegionWithOneConectionReturnTrue() {
+    public void insertRegionWithNoConectionWithRegionWithOneConnection_ReturnTrue() {
         this.board.setValue(new Coordinate(3, 3), new ValueContent(UP));
         this.board.setValue(new Coordinate(2, 3), new ValueContent(DOWN));
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 0)), RIGHT));
     }
 
     @Test
-    public void insertRegionWithOneConectionWithRegionWithNoConectionReturnTrue() {
+    public void insertRegionWithOneConectionWithRegionWithNoConnection_ReturnTrue() {
         this.board.setValue(new Coordinate(3, 3), new ValueContent(UP));
         this.board.setValue(new Coordinate(2, 3), new ValueContent(DOWN));
         Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), LEFT));
     }
-
 
 }

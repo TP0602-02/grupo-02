@@ -13,9 +13,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-/**
- * Created by alazraqui on 15/10/2016.
- */
 public class RegionTotalConectionRuleTest {
     private Board board;
     private Region region;
@@ -24,7 +21,7 @@ public class RegionTotalConectionRuleTest {
     @Before
     public void setUp() {
         this.board = new Board(4, 4, "");
-        ArrayList<Cell> cells = new ArrayList<Cell>();
+        ArrayList<Cell> cells = new ArrayList<>();
         cells.add(this.board.getCell(new Coordinate(0, 0)));
         cells.add(this.board.getCell(new Coordinate(1, 0)));
         cells.add(this.board.getCell(new Coordinate(1, 1)));
@@ -36,14 +33,14 @@ public class RegionTotalConectionRuleTest {
 
     @Test
     public void checkEmptyBoard_ReturnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board));
+        Assert.assertFalse(this.rule.validate(this.board));
     }
 
     @Test
     public void checkwithOneCellOcuppiedWithMoreThanOneValueBoard_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 0), new ValueContent(2));
         this.board.setValue(new Coordinate(0, 0), new ValueContent(2));
-        Assert.assertTrue(!this.rule.validate(this.board));
+        Assert.assertFalse(this.rule.validate(this.board));
     }
 
     @Test
@@ -61,13 +58,12 @@ public class RegionTotalConectionRuleTest {
         Assert.assertTrue(this.rule.validate(this.board));
     }
 
-
     @Test
     public void checkwithThreeCells_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 0), new ValueContent(2));
         this.board.setValue(new Coordinate(1, 0), new ValueContent(2));
         this.board.setValue(new Coordinate(1, 1), new ValueContent(3));
-        Assert.assertTrue(!this.rule.validate(this.board));
+        Assert.assertFalse(this.rule.validate(this.board));
     }
 
     @Test

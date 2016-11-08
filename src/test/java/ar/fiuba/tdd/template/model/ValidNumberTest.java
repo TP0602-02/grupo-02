@@ -7,9 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by alazraqui on 16/10/2016.
- */
 public class ValidNumberTest {
     private Board board;
     private ValidNumberRule rule;
@@ -22,7 +19,7 @@ public class ValidNumberTest {
 
     @Test
     public void addZero_ReturnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 0));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 0));
     }
 
     @Test
@@ -32,6 +29,6 @@ public class ValidNumberTest {
 
     @Test
     public void addHighNumber_ReturnFalse() {
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 5));
+        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 5));
     }
 }

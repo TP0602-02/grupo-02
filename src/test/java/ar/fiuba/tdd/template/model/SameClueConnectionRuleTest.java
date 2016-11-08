@@ -10,14 +10,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by matiaskamien on 02/11/16.
- */
 public class SameClueConnectionRuleTest {
-    public static final int LEFT = 1;
-    public static final int RIGHT = 2;
-    public static final int UP = 3;
-    public static final int DOWN = 4;
+    private static final int UP = 3;
+    private static final int DOWN = 4;
     private Board board;
     private SameClueConnectionRule rule;
 
@@ -60,7 +55,7 @@ public class SameClueConnectionRuleTest {
 
         Cell secondCell = this.board.getCell(new Coordinate(1,1));
         secondCell.getContents().add(new ValueContent(DOWN));
-        Assert.assertTrue(!this.rule.validate(board, secondCell, UP));
+        Assert.assertFalse(this.rule.validate(board, secondCell, UP));
     }
 
     @Test
@@ -96,6 +91,6 @@ public class SameClueConnectionRuleTest {
 
         Cell secondCell = this.board.getCell(new Coordinate(1,1));
         secondCell.getContents().add(new ValueContent(DOWN));
-        Assert.assertTrue(!this.rule.validate(board, clueCell, DOWN));
+        Assert.assertFalse(this.rule.validate(board, clueCell, DOWN));
     }
 }

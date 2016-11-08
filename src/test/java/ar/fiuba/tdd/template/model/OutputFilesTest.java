@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.Parser;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +13,6 @@ public class OutputFilesTest {
     private static final String OUTPUT_ROOT = "src/json";
     private static final String INSHI_OUTPUT_FILE = "/inshinoheyaOutput.json";
     private static final String COUNTRY_OUTPUT_FILE = "/countryroadOutput.json";
-
 
     private Parser parser;
 
@@ -33,12 +33,7 @@ public class OutputFilesTest {
                     break;
                 }
             }
-
-            if (valid) {
-                assert true;
-            } else {
-                assert false;
-            }
+            Assert.assertTrue(valid);
         } else {
             System.out.print(OUTPUT_ROOT + outputFileName + " does not exist\n");
         }

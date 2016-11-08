@@ -12,7 +12,7 @@ public class CellSingleValue extends Cell {
     }
 
     @Override
-    public void setContent(CellContent newContentCell) {
+    public void addContent(CellContent newContentCell) {
         contents.clear();
         contents.add(newContentCell);
     }

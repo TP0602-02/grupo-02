@@ -38,20 +38,20 @@ public class CloseCircuitDiagonalRule extends GenericCloseCircuitRule {
     //Removes last two contents.
     private void removeMovement(Cell cell) {
         int lastContentPosition = cell.getContents().size() - 1;
-        cell.getContents().remove(lastContentPosition);
-        cell.getContents().remove(lastContentPosition - 1);
+        cell.removeContent(lastContentPosition);
+        cell.removeContent(lastContentPosition - 1);
     }
 
 
     public void generateMovement(Cell cell, int numberToAdd) {
         switch (numberToAdd) {
             case SLASH:
-                cell.getContents().add(new ValueContent(1));
-                cell.getContents().add(new ValueContent(4));
+                cell.addContent(new ValueContent(1));
+                cell.addContent(new ValueContent(4));
                 break;
             case BACK_SLASH:
-                cell.getContents().add(new ValueContent(2));
-                cell.getContents().add(new ValueContent(3));
+                cell.addContent(new ValueContent(2));
+                cell.addContent(new ValueContent(3));
                 break;
             default:
                 break;

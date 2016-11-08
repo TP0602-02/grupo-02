@@ -113,12 +113,12 @@ public class Board {
 
     public void setValue(Coordinate coordinate, CellContent content) {
         Cell cell = getCell(coordinate);
-        cell.setContent(content);
+        cell.addContent(content);
     }
 
     public void setValues(Coordinate coordinate, ArrayList<CellContent> contents) {
         for (CellContent cellContent : contents) {
-            getCell(coordinate).setContent(cellContent);
+            getCell(coordinate).addContent(cellContent);
         }
     }
 

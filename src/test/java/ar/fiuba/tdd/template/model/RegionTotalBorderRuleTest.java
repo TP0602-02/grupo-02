@@ -34,24 +34,24 @@ public class RegionTotalBorderRuleTest {
 
     @Test
     public void checkInCellWithTwoValues_ReturnFalse() {
-        this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(3));
-        this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(2));
+        this.board.getCell(new Coordinate(0, 0)).addContent(new ValueContent(3));
+        this.board.getCell(new Coordinate(0, 0)).addContent(new ValueContent(2));
         Assert.assertTrue(this.rule.validate(this.board));
     }
 
     @Test
     public void checkInCellWithThreeValues_ReturnFalse() {
-        this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(3));
-        this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(2));
-        this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(1));
+        this.board.getCell(new Coordinate(0, 0)).addContent(new ValueContent(3));
+        this.board.getCell(new Coordinate(0, 0)).addContent(new ValueContent(2));
+        this.board.getCell(new Coordinate(0, 0)).addContent(new ValueContent(1));
         Assert.assertTrue(!this.rule.validate(this.board));
     }
 
     @Test
     public void checkInCellWithThreeValuesInNoRestrictionRegion_ReturnTrue() {
-        this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(3));
-        this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(2));
-        this.board.getCell(new Coordinate(0, 0)).setContent(new ValueContent(1));
+        this.board.getCell(new Coordinate(0, 0)).addContent(new ValueContent(3));
+        this.board.getCell(new Coordinate(0, 0)).addContent(new ValueContent(2));
+        this.board.getCell(new Coordinate(0, 0)).addContent(new ValueContent(1));
         this.region.setClue(new ClueContent(-1));
         Assert.assertTrue(this.rule.validate(this.board));
     }

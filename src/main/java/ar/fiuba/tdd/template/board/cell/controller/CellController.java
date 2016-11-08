@@ -80,7 +80,7 @@ public class CellController extends BaseController<CellView, Cell> {
 
     public void addValue(String value) {
         if (this.model.isEditable()) {
-            model.setContent(new ValueContent(value));
+            model.addContent(new ValueContent(value));
             DrawerFactory.getInstance().getDrawer().draw(view,model.getShowableValues());
 
             // view.setValues(model.getShowableValues());

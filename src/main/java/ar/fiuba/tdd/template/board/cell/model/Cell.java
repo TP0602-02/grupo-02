@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public abstract class Cell implements Summable, Editable {
 
-    protected ArrayList<CellContent> contents;
+    protected final ArrayList<CellContent> contents;
     protected Coordinate coordinate;
     protected boolean isEditable;
 
@@ -17,13 +17,21 @@ public abstract class Cell implements Summable, Editable {
 
     //FIXME: encapsulate cell contents and use 'addCell' .
     //FIXME If you want to share content, make it immutable:  protected final ArrayList<CellContent> contents;
-    public ArrayList<CellContent> getContents() {
+    public final ArrayList<CellContent> getContents() {
         return contents;
     }
 
 
     public void setEditable(boolean editable) {
         isEditable = editable;
+    }
+
+    public void removeContent(int index) {
+        this.contents.remove(index);
+    }
+
+    public int getSizeOfContents() {
+        return this.contents.size();
     }
 
     public ArrayList<CellContent> getSummableContents() {
@@ -54,7 +62,14 @@ public abstract class Cell implements Summable, Editable {
         return this.coordinate.getColumn();
     }
 
-    public abstract void setContent(CellContent newContentCell);
+    public abstract void addContent(CellContent newContentCell);
+
+    public CellContent getFirstContent() {
+        if (this.getSizeOfContents() == 0) {
+            return null;
+        }
+        return this.contents.get(0);
+    }
 
     public boolean isEmpty() {
         return contents.size() == 0;

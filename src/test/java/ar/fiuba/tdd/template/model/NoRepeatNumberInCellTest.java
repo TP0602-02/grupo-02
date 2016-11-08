@@ -34,21 +34,21 @@ public class NoRepeatNumberInCellTest {
 
     @Test
     public void addNumberInCellWithOtherValues_ReturnTrue() {
-        this.cell.setContent(new ValueContent(1));
-        this.cell.setContent(new ValueContent(3));
-        this.cell.setContent(new ValueContent(4));
+        this.cell.addContent(new ValueContent(1));
+        this.cell.addContent(new ValueContent(3));
+        this.cell.addContent(new ValueContent(4));
         Assert.assertTrue(this.rule.validate(board, cell, 2));
     }
 
     @Test
     public void addValueEqualClue_returnTrue() {
-        this.cell.setContent(new ClueContent(1));
+        this.cell.addContent(new ClueContent(1));
         Assert.assertTrue(this.rule.validate(board, cell, 1));
     }
 
     @Test
     public void repeatValue_returnFalse() {
-        this.cell.setContent(new ValueContent(1));
+        this.cell.addContent(new ValueContent(1));
         Assert.assertTrue(!this.rule.validate(board, cell, 1));
     }
 }

@@ -37,8 +37,8 @@ public class CellTest {
         int secondValueToAdd = 14;
         CellContent cellContent1 = new ValueContent(firstValueToAdd);
         CellContent cellContent2 = new ValueContent(secondValueToAdd);
-        cell.setContent(cellContent1);
-        cell.setContent(cellContent2);
+        cell.addContent(cellContent1);
+        cell.addContent(cellContent2);
         Assert.assertEquals(cell.getContents().size(), 1);
         Assert.assertEquals(cell.getContents().get(0).getNumberValue(), secondValueToAdd);
 
@@ -52,8 +52,8 @@ public class CellTest {
         int secondValueToAdd = 14;
         CellContent cellContent1 = new ValueContent(firstValueToAdd);
         CellContent cellContent2 = new ValueContent(secondValueToAdd);
-        cell.setContent(cellContent1);
-        cell.setContent(cellContent2);
+        cell.addContent(cellContent1);
+        cell.addContent(cellContent2);
         Assert.assertEquals(cell.getContents().size(), 2);
         Assert.assertEquals(cell.getContents().get(0).getNumberValue(), firstValueToAdd);
         Assert.assertEquals(cell.getContents().get(1).getNumberValue(), secondValueToAdd);
@@ -64,7 +64,7 @@ public class CellTest {
     public void deleteCellContentInASingeCellValue() {
         Cell cell = cellFactory.createCell(CellFactory.CELL_SINGLE_VALUE, (new Coordinate(0, 0)));
         String value = "3";
-        cell.setContent(new ValueContent(value));
+        cell.addContent(new ValueContent(value));
         cell.removeContentWithValue(value);
         Assert.assertTrue(cell.getContents().isEmpty());
     }
@@ -74,8 +74,8 @@ public class CellTest {
         Cell cell = cellFactory.createCell("", (new Coordinate(0, 0)));
         String value1 = "3";
         String value2 = "4";
-        cell.setContent(new ValueContent(value1));
-        cell.setContent(new ValueContent(value2));
+        cell.addContent(new ValueContent(value1));
+        cell.addContent(new ValueContent(value2));
         cell.removeContentWithValue(value2);
         Assert.assertEquals(cell.getContents().size(), 1);
         Assert.assertEquals(cell.getContents().get(0).getValue(), value1);

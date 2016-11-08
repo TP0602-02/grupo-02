@@ -1,0 +1,104 @@
+{
+  "cellType": " ",
+  "clueCellsEditables": true,
+  "width": 4,
+  "height": 4,
+  "keys": ["L","D","R","U"],
+  "agreggator": "Connection aggregator",
+  "circuit_verificator": "Circuit verificator without borders",
+  "rules": [{
+    "rule": "Conections inside board rule"
+  }, {
+    "rule": "Conections in cell rule"
+  }, {
+    "rule": "Conections in region rule"
+  },{
+    "rule":"Number of conections in region rule"
+  },{
+    "rule":"Close circuit Rule"
+  }],
+  "winVerificators": [{
+    "verificator": "Close circuit win verificator"
+  }],
+  "cell_contents": [
+    {"id":0,
+      "total":-1},
+    {"id":1,
+      "total":1},
+    {"id":2,
+      "total":2}
+  ],
+  "regions": [{
+    "id": 0,
+    "coord": [{
+      "x": 0,
+      "y": 0
+    }, {
+      "x": 0,
+      "y": 0
+    }],
+    "exceptions": []
+  }, {
+    "id": 0,
+    "coord": [{
+      "x": 0,
+      "y": 0
+    }, {
+      "x": 2,
+      "y": 1
+    }],
+    "exceptions": [{
+      "x":0,
+      "y":0
+    }]
+  }, {
+    "id": 1,
+    "coord": [{
+      "x": 0,
+      "y": 2
+    }, {
+      "x": 0,
+      "y": 3
+    }],
+    "exceptions": []
+  }, {
+    "id": 0,
+    "coord": [{
+      "x": 1,
+      "y": 2
+    }, {
+      "x": 2,
+      "y": 3
+    }],
+    "exceptions": [{
+      "x":2,
+      "y":2
+    }]
+  }, {
+    "id": 2,
+    "coord": [{
+      "x":3,
+      "y":0
+    }, {
+      "x": 3,
+      "y": 1
+    }],
+    "exceptions": []
+  }, {
+    "id": 0,
+    "coord": [{
+      "x": 2,
+      "y": 2
+    }, {
+      "x": 3,
+      "y": 3
+    }],
+    "exceptions": [{
+      "x":2,
+      "y":3
+    }]
+  }],
+  "initial_board_grapshic_content":[],
+  "initial_board_content":[],
+  "special_clues":[]
+}

@@ -24,14 +24,14 @@ public class PuzzleGenerator {
             @Override
             public void loadNewGame(String gameName, String gameFile) {
                 initParse(gameFile, null);
-                createGame(gameFile, gameName, true);
+                createGame(gameName, true);
             }
 
             @Override
-            public void loadPlaysForGame(String playFile, String gameFile) {
+            public void loadPlaysForGame(String playFile, String gameFile, String gameName) {
                 initParse(gameFile, playFile);
-                createGame(gameFile, "", false);
-                puzzleController.execPlays(parser.getPlays());
+                createGame(gameName, false);
+                puzzleController.execPlays(parser.getPlays(), gameName);
             }
         });
         startView.start();
@@ -42,10 +42,11 @@ public class PuzzleGenerator {
      *
      * @return .
      */
-    private void createGame(String gameFile, String gameName, boolean showPuzzleToPlay) {
-        Puzzle puzzle = startGeneration(gameFile);
+    private void createGame(String gameName, boolean showPuzzleToPlay) {
+        Puzzle puzzle = startGeneration();
         ArrayList<Cell> graphicsInitialCells = parser.getGraphicsInitialClues();
         graphicsInitialCells.addAll(puzzle.getInitialCells());
+
         PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(),
                 gameName, graphicsInitialCells, parser.getInstructionGame(), puzzle.getRegions());
         puzzleView.setVisible(showPuzzleToPlay);
@@ -81,8 +82,8 @@ public class PuzzleGenerator {
 
     }
 
-    //FIXME: not used parameter 'fileName', remove it
-    private Puzzle startGeneration(String fileName) {
+
+    private Puzzle startGeneration() {
         ArrayList<String> rules = parser.getRules();
 
         //FIXME: refactor, extract method 'createRules'

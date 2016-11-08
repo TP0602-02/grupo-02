@@ -23,7 +23,7 @@ public abstract class AbstractDrawer {
         cleanCellView();
         this.cellViewToDraw.setValue(valueToDraw);
         setView(getImageOf(valueToDraw), valueToDraw);
-        decorateCell(this.cellViewToDraw,valueToDraw);
+        decorateCell(this.cellViewToDraw, valueToDraw);
 
     }
 
@@ -46,9 +46,9 @@ public abstract class AbstractDrawer {
 
     private String isSpecialValue(String valueToDraw) {
         String value = valueToDraw;
-        if(valueToDraw.equals(Constants.UP_DIAGONAL)) {
+        if (valueToDraw.equals(Constants.UP_DIAGONAL)) {
             value = BARRA;
-        }else if (valueToDraw.equals(Constants.DOWN_DIAGONAL)) {
+        } else if (valueToDraw.equals(Constants.DOWN_DIAGONAL)) {
             value = CONTRABARRA;
         }
         return value;
@@ -65,7 +65,7 @@ public abstract class AbstractDrawer {
      *
      * @param cellViewToDraw cell to decorate.
      */
-    protected abstract void decorateCell(CellView cellViewToDraw,String valueToDraw);
+    protected abstract void decorateCell(CellView cellViewToDraw, String valueToDraw);
 
     protected abstract String getImagePackage();
 

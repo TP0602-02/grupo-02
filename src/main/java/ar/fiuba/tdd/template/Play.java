@@ -2,9 +2,6 @@ package ar.fiuba.tdd.template;
 
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 
-/**
- * Created by martin on 08/10/16.
- */
 public class Play {
     // Criteria of acceptance : we only add single cell values
     private Cell selectedCell;
@@ -35,7 +32,6 @@ public class Play {
     public void setSelectedValue(String value) {
         this.selectedValue = value;
     }
-
 
     public String getSelectedCellValue() {
         return selectedValue;

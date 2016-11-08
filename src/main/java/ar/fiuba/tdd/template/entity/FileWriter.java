@@ -7,9 +7,6 @@ import org.json.simple.JSONObject;
 import java.io.*;
 import java.util.ArrayList;
 
-/**
- * Created by Nicolas on 18/10/2016.
- */
 public class FileWriter {
 
     @SuppressWarnings("unchecked")

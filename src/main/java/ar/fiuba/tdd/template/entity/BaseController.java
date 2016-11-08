@@ -1,8 +1,5 @@
 package ar.fiuba.tdd.template.entity;
 
-/**
- * Created by Nicolas on 28/9/2016.
- */
 public abstract class BaseController<T, E> {
 
     protected T view;

@@ -1,0 +1,101 @@
+{
+
+  "plays": [{
+
+    "number": 1,
+
+    "position": [1, 2],
+
+    "value": "2"
+
+  }, {
+
+    "number": 2,
+
+    "position": [1, 2],
+
+    "value": "4"
+
+  }, {
+
+    "number": 3,
+
+    "position": [1, 3],
+
+    "value": "4"
+
+  }, {
+
+    "number": 4,
+
+    "position": [2, 1],
+
+    "value": "2"
+
+  }, {
+
+    "number": 5,
+
+    "position": [2, 1],
+
+    "value": "4"
+
+  }, {
+
+    "number": 6,
+
+    "position": [2, 3],
+
+    "value": "2"
+
+  }, {
+
+    "number": 7,
+
+    "position": [2, 4],
+
+    "value": "4"
+
+  }, {
+
+    "number": 8,
+
+    "position": [3, 1],
+
+    "value": "4"
+
+  }, {
+
+    "number": 9,
+
+    "position": [3, 3],
+
+    "value": "2"
+
+  }, {
+
+    "number": 10,
+
+    "position": [3, 3],
+
+    "value": "4"
+
+  }, {
+
+    "number": 11,
+
+    "position": [4, 1],
+
+    "value": "2"
+
+  }, {
+
+    "number": 12,
+
+    "position": [4, 2],
+
+    "value": "2"
+
+  }]
+
+}

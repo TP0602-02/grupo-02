@@ -5,9 +5,6 @@ import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.entity.Constants;
 
-/**
- * Created by matiaskamien on 15/10/16.
- */
 public class RegionTotalBorderRule extends GenericTotalRegionRule {
 
     //Each region has only one cell.

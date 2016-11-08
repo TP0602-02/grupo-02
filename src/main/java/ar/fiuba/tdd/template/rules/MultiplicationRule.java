@@ -1,8 +1,5 @@
 package ar.fiuba.tdd.template.rules;
 
-/**
- * Created by matiaskamien on 08/10/16.
- */
 public class MultiplicationRule extends OperationRule {
     @Override
     protected int getNeutralNumberForOperation() {

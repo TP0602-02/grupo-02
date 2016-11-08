@@ -7,9 +7,6 @@ import ar.fiuba.tdd.template.board.cell.model.CellContent;
 
 import java.util.ArrayList;
 
-/**
- * Created by alazraqui on 11/10/2016.
- */
 public class RegionHasValidConectionsRule extends RegionConectionRule {
 
     private static final int MAX_CONECTIONS_REGION = 2;

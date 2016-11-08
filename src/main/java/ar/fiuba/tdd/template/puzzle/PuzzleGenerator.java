@@ -52,18 +52,21 @@ public class PuzzleGenerator {
         puzzleView.setVisible(showPuzzleToPlay);
         initBackListener(puzzleView);
 
-        ArrayList<String> winVerificators = parser.getWinVerificators();
-        //FIXME: refactor: move to method 'createWinVerificators'
+        puzzleController = new PuzzleController(createWinVerificators(), this.parser.getAgreggator());
+        puzzleController.attachElements(puzzleView, puzzle);
+        puzzleController.aggregateCellControllers();
+    }
+
+    private ArrayList<WinVerificator> createWinVerificators() {
         // Converts win verificator array of strings into WinVerificator array
+        ArrayList<String> winVerificators = parser.getWinVerificators();
         ArrayList<WinVerificator> parsedWinVerificators = new ArrayList<>();
         for (String verificator : winVerificators) {
             WinVerificator winVerificator = WinVerificatorFactory.getFactory().createVerificator(verificator);
             winVerificator.setVerificator(this.parser.getCircuitVerificator());
             parsedWinVerificators.add(winVerificator);
         }
-        puzzleController = new PuzzleController(parsedWinVerificators, this.parser.getAgreggator());
-        puzzleController.attachElements(puzzleView, puzzle);
-        puzzleController.aggregateCellControllers();
+        return parsedWinVerificators;
     }
 
     private void initBackListener(PuzzleView puzzleView) {
@@ -79,27 +82,25 @@ public class PuzzleGenerator {
     private void initParse(String fileName, String playsFileName) {
         parser = new Parser();
         parser.decodeJson(fileName, playsFileName);
-
     }
 
-
     private Puzzle startGeneration() {
-        ArrayList<String> rules = parser.getRules();
-
-        //FIXME: refactor, extract method 'createRules'
-        // Converts rules array of strings into GenericRule array
-        ArrayList<GenericRule> parsedRules = new ArrayList<>();
-        for (String rule : rules) {
-            parsedRules.add(RulesFactory.getFactory().createRule(rule));
-        }
-
         DrawerFactory.createDrawer(parser.getDrawerName());
         initEnabledButtonsToPlay(parser.getAcceptedKeys());
         ArrayList<Cell> clues = parser.getClues();
         ArrayList<RegionJson> regionJsons = parser.getRegionJsons();
-        return new Puzzle(parser.getHeight(), parser.getWidth(), parsedRules, clues, regionJsons, parser.getCellType());
+        return new Puzzle(parser.getHeight(), parser.getWidth(), createRules(), clues, regionJsons, parser.getCellType());
     }
 
+    private ArrayList<GenericRule> createRules() {
+        // Converts rules array of strings into GenericRule array
+        ArrayList<String> rules = parser.getRules();
+        ArrayList<GenericRule> parsedRules = new ArrayList<>();
+        for (String rule : rules) {
+            parsedRules.add(RulesFactory.getFactory().createRule(rule));
+        }
+        return parsedRules;
+    }
 
     private void initEnabledButtonsToPlay(ArrayList<String> acceptedKeys) {
         InputUserView.createView(acceptedKeys);

@@ -49,9 +49,9 @@ public class OutputFilesTest {
         getResults(INSHI_OUTPUT_FILE);
     }
 
-   /* @Test
+    @Test
     public void everyCountryRoadPlayIsValid() {
         getResults(COUNTRY_OUTPUT_FILE);
-    }*/
+    }
 
 }

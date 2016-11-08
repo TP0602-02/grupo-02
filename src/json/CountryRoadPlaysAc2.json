@@ -6,7 +6,7 @@
 
     "position": [1, 2],
 
-    "value": "2"
+    "value": "R"
 
   }, {
 
@@ -14,7 +14,7 @@
 
     "position": [1, 2],
 
-    "value": "4"
+    "value": "D"
 
   }, {
 
@@ -22,7 +22,7 @@
 
     "position": [1, 3],
 
-    "value": "4"
+    "value": "D"
 
   }, {
 
@@ -30,7 +30,7 @@
 
     "position": [2, 1],
 
-    "value": "2"
+    "value": "R"
 
   }, {
 
@@ -38,7 +38,7 @@
 
     "position": [2, 1],
 
-    "value": "4"
+    "value": "D"
 
   }, {
 
@@ -46,7 +46,7 @@
 
     "position": [2, 3],
 
-    "value": "2"
+    "value": "R"
 
   }, {
 
@@ -54,7 +54,7 @@
 
     "position": [2, 4],
 
-    "value": "4"
+    "value": "D"
 
   }, {
 
@@ -62,7 +62,7 @@
 
     "position": [3, 1],
 
-    "value": "4"
+    "value": "D"
 
   }, {
 
@@ -70,7 +70,7 @@
 
     "position": [3, 3],
 
-    "value": "2"
+    "value": "R"
 
   }, {
 
@@ -78,7 +78,7 @@
 
     "position": [3, 3],
 
-    "value": "4"
+    "value": "D"
 
   }, {
 
@@ -86,7 +86,7 @@
 
     "position": [4, 1],
 
-    "value": "2"
+    "value": "R"
 
   }, {
 
@@ -94,7 +94,7 @@
 
     "position": [4, 2],
 
-    "value": "2"
+    "value": "R"
 
   }]
 

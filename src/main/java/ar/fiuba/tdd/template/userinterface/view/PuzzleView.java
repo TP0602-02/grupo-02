@@ -35,7 +35,7 @@ public class PuzzleView extends JFrame {
     private ArrayList<Region> regionsToPaint;
 
     public PuzzleView(int height, int width, String gameName, ArrayList<Cell> graphicsInitialClues,
-                      String instructionGame, ArrayList<Region> regions) {
+                      String instructionGame, ArrayList<Region> regions, StartView startView) {
         this.width = width;
         this.height = height;
         this.instructionGame = instructionGame;
@@ -46,13 +46,22 @@ public class PuzzleView extends JFrame {
         this.getContentPane().setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         container = new JLayeredPane();
-
         container.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.add(container);
         this.pack();
         createBoardView(gameName);
         createBackButton();
+        setBackListener(new PuzzleView.BackPressed() {
+            @Override
+            public void onBackClick() {
+                setVisible(false);
+                startView.setVisible(true);
+            }
+        });
+
     }
+
+
 
     private void createBackButton() {
         JButton backButton = new JButton("VOLVER AL MENU");
@@ -292,6 +301,10 @@ public class PuzzleView extends JFrame {
 
     public void setBackListener(BackPressed backListener) {
         this.backListener = backListener;
+    }
+
+    public void showWinMessage() {
+        JOptionPane.showMessageDialog(null, "Felicitaciones has ganado!");
     }
 
     public interface BackPressed {

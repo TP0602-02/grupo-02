@@ -5,6 +5,7 @@ import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
+import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.entity.BaseController;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.FileWriter;
@@ -33,6 +34,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     private AbstractAgreggator aggregator;
     private ArrayList<Play> playStack;
     private static final String BORRADO = "Borrado";
+    private boolean vizualizate;
 
     public PuzzleController(ArrayList<WinVerificator> winVerificators, AbstractAgreggator aggregator) {
         this.cellControllers = new ArrayList<>();
@@ -47,27 +49,19 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
 
     @Override
     public void elementsAttached(PuzzleView view, Puzzle model) {
+        vizualizate = (view != null);
         createCellControllers(view, model);
-        undoConfig();
     }
 
     private void createCellControllers(PuzzleView view, Puzzle model) {
         for (int column = 0; column < model.getBoardWidth(); ++column) {
             for (int row = 0; row < model.getBoardHeight(); ++row) {
-                CellController cellController = new CellController();
-                cellController.attachElements(view.getCellView(row, column),
-                        model.getCell(new Coordinate(row, column)));
-                cellController.setUserInputListener(new CellController.UserInputListener() {
-                    @Override
-                    public void validateUserTextInputed(Cell cell, String text) {
-                        validateAndPlay(cell,text);
-                    }
-
-                    @Override
-                    public void validateUserDeletedAction(Cell cell, String valueToDelete) {
-                        validateAndDelete(cell, valueToDelete);
-                    }
-                });
+                CellController cellController = new CellController(this);
+                CellView cellView = null;
+                if (isVizualizable()) {
+                    cellView = view.getCellView(row, column);
+                }
+                cellController.attachElements(cellView,model.getCell(new Coordinate(row, column)));
                 this.cellControllers.add(cellController);
             }
         }
@@ -105,7 +99,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
             winGame &= verificator.wonTheGame(this.model.getBoard());
         }
         if (winGame) {
-            JOptionPane.showMessageDialog(null, "Felicitaciones has ganado!");
+            this.getView().showWinMessage();
         }
     }
 
@@ -134,12 +128,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     }
 
     private void undoConfig() {
-        Undo.setActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                undoPlay();
-            }
-        });
+        Undo.config(this);
     }
 
     public void undoPlay() {
@@ -182,5 +171,9 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
             }
         }
         return priorPlay;
+    }
+
+    public boolean isVizualizable() {
+        return vizualizate;
     }
 }

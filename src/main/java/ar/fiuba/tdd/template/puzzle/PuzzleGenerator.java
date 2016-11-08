@@ -22,6 +22,7 @@ public class PuzzleGenerator {
     private Parser parser;
     private PuzzleController puzzleController;
     private StartView startView;
+    private boolean visualizate;
 
     public void runGeneration() {
         startView = new StartView(new StartView.StartGameListener() {
@@ -40,6 +41,7 @@ public class PuzzleGenerator {
     }
 
     public void generatePuzzle(String gameFile, String gameName, String playFile, boolean visualizate) {
+        this.visualizate = visualizate;
         initParse(gameFile, playFile);
         createGame(gameFile, gameName, visualizate);
     }
@@ -51,13 +53,14 @@ public class PuzzleGenerator {
      */
     private void createGame(String gameFile, String gameName, boolean showPuzzleToPlay) {
         Puzzle puzzle = startGeneration(gameFile);
-        ArrayList<Cell> graphicsInitialCells = parser.getGraphicsInitialClues();
-        graphicsInitialCells.addAll(puzzle.getInitialCells());
-        PuzzleView puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(),
-                gameName, graphicsInitialCells, parser.getInstructionGame(), puzzle.getRegions());
-        puzzleView.setVisible(showPuzzleToPlay);
-        initBackListener(puzzleView);
-
+        PuzzleView puzzleView = null;
+        if ( isViewable() ) {
+            ArrayList<Cell> graphicsInitialCells = parser.getGraphicsInitialClues();
+            graphicsInitialCells.addAll(puzzle.getInitialCells());
+            puzzleView = new PuzzleView(puzzle.getBoardHeight(), puzzle.getBoardWidth(),
+                    gameName, graphicsInitialCells, parser.getInstructionGame(), puzzle.getRegions(), startView);
+            puzzleView.setVisible(showPuzzleToPlay);
+        }
         ArrayList<String> winVerificators = parser.getWinVerificators();
         // Converts win verificator array of strings into WinVerificator array
         ArrayList<WinVerificator> parsedWinVerificators = new ArrayList<>();
@@ -69,16 +72,6 @@ public class PuzzleGenerator {
         puzzleController = new PuzzleController(parsedWinVerificators, this.parser.getAgreggator());
         puzzleController.attachElements(puzzleView, puzzle);
         puzzleController.aggregateCellControllers();
-    }
-
-    private void initBackListener(PuzzleView puzzleView) {
-        puzzleView.setBackListener(new PuzzleView.BackPressed() {
-            @Override
-            public void onBackClick() {
-                puzzleView.setVisible(false);
-                startView.setVisible(true);
-            }
-        });
     }
 
     private void initParse(String fileName, String playsFileName) {
@@ -110,5 +103,9 @@ public class PuzzleGenerator {
 
     public PuzzleController getPuzzleController() {
         return puzzleController;
+    }
+
+    public boolean isViewable() {
+        return (this.visualizate);
     }
 }

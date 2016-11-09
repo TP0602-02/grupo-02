@@ -1,11 +1,11 @@
 package ar.fiuba.tdd.template.userinterface.view;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
 import java.util.Properties;
-import javax.swing.*;
 
 public class StartView extends JFrame {
     private static final int screenHeight = 768;
@@ -35,7 +35,7 @@ public class StartView extends JFrame {
     private static final String KAKURO_FILE = "Kakuro.json";
     private static final String INSHI_NO_HEYA_FILE = "InshiNoHeya.json";
     private static final String SLITHERLINK_FILE = "Slitherlink.json";
-    private static final String NUMBERLINK_FILE = "Numberlink.json";
+    private static final String NUMBERLINK_FILE = "NumberLink.json";
     private static final String GOKIEN_NANAME_FILE = "GokienNaname.json";
     private static final String COUNTRY_ROAD_FILE = "CountryRoad.json";
     private static final String COUNTRY_ROAD_FILE_AC2 = "CountryRoadConfigAc2.json";

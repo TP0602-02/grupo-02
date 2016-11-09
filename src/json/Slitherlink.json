@@ -492,5 +492,6 @@
       }]
     }
   ],
-  "special_clues":[]
+  "special_clues":[],
+  "instruction": "El tablero está dividido en rectangulos con numeros del 0 a 3. Se deben cumplir las siguientes condiciones: \n* El valor de cada pista debe igualar en numero a las conexiones que lo rodean. \n* Los cuadrados vacios pueden estar rodeados de cualquier cantidad de conexiones. \n * Cuando se completa el juego, la solucion debe ser un ciclo continuo que no se cruce a si mismo"
 }

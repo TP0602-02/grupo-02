@@ -807,5 +807,6 @@
       "exceptions": []
     }
   ],
-  "special_clues": []
+  "special_clues": [],
+  "instruction" : "Ubicar un digito de 1 a 9 en cada celda vacia para que la suma de los digitos en cada set de celdas vacias consecutivas(horizontal o vertical) es el numero que aparece a la izquierda de un set o arriba. Ningun numero puede aparecer mas de una vez en celdas consecutivas"
 }

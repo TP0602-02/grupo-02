@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.template.entity;
 
-import ar.fiuba.tdd.template.Play;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 

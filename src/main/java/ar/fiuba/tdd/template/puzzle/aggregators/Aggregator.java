@@ -1,9 +1,8 @@
 package ar.fiuba.tdd.template.puzzle.aggregators;
 
-import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
-import ar.fiuba.tdd.template.board.cell.model.CellContent;
+import ar.fiuba.tdd.template.entity.Play;
 
 /**
  * Created by alazraqui on 18/10/2016.
@@ -20,7 +19,7 @@ public class Aggregator extends AbstractAgreggator {
 
     @Override
     public void undo(Board board) {
-        Play play = this.playStack.get(0);
+        Play play = this.playStack.get(FIRST_POSITION_IN_STACK);
         this.deleteAction(play.getSelectedCell(),play.getSelectedCellValue(),board);
 
     }

@@ -11,9 +11,12 @@ import ar.fiuba.tdd.template.board.cell.model.CellContent;
 
 public class CircuitVerificatorWithoutBorders extends CircuitVerificator {
 
+    private static final int AMOUNT_CELLS_IN_CIRCUITS_DEFAULT = 0;
+    private static final int HASNT_NEXT_CELL_DIRECTION = -1;
+
     public CircuitVerificatorWithoutBorders() {
         this.firstCell = null;
-        this.amountOfCellsInTheCircuit = 0;
+        this.amountOfCellsInTheCircuit = AMOUNT_CELLS_IN_CIRCUITS_DEFAULT;
     }
 
     public int getAmountOfCellsInTheCircuit() {
@@ -21,7 +24,7 @@ public class CircuitVerificatorWithoutBorders extends CircuitVerificator {
     }
 
     public boolean isCircuitClosed(Board board) {
-        this.amountOfCellsInTheCircuit = 0;
+        this.amountOfCellsInTheCircuit = AMOUNT_CELLS_IN_CIRCUITS_DEFAULT;
         this.firstCell = this.getFirstCellWithValue(board);
         if (this.firstCell != null) {
             ++this.amountOfCellsInTheCircuit;
@@ -44,7 +47,7 @@ public class CircuitVerificatorWithoutBorders extends CircuitVerificator {
             return true;
         } else {
             int nextCellDirection = this.getNextDirection(nextCell, direction);
-            if (nextCellDirection != -1) {
+            if (nextCellDirection != HASNT_NEXT_CELL_DIRECTION) {
                 return this.checkCircuit(nextCell, nextCellDirection, board);
             }
             return false;
@@ -58,6 +61,6 @@ public class CircuitVerificatorWithoutBorders extends CircuitVerificator {
                 return cellContent.getNumberValue();
             }
         }
-        return -1;
+        return HASNT_NEXT_CELL_DIRECTION;
     }
 }

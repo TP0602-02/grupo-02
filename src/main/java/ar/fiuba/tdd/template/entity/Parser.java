@@ -1,10 +1,9 @@
-package ar.fiuba.tdd.template;
+package ar.fiuba.tdd.template.entity;
 
-import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.*;
+import ar.fiuba.tdd.template.board.region.RegionJson;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorFactory;
-import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
 import ar.fiuba.tdd.template.puzzle.aggregators.AggregatorFactory;
 import org.json.simple.JSONArray;
@@ -13,7 +12,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Parser {

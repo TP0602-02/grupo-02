@@ -39,7 +39,6 @@ public class StartView extends JFrame {
     private static final String GOKIEN_NANAME_FILE = "GokienNaname.json";
     private static final String COUNTRY_ROAD_FILE = "CountryRoad.json";
     private static final String COUNTRY_ROAD_FILE_AC2 = "CountryRoadConfigAc2.json";
-   // private static final String INSHI_NO_HEYA_PLAYS_FILE = "InshiNoHeyaPlays.json";
     private static final int TITLE_POS_Y = 10;
     //*************************************************
     private static final String RIPPLE_EFFECT_FILE = "RippleEffect.json";

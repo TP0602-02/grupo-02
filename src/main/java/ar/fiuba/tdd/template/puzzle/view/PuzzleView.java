@@ -1,11 +1,12 @@
-package ar.fiuba.tdd.template.userinterface.view;
+package ar.fiuba.tdd.template.puzzle.view;
 
 
-import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.*;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
+import ar.fiuba.tdd.template.board.region.Region;
 import ar.fiuba.tdd.template.drawers.DrawerFactory;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.userinterface.view.Undo;
 
 
 import java.awt.*;
@@ -25,10 +26,12 @@ public class PuzzleView extends JFrame {
     public static final int screenWidth = 1300;
     public static final int boardInitialPositionPixelX = screenWidth / 3;
     public static final int boardInitialPositionPixelY = screenHeight / 7;
+    private static final String upRightCorner = "2";
+    private static final String bottomLeftCorner = "3";
+    private static final String bottomRightCorner = "4";
     private BackPressed backListener;
     private int width;
     private int height;
-    //private final HomeView menu;
     private ArrayList<ArrayList<CellView>> boardView;
     private JLayeredPane container;
     private ArrayList<Cell> graphicsInitialClues;
@@ -171,10 +174,7 @@ public class PuzzleView extends JFrame {
     private void addInitialCellWithCluesToBoardView(Cell cell) {
         int positionCellInitialPixelX = cell.getColumn() * cellViewDimension + boardInitialPositionPixelX;
         int positionCellInitialPixelY = cell.getRow() * cellViewDimension + boardInitialPositionPixelY;
-        //TODO para juegos que permitan doble valor de celda como negra y clue hay que cambiarlo!
         addField(cell, positionCellInitialPixelX, positionCellInitialPixelY);
-        //  addField(cell.getContents().get(0), positionCellInitialPixelX,
-        //        positionCellInitialPixelY, cell.getColumn(), cell.getRow());
     }
 
     private void initBoardDimensions() {
@@ -209,7 +209,7 @@ public class PuzzleView extends JFrame {
 
     private void addDefaultCell(Cell cell, int positionPixelX, int positionPixelY) {
         CellView cellVIew = new CellView();
-        DrawerFactory.getInstance().getDrawer().draw(cellVIew,"");
+        DrawerFactory.getInstance().getDrawer().draw(cellVIew, "");
         cellVIew.setBounds(positionPixelX, positionPixelY, cellViewDimension, cellViewDimension);
         CellView previousCellView = boardView.get(cell.getColumn()).get(cell.getRow());
         if (previousCellView != null) {
@@ -244,6 +244,7 @@ public class PuzzleView extends JFrame {
                 calculateBoundsForCluesInCorners(label, cellContent, positionPixelX, positionPixelY);
             }
             label.setFont(new Font("Serif", Font.BOLD, 12));
+            // size + 1 debido a que tiene que ser el elemento visual que superponga al resto
             container.add(label, Integer.valueOf((cell.getContents().size() + 1)));
         }
     }
@@ -260,22 +261,25 @@ public class PuzzleView extends JFrame {
     private void calculateBoundsForCluesNotInCorners(JLabel label, boolean cellEditable,
                                                      int positionPixelX, int positionPixelY, int clueWidht) {
 
-
-        label.setBounds(positionPixelX, positionPixelY, ((cellEditable) ? clueWidht / 3 : clueWidht),
-                ((cellEditable) ? clueWidht / 2 : cellViewDimension));
+        int clueWidthInEditableCells = clueWidht / 3;
+        int clueWidthInNotEditableCells = clueWidht;
+        int clueHeightInEditableCells = clueWidht / 2;
+        int clueHeightInNotEditableCells = cellViewDimension;
+        label.setBounds(positionPixelX, positionPixelY, ((cellEditable) ? clueWidthInEditableCells : clueWidthInNotEditableCells),
+                ((cellEditable) ? clueHeightInEditableCells : clueHeightInNotEditableCells));
     }
 
     private void calculateBoundsForCluesInCorners(JLabel label, CellContent cellContent, int positionPixelX, int positionPixelY) {
         int posX = 0;
         int posY = 0;
         switch (cellContent.getValue()) {
-            case "2":
+            case upRightCorner:
                 posX = cellViewDimension;
                 break;
-            case "3":
+            case bottomLeftCorner:
                 posY = cellViewDimension;
                 break;
-            case "4":
+            case bottomRightCorner:
                 posX = cellViewDimension;
                 posY = cellViewDimension;
                 break;

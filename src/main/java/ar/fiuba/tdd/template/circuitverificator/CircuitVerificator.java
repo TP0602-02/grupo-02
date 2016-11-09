@@ -1,8 +1,9 @@
 package ar.fiuba.tdd.template.circuitverificator;
 
+
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.region.Region;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
 /**

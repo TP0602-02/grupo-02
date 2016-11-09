@@ -1,9 +1,9 @@
 package ar.fiuba.tdd.template.rules;
 
-import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.RelativeClueContent;
+import ar.fiuba.tdd.template.board.region.Region;
 
 import java.util.ArrayList;
 

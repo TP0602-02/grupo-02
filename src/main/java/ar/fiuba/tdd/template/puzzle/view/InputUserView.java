@@ -1,8 +1,7 @@
-package ar.fiuba.tdd.template.board;
+package ar.fiuba.tdd.template.puzzle.view;
 
 import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.drawers.DrawerFactory;
-import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +10,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 
 
 /**
@@ -59,7 +57,8 @@ public class InputUserView extends JFrame {
     }
 
     private void initTextInput() {
-        JLabel label = new JLabel("Ingrese valor con teclado o presione los botones disponibles");
+        String textTitle = "Ingrese valor con teclado o presione los botones disponibles";
+        JLabel label = new JLabel(textTitle);
         label.setBounds(firstButtonCoordinateX, 1, inputUserViewWidth - 10, 30);
         label.setVisible(true);
         add(label);
@@ -168,8 +167,10 @@ public class InputUserView extends JFrame {
     }
 
     public void onClickDeleteCellContent() {
-        if (cellValuesToDelete.size() == 1) {
-            selectedValueToDelete = cellValuesToDelete.get(0);
+        int elementsToDeleteDirect = 1;
+        if (cellValuesToDelete.size() == elementsToDeleteDirect) {
+            int positionOfUniqueElementToDelete = 0;
+            selectedValueToDelete = cellValuesToDelete.get(positionOfUniqueElementToDelete);
             deleteCellContent();
         } else if (!cellValuesToDelete.isEmpty()) {
             //Tiene mas de 1 valor la celda, el usuario debe elegir que valor eliminar

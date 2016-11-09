@@ -1,15 +1,15 @@
-package ar.fiuba.tdd.template.puzzle;
+package ar.fiuba.tdd.template.puzzle.controller;
 
-import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 
-import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.entity.BaseController;
 import ar.fiuba.tdd.template.entity.Coordinate;
 import ar.fiuba.tdd.template.entity.FileWriter;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
-import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
+import ar.fiuba.tdd.template.puzzle.model.Puzzle;
+import ar.fiuba.tdd.template.puzzle.view.PuzzleView;
 
 import ar.fiuba.tdd.template.userinterface.view.Undo;
 import ar.fiuba.tdd.template.winverificators.WinVerificator;
@@ -26,7 +26,8 @@ import javax.swing.*;
  */
 public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
 
-   // private static final String OUTPUT_FILE_ROOT = "src/json/PlayOutput.json";
+    private static final int ENABLED_LENGHT_FOR_INPUT = 1;
+    private static final String CONGRATS_MESSAGE = "Felicitaciones has ganado!";
     private ArrayList<CellController> cellControllers;
     private ArrayList<WinVerificator> winVerificators;
     private AbstractAgreggator aggregator;
@@ -59,7 +60,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                 cellController.setUserInputListener(new CellController.UserInputListener() {
                     @Override
                     public void validateUserTextInputed(Cell cell, String text) {
-                        if (text != null && text.length() == 1) {
+                        if (text != null && text.length() == ENABLED_LENGHT_FOR_INPUT) {
                             Play play = new Play(cell, text);
                             boolean itsPlayed = model.checkMovement(play);
                             if (itsPlayed) {
@@ -85,7 +86,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
             winGame &= verificator.wonTheGame(this.model.getBoard());
         }
         if (winGame) {
-            JOptionPane.showMessageDialog(null, "Felicitaciones has ganado!");
+            JOptionPane.showMessageDialog(null, CONGRATS_MESSAGE);
         }
     }
 

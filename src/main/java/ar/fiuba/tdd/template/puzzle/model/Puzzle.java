@@ -1,11 +1,12 @@
-package ar.fiuba.tdd.template.puzzle;
+package ar.fiuba.tdd.template.puzzle.model;
 
-import ar.fiuba.tdd.template.Play;
+
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.Region;
-import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.region.Region;
+import ar.fiuba.tdd.template.board.region.RegionJson;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
 import ar.fiuba.tdd.template.rules.GenericRule;
 

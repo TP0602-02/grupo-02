@@ -6,6 +6,7 @@ import java.util.Properties;
  * Created by Nicolas on 9/10/2016.
  */
 public class SpecialCharactersParser {
+    private static final int VALUE_NOT_FOUNDED_VALUE = 0;
 
     private static Properties table;
     private static SpecialCharactersParser instance;
@@ -32,7 +33,7 @@ public class SpecialCharactersParser {
         try {
             return Integer.parseInt(text);
         } catch (NumberFormatException | ClassCastException exception) {
-            return (int) table.getOrDefault(text, 0);
+            return (int) table.getOrDefault(text, VALUE_NOT_FOUNDED_VALUE);
         }
     }
 }

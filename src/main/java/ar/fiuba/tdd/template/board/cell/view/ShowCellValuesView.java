@@ -1,11 +1,9 @@
-package ar.fiuba.tdd.template.board.cell;
+package ar.fiuba.tdd.template.board.cell.view;
 
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
-import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.drawers.DrawerFactory;
 
 import java.awt.*;
-import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;

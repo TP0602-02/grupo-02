@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.template.board;
+package ar.fiuba.tdd.template.board.region;
 
 import ar.fiuba.tdd.template.board.cell.model.BlackContent;
 import ar.fiuba.tdd.template.board.cell.model.Cell;

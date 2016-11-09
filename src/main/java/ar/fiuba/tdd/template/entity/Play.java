@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.template;
+package ar.fiuba.tdd.template.entity;
 
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 

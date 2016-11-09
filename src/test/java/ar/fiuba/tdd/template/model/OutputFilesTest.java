@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.template.model;
 
-import ar.fiuba.tdd.template.Parser;
+import ar.fiuba.tdd.template.entity.Parser;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

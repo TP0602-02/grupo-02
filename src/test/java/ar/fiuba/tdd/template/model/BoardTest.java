@@ -1,10 +1,10 @@
 package ar.fiuba.tdd.template.model;
 
-import ar.fiuba.tdd.template.Parser;
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.Region;
 import ar.fiuba.tdd.template.board.cell.model.*;
+import ar.fiuba.tdd.template.board.region.Region;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.Parser;
 import org.junit.Assert;
 import org.junit.Test;
 

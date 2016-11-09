@@ -1,13 +1,11 @@
 package ar.fiuba.tdd.template.puzzle.aggregators;
 
-import ar.fiuba.tdd.template.Play;
+
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.entity.SpecialCharactersParser;
-
-import java.util.ArrayList;
 
 /**
  * Created by alazraqui on 18/10/2016.
@@ -18,11 +16,8 @@ public class AggregatorWithConnections extends AbstractAgreggator {
 
     @Override
     public void runPlay(Play play, Board board) {
-        //Integer valueToAdd = SpecialCharactersParser.getInstance().getValueOf(play.getSelectedCellValue());
-        //getCellControllerOfCell(play.getSelectedCell()).addValue(valueToAdd.toString());
         getCellControllerOfCell(play.getSelectedCell()).addValue(play.getSelectedCellValue());
         addPlayToStack(play);
-        // Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), valueToAdd, board);
         Play newPLayToRun = getPlayFromCellConnection(play.getSelectedCell(), play.getSelectedCellValue(), board);
         if (newPLayToRun.getValidPlay()) {
             addPlayToStack(newPLayToRun);
@@ -32,7 +27,7 @@ public class AggregatorWithConnections extends AbstractAgreggator {
 
     @Override
     public void undo(Board board) {
-        Play play = playStack.get(0);
+        Play play = playStack.get(FIRST_POSITION_IN_STACK);
         deleteAction(play.getSelectedCell(),play.getSelectedCellValue(),board);
     }
 
@@ -53,7 +48,6 @@ public class AggregatorWithConnections extends AbstractAgreggator {
 
         Cell nextCell = iterator.getNextCell(board,
                 cell, valueToAdd);
-        //Integer opositeDirection = iterator.getOppositeDirection(valueToAdd);
         String opositeDirectionString = iterator.getNameOppositeDirection(valueOfConnection);
         Play newPlay = new Play(nextCell, opositeDirectionString);
         newPlay.setValidPlay(nextCell != null);

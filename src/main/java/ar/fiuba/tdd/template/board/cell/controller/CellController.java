@@ -1,13 +1,13 @@
 package ar.fiuba.tdd.template.board.cell.controller;
 
-import ar.fiuba.tdd.template.board.InputUserView;
-import ar.fiuba.tdd.template.board.cell.ShowCellValuesView;
+
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.board.cell.view.CellView;
+import ar.fiuba.tdd.template.board.cell.view.ShowCellValuesView;
 import ar.fiuba.tdd.template.drawers.DrawerFactory;
 import ar.fiuba.tdd.template.entity.BaseController;
-
+import ar.fiuba.tdd.template.puzzle.view.InputUserView;
 
 /**
  * Created by Nicolas on 27/9/2016.
@@ -57,7 +57,6 @@ public class CellController extends BaseController<CellView, Cell> {
         if (this.model.isEditable()) {
             this.model.removeContentWithValue(text);
             DrawerFactory.getInstance().getDrawer().draw(view,model.getShowableValues());
-            //view.setValues(model.getShowableValues());
         }
     }
 
@@ -82,8 +81,6 @@ public class CellController extends BaseController<CellView, Cell> {
         if (this.model.isEditable()) {
             model.addContent(new ValueContent(value));
             DrawerFactory.getInstance().getDrawer().draw(view,model.getShowableValues());
-
-            // view.setValues(model.getShowableValues());
         }
     }
 

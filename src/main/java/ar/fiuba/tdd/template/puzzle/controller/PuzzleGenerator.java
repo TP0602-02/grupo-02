@@ -1,13 +1,15 @@
-package ar.fiuba.tdd.template.puzzle;
+package ar.fiuba.tdd.template.puzzle.controller;
 
-import ar.fiuba.tdd.template.Parser;
-import ar.fiuba.tdd.template.board.InputUserView;
-import ar.fiuba.tdd.template.board.cell.RegionJson;
+
 import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.board.region.RegionJson;
 import ar.fiuba.tdd.template.drawers.DrawerFactory;
+import ar.fiuba.tdd.template.entity.Parser;
+import ar.fiuba.tdd.template.puzzle.model.Puzzle;
+import ar.fiuba.tdd.template.puzzle.view.InputUserView;
+import ar.fiuba.tdd.template.puzzle.view.PuzzleView;
 import ar.fiuba.tdd.template.rules.GenericRule;
 import ar.fiuba.tdd.template.rules.RulesFactory;
-import ar.fiuba.tdd.template.userinterface.view.PuzzleView;
 import ar.fiuba.tdd.template.userinterface.view.StartView;
 import ar.fiuba.tdd.template.winverificators.WinVerificator;
 import ar.fiuba.tdd.template.winverificators.WinVerificatorFactory;

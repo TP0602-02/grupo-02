@@ -1,10 +1,12 @@
 package ar.fiuba.tdd.template.board;
 
 
-import ar.fiuba.tdd.template.board.cell.RegionJson;
+
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
+import ar.fiuba.tdd.template.board.region.Region;
+import ar.fiuba.tdd.template.board.region.RegionJson;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
 import java.util.ArrayList;

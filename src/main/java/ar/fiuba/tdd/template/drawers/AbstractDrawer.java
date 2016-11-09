@@ -17,6 +17,7 @@ public abstract class AbstractDrawer {
     protected CellView cellViewToDraw;
     private static final String BARRA = "barra";
     private static final String CONTRABARRA = "contrabarra";
+    private static final String PNG_EXTENSION = ".png";
 
     public void draw(CellView cellToDraw, String valueToDraw) {
         this.cellViewToDraw = cellToDraw;
@@ -40,7 +41,7 @@ public abstract class AbstractDrawer {
 
     private ImageIcon getImageOf(String valueToDraw) {
         valueToDraw = isSpecialValue(valueToDraw);
-        ImageIcon imageIcon = new ImageIcon(getImagePackage() + valueToDraw + ".png");
+        ImageIcon imageIcon = new ImageIcon(getImagePackage() + valueToDraw + PNG_EXTENSION);
         return (imageIcon.getImageLoadStatus() == MediaTracker.COMPLETE) ? imageIcon : null;
     }
 

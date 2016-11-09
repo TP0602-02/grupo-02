@@ -25,8 +25,8 @@ public class AmountOfConnectionsRuleTest {
     @Test
     public void cellWithoutValueConnectWithClueWithPreviousConnection_ReturnFalse() {
         Cell cell = this.board.getCell(new Coordinate(0, 0));
-        cell.getContents().add(new ClueContent(2));
-        cell.getContents().add(new ValueContent(DOWN));
+        cell.addContent(new ClueContent(2));
+        cell.addContent(new ValueContent(DOWN));
         Cell otherCell = this.board.getCell(new Coordinate(0, 1));
         Assert.assertFalse(this.rule.validate(board, otherCell, LEFT));
     }
@@ -34,17 +34,17 @@ public class AmountOfConnectionsRuleTest {
     @Test
     public void cellWithValueConnectWithClueWithPreviousConnection_ReturnFalse() {
         Cell cell = this.board.getCell(new Coordinate(0, 0));
-        cell.getContents().add(new ClueContent(2));
-        cell.getContents().add(new ValueContent(DOWN));
+        cell.addContent(new ClueContent(2));
+        cell.addContent(new ValueContent(DOWN));
         Cell otherCell = this.board.getCell(new Coordinate(0, 1));
-        otherCell.getContents().add(new ValueContent(DOWN));
+        otherCell.addContent(new ValueContent(DOWN));
         Assert.assertFalse(this.rule.validate(board, otherCell, LEFT));
     }
 
     @Test
     public void cellWithoutValueConnectWithClueWithoutPreviousConnection_ReturnTrue() {
         Cell cell = this.board.getCell(new Coordinate(0, 0));
-        cell.getContents().add(new ClueContent(2));
+        cell.addContent(new ClueContent(2));
         Cell otherCell = this.board.getCell(new Coordinate(0, 1));
         Assert.assertTrue(this.rule.validate(board, otherCell, LEFT));
     }
@@ -52,9 +52,9 @@ public class AmountOfConnectionsRuleTest {
     @Test
     public void cellWithValueConnectWithClueWithoutPreviousConnection_ReturnTrue() {
         Cell cell = this.board.getCell(new Coordinate(0, 0));
-        cell.getContents().add(new ClueContent(2));
+        cell.addContent(new ClueContent(2));
         Cell otherCell = this.board.getCell(new Coordinate(0, 1));
-        otherCell.getContents().add(new ValueContent(DOWN));
+        otherCell.addContent(new ValueContent(DOWN));
         Assert.assertTrue(this.rule.validate(board, otherCell, LEFT));
     }
 }

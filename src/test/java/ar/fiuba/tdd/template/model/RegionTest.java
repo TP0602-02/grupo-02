@@ -45,7 +45,7 @@ public class RegionTest {
     @Test
     public void getOccupiedCellsZeroIfIHaveBlackContent() {
         Cell cell = new CellMultipleValue(new Coordinate(0, 0));
-        cell.setContent(new BlackContent());
+        cell.addContent(new BlackContent());
         region.addCell(cell);
         Assert.assertTrue(region.getOcuppiedCells() == 0);
     }
@@ -53,7 +53,7 @@ public class RegionTest {
     @Test
     public void getOccupiedCellsZeroIfIHaveClueContent() {
         Cell cell = new CellMultipleValue(new Coordinate(0, 0));
-        cell.setContent(new ClueContent(1));
+        cell.addContent(new ClueContent(1));
         region.addCell(cell);
         Assert.assertTrue(region.getOcuppiedCells() == 0);
     }
@@ -61,7 +61,7 @@ public class RegionTest {
     @Test
     public void getOccupiedCellsOneIfIHaveValueContent() {
         Cell cell = new CellMultipleValue(new Coordinate(0, 0));
-        cell.setContent(new ValueContent(1));
+        cell.addContent(new ValueContent(1));
         region.addCell(cell);
         Assert.assertTrue(region.getOcuppiedCells() == 1);
     }
@@ -69,8 +69,8 @@ public class RegionTest {
     @Test
     public void getOccupiedCellsOneIfIHaveTwoValueContentsInSameCell() {
         Cell cell = new CellMultipleValue(new Coordinate(0, 0));
-        cell.setContent(new ValueContent(1));
-        cell.setContent(new ValueContent(2));
+        cell.addContent(new ValueContent(1));
+        cell.addContent(new ValueContent(2));
         region.addCell(cell);
         Assert.assertTrue(region.getOcuppiedCells() == 1);
     }
@@ -78,12 +78,12 @@ public class RegionTest {
     @Test
     public void getOccupiedCellsWithMultipleCells() {
         Cell cell = new CellMultipleValue(new Coordinate(0, 0));
-        cell.setContent(new ValueContent(1));
-        cell.setContent(new ValueContent(2));
+        cell.addContent(new ValueContent(1));
+        cell.addContent(new ValueContent(2));
         Cell cell2 = new CellMultipleValue(new Coordinate(1, 0));
-        cell2.setContent(new ValueContent(2));
+        cell2.addContent(new ValueContent(2));
         Cell cell3 = new CellMultipleValue(new Coordinate(2, 0));
-        cell3.setContent(new BlackContent());
+        cell3.addContent(new BlackContent());
         region.addCell(cell);
         region.addCell(cell2);
         region.addCell(cell3);

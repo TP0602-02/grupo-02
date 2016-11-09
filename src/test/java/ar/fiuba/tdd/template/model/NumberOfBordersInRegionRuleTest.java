@@ -34,20 +34,20 @@ public class NumberOfBordersInRegionRuleTest {
 
     @Test
     public void addValueInRegionWithoutRestrictions_ReturnTrue() {
-        this.cell.setContent(new ValueContent(LEFT));
+        this.cell.addContent(new ValueContent(LEFT));
         Assert.assertTrue(this.rule.validate(this.board, this.cell, UP));
     }
 
     @Test
     public void addValueInRegionInLimitOfRestriction_ReturnTrue() {
-        this.cell.setContent(new ValueContent(LEFT));
+        this.cell.addContent(new ValueContent(LEFT));
         this.region.setClue(new ClueContent(2));
         Assert.assertTrue(this.rule.validate(this.board, this.cell, UP));
     }
 
     @Test
     public void addValueInRegionExcedsLimit_ReturnTrue() {
-        this.cell.setContent(new ValueContent(LEFT));
+        this.cell.addContent(new ValueContent(LEFT));
         this.region.setClue(new ClueContent(1));
         Assert.assertTrue(!this.rule.validate(this.board, this.cell, UP));
     }

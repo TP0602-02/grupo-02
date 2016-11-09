@@ -2,11 +2,13 @@ package ar.fiuba.tdd.template.board.cell.model;
 
 import ar.fiuba.tdd.template.entity.Coordinate;
 
+import java.util.*;
+
 import java.util.ArrayList;
 
 public abstract class Cell implements Summable, Editable {
 
-    protected ArrayList<CellContent> contents;
+    protected final ArrayList<CellContent> contents;
     protected Coordinate coordinate;
     protected boolean isEditable;
 
@@ -17,8 +19,8 @@ public abstract class Cell implements Summable, Editable {
 
     //FIXME: encapsulate cell contents and use 'addCell' .
     //FIXME If you want to share content, make it immutable:  protected final ArrayList<CellContent> contents;
-    public ArrayList<CellContent> getContents() {
-        return contents;
+    public List<CellContent> getContents() {
+        return Collections.unmodifiableList(this.contents);
     }
 
 
@@ -26,14 +28,22 @@ public abstract class Cell implements Summable, Editable {
         isEditable = editable;
     }
 
-    public ArrayList<CellContent> getSummableContents() {
+    public void removeContent(int index) {
+        this.contents.remove(index);
+    }
+
+    public int getSizeOfContents() {
+        return this.contents.size();
+    }
+
+    public List<CellContent> getSummableContents() {
         ArrayList<CellContent> contents = new ArrayList<CellContent>();
         for (CellContent cellContent : this.getContents()) {
             if (cellContent.isSummable()) {
                 contents.add(cellContent);
             }
         }
-        return contents;
+        return Collections.unmodifiableList(contents);
     }
 
     public ArrayList<RelativeClueContent> getPositionContents() {
@@ -54,7 +64,14 @@ public abstract class Cell implements Summable, Editable {
         return this.coordinate.getColumn();
     }
 
-    public abstract void setContent(CellContent newContentCell);
+    public abstract void addContent(CellContent newContentCell);
+
+    public CellContent getFirstContent() {
+        if (this.getSizeOfContents() == 0) {
+            return null;
+        }
+        return this.contents.get(0);
+    }
 
     public boolean isEmpty() {
         return contents.size() == 0;
@@ -102,12 +119,6 @@ public abstract class Cell implements Summable, Editable {
         return values;
     }
 
-    public void removeContent(CellContent content) {
-        if (this.contents.contains(content)) {
-            this.contents.remove(content);
-        }
-    }
-
     public int getQuantityOfValues() {
         int total = 0;
         for (CellContent cellContent : contents) {
@@ -128,15 +139,7 @@ public abstract class Cell implements Summable, Editable {
     }
 
     public ArrayList<String> getShowableValues() {
-        //FIXME: dead code
-        //lo comento porque ahora las CluesContent si son son showables y cuando borras un contenido apareceria el valor de la clue
-       /* ArrayList<String> values = new ArrayList<>();
-        for (CellContent content : contents) {
-            if (content.isShowableInBoard()) {
-                values.add(content.getValue());
-            }
-        }
-        return values;*/
+
         return getDeleteableValues();
     }
 

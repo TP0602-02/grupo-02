@@ -62,17 +62,16 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
     }
 
     private void removeLastContent(Cell cell) {
-        int lastContentPosition = cell.getContents().size() - 1;
-        CellContent lastContent = cell.getContents().get(lastContentPosition);
-        cell.removeContent(lastContent);
+        int lastContentPosition = cell.getSizeOfContents() - 1;
+        cell.removeContent(lastContentPosition);
     }
 
     private void generateMovement(int numberToAdd) {
         CellContent cellContent = new ValueContent(numberToAdd);
         CellContent nextCellContent = new ValueContent(this.iterator.getOppositeDirection(numberToAdd));
-        this.cell.setContent(cellContent);
+        this.cell.addContent(cellContent);
         if (this.nextCell != null) {
-            this.nextCell.setContent(nextCellContent);
+            this.nextCell.addContent(nextCellContent);
         }
     }
 }

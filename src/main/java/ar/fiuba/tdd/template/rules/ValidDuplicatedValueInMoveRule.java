@@ -21,7 +21,7 @@ public abstract class ValidDuplicatedValueInMoveRule extends GenericRule {
             if (this.pivotCell == null) {
                 return true;
             }
-            if (!this.pivotCell.isEmpty() && numberToAdd == this.pivotCell.getContents().get(0).getNumberValue()) {
+            if (!this.pivotCell.isEmpty() && numberToAdd == this.pivotCell.getFirstContent().getNumberValue()) {
                 return false;
             }
         }

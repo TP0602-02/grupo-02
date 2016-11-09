@@ -7,6 +7,7 @@ import ar.fiuba.tdd.template.entity.Constants;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by matiaskamien on 14/10/16.
@@ -146,7 +147,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
 
     private Cell getFirstCellInsideCircuit(Board board) {
         Cell cell = this.getFirstCellWithValue(board);
-        ArrayList<CellContent> contents = cell.getSummableContents();
+        List<CellContent> contents = cell.getSummableContents();
         for (CellContent content : contents) {
             if (!this.iterator.validateDirection(board, cell, content.getNumberValue())) {
                 return cell;

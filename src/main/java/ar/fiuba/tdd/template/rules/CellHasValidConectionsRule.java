@@ -14,8 +14,8 @@ public class CellHasValidConectionsRule extends ConectionRule {
         return (validateConectionsInCell(cell) && validateConectionsInCell(nextCell));
     }
 
-    //FIXME: remove harcoded value '2', use constants
+
     private boolean validateConectionsInCell(Cell cell) {
-        return cell.getQuantityOfValues() < 2;
+        return cell.getQuantityOfValues() < MAX_CONECTIONS_CELL;
     }
 }

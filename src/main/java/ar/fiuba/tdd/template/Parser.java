@@ -243,7 +243,7 @@ public class Parser {
                 int idContent = getIntFromJsonObject(contentsJson, ID);
 
                 //createContent(newCell, id, value.toString());
-                newCell.setContent(this.cellContentJsonFactory.getCellContent(idContent));
+                newCell.addContent(this.cellContentJsonFactory.getCellContent(idContent));
                 newCell.setEditable(this.clueCellsEditables);
             }
             cells.add(newCell);
@@ -273,7 +273,7 @@ public class Parser {
                 int corner = getIntFromJsonObject(clueContentJson, CORNER);
                 ClueContent clueContent = (ClueContent) this.cellContentJsonFactory.getCellContent(idContent);
                 RelativeClueContent relativeClueContent = new RelativeClueContent(clueContent, corner);
-                newCell.setContent(relativeClueContent);
+                newCell.addContent(relativeClueContent);
             }
             this.clues.add(newCell);
         }

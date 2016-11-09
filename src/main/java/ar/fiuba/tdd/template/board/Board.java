@@ -8,8 +8,7 @@ import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 
 public class Board {
 
@@ -110,18 +109,18 @@ public class Board {
         return cells;
     }
 
-    public ArrayList<CellContent> getContents(Coordinate coordinate) {
+    public List<CellContent> getContents(Coordinate coordinate) {
         return getCell(coordinate).getContents();
     }
 
     public void setValue(Coordinate coordinate, CellContent content) {
         Cell cell = getCell(coordinate);
-        cell.setContent(content);
+        cell.addContent(content);
     }
 
     public void setValues(Coordinate coordinate, ArrayList<CellContent> contents) {
         for (CellContent cellContent : contents) {
-            getCell(coordinate).setContent(cellContent);
+            getCell(coordinate).addContent(cellContent);
         }
     }
 

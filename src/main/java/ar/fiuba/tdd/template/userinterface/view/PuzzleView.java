@@ -194,7 +194,7 @@ public class PuzzleView extends JFrame {
         int positionCellInitialPixelX = column * cellViewDimension + boardInitialPositionPixelX;
         int positionCellInitialPixelY = row * cellViewDimension + boardInitialPositionPixelY;
         Cell defaultCell = new CellSingleValue(new Coordinate(row, column));
-        defaultCell.setContent(new ValueContent(""));
+        defaultCell.addContent(new ValueContent(""));
         addDefaultCell(defaultCell, positionCellInitialPixelX, positionCellInitialPixelY);
     }
 

@@ -6,6 +6,7 @@ import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.RelativeClueContent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Region {
     private static final String COORDENADAX = " X: ";
@@ -95,7 +96,7 @@ public class Region {
     }
 
     private boolean cellHasValue(Cell cell, RelativeClueContent relativeClue) {
-        ArrayList<CellContent> summableContents = cell.getSummableContents();
+        List<CellContent> summableContents = cell.getSummableContents();
         if (summableContents.size() == 0) {
             return false;
         }
@@ -106,7 +107,7 @@ public class Region {
         return false;
     }
 
-    private ArrayList<Integer> getCellValues(ArrayList<CellContent> summableContents) {
+    private ArrayList<Integer> getCellValues(List<CellContent> summableContents) {
         ArrayList<Integer> values = new ArrayList<Integer>();
         switch (summableContents.get(0).getValue()) {
             case "/": values.add(2);

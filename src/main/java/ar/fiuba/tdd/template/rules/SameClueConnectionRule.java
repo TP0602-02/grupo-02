@@ -40,16 +40,16 @@ public class SameClueConnectionRule extends GenericRule {
     }
 
     private void generatePlay(Cell cell, int numberToAdd, Cell nextCell) {
-        cell.getContents().add(new ValueContent(numberToAdd));
+        cell.addContent(new ValueContent(numberToAdd));
         int nextCellValue = this.iterator.getOppositeDirection(numberToAdd);
-        nextCell.getContents().add(new ValueContent( nextCellValue ));
+        nextCell.addContent(new ValueContent( nextCellValue ));
     }
 
     private void removePlay(Cell cell, Cell nextCell) {
-        int lastContentIndex = cell.getContents().size() - 1;
-        cell.getContents().remove( lastContentIndex );
-        lastContentIndex = nextCell.getContents().size() - 1;
-        nextCell.getContents().remove( lastContentIndex );
+        int lastContentIndex = cell.getSizeOfContents() - 1;
+        cell.removeContent( lastContentIndex );
+        lastContentIndex = nextCell.getSizeOfContents() - 1;
+        nextCell.removeContent( lastContentIndex );
     }
 
     private boolean validConnection(Board board, Cell cell, int previousDirection) {
@@ -97,6 +97,6 @@ public class SameClueConnectionRule extends GenericRule {
     }
 
     private boolean hasClue(Cell cell) {
-        return (cell.getContents().size() > cell.getSummableContents().size());
+        return (cell.getSizeOfContents() > cell.getSummableContents().size());
     }
 }

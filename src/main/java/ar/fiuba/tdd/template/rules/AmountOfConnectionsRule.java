@@ -23,6 +23,6 @@ public class AmountOfConnectionsRule extends ConectionRule {
     }
 
     private boolean hasClue(Cell cell) {
-        return (cell.getContents().size() - cell.getSummableContents().size() > 0);
+        return (cell.getSizeOfContents() - cell.getSummableContents().size() > 0);
     }
 }

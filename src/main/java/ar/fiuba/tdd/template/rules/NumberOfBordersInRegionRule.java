@@ -7,9 +7,6 @@ import ar.fiuba.tdd.template.entity.Constants;
 
 import java.util.ArrayList;
 
-/**
- * Created by alazraqui on 15/10/2016.
- */
 public class NumberOfBordersInRegionRule extends ConectionRule {
 
     private boolean exceedsNumberOfBorders(Board board, Cell cell) {

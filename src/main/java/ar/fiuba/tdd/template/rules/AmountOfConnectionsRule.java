@@ -4,9 +4,6 @@ import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
 
-/**
- * Created by matiaskamien on 02/11/16.
- */
 public class AmountOfConnectionsRule extends ConectionRule {
 
     @Override

@@ -6,9 +6,6 @@ import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
 
-/**
- * Created by matiaskamien on 02/11/16.
- */
 public class SameClueConnectionRule extends GenericRule {
     private BoardIteratorConnections iterator = new BoardIteratorConnections();
     private int clueValue = -1;

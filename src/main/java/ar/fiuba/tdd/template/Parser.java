@@ -371,8 +371,7 @@ public class Parser {
         return circuitVerificator;
     }
 
-
-    public boolean isClueCellsEditables() {
+    private boolean isClueCellsEditables() {
         return clueCellsEditables;
     }
 

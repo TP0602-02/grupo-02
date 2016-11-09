@@ -26,12 +26,8 @@ public class Puzzle {
         this.board = new Board(boardHeight, boardWidth, cellType);
         setInitialCells(initialCells);
         this.initialCells = initialCells;
-        this.rules = new ArrayList<GenericRule>();
-
-        //FIXME: use this.rules.addAll(rules);
-        for (GenericRule rule : rules) {
-            this.rules.add(rule);
-        }
+        this.rules = new ArrayList<>();
+        this.rules.addAll(rules);
         setInitialRegions(regionJsons);
         printRegions();
     }

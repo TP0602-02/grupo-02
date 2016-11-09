@@ -7,7 +7,7 @@ import ar.fiuba.tdd.template.entity.Coordinate;
 import java.util.ArrayList;
 
 public class RegionCreator {
-    private Board board;
+   /* private Board board;
 
     public RegionCreator(Board board) {
         this.board = board;
@@ -39,7 +39,7 @@ public class RegionCreator {
             }
         }
         return false;
-    }
+    }*/
 
 
 }

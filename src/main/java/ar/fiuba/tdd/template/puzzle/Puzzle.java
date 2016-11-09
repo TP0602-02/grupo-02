@@ -3,7 +3,6 @@ package ar.fiuba.tdd.template.puzzle;
 import ar.fiuba.tdd.template.Play;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.Region;
-import ar.fiuba.tdd.template.board.RegionCreator;
 import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.entity.Coordinate;
@@ -42,12 +41,7 @@ public class Puzzle {
     }
 
     private void setInitialRegions(ArrayList<RegionJson> regionJsons) {
-        RegionCreator regionCreator = new RegionCreator(this.board);
-        for (RegionJson regionJson : regionJsons) {
-            Region region = regionCreator.createRegion(regionJson);
-            region.setClue(regionJson.getCellContent());
-            board.addRegion(region);
-        }
+        this.board.setInitialRegions(regionJsons);
     }
 
     public ArrayList<Region> getRegions() {

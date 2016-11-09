@@ -1,12 +1,15 @@
 package ar.fiuba.tdd.template.board;
 
 
+import ar.fiuba.tdd.template.board.cell.RegionJson;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Board {
 
@@ -159,5 +162,41 @@ public class Board {
         for (Region region : this.regions) {
             System.out.print(region.toString());
         }
+    }
+
+    public void setInitialRegions(ArrayList<RegionJson> regionJsons) {
+        for (RegionJson regionJson : regionJsons) {
+            Region region = createRegion(regionJson);
+            region.setClue(regionJson.getCellContent());
+            addRegion(region);
+        }
+    }
+
+    public  Region createRegion(RegionJson regionJson) {
+        return getRegion(regionJson);
+    }
+
+    private Region getRegion(RegionJson regionJson) {
+        ArrayList<Cell> regionCells = new ArrayList<>();
+        for (int coordX = regionJson.getLeftTop().getRow(); coordX <= regionJson.getRightBottom().getRow(); coordX++) {
+            for (int coordY = regionJson.getLeftTop().getColumn(); coordY <= regionJson.getRightBottom().getColumn(); coordY++) {
+                Coordinate coordinate = new Coordinate(coordX, coordY);
+                if (!inExceptions(coordinate, regionJson.getExceptions())) {
+                    regionCells.add(getCell(coordinate)); // same cell as board
+                }
+            }
+        }
+        Region newRegion = new Region(regionCells);
+        newRegion.setGraficable(regionJson.isGraficable());
+        return newRegion;
+    }
+
+    private boolean inExceptions(Coordinate coordinate, ArrayList<Cell> exceptions) {
+        for (Cell exception : exceptions) {
+            if (exception.getRow() == coordinate.getRow() && exception.getColumn() == coordinate.getColumn()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

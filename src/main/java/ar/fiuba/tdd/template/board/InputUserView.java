@@ -230,7 +230,7 @@ public class InputUserView extends JFrame {
         botonOk.setBounds(backSpaceButtonPosX + backSpaceButtonWidth + spaceBetweenButtons,
                 backSpaceButtonPosY, buttonValuesWidth + 20, buttonValuesWidth);
         add(botonOk);
-        deleteContentButton = new JButton("delete value");
+        deleteContentButton = new JButton("borrar contenido");
         deleteContentButton.setBounds(backSpaceButtonPosX, backSpaceButtonPosY + buttonValuesWidth + spaceBetweenButtons,
                 buttonValuesWidth * 4, buttonValuesWidth);
         deleteContentButton.addActionListener(new ActionListener() {

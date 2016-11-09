@@ -363,6 +363,7 @@
       }]
     }
   ],
-  "special_clues":[]
+  "special_clues":[],
+  "instruction" : "La multiplicación de los números de cada “room” debe ser igual al pequeño número en la esquina superior izquierda de cada “room”.\nUn número no puede repetirse en una misma fila o columna."
 
 }

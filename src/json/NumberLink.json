@@ -174,5 +174,6 @@
       {"id":14}
     ]}
 ],
-  "special_clues": []
+  "special_clues": [],
+  "instruction" : "Numberlink consiste en conectar pares de numeros con una linea continua. Se deben cumplir las siguientes condiciones:\n* Conectar pares de los mismos numeros con una linea continua.\n* Las lineas atraviesan el centro de las celdas, horizontalmente, verticalmente, o cambiando de direccion. Nunca atraviesa dos veces la misma celda.\n* Las lineas no pueden cruzar, dividirse o ir a traves de celdas con numeros"
 }

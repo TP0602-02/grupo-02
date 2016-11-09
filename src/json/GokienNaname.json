@@ -453,5 +453,6 @@
     }
     ]
     }
-    ]
-  }
+    ],
+  "instruction" : "Completar cada celda con líneas diagonales.\nLos números indican cuántas líneas tocan a ese número.\nNo se debe ingresar mas de una diagonal por celda. \nLas líneas no pueden formar ningún circuito."
+}

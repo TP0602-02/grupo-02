@@ -807,5 +807,6 @@
       "exceptions": []
     }
   ],
-  "special_clues": []
+  "special_clues": [],
+  "instruction" : "Hay que completar las casillas vacías con números del 1 al 9, teniendo en cuenta que:\n* Cada fila o columna debe sumar lo indicado, respectivamente, a la izquierda o arriba de la misma.\n* La primer mitad de una celda con pista indica la suma hacia bajo y la segunda mitad la suma hacia la derecha.\n* No se puede repetir un mismo número en una suma ya sea por fila o columna."
 }

@@ -492,5 +492,6 @@
       }]
     }
   ],
-  "special_clues":[]
+  "special_clues":[],
+  "instruction": "Dibujar un circuito sobre los bordes de las celdas, de modo que las celdas numeradas tienen tantos bordes en el circuito como su valor."
 }

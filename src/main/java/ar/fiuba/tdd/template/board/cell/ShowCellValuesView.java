@@ -5,7 +5,9 @@ import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.drawers.DrawerFactory;
 
 import java.awt.*;
+import java.util.*;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
 /**
@@ -63,7 +65,7 @@ public class ShowCellValuesView extends JFrame {
         return instance;
     }
 
-    public void showValues(ArrayList<CellContent> values) {
+    public void showValues(List<CellContent> values) {
         setVisible(true);
         hideAllButons();
         for (int content = 0; content < values.size(); ++content) {

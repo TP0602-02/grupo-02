@@ -7,6 +7,7 @@ import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.entity.Coordinate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
 
@@ -107,7 +108,7 @@ public class Board {
         return cells;
     }
 
-    public ArrayList<CellContent> getContents(Coordinate coordinate) {
+    public List<CellContent> getContents(Coordinate coordinate) {
         return getCell(coordinate).getContents();
     }
 

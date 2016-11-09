@@ -6,6 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Nicolas on 7/10/2016.
  */
@@ -43,7 +46,6 @@ public class CellTest {
         Assert.assertEquals(cell.getContents().get(0).getNumberValue(), secondValueToAdd);
 
     }
-
 
     @Test
     public void cellMultipleValueAllowMultipleValueToAdd() {

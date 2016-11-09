@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -143,7 +144,7 @@ public class BoardTest {
         ValueContent firstValue = new ValueContent(2);
 
         board.setValue(new Coordinate(row, column), firstValue);
-        ArrayList<CellContent> valuesRecovered = board.getContents(new Coordinate(row, column));
+        List<CellContent> valuesRecovered = board.getContents(new Coordinate(row, column));
 
         if (valuesRecovered.contains(firstValue)) {
             assert true;
@@ -166,7 +167,7 @@ public class BoardTest {
         values.add(secondContent);
 
         board.setValues(new Coordinate(row, column), values);
-        ArrayList<CellContent> valuesRecovered = board.getContents(new Coordinate(row, column));
+        List<CellContent> valuesRecovered = board.getContents(new Coordinate(row, column));
         //Remueve el primer valor, y agregar el segundo. Simulacion de agregar un valor a una celda y luego
         //agregar otro a la misma celda.
         Assert.assertTrue(!(valuesRecovered.contains(firstContent) && valuesRecovered.contains(secondContent)));
@@ -187,7 +188,7 @@ public class BoardTest {
         ArrayList<Cell> rowCells = board.getRow(board.getCell(new Coordinate(1, 0)));
         ArrayList<Integer> numbers = new ArrayList<>();
         for (Cell cell : rowCells) {
-            ArrayList<CellContent> cellC = board.getContents(new Coordinate(cell.getRow(), cell.getColumn()));
+            List<CellContent> cellC = board.getContents(new Coordinate(cell.getRow(), cell.getColumn()));
             numbers.add(cellC.get(0).getNumberValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }
@@ -211,7 +212,7 @@ public class BoardTest {
         ArrayList<Cell> firstColumn = board.getColumn(board.getCell(new Coordinate(1, 0)));
         ArrayList<Integer> numbers = new ArrayList<>();
         for (Cell cell : firstColumn) {
-            ArrayList<CellContent> cellC = board.getContents(new Coordinate(cell.getRow(), cell.getColumn()));
+            List<CellContent> cellC = board.getContents(new Coordinate(cell.getRow(), cell.getColumn()));
             numbers.add(cellC.get(0).getNumberValue());
             //System.out.print(cellC.get(0).getValue() + " ");
         }

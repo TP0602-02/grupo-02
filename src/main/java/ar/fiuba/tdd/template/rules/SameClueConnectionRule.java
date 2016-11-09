@@ -49,7 +49,7 @@ public class SameClueConnectionRule extends GenericRule {
         int lastContentIndex = cell.getSizeOfContents() - 1;
         cell.removeContent( lastContentIndex );
         lastContentIndex = nextCell.getSizeOfContents() - 1;
-        nextCell.getContents().remove( lastContentIndex );
+        nextCell.removeContent( lastContentIndex );
     }
 
     private boolean validConnection(Board board, Cell cell, int previousDirection) {

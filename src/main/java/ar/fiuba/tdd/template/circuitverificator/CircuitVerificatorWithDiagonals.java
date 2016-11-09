@@ -6,6 +6,7 @@ import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by matiaskamien on 18/10/16.
@@ -19,7 +20,7 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
     @Override
     public boolean isCircuitClosed(Board board) {
         this.cleanCircuitCells();
-        ArrayList<CellContent> corners = this.cell.getSummableContents();
+        List<CellContent> corners = this.cell.getSummableContents();
         for (CellContent corner: corners) {
             this.cleanCircuitCells();
             if (!this.isCircuitOpen(board, this.cell, corner, null)) {
@@ -49,7 +50,7 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
     }
 
     private boolean checkCellClosedCircuit(Board board, Cell limitCell, Cell cell, CellContent previousCorner) {
-        ArrayList<CellContent> corners = this.getCorners(limitCell);
+        List<CellContent> corners = this.getCorners(limitCell);
         for (CellContent limitCellCorner: corners) {
             if (this.cellsAreConnected(cell, limitCell)) {
                 if (!this.isFirstCorner(limitCellCorner, corners)) {
@@ -63,9 +64,9 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
         return true;
     }
 
-    private ArrayList<CellContent> getCorners(Cell limitCell) {
-        ArrayList<CellContent> corners = new ArrayList<CellContent>();
-        ArrayList<CellContent> values = limitCell.getSummableContents();
+    private List<CellContent> getCorners(Cell limitCell) {
+        List<CellContent> corners = new ArrayList<CellContent>();
+        List<CellContent> values = limitCell.getSummableContents();
         if (values.size() == 0) {
             return corners;
         }
@@ -84,7 +85,7 @@ public class CircuitVerificatorWithDiagonals extends CircuitVerificator {
         return this.iterator.cellsAreConnected(limitCell, cell);
     }
 
-    private boolean isFirstCorner(CellContent limitCellCorner, ArrayList<CellContent> corners) {
+    private boolean isFirstCorner(CellContent limitCellCorner, List<CellContent> corners) {
         return limitCellCorner == corners.get(0);
     }
 

@@ -30,72 +30,72 @@ public class SameClueConnectionRuleTest {
     @Test
     public void addValueInNormalCellWithSameClue_ReturnTrue() {
         Cell clueCell = this.board.getCell(new Coordinate(0,1));
-        clueCell.getContents().add(new ClueContent(2));
+        clueCell.addContent(new ClueContent(2));
 
         Cell otherClueCell = this.board.getCell(new Coordinate(3,1));
-        otherClueCell.getContents().add(new ClueContent(2));
-        otherClueCell.getContents().add(new ValueContent(UP));
+        otherClueCell.addContent(new ClueContent(2));
+        otherClueCell.addContent(new ValueContent(UP));
 
         Cell firstCell = this.board.getCell(new Coordinate(2,1));
-        firstCell.getContents().add(new ValueContent(DOWN));
-        firstCell.getContents().add(new ValueContent(UP));
+        firstCell.addContent(new ValueContent(DOWN));
+        firstCell.addContent(new ValueContent(UP));
 
         Cell secondCell = this.board.getCell(new Coordinate(1,1));
-        secondCell.getContents().add(new ValueContent(DOWN));
+        secondCell.addContent(new ValueContent(DOWN));
         Assert.assertTrue(this.rule.validate(board, secondCell, UP));
     }
 
     @Test
     public void addValueInNormalCellWithDifferentClue_ReturnFalse() {
         Cell clueCell = this.board.getCell(new Coordinate(0,1));
-        clueCell.getContents().add(new ClueContent(2));
+        clueCell.addContent(new ClueContent(2));
 
         Cell otherClueCell = this.board.getCell(new Coordinate(3,1));
-        otherClueCell.getContents().add(new ClueContent(3));
-        otherClueCell.getContents().add(new ValueContent(UP));
+        otherClueCell.addContent(new ClueContent(3));
+        otherClueCell.addContent(new ValueContent(UP));
 
         Cell firstCell = this.board.getCell(new Coordinate(2,1));
-        firstCell.getContents().add(new ValueContent(DOWN));
-        firstCell.getContents().add(new ValueContent(UP));
+        firstCell.addContent(new ValueContent(DOWN));
+        firstCell.addContent(new ValueContent(UP));
 
         Cell secondCell = this.board.getCell(new Coordinate(1,1));
-        secondCell.getContents().add(new ValueContent(DOWN));
+        secondCell.addContent(new ValueContent(DOWN));
         Assert.assertTrue(!this.rule.validate(board, secondCell, UP));
     }
 
     @Test
     public void addValueInClueCellWithSameClue_ReturnTrue() {
         Cell clueCell = this.board.getCell(new Coordinate(0,1));
-        clueCell.getContents().add(new ClueContent(2));
+        clueCell.addContent(new ClueContent(2));
 
         Cell otherClueCell = this.board.getCell(new Coordinate(3,1));
-        otherClueCell.getContents().add(new ClueContent(2));
-        otherClueCell.getContents().add(new ValueContent(UP));
+        otherClueCell.addContent(new ClueContent(2));
+        otherClueCell.addContent(new ValueContent(UP));
 
         Cell firstCell = this.board.getCell(new Coordinate(2,1));
-        firstCell.getContents().add(new ValueContent(DOWN));
-        firstCell.getContents().add(new ValueContent(UP));
+        firstCell.addContent(new ValueContent(DOWN));
+        firstCell.addContent(new ValueContent(UP));
 
         Cell secondCell = this.board.getCell(new Coordinate(1,1));
-        secondCell.getContents().add(new ValueContent(DOWN));
+        secondCell.addContent(new ValueContent(DOWN));
         Assert.assertTrue(this.rule.validate(board, clueCell, DOWN));
     }
 
     @Test
     public void addValueInClueCellWithDifferentClue_ReturnFalse() {
         Cell clueCell = this.board.getCell(new Coordinate(0,1));
-        clueCell.getContents().add(new ClueContent(2));
+        clueCell.addContent(new ClueContent(2));
 
         Cell otherClueCell = this.board.getCell(new Coordinate(3,1));
-        otherClueCell.getContents().add(new ClueContent(3));
-        otherClueCell.getContents().add(new ValueContent(UP));
+        otherClueCell.addContent(new ClueContent(3));
+        otherClueCell.addContent(new ValueContent(UP));
 
         Cell firstCell = this.board.getCell(new Coordinate(2,1));
-        firstCell.getContents().add(new ValueContent(DOWN));
-        firstCell.getContents().add(new ValueContent(UP));
+        firstCell.addContent(new ValueContent(DOWN));
+        firstCell.addContent(new ValueContent(UP));
 
         Cell secondCell = this.board.getCell(new Coordinate(1,1));
-        secondCell.getContents().add(new ValueContent(DOWN));
+        secondCell.addContent(new ValueContent(DOWN));
         Assert.assertTrue(!this.rule.validate(board, clueCell, DOWN));
     }
 }

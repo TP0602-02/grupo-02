@@ -808,5 +808,5 @@
     }
   ],
   "special_clues": [],
-  "instruction" : "Ubicar un digito de 1 a 9 en cada celda vacia para que la suma de los digitos en cada set de celdas vacias consecutivas(horizontal o vertical) es el numero que aparece a la izquierda de un set o arriba. Ningun numero puede aparecer mas de una vez en celdas consecutivas"
+  "instruction" : "Hay que completar las casillas vacías con números del 1 al 9, teniendo en cuenta que:\n* Cada fila o columna debe sumar lo indicado, respectivamente, a la izquierda o arriba de la misma.\n* No se puede repetir un mismo número en una suma ya sea por fila o columna."
 }

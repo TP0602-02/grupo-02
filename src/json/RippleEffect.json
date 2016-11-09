@@ -467,5 +467,6 @@
       "exceptions": []
     }
   ],
-  "special_clues":[]
+  "special_clues":[],
+  "instruction" : "La grilla se divide en polinominós con las siguientes reglas:\n* Cada polinominó debe contener enteros consecutivos de 1 a la cantidad de celdas en ese polinominó inclusive.\n* Si hay dos números idénticos apareciendo en la misma fila o columna, al menos todo ese conjunto de celdas con otros numeros deben separarse"
 }

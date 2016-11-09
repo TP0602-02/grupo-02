@@ -327,5 +327,6 @@
       }]
     }
   ],
-  "special_clues":[]
+  "special_clues":[],
+  "instruction" : "Dibujar un circuito que vaya horizontal o verticalmente entre los centros de las celdas y que:\n- Pase a lo sumo una vez por cada celda y cada región.\n- Si una región tiene un número, pase por esa cantidad de celdas en ella.\n- Si deja celdas contiguas sin visitar, estas pertenecen a la misma región."
 }

@@ -3,6 +3,7 @@ package ar.fiuba.tdd.template.rules;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.region.Region;
+import ar.fiuba.tdd.template.entity.Play;
 
 /**
  * Created by matiaskamien on 08/10/16.
@@ -15,16 +16,16 @@ public abstract class OperationRule extends NumberRule {
     protected int regionPartial;
 
     @Override
-    public boolean validateRegion(Region region, Cell cell, int numberToAdd) {
+    public boolean validateRegion(Region region, Play play) {
         for (Cell actualCell : region.getCells()) {
             CellContent firstContentWithValue = actualCell.getFirstEditableContent();
-            if (actualCell != cell && firstContentWithValue != null) {
+            if (actualCell != play.getSelectedCell() && firstContentWithValue != null) {
                 ++this.amountOfCellsWithValue;
                 int actualCellValue = firstContentWithValue.getNumberValue();
                 this.updateTotals(actualCellValue);
             }
         }
-        this.updateTotals(numberToAdd);
+        this.updateTotals(play.getValueOfCell());
         ++this.amountOfCellsWithValue;
         return validate();
     }

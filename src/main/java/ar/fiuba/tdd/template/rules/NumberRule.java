@@ -12,21 +12,21 @@ import java.util.ArrayList;
  */
 public abstract class NumberRule extends GenericRule {
     public boolean validate(Board board, Play play) {
-        ArrayList<Region> regionsToValidate = this.getRegions(board,play.getSelectedCell(), play.getValueOfCell());
+        ArrayList<Region> regionsToValidate = this.getRegions(board, play.getSelectedCell());
         for (Region region : regionsToValidate) {
             this.initializeTotals(region);
-            if (!this.validateRegion(region, play.getSelectedCell(), play.getValueOfCell())) {
+            if (!this.validateRegion(region, play)) {
                 return false;
             }
         }
         return true;
     }
 
-    protected ArrayList<Region> getRegions(Board board, Cell cell, int numberToAdd) {
+    protected ArrayList<Region> getRegions(Board board, Cell cell) {
         return board.getCellRegions(cell);
     }
 
-    public abstract boolean validateRegion(Region region, Cell cell, int numberToAdd);
+    public abstract boolean validateRegion(Region region, Play play);
 
     protected abstract void initializeTotals(Region region);
 }

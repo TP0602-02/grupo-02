@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.RelativeClueContent;
 import ar.fiuba.tdd.template.board.region.Region;
+import ar.fiuba.tdd.template.entity.Play;
 
 import java.util.ArrayList;
 
@@ -18,9 +19,9 @@ public class NumberOfDiagonalsRule extends NumberRule {
     private static final int lowerRightCorner = 4;
 
     @Override
-    public boolean validateRegion(Region region, Cell cell, int numberToAdd) {
-        ArrayList<Integer> corners = this.getCorners(numberToAdd);
-        ArrayList<RelativeClueContent> positions = cell.getPositionContents();
+    public boolean validateRegion(Region region, Play play) {
+        ArrayList<Integer> corners = this.getCorners(play.getValueOfCell());
+        ArrayList<RelativeClueContent> positions = play.getSelectedCell().getPositionContents();
         RelativeClueContent positionClue = matchClueWithRegion(positions, region);
         if (!matchCorner(corners, positionClue.getNumberValue())) {
             return true;

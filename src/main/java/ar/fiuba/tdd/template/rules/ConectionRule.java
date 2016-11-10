@@ -20,7 +20,7 @@ public abstract class ConectionRule extends GenericRule {
     @Override
     public boolean validate(Board board, Play play) {
         Cell nextCell = this.iterator.getNextCell(board,play.getSelectedCell(),play.getValueOfCell());
-        return validateConection(board,play.getSelectedCell(), nextCell);
+        return validateConection(board, play.getSelectedCell(), nextCell);
     }
 
     public abstract boolean validateConection(Board board, Cell cell, Cell nextCell);

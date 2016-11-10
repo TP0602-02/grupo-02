@@ -82,6 +82,6 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
 
     @Override
     public String toString() {
-        return "El valor ingresado hace que el circuito quede cerrado";
+        return "No se puede cerrar el circuito ya que viola una regla de finalizacion";
     }
 }

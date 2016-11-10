@@ -22,7 +22,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
         this.cleanCircuitCells();
         Cell firstCellInTheCircuit = this.getFirstCellInsideCircuit(board);
         if (firstCellInTheCircuit != null) {
-            return (checkAllDirections(board, firstCellInTheCircuit) && (hasValidValues(board)));
+            return (checkAllDirections(board, firstCellInTheCircuit));
         }
         return false;
     }
@@ -43,11 +43,11 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
         return true;
     }
 
-    private boolean hasValidValues(Board board) {
+    public boolean hasLinesOutOfTheCircuit(Board board) {
         if (!this.isClose) {
             return false;
         }
-        return hasValidContents(board);
+        return !hasValidContents(board);
     }
 
     private boolean hasValidContents(Board board) {
@@ -67,13 +67,23 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
 
     private boolean cellHasValidValues(Board board, Cell cell) {
         if (!this.circuitCells.contains(cell)) {
-            return (nextCellOutsideCircuite(board, cell));
+            return (hasAllNextsCellsInCircuit(board, cell));
         } else {
-            return (!nextCellOutsideCircuite(board, cell));
+            return (hassAllNextsCellsOutsideCircuit(board, cell));
         }
     }
 
-    private boolean nextCellOutsideCircuite(Board board, Cell cell) {
+    private boolean hassAllNextsCellsOutsideCircuit(Board board, Cell cell) {
+        for (CellContent content : cell.getSummableContents()) {
+            Cell nextCell = this.iterator.getNextCell(board, cell, content.getNumberValue());
+            if (this.circuitCells.contains(nextCell)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean hasAllNextsCellsInCircuit(Board board, Cell cell) {
         for (CellContent content : cell.getSummableContents()) {
             Cell nextCell = this.iterator.getNextCell(board, cell, content.getNumberValue());
             if (!this.circuitCells.contains(nextCell)) {
@@ -82,6 +92,7 @@ public class CircuitVerificatorWithBorders extends CircuitVerificator {
         }
         return true;
     }
+
 
     private void addCellToTheCircuit(Cell cell) {
         if (!this.circuitCells.contains(cell)) {

@@ -59,7 +59,7 @@ public class CircuitVerificatorWithBordersTest {
         this.setHorizontal();
         this.setVertical();
         this.board.setValue(new Coordinate(5, 5), new ValueContent(RIGHT));
-        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
+        Assert.assertTrue(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
@@ -89,7 +89,7 @@ public class CircuitVerificatorWithBordersTest {
         this.board.setValue(new Coordinate(5, 0), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(4, 1), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(5, 1), new ValueContent(LEFT));
-        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
+        Assert.assertTrue(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class CircuitVerificatorWithBordersTest {
         setHorizontal();
         this.board.setValue(new Coordinate(2, 2), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(2, 3), new ValueContent(LEFT));
-        Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
+        Assert.assertTrue(this.circuit.isCircuitClosed(this.board));
     }
 
     @Test

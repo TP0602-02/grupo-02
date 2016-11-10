@@ -15,7 +15,7 @@ public class NumberOfConectionsInRegionRule extends RegionConectionRule {
 
     @Override
     public boolean validationInSameRegion(Board board, Cell cell, Cell nextCell) {
-        Region region = board.getCellRegions(cell).get(0); //Revisar
+        Region region = board.getCellRegions(cell).get(0);
         int conections = region.getOcuppiedCells();
         conections = addConection(cell, conections);
         conections = addConection(nextCell, conections);
@@ -32,5 +32,10 @@ public class NumberOfConectionsInRegionRule extends RegionConectionRule {
     @Override
     protected boolean validationInMoreThanOneRegion(Board board, Cell cell, Cell nextCell) {
         return (validateRegion(board, cell) && validateRegion(board, nextCell));
+    }
+
+    @Override
+    public String toString() {
+        return "Las celdas ocupadas no coinciden con la pista de la region";
     }
 }

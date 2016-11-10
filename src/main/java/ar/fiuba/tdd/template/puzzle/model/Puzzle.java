@@ -76,6 +76,7 @@ public class Puzzle {
     private boolean validateMove(Play play) {
         for (GenericRule rule : this.rules) {
             if (!rule.validate(this.board, play)) {
+                play.setErrorMessge(rule.toString());
                 return false;
             }
         }

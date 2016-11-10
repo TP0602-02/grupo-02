@@ -37,6 +37,7 @@ public class CloseCircuitDiagonalRule extends GenericCloseCircuitRule {
         return true;
     }
 
+
     //Removes last two contents.
     private void removeMovement(Cell cell) {
         int lastContentPosition = cell.getContents().size() - 1;

@@ -26,7 +26,7 @@ public class RegionHasValidConectionsRule extends RegionConectionRule {
     }
 
     private boolean validateInOneRegion(Board board, Cell cell) {
-        Region region = board.getCellRegions(cell).get(0);//SOLO HAY UNA PERO REVISAR
+        Region region = board.getCellRegions(cell).get(0);
         ArrayList<Cell> cellsInRegion = region.getCells();
         int conections = 0;
         for (Cell actualCell : cellsInRegion) {
@@ -38,5 +38,10 @@ public class RegionHasValidConectionsRule extends RegionConectionRule {
             }
         }
         return conections < MAX_CONECTIONS_REGION;
+    }
+
+    @Override
+    public String toString() {
+        return "La region en cuestion ya tiene una entrada y una salida";
     }
 }

@@ -75,4 +75,10 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
             this.nextCell.addContent(nextCellContent);
         }
     }
+
+
+    @Override
+    public String toString() {
+        return "El valor ingresado hace que el circuito quede cerrado";
+    }
 }

@@ -16,4 +16,9 @@ public class ConectionInsideBoardRule extends GenericRule {
 
         return iterator.validateDirection(board, play.getSelectedCell(), play.getValueOfCell());
     }
+
+    @Override
+    public String toString() {
+        return "La coneccion ingresada excede los limites del tablero";
+    }
 }

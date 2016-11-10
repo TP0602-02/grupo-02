@@ -8,4 +8,5 @@ public class DuplicatedValueUpRule extends ValidDuplicatedValueInMoveRule {
     protected Cell move(Board board) {
         return this.iterator.moveUp(board,this.pivotCell);
     }
+
 }

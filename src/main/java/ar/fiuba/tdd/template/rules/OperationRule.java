@@ -54,4 +54,9 @@ public abstract class OperationRule extends NumberRule {
     protected abstract int getNeutralNumberForOperation();
 
     protected abstract void updateTotals(int value);
+
+    @Override
+    public String toString() {
+        return "Valor ingresado hace que no se cumpla con el total a alcanzar solicitado por la region";
+    }
 }

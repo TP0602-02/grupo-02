@@ -7,6 +7,7 @@ public class Play {
     private Cell selectedCell;
     private String selectedValue;
     private boolean validPlay;
+    private String errorMessge;
 
     public Play(Cell selectedCell) {
         this.selectedCell = selectedCell;
@@ -41,4 +42,11 @@ public class Play {
         return selectedValue;
     }
 
+    public String getErrorMessge() {
+        return errorMessge;
+    }
+
+    public void setErrorMessge(String errorMessge) {
+        this.errorMessge = errorMessge;
+    }
 }

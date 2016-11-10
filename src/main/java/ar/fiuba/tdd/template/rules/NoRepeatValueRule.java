@@ -21,4 +21,9 @@ public class NoRepeatValueRule extends NumberRule {
     @Override
     protected void initializeTotals(Region region) {
     }
+
+    @Override
+    public String toString() {
+        return "El valor ingresado ya existe en la region";
+    }
 }

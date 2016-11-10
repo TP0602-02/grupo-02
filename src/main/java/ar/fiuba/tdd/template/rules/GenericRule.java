@@ -5,5 +5,7 @@ import ar.fiuba.tdd.template.entity.Play;
 
 public abstract class GenericRule {
 
-    public abstract boolean validate(Board board,Play play);
+    public abstract boolean validate(Board board, Play play);
+
+    public abstract String toString();
 }

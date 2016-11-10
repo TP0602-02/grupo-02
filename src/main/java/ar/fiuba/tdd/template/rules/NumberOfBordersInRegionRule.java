@@ -25,4 +25,9 @@ public class NumberOfBordersInRegionRule extends ConectionRule {
     public boolean validateConection(Board board, Cell cell, Cell nextCell) {
         return !this.exceedsNumberOfBorders(board, cell) && !this.exceedsNumberOfBorders(board, nextCell);
     }
+
+    @Override
+    public String toString() {
+        return "Cantidad de bordes no es la indicada por la pista en la region.";
+    }
 }

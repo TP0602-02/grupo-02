@@ -14,4 +14,9 @@ public class CellHasValidConectionsRule extends ConectionRule {
     private boolean validateConectionsInCell(Cell cell) {
         return cell.getQuantityOfValues() < MAX_CONNECTIONS_CELL;
     }
+
+    @Override
+    public String toString() {
+        return "La celda contiene el maximo de conecciones permitidas, es decir + " + MAX_CONNECTIONS_CELL;
+    }
 }

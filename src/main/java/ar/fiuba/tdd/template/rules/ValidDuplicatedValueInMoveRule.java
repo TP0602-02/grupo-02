@@ -29,5 +29,10 @@ public abstract class ValidDuplicatedValueInMoveRule extends GenericRule {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "";
+    }
+
     protected abstract Cell move(Board board);
 }

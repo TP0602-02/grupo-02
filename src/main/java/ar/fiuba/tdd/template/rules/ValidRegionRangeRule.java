@@ -13,4 +13,9 @@ public class ValidRegionRangeRule extends NumberRule {
     protected void initializeTotals(Region region) {
 
     }
+
+    @Override
+    public String toString() {
+        return "Valor ingresado fuera de rango entre los valores permitidos";
+    }
 }

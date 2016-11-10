@@ -19,6 +19,11 @@ public class NoRepeatValueInDistanceRule extends GenericRule {
         return horizontal && vertical;
     }
 
+    @Override
+    public String toString() {
+        return "el valor se encuentra en otra celda a una distancia invalida";
+    }
+
     public NoRepeatValueInDistanceRule() {
         this.leftRule = new DuplicatedValueToLeftRule();
         this.rightRule = new DuplicatedValueToRightRule();

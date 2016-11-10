@@ -22,4 +22,9 @@ public class AmountOfConnectionsRule extends ConectionRule {
     private boolean hasClue(Cell cell) {
         return (cell.getSizeOfContents() - cell.getSummableContents().size() > 0);
     }
+
+    @Override
+    public String toString() {
+        return "Supera cantidad de coneccioes permitidas";
+    }
 }

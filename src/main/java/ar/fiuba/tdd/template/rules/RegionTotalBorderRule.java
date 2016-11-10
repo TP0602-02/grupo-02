@@ -26,4 +26,9 @@ public class RegionTotalBorderRule extends GenericTotalRegionRule {
     public boolean validate(Board board,Play play) {
         return this.validate(board);
     }
+
+    @Override
+    public String toString() {
+        return "La cantidad de bordes debe ser la solicitada por la pista que posee la region en cuestion";
+    }
 }

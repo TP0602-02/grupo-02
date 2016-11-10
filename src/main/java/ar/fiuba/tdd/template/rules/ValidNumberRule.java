@@ -9,4 +9,9 @@ public class ValidNumberRule extends GenericRule {
     public boolean validate(Board board, Play play) {
         return (play.getValueOfCell() > 0 && play.getValueOfCell() < board.getHeight());
     }
+
+    @Override
+    public String toString() {
+        return "Valor ingresado fuera de rango permitido";
+    }
 }

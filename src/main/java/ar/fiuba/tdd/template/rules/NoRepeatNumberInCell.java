@@ -14,4 +14,9 @@ public class NoRepeatNumberInCell extends GenericRule {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Valor existente en la celda";
+    }
 }

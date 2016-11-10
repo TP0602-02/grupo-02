@@ -66,6 +66,8 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
                             if (itsPlayed) {
                                 runPlay(play);
                                 checkWinVerificator();
+                            } else {
+                                JOptionPane.showMessageDialog(null, play.getErrorMessge());
                             }
                         }
                     }

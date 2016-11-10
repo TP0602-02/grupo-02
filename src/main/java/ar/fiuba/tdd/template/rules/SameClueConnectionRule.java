@@ -30,6 +30,11 @@ public class SameClueConnectionRule extends GenericRule {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "Has conectado dos clues de distinto valor";
+    }
+
     private int getPreviousDirection(Cell cellWithClue) {
         for (CellContent content: cellWithClue.getContents()) {
             if (content.isSummable()) {

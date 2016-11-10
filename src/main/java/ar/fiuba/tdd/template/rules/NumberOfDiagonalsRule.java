@@ -70,4 +70,9 @@ public class NumberOfDiagonalsRule extends NumberRule {
                 return corners;
         }
     }
+
+    @Override
+    public String toString() {
+        return "La cantidad de diagonales no es la que indica la pista";
+    }
 }

@@ -29,6 +29,7 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
     public boolean validate(Board board, Play play) {
         this.setCells(board, play.getSelectedCell(), play.getValueOfCell());
         this.generateMovement(play.getValueOfCell());
+        this.injectCellToStartVerification(play.getSelectedCell());
         if (!verificator.isCircuitClosed(board)) {
             this.removeContents();
             return true;
@@ -49,6 +50,8 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
     }
 
     protected abstract boolean checkOtherMethods(Board board);
+
+    protected abstract void injectCellToStartVerification(Cell selectedCell);
 
     private void setCells(Board board, Cell cell, int numberToAdd) {
         this.cell = cell;

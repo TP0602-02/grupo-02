@@ -22,6 +22,11 @@ public class CloseCircuitConnectionRule extends GenericCloseCircuitRule {
         return this.validateAdyacentCells(board);
     }
 
+    @Override
+    protected void injectCellToStartVerification(Cell selectedCell) {
+
+    }
+
     private boolean validateAdyacentCells(Board board) {
         for (Region region : board.getRegions()) {
             for (Cell cell : region.getCells()) {

@@ -55,11 +55,12 @@ public class CircuitVerificatorWithBordersTest {
     }
 
     @Test
-    public void setSquareWithLineOutsideCircuit_ReturnFalse() {
+    public void setSquareWithLineOutsideCircuit_ReturnTrue() {
         this.setHorizontal();
         this.setVertical();
         this.board.setValue(new Coordinate(5, 5), new ValueContent(RIGHT));
-        Assert.assertTrue(this.circuit.isCircuitClosed(this.board));
+        this.circuit.isCircuitClosed(this.board);
+        Assert.assertTrue(this.circuit.hasLinesOutOfTheCircuit(this.board));
     }
 
     @Test
@@ -71,7 +72,7 @@ public class CircuitVerificatorWithBordersTest {
     }
 
     @Test
-    public void setTwoSquares_ReturnFalse() {
+    public void setTwoSquares_ReturnTrue() {
         this.board.setValue(new Coordinate(2, 0), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(3, 0), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(2, 0), new ValueContent(RIGHT));
@@ -89,12 +90,14 @@ public class CircuitVerificatorWithBordersTest {
         this.board.setValue(new Coordinate(5, 0), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(4, 1), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(5, 1), new ValueContent(LEFT));
-        Assert.assertTrue(this.circuit.isCircuitClosed(this.board));
+        this.circuit.isCircuitClosed(this.board);
+        Assert.assertTrue(this.circuit.hasLinesOutOfTheCircuit(this.board));
     }
 
     @Test
     public void setSquareWithOneVerticalHoleInBoard_ReturnFalse() {
         this.setHorizontal();
+        setVerticalWithHole();
         Assert.assertFalse(this.circuit.isCircuitClosed(this.board));
     }
 
@@ -104,7 +107,8 @@ public class CircuitVerificatorWithBordersTest {
         setHorizontal();
         this.board.setValue(new Coordinate(2, 2), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(2, 3), new ValueContent(LEFT));
-        Assert.assertTrue(this.circuit.isCircuitClosed(this.board));
+        this.circuit.isCircuitClosed(this.board);
+        Assert.assertTrue(this.circuit.hasLinesOutOfTheCircuit(this.board));
     }
 
     @Test

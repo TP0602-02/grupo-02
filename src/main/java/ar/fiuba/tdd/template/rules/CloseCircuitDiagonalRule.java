@@ -65,4 +65,9 @@ public class CloseCircuitDiagonalRule extends GenericCloseCircuitRule {
     protected boolean checkOtherMethods(Board board) {
         return false;
     }
+
+    @Override
+    protected void injectCellToStartVerification(Cell selectedCell) {
+
+    }
 }

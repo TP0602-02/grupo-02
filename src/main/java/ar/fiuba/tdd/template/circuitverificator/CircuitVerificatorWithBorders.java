@@ -16,15 +16,22 @@ import java.util.List;
 public class CircuitVerificatorWithBorders extends CircuitVerificator {
 
     private ArrayList<Cell> circuitCells = new ArrayList<Cell>();
+    private Cell cellToStart;
 
     @Override
     public boolean isCircuitClosed(Board board) {
         this.cleanCircuitCells();
-        Cell firstCellInTheCircuit = this.getFirstCellInsideCircuit(board);
-        if (firstCellInTheCircuit != null) {
-            return (checkAllDirections(board, firstCellInTheCircuit));
+        if (cellToStart == null) {
+            this.cellToStart = this.getFirstCellInsideCircuit(board);
+            if (this.cellToStart == null) {
+                return false;
+            }
         }
-        return false;
+        return (checkAllDirections(board, this.cellToStart));
+    }
+
+    public void setCell(Cell cell) {
+        this.cellToStart = cell;
     }
 
     private void cleanCircuitCells() {

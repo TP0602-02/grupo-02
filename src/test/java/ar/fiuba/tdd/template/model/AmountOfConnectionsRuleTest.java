@@ -5,14 +5,15 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.rules.AmountOfConnectionsRule;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class AmountOfConnectionsRuleTest {
-    private static final int LEFT = 1;
-    private static final int DOWN = 4;
+    private static final String LEFT = "1";
+    private static final String DOWN = "4";
     private Board board;
     private AmountOfConnectionsRule rule;
 
@@ -28,7 +29,8 @@ public class AmountOfConnectionsRuleTest {
         cell.addContent(new ClueContent(2));
         cell.addContent(new ValueContent(DOWN));
         Cell otherCell = this.board.getCell(new Coordinate(0, 1));
-        Assert.assertFalse(this.rule.validate(board, otherCell, LEFT));
+        Play play = new Play(otherCell, LEFT);
+        Assert.assertFalse(this.rule.validate(board, play));
     }
 
     @Test
@@ -38,7 +40,8 @@ public class AmountOfConnectionsRuleTest {
         cell.addContent(new ValueContent(DOWN));
         Cell otherCell = this.board.getCell(new Coordinate(0, 1));
         otherCell.addContent(new ValueContent(DOWN));
-        Assert.assertFalse(this.rule.validate(board, otherCell, LEFT));
+        Play play = new Play(otherCell, LEFT);
+        Assert.assertFalse(this.rule.validate(board, play));
     }
 
     @Test
@@ -46,7 +49,8 @@ public class AmountOfConnectionsRuleTest {
         Cell cell = this.board.getCell(new Coordinate(0, 0));
         cell.addContent(new ClueContent(2));
         Cell otherCell = this.board.getCell(new Coordinate(0, 1));
-        Assert.assertTrue(this.rule.validate(board, otherCell, LEFT));
+        Play play = new Play(otherCell, LEFT);
+        Assert.assertTrue(this.rule.validate(board, play));
     }
 
     @Test
@@ -55,6 +59,7 @@ public class AmountOfConnectionsRuleTest {
         cell.addContent(new ClueContent(2));
         Cell otherCell = this.board.getCell(new Coordinate(0, 1));
         otherCell.addContent(new ValueContent(DOWN));
-        Assert.assertTrue(this.rule.validate(board, otherCell, LEFT));
+        Play play = new Play(otherCell, LEFT);
+        Assert.assertTrue(this.rule.validate(board, play));
     }
 }

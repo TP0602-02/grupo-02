@@ -6,6 +6,7 @@ import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificator;
+import ar.fiuba.tdd.template.entity.Play;
 
 /**
  * Created by matiaskamien on 15/10/16.
@@ -25,9 +26,9 @@ public abstract class GenericCloseCircuitRule extends GenericRule {
     }
 
     @Override
-    public boolean validate(Board board, Cell cell, int numberToAdd) {
-        this.setCells(board, cell, numberToAdd);
-        this.generateMovement(numberToAdd);
+    public boolean validate(Board board, Play play) {
+        this.setCells(board, play.getSelectedCell(), play.getValueOfCell());
+        this.generateMovement(play.getValueOfCell());
         if (!verificator.isCircuitClosed(board)) {
             this.removeContents();
             return true;

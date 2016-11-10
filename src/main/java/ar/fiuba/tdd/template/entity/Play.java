@@ -17,6 +17,10 @@ public class Play {
         this.selectedValue = selectedValue;
     }
 
+    public int getValueOfCell() {
+        return SpecialCharactersParser.getInstance().getValueOf(this.getSelectedCellValue());
+    }
+
     public boolean getValidPlay() {
         return this.validPlay;
     }

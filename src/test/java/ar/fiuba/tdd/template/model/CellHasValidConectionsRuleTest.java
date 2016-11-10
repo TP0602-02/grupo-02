@@ -3,16 +3,17 @@ package ar.fiuba.tdd.template.model;
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.rules.CellHasValidConectionsRule;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class CellHasValidConectionsRuleTest {
-    private static final int LEFT = 1;
-    private static final int RIGHT = 2;
-    private static final int UP = 3;
-    private static final int DOWN = 4;
+    private static final String LEFT = "1";
+    private static final String RIGHT = "2";
+    private static final String UP = "3";
+    private static final String DOWN = "4";
     private Board board;
     private CellHasValidConectionsRule rule;
 
@@ -28,45 +29,47 @@ public class CellHasValidConectionsRuleTest {
 
     @Test
     public void connectTwoCellsWithNoConnections_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(5, 5)), RIGHT));
+        Play play = new Play(this.board.getCell(new Coordinate(5, 5)), RIGHT);
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void connectCellWithOneValuesWithCellWithOneValue_ReturnTrue() {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(DOWN));
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), RIGHT));
+        Play play = new Play(this.board.getCell(new Coordinate(1, 1)), RIGHT);
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void connectCellWithNoValuesWithCellWithOneValue_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 2)), LEFT));
-    }
-
-    @Test
-    public void connectCellWithOneValuesWithCellWithNoValue_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(1, 2)), LEFT));
+        Play play = new Play(this.board.getCell(new Coordinate(1, 2)), LEFT);
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void connectCellWithNoValuesWithCellWithTwoValues_ReturnFalse() {
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), LEFT));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 2)), LEFT);
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 
     @Test
     public void connectCellWithTwoValuesWithCellWithNoValue_ReturnFalse() {
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), RIGHT));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 1)), RIGHT);
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 
     @Test
     public void connectCellWithOneValuesWithCellWithTwoValues_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 2), new ValueContent(RIGHT));
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), LEFT));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 2)), LEFT);
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 
     @Test
     public void connectCellWithTwoValuesWithCellWithTwoValues_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 2), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(0, 2), new ValueContent(DOWN));
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), LEFT));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 2)), LEFT);
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 }

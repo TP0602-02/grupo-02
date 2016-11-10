@@ -6,6 +6,7 @@ import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.board.region.Region;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.rules.NumberOfConectionsInRegionRule;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,10 +15,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 public class NumberOfConectionsInRegionRuleTest {
-    private static final int LEFT = 1;
-    private static final int RIGHT = 2;
-    private static final int UP = 3;
-    private static final int DOWN = 4;
+    private static final String LEFT = "1";
+    private static final String RIGHT = "2";
+    private static final String UP = "3";
+    private static final String DOWN = "4";
 
     private Board board;
     private NumberOfConectionsInRegionRule rule;
@@ -43,14 +44,16 @@ public class NumberOfConectionsInRegionRuleTest {
 
     @Test
     public void addFirstConectionInRegion_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), RIGHT));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), RIGHT);
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void addConectionInSameRegionWithOneValue_ReturnTrue() {
         this.board.setValue(new Coordinate(2, 2), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(2, 3), new ValueContent(LEFT));
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), RIGHT));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), RIGHT);
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
@@ -59,7 +62,8 @@ public class NumberOfConectionsInRegionRuleTest {
         this.board.setValue(new Coordinate(2, 3), new ValueContent(LEFT));
         this.board.setValue(new Coordinate(1, 2), new ValueContent(RIGHT));
         this.board.setValue(new Coordinate(1, 3), new ValueContent(LEFT));
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), RIGHT));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), RIGHT);
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 
     @Test
@@ -71,7 +75,8 @@ public class NumberOfConectionsInRegionRuleTest {
         ArrayList<Cell> cells = new ArrayList<>();
         cells.add(this.board.getCell(new Coordinate(3, 0)));
         this.board.addRegion(new Region(cells));
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 0)), DOWN));
+        Play play = new Play(this.board.getCell(new Coordinate(2, 0)), DOWN);
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
@@ -85,7 +90,8 @@ public class NumberOfConectionsInRegionRuleTest {
         ArrayList<Cell> cells = new ArrayList<>();
         cells.add(this.board.getCell(new Coordinate(3, 0)));
         this.board.addRegion(new Region(cells));
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 0)), DOWN));
+        Play play = new Play(this.board.getCell(new Coordinate(2, 0)), DOWN);
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
@@ -99,7 +105,8 @@ public class NumberOfConectionsInRegionRuleTest {
         ArrayList<Cell> cells = new ArrayList<>();
         cells.add(this.board.getCell(new Coordinate(3, 0)));
         this.board.addRegion(new Region(cells));
-        Assert.assertTrue(!this.rule.validate(this.board, this.board.getCell(new Coordinate(2, 0)), DOWN));
+        Play play = new Play(this.board.getCell(new Coordinate(2, 0)), DOWN);
+        Assert.assertTrue(!this.rule.validate(this.board, play));
     }
 
 }

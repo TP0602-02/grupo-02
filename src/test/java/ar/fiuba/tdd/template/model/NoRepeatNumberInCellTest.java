@@ -6,6 +6,7 @@ import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.rules.NoRepeatNumberInCell;
 import org.junit.Assert;
 import org.junit.Before;
@@ -26,7 +27,8 @@ public class NoRepeatNumberInCellTest {
 
     @Test
     public void addNumberInEmptyCell_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(board, cell, 2));
+        Play play = new Play(this.cell, "2");
+        Assert.assertTrue(this.rule.validate(board, play));
     }
 
     @Test
@@ -34,19 +36,22 @@ public class NoRepeatNumberInCellTest {
         this.cell.addContent(new ValueContent(1));
         this.cell.addContent(new ValueContent(3));
         this.cell.addContent(new ValueContent(4));
-        Assert.assertTrue(this.rule.validate(board, cell, 2));
+        Play play = new Play(this.cell, "2");
+        Assert.assertTrue(this.rule.validate(board, play));
     }
 
 
     @Test
     public void addValueEqualClue_returnTrue() {
         this.cell.addContent(new ClueContent(1));
-        Assert.assertTrue(this.rule.validate(board, cell, 1));
+        Play play = new Play(this.cell, "1");
+        Assert.assertTrue(this.rule.validate(board, play));
     }
 
     @Test
     public void repeatValue_returnFalse() {
         this.cell.addContent(new ValueContent(1));
-        Assert.assertFalse(this.rule.validate(board, cell, 1));
+        Play play = new Play(this.cell, "1");
+        Assert.assertFalse(this.rule.validate(board, play));
     }
 }

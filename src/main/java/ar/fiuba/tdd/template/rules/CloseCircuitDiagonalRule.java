@@ -4,6 +4,7 @@ import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.circuitverificator.CircuitVerificatorWithDiagonals;
+import ar.fiuba.tdd.template.entity.Play;
 
 /**
  * Created by matiaskamien on 19/10/16.
@@ -24,8 +25,9 @@ public class CloseCircuitDiagonalRule extends GenericCloseCircuitRule {
     }
 
     @Override
-    public boolean validate(Board board, Cell cell, int numberToAdd) {
-        this.generateMovement(cell, numberToAdd);
+    public boolean validate(Board board, Play play) {
+        Cell cell = play.getSelectedCell();
+        this.generateMovement(cell, play.getValueOfCell());
         this.verificator.setCell(cell);
         if (this.verificator.isCircuitClosed(board)) {
             this.removeMovement(cell);

@@ -5,13 +5,16 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
+import ar.fiuba.tdd.template.entity.Play;
 
 public class SameClueConnectionRule extends GenericRule {
     private BoardIteratorConnections iterator = new BoardIteratorConnections();
     private int clueValue = -1;
 
     @Override
-    public boolean validate(Board board, Cell cell, int numberToAdd) {
+    public boolean validate(Board board, Play play) {
+        Cell cell = play.getSelectedCell();
+        int numberToAdd = play.getValueOfCell();
         Cell nextCell = this.iterator.getNextCell(board, cell, numberToAdd);
         Cell cellWithClue = this.getCellWithClue(cell, nextCell);
         if (cellWithClue == null) {

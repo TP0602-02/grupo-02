@@ -1,14 +1,14 @@
 package ar.fiuba.tdd.template.rules;
 
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellContent;
+import ar.fiuba.tdd.template.entity.Play;
 
 public class NoRepeatNumberInCell extends GenericRule {
     @Override
-    public boolean validate(Board board, Cell cell, int numberToAdd) {
-        for (CellContent content : cell.getSummableContents()) {
-            if (content.getNumberValue() == numberToAdd) {
+    public boolean validate(Board board, Play play) {
+        for (CellContent content : play.getSelectedCell().getSummableContents()) {
+            if (content.getNumberValue() == play.getValueOfCell()) {
                 return false;
             }
         }

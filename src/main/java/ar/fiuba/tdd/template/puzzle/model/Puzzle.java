@@ -68,15 +68,14 @@ public class Puzzle {
     }
 
     public boolean checkMovement(Play play) {
-        boolean validPlay = this.validateMove(play.getSelectedCell(),
-                SpecialCharactersParser.getInstance().getValueOf(play.getSelectedCellValue()));
+        boolean validPlay = this.validateMove(play);
         play.setValidPlay(validPlay);
         return validPlay;
     }
 
-    private boolean validateMove(Cell cell, int valueToAdd) {
+    private boolean validateMove(Play play) {
         for (GenericRule rule : this.rules) {
-            if (!rule.validate(this.board, cell, valueToAdd)) {
+            if (!rule.validate(this.board, play)) {
                 return false;
             }
         }

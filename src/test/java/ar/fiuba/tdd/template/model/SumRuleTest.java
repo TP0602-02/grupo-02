@@ -7,6 +7,7 @@ import ar.fiuba.tdd.template.board.cell.model.ClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.board.region.Region;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.rules.SumRule;
 import org.junit.Assert;
 import org.junit.Before;
@@ -49,29 +50,34 @@ public class SumRuleTest {
 
     @Test
     public void addInEmptyBoard_ReturnTrue() {
-        Assert.assertTrue(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 5));
+        Play play = new Play(this.board.getCell(new Coordinate(1, 1)), "5");
+        Assert.assertTrue(rule.validate(this.board, play));
     }
 
     @Test
     public void addInEmptyBoardExcedsValue_ReturnFalse() {
-        Assert.assertFalse(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 8));
+        Play play = new Play(this.board.getCell(new Coordinate(1, 1)), "8");
+        Assert.assertFalse(rule.validate(this.board, play));
     }
 
     @Test
     public void addInEmptyBoardExcedsOneValue_ReturnFalse() {
-        Assert.assertFalse(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 6));
+        Play play = new Play(this.board.getCell(new Coordinate(1, 1)), "6");
+        Assert.assertFalse(rule.validate(this.board, play));
     }
 
     @Test
     public void addInRowWithValues_ReturnTrue() {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(2));
-        Assert.assertTrue(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 2));
+        Play play = new Play(this.board.getCell(new Coordinate(1, 1)), "2");
+        Assert.assertTrue(rule.validate(this.board, play));
     }
 
     @Test
     public void addInRowWithValuesExced_ReturnFalse() {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(5));
-        Assert.assertFalse(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 2));
+        Play play = new Play(this.board.getCell(new Coordinate(1, 1)), "2");
+        Assert.assertFalse(rule.validate(this.board, play));
     }
 
     @Test
@@ -79,7 +85,8 @@ public class SumRuleTest {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(1));
         this.board.setValue(new Coordinate(1, 2), new ValueContent(1));
         this.board.setValue(new Coordinate(1, 3), new ValueContent(1));
-        Assert.assertFalse(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 1));
+        Play play = new Play(this.board.getCell(new Coordinate(1, 1)), "1");
+        Assert.assertFalse(rule.validate(this.board, play));
     }
 
     @Test
@@ -87,7 +94,8 @@ public class SumRuleTest {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(1));
         this.board.setValue(new Coordinate(1, 2), new ValueContent(1));
         this.board.setValue(new Coordinate(1, 3), new ValueContent(1));
-        Assert.assertTrue(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 2));
+        Play play = new Play(this.board.getCell(new Coordinate(1, 1)), "2");
+        Assert.assertTrue(rule.validate(this.board, play));
     }
 
     @Test
@@ -98,7 +106,8 @@ public class SumRuleTest {
         this.board.setValue(new Coordinate(0, 1), new ValueContent(2));
         this.board.setValue(new Coordinate(2, 1), new ValueContent(1));
         this.board.setValue(new Coordinate(3, 1), new ValueContent(1));
-        Assert.assertTrue(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 2));
+        Play play = new Play(this.board.getCell(new Coordinate(1, 1)), "2");
+        Assert.assertTrue(rule.validate(this.board, play));
     }
 
     @Test
@@ -109,7 +118,8 @@ public class SumRuleTest {
         this.board.setValue(new Coordinate(0, 1), new ValueContent(1));
         this.board.setValue(new Coordinate(2, 1), new ValueContent(1));
         this.board.setValue(new Coordinate(3, 1), new ValueContent(1));
-        Assert.assertFalse(rule.validate(this.board, this.board.getCell(new Coordinate(1, 1)), 2));
+        Play play = new Play(this.board.getCell(new Coordinate(1, 1)), "2");
+        Assert.assertFalse(rule.validate(this.board, play));
     }
 }
 

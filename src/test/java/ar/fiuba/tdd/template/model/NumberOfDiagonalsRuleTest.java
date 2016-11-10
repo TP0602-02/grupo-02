@@ -7,6 +7,7 @@ import ar.fiuba.tdd.template.board.cell.model.RelativeClueContent;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.board.region.Region;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.rules.NumberOfDiagonalsRule;
 import org.junit.Assert;
 import org.junit.Before;
@@ -65,35 +66,40 @@ public class NumberOfDiagonalsRuleTest {
 
     @Test
     public void addFirstDiagonalNotTouchClue_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 1));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "1");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void addFirstDiagonalTouchClue_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 2));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "2");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void addFirstInCellWithNoRegion_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(5, 0)), 2));
+        Play play = new Play(this.board.getCell(new Coordinate(5, 0)), "2");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void addFirstDiagonalinCellWithTwoRegionsNotTouchClue_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), 2));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 1)), "2");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void addFirstDiagonalinCellWithTwoRegionsTouchClue_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), 1));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 1)), "1");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void addDiagonalinCellWithOneRegionsTouchCluewithOneValue_ReturnTrue() {
         this.board.setValue(new Coordinate(0, 1), new ValueContent("\\"));
         this.board.setValue(new Coordinate(0, 1), new ValueContent("/"));
-
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 2));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "2");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
@@ -101,7 +107,8 @@ public class NumberOfDiagonalsRuleTest {
         this.board.setValue(new Coordinate(0, 1), new ValueContent("\\"));
         this.board.setValue(new Coordinate(1, 1), new ValueContent("/"));
         this.board.setValue(new Coordinate(1, 2), new ValueContent("\\"));
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), 2));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 2)), "2");
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 
     @Test
@@ -109,7 +116,8 @@ public class NumberOfDiagonalsRuleTest {
         this.board.setValue(new Coordinate(0, 0), new ValueContent("/"));
         this.board.setValue(new Coordinate(1, 1), new ValueContent("/"));
         this.board.setValue(new Coordinate(1, 2), new ValueContent("\\"));
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), 1));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 1)), "1");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
@@ -118,7 +126,8 @@ public class NumberOfDiagonalsRuleTest {
         this.board.setValue(new Coordinate(1, 1), new ValueContent("/"));
         this.board.setValue(new Coordinate(1, 2), new ValueContent("\\"));
         this.board.setValue(new Coordinate(0, 2), new ValueContent("/"));
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 1)), 1));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 1)), "1");
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 
 }

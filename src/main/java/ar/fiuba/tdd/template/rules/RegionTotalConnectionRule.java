@@ -1,9 +1,9 @@
 package ar.fiuba.tdd.template.rules;
 
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.region.Region;
 import ar.fiuba.tdd.template.entity.Constants;
+import ar.fiuba.tdd.template.entity.Play;
 
 public class RegionTotalConnectionRule extends GenericTotalRegionRule {
     @Override
@@ -18,7 +18,7 @@ public class RegionTotalConnectionRule extends GenericTotalRegionRule {
     }
 
     @Override
-    public boolean validate(Board board, Cell cell, int numberToAdd) {
+    public boolean validate(Board board, Play play) {
         return this.validate(board);
     }
 }

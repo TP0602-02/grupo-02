@@ -7,6 +7,7 @@ import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.cell.model.ValueContent;
 import ar.fiuba.tdd.template.board.region.Region;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.rules.NoRepeatValueRule;
 import org.junit.Assert;
 import org.junit.Before;
@@ -76,20 +77,23 @@ public class NoRepeatValueRuleTest {
 
     @Test
     public void addInEmptyBoard_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 3));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "3");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void addInTheSameCell_ReturnTrue() {
         this.board.setValue(new Coordinate(0, 0), new ValueContent(1));
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 1));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "1");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void addNumberInRow_ReturnFalse() {
         this.board.setValue(new Coordinate(0, 0), new ValueContent(1));
         this.board.setValue(new Coordinate(0, 3), new ValueContent(2));
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), 1));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 2)), "1");
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 
 
@@ -98,7 +102,8 @@ public class NoRepeatValueRuleTest {
         this.board.setValue(new Coordinate(0, 0), new ValueContent(1));
         this.board.setValue(new Coordinate(0, 3), new ValueContent(2));
         this.board.setValue(new Coordinate(1, 2), new ValueContent(3));
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 2)), 3));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 2)), "3");
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 
     @Test
@@ -109,7 +114,8 @@ public class NoRepeatValueRuleTest {
         this.board.setValue(new Coordinate(1, 0), new ValueContent(3));
         this.board.setValue(new Coordinate(2, 0), new ValueContent(2));
         this.board.setValue(new Coordinate(3, 0), new ValueContent(3));
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 4));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "4");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
 }

@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.template.rules;
 
 import ar.fiuba.tdd.template.board.Board;
-import ar.fiuba.tdd.template.board.cell.model.Cell;
+import ar.fiuba.tdd.template.entity.Play;
 
 /**
  * Created by alazraqui on 03/11/2016.
@@ -13,9 +13,9 @@ public class NoRepeatValueInDistanceRule extends GenericRule {
     private DuplicatedValueToRightRule rightRule;
 
     @Override
-    public boolean validate(Board board, Cell cell, int numberToAdd) {
-        boolean horizontal = leftRule.validate(board,cell,numberToAdd) && rightRule.validate(board,cell,numberToAdd);
-        boolean vertical = upRule.validate(board,cell,numberToAdd) && downRule.validate(board,cell,numberToAdd);
+    public boolean validate(Board board, Play play) {
+        boolean horizontal = leftRule.validate(board, play) && rightRule.validate(board, play);
+        boolean vertical = upRule.validate(board, play) && downRule.validate(board, play);
         return horizontal && vertical;
     }
 

@@ -5,6 +5,7 @@ import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.board.cell.model.CellFactory;
 import ar.fiuba.tdd.template.board.region.Region;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.rules.ValidRegionRangeRule;
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,28 +31,33 @@ public class ValidRegionRangeRuleTest {
 
     @Test
     public void setZero_ReturnsFalse() {
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 0));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "0");
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 
     @Test
     public void setOne_ReturnsTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 1));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "1");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void setTwo_ReturnsTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 2));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "2");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
 
     @Test
     public void setThree_ReturnsTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 3));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "3");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void setFour_ReturnsFalse() {
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 4));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "4");
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 
 }

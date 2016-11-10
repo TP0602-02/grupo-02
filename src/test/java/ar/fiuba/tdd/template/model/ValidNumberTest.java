@@ -2,6 +2,7 @@ package ar.fiuba.tdd.template.model;
 
 import ar.fiuba.tdd.template.board.Board;
 import ar.fiuba.tdd.template.entity.Coordinate;
+import ar.fiuba.tdd.template.entity.Play;
 import ar.fiuba.tdd.template.rules.ValidNumberRule;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,16 +20,19 @@ public class ValidNumberTest {
 
     @Test
     public void addZero_ReturnFalse() {
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 0));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "0");
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 
     @Test
     public void addValidNumber_ReturnTrue() {
-        Assert.assertTrue(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 3));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "3");
+        Assert.assertTrue(this.rule.validate(this.board, play));
     }
 
     @Test
     public void addHighNumber_ReturnFalse() {
-        Assert.assertFalse(this.rule.validate(this.board, this.board.getCell(new Coordinate(0, 0)), 5));
+        Play play = new Play(this.board.getCell(new Coordinate(0, 0)), "5");
+        Assert.assertFalse(this.rule.validate(this.board, play));
     }
 }

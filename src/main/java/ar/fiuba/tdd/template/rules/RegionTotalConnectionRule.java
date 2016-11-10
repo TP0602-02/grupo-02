@@ -24,6 +24,6 @@ public class RegionTotalConnectionRule extends GenericTotalRegionRule {
 
     @Override
     public String toString() {
-        return "La cantidad de conecciones debe ser la solicitada por la pista que posee la region en cuestion";
+        return "La cantidad de conexiones debe ser la solicitada por la pista que posee la region en cuestion";
     }
 }

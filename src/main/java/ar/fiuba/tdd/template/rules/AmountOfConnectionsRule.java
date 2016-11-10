@@ -25,6 +25,6 @@ public class AmountOfConnectionsRule extends ConectionRule {
 
     @Override
     public String toString() {
-        return "Supera cantidad de coneccioes permitidas";
+        return "Supera cantidad de conexiones permitidas";
     }
 }

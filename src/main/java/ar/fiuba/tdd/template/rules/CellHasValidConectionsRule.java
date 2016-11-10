@@ -17,6 +17,6 @@ public class CellHasValidConectionsRule extends ConectionRule {
 
     @Override
     public String toString() {
-        return "La celda contiene el maximo de conecciones permitidas, es decir + " + MAX_CONNECTIONS_CELL;
+        return "La celda contiene el maximo de conexiones permitidas, es decir + " + MAX_CONNECTIONS_CELL;
     }
 }

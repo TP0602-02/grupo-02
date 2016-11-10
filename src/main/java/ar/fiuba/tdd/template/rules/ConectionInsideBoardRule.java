@@ -19,6 +19,6 @@ public class ConectionInsideBoardRule extends GenericRule {
 
     @Override
     public String toString() {
-        return "La coneccion ingresada excede los limites del tablero";
+        return "La conexion ingresada excede los limites del tablero";
     }
 }

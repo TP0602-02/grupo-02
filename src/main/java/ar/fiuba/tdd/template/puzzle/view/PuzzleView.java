@@ -6,7 +6,6 @@ import ar.fiuba.tdd.template.board.cell.view.CellView;
 import ar.fiuba.tdd.template.board.region.Region;
 import ar.fiuba.tdd.template.drawers.DrawerFactory;
 import ar.fiuba.tdd.template.entity.Coordinate;
-import ar.fiuba.tdd.template.userinterface.view.Undo;
 
 
 import java.awt.*;
@@ -37,6 +36,8 @@ public class PuzzleView extends JFrame {
     private ArrayList<Cell> graphicsInitialClues;
     private String instructionGame;
     private ArrayList<Region> regionsToPaint;
+    private JButton undo;
+
 
     public PuzzleView(int height, int width, String gameName, ArrayList<Cell> graphicsInitialClues,
                       String instructionGame, ArrayList<Region> regions) {
@@ -147,7 +148,7 @@ public class PuzzleView extends JFrame {
     }
 
     private void addUndo() {
-        JButton undo = Undo.getUndoButtom();
+        undo = new JButton("DESHACER JUGADA");
         undo.setBounds(screenWidth - 200, 85, 150, 30);
         container.add(undo);
     }
@@ -302,6 +303,10 @@ public class PuzzleView extends JFrame {
 
     public interface BackPressed {
         public void onBackClick();
+    }
+
+    public JButton getUndo() {
+        return undo;
     }
 
 }

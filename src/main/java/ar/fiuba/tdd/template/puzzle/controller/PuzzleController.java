@@ -11,7 +11,6 @@ import ar.fiuba.tdd.template.puzzle.aggregators.AbstractAgreggator;
 import ar.fiuba.tdd.template.puzzle.model.Puzzle;
 import ar.fiuba.tdd.template.puzzle.view.PuzzleView;
 
-import ar.fiuba.tdd.template.userinterface.view.Undo;
 import ar.fiuba.tdd.template.winverificators.WinVerificator;
 
 import java.awt.event.ActionEvent;
@@ -117,7 +116,7 @@ public class PuzzleController extends BaseController<PuzzleView, Puzzle> {
     }
 
     private void undoConfig() {
-        Undo.setActionListener(new ActionListener() {
+        view.getUndo().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
                 if (!aggregator.stackHasNoPlays()) {

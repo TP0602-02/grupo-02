@@ -200,7 +200,6 @@ public class InputUserView extends JFrame {
             } else {
                 buttonPosX += (spaceBetweenButtons + buttonValuesWidth);
             }
-
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {

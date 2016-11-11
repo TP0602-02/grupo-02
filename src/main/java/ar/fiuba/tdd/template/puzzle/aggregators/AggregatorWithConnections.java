@@ -2,6 +2,7 @@ package ar.fiuba.tdd.template.puzzle.aggregators;
 
 
 import ar.fiuba.tdd.template.board.Board;
+import ar.fiuba.tdd.template.board.cell.controller.CellController;
 import ar.fiuba.tdd.template.board.cell.model.Cell;
 import ar.fiuba.tdd.template.circuitverificator.BoardIteratorConnections;
 import ar.fiuba.tdd.template.entity.Play;
@@ -36,6 +37,15 @@ public class AggregatorWithConnections extends AbstractAgreggator {
         getCellControllerOfCell(cell).deletedValue(valueToDelete);
         Play newPLayToRun = getPlayFromCellConnection(cell, valueToDelete, board);
         removeEspecificPlayOfStack(cell,valueToDelete);
+        /*if (newPLayToRun != null && newPLayToRun.getValidPlay()) {
+            Cell selectedCell = newPLayToRun.getSelectedCell();
+            CellController cellController = getCellControllerOfCell(selectedCell);
+            String cellValue = newPLayToRun.getSelectedCellValue();
+            if (cellController != null){
+                cellController.deletedValue(cellValue);
+                removeEspecificPlayOfStack(newPLayToRun.getSelectedCell(),newPLayToRun.getSelectedCellValue());
+            }
+        }*/
         if (newPLayToRun.getValidPlay()) {
             getCellControllerOfCell(newPLayToRun.getSelectedCell()).deletedValue(newPLayToRun.getSelectedCellValue());
             removeEspecificPlayOfStack(newPLayToRun.getSelectedCell(),newPLayToRun.getSelectedCellValue());

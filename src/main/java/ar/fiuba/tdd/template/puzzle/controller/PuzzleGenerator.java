@@ -76,6 +76,7 @@ public class PuzzleGenerator {
             @Override
             public void onBackClick() {
                 puzzleView.setVisible(false);
+                //puzzleController = null;
                 startView.setVisible(true);
             }
         });

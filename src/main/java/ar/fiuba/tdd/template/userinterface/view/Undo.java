@@ -11,14 +11,12 @@ public class Undo {
     private static JButton undoButtom;
 
     public static JButton getUndoButtom() {
-        if (undoButtom == null) {
-            undoButtom = new JButton("DESHACER JUGADA");
-        }
+        undoButtom = new JButton("DESHACER JUGADA");
         return undoButtom;
     }
 
     public static void setActionListener(ActionListener listener) {
-        JButton button = getUndoButtom();
-        button.addActionListener(listener);
+        undoButtom.addActionListener(listener);
     }
+
 }

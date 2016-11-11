@@ -42,12 +42,14 @@ public abstract class AbstractAgreggator {
     }
 
     public void removeEspecificPlayOfStack(Cell cell, String valueToDelete) {
+        Play play = null;
         for (Iterator<Play> iterator = this.playStack.iterator(); iterator.hasNext();) {
-            Play play = iterator.next();
+            play = iterator.next();
             if (play.getSelectedCell() == cell && play.getSelectedCellValue().equals(valueToDelete)) {
-                iterator.remove();
+                break;
             }
         }
+        this.playStack.remove(play);
     }
 
     public void setCellControllers(ArrayList<CellController> cellControllers) {
